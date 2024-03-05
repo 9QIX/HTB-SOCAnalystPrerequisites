@@ -69,3 +69,25 @@ This module introduces HTTP web requests and their role in communication between
 **Cubes:** +10 (UPDATED) 🔄
 
 Breaking down the penetration testing process into stages, this module offers in-depth discussions and examples, covering pre-engagement steps and contract establishment criteria.
+
+### Network Enumeration with Nmap 🌐🕵️
+
+**Level:** Easy  
+**Sections:** 12  
+**Cubes:** +10
+
+Focusing on the widely used Nmap tool, this module imparts the fundamentals necessary for effective network enumeration.
+
+### Intro to Assembly Language 💻🧠
+
+**Level:** Medium  
+**Sections:** 24  
+**Cubes:** +20
+
+Building the core foundation for Binary Exploitation, this module teaches Computer Architecture and Assembly language basics.
+
+## Getting Started 🚀
+
+To embark on this learning journey, simply navigate through the modules in sequence, ensuring a solid understanding of each before proceeding. The progress bar will update as you advance, guiding you through the SOC Analyst Prerequisites path.
+
+Happy learning! 🌟
