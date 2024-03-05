@@ -27,6 +27,7 @@ root@htb[/htb]#
 Special characters and variables can be utilized for customizing the prompt. Here are some examples:
 
 - `\d`: Date (Mon Feb 6)
+
 - `\D{%Y-%m-%d}`: Date (YYYY-MM-DD)
 
 - `\H`: Full hostname
