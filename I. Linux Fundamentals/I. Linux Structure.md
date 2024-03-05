@@ -39,7 +39,7 @@ Linux follows five core principles, emphasizing file-centric configuration, smal
 
 ### File System Hierarchy 📁
 
-![alt text](image.png)
+![File System Hierarchy](/Images/image.png)
 
 - **/**: Root filesystem, contains boot files and mount points.
 - **/bin:** Essential command binaries.
