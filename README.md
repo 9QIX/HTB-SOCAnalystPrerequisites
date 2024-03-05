@@ -90,4 +90,4 @@ Building the core foundation for Binary Exploitation, this module teaches Comput
 
 To embark on this learning journey, simply navigate through the modules in sequence, ensuring a solid understanding of each before proceeding. The progress bar will update as you advance, guiding you through the SOC Analyst Prerequisites path.
 
-Happy learning! 🌟
+Happy learning! 🌟🌟
