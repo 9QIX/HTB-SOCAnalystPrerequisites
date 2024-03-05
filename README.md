@@ -37,3 +37,11 @@ Fundamental insights into working with the Windows operating system are provided
 **Cubes:** +10
 
 This module introduces Command Prompt and PowerShell, essential tools for administrators and Pentesters working within a Windows environment.
+
+### Introduction to Networking 🌐
+
+**Level:** Fundamental  
+**Sections:** 21  
+**Cubes:** +10 (UPDATED) 🔄
+
+A comprehensive module covering networking fundamentals, essential for information security professionals to understand network structures, communication protocols, and traffic.
