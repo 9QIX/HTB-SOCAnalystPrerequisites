@@ -13,3 +13,11 @@ The SOC Analyst Prerequisites path is meticulously curated for individuals aspir
 **Cubes:** +10 (UPDATED) 🔄
 
 This module equips learners with the essential skills to navigate and work proficiently with the Linux operating system and shell.
+
+### Introduction to Bash Scripting 🤖
+
+**Level:** Easy  
+**Sections:** 10  
+**Cubes:** +10
+
+Covering the basics of Bash scripting, this module empowers individuals to automate tasks on Linux systems, a crucial skill for technical roles in information security.
