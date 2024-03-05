@@ -26,13 +26,28 @@ root@htb[/htb]#
 
 Special characters and variables can be utilized for customizing the prompt. Here are some examples:
 
-- `\u`: Current username
-- `\h`: Hostname
-- `\w`: Full path of the current working directory
-- `\@`: Current time
-- `\D{%Y-%m-%d}`: Date in YYYY-MM-DD format
+- `\d`: Date (Mon Feb 6)
+- `\D{%Y-%m-%d}`: Date (YYYY-MM-DD)
+
+- `\H`: Full hostname
+
 - `\j`: Number of jobs managed by the shell
-- And many more...
+
+- `\n`: Newline
+
+- `\r`: Carriage return
+
+- `\s`: Name of the shell
+
+- `\t`: Current time 24-hour (HH:MM:SS)
+
+- `\T`: Current time 12-hour (HH:MM:SS)
+
+- `\@`: Current time
+
+- `\u`: Current username
+
+- `\w`: Full path of the current working directory
 
 For instance, to display the full path of the current working directory, the prompt can be customized as:
 
