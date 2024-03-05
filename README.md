@@ -45,3 +45,11 @@ This module introduces Command Prompt and PowerShell, essential tools for admini
 **Cubes:** +10 (UPDATED) 🔄
 
 A comprehensive module covering networking fundamentals, essential for information security professionals to understand network structures, communication protocols, and traffic.
+
+### Introduction to Active Directory 🏢
+
+**Level:** Fundamental  
+**Sections:** 16  
+**Cubes:** +10
+
+Providing insights into Active Directory (AD), this module explores AD fundamentals, structures, functionality, common flaws, misconfigurations, and defensive measures.
