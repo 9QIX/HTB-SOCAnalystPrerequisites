@@ -61,3 +61,11 @@ Providing insights into Active Directory (AD), this module explores AD fundament
 **Cubes:** +10
 
 This module introduces HTTP web requests and their role in communication between web applications and backends.
+
+### Penetration Testing Process 🛠️
+
+**Level:** Fundamental  
+**Sections:** 15  
+**Cubes:** +10 (UPDATED) 🔄
+
+Breaking down the penetration testing process into stages, this module offers in-depth discussions and examples, covering pre-engagement steps and contract establishment criteria.
