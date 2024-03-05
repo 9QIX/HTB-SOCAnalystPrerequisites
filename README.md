@@ -21,3 +21,11 @@ This module equips learners with the essential skills to navigate and work profi
 **Cubes:** +10
 
 Covering the basics of Bash scripting, this module empowers individuals to automate tasks on Linux systems, a crucial skill for technical roles in information security.
+
+### Windows Fundamentals 🪟
+
+**Level:** Fundamental  
+**Sections:** 14  
+**Cubes:** +10
+
+Fundamental insights into working with the Windows operating system are provided in this module.
