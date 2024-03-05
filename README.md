@@ -53,3 +53,11 @@ A comprehensive module covering networking fundamentals, essential for informati
 **Cubes:** +10
 
 Providing insights into Active Directory (AD), this module explores AD fundamentals, structures, functionality, common flaws, misconfigurations, and defensive measures.
+
+### Web Requests 🌐
+
+**Level:** Fundamental  
+**Sections:** 8  
+**Cubes:** +10
+
+This module introduces HTTP web requests and their role in communication between web applications and backends.
