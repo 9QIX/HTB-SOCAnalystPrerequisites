@@ -6,19 +6,19 @@ The Bash prompt is a versatile and informative tool that can be customized to en
 
 The standard format of the Bash prompt is as follows:
 
-```
+```bash
 <username>@<hostname><current working directory>$
 ```
 
 For example, the home directory is marked with a tilde `~` and displayed as:
 
-```
+```bash
 <username>@<hostname>[~]$
 ```
 
 When logged in as root, the prompt changes to:
 
-```
+```bash
 root@htb[/htb]#
 ```
 
@@ -36,7 +36,7 @@ Special characters and variables can be utilized for customizing the prompt. Her
 
 For instance, to display the full path of the current working directory, the prompt can be customized as:
 
-```
+```bash
 <username>@<hostname>:/full/path/to/current/directory$
 ```
 
@@ -44,13 +44,13 @@ For instance, to display the full path of the current working directory, the pro
 
 The prompt dynamically changes based on user privileges. For an unprivileged user:
 
-```
+```bash
 $
 ```
 
 For a privileged (root) user:
 
-```
+```bash
 #
 ```
 
