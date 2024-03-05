@@ -12,14 +12,14 @@ Linux's appeal for desktop users lies in its cost-effectiveness, open-source nat
 
 Linux distributions find application across diverse platforms, from servers and mobile devices to embedded systems, cloud computing, and desktops. Popular choices among cybersecurity specialists include:
 
-- ParrotOS
-- Ubuntu
-- Debian
-- Raspberry Pi OS
-- CentOS
-- BackBox
-- BlackArch
-- Pentoo
+- **ParrotOS**
+- **Ubuntu**
+- **Debian**
+- **Raspberry Pi OS**
+- **CentOS**
+- **BackBox**
+- **BlackArch**
+- **Pentoo**
 
 Notable differences between Linux distributions lie in their package inclusions, user interfaces, and available tools. Kali Linux stands out as the preferred choice for cybersecurity specialists, featuring an extensive array of security-focused tools and packages. Ubuntu dominates desktop usage, while Debian excels in server and embedded systems. Red Hat Enterprise Linux and CentOS are favored for enterprise-level computing.
 
