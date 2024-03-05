@@ -21,3 +21,19 @@ This module equips learners with the essential skills to navigate and work profi
 **Cubes:** +10
 
 Covering the basics of Bash scripting, this module empowers individuals to automate tasks on Linux systems, a crucial skill for technical roles in information security.
+
+### Windows Fundamentals 🪟
+
+**Level:** Fundamental  
+**Sections:** 14  
+**Cubes:** +10
+
+Fundamental insights into working with the Windows operating system are provided in this module.
+
+### Introduction to Windows Command Line ⌨️
+
+**Level:** Easy  
+**Sections:** 23  
+**Cubes:** +10
+
+This module introduces Command Prompt and PowerShell, essential tools for administrators and Pentesters working within a Windows environment.
