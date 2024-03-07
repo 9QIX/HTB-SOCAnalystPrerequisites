@@ -12,6 +12,8 @@ In Unix/Linux operating systems, a **file descriptor (FD)** is an indicator of t
 
 When using the `cat` command, we provide input through STDIN (FD 0) by typing "SOME INPUT" and press [ENTER]. The program returns the input to the terminal as STDOUT (FD 1).
 
+![alt text](/Images/image-2.png)
+
 ### STDOUT and STDERR Example
 
 With the `find` command, STDOUT (FD 1) displays standard output (marked in green), while STDERR (FD 2) displays standard error (marked in red).
@@ -20,11 +22,15 @@ With the `find` command, STDOUT (FD 1) displays standard output (marked in green
 $ find /etc/ -name shadow
 ```
 
+![alt text](/Images/image-3.png)
+
 Redirecting STDERR to "/dev/null" discards errors:
 
 ```bash
 $ find /etc/ -name shadow 2>/dev/null
 ```
+
+![alt text](/Images/image-4.png)
 
 ## Redirection Examples
 
