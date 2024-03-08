@@ -37,7 +37,7 @@ Let's practice regular expressions using the `/etc/ssh/sshd_config` file on the 
 1. Show all lines that do not contain the `#` character.
 
 ```bash
-$ grep -E -v "#" /etc/ssh/sshd_config
+$ grep -E -v "#" /etc/ssh/sshd_config | awk NF
 ```
 
 2. Search for all lines that contain a word that starts with `Permit`.
