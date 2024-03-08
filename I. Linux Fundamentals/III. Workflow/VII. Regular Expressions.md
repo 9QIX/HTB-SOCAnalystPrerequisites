@@ -67,17 +67,6 @@ Certainly! Here are the tables without the "Try it" parts:
 
 ### Sets
 
-| Set        | Description                                                                              |
-| ---------- | ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| [arn]      | Returns a match where one of the specified characters (a, r, or n) is present            |
-| [a-n]      | Returns a match for any lowercase character, alphabetically between a and n              |
-| [^arn]     | Returns a match for any character EXCEPT a, r, and n                                     |
-| [0123]     | Returns a match where any of the specified digits (0, 1, 2, or 3) are present            |
-| [0-9]      | Returns a match for any digit between 0 and 9                                            |
-| [0-5][0-9] | Returns a match for any two-digit numbers from 00 and 59                                 |
-| [a-zA-Z]   | Returns a match for any character alphabetically between a and z, lowercase OR uppercase |
-| [+]        | In sets, +, \*, .,                                                                       | , (), $, {} have no special meaning, so [+] means: return a match for any + character in the string |
-
 ## Regular Expressions Practice
 
 Let's practice regular expressions using the `/etc/ssh/sshd_config` file on the Pwnbox instance.
