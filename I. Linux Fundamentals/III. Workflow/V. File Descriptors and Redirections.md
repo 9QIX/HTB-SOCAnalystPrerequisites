@@ -72,6 +72,8 @@ Use `>>` to append STDOUT to an existing file:
 $ find /etc/ -name passwd >> stdout.txt 2>/dev/null
 ```
 
+![alt text](/Images/image-8.png)
+
 ### Redirect STDIN Stream to a File
 
 Use `<<` to redirect a stream as STDIN. Example using the `cat` command to read streaming input and direct it to `stream.txt`:
@@ -80,6 +82,8 @@ Use `<<` to redirect a stream as STDIN. Example using the `cat` command to read 
 $ cat << EOF > stream.txt
 ```
 
+![alt text](/Images/image-9.png)
+
 ## Pipes
 
 Use pipes (`|`) to redirect STDOUT from one program to another. Example using `grep` to filter lines containing "systemd" from the results of the `find` command:
@@ -87,6 +91,8 @@ Use pipes (`|`) to redirect STDOUT from one program to another. Example using `g
 ```bash
 $ find /etc/ -name *.conf 2>/dev/null | grep systemd
 ```
+
+![alt text](/Images/image-10.png)
 
 Multiple redirections can be used in a sequence. Example using `wc` to count the total number of lines obtained:
 
