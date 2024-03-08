@@ -91,3 +91,55 @@ $ cat /etc/passwd | grep -v "false\|nologin" | wc -l
 6. Display all usernames with their UID and set shells separated by a comma (,).
 7. Display all usernames with their UID and set shells separated by a comma (,) and exclude those containing "nologin" or "false."
 8. Display all usernames with their UID and set shells separated by a comma (,) and exclude those containing "nologin." Count all lines in the filtered output.
+
+### Answers
+
+### 1. A line with the username `cry0l1t3`:
+
+```bash
+grep 'cry0l1t3' /etc/passwd
+```
+
+### 2. The usernames:
+
+```bash
+cut -d: -f1 /etc/passwd
+```
+
+### 3. The username `cry0l1t3` and his UID:
+
+```bash
+grep 'cry0l1t3' /etc/passwd | cut -d: -f1,3
+```
+
+### 4. The username `cry0l1t3` and his UID separated by a comma (,):
+
+```bash
+grep 'cry0l1t3' /etc/passwd | cut -d: -f1,3 | tr ':' ','
+```
+
+### 5. The username `cry0l1t3`, his UID, and the set shell separated by a comma (,):
+
+```bash
+grep 'cry0l1t3' /etc/passwd | cut -d: -f1,3,7 | tr ':' ','
+```
+
+### 6. All usernames with their UID and set shells separated by a comma (,):
+
+```bash
+cut -d: -f1,3,7 /etc/passwd | tr ':' ','
+```
+
+### 7. All usernames with their UID and set shells separated by a comma (,) and exclude the ones that contain `nologin` or `false`:
+
+```bash
+cut -d: -f1,3,7 /etc/passwd | grep -vE 'nologin|false' | tr ':' ','
+```
+
+### 8. All usernames with their UID and set shells separated by a comma (,) and exclude the ones that contain `nologin` and count all lines of the filtered output:
+
+```bash
+cut -d: -f1,3,7 /etc/passwd | grep -v 'nologin' | grep -v 'false' | tr ':' ',' | wc -l
+```
+
+Feel free to run these commands in your Linux terminal to observe the output for each exercise. It's a great way to practice and become more familiar with command-line tools.
