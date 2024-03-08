@@ -1,6 +1,4 @@
-# Regular Expressions Practice
-
-Let's practice regular expressions using the `/etc/ssh/sshd_config` file on the Pwnbox instance.
+# Regular Expressions
 
 ## Grouping Operators
 
@@ -13,6 +11,28 @@ Let's practice regular expressions using the `/etc/ssh/sshd_config` file on the 
 - `|` : Also called the OR operator and shows results when one of the two expressions matches.
 
 - `.*` : Also called the AND operator and displays results only if both expressions match.
+
+### OR Operator Example:
+
+- `grep -E "(my|false)" /etc/passwd`
+
+  In this case, you are searching for lines in `/etc/passwd` that contain either "my" or "false". Since at least one of these patterns occurs in each of the three lines, all three lines are displayed.
+
+### AND Operator Example:
+
+- `grep -E "(my.*false)" /etc/passwd`
+
+  Here, you are searching for lines that contain both "my" and "false". The line containing "mysql" is the only one that satisfies this condition, so only that line is displayed.
+
+### Simplified Example using Two Separate grep Commands:
+
+- `grep -E "my" /etc/passwd | grep -E "false"`
+
+  This achieves the same result as the AND operator example. The first `grep` command filters lines containing "my", and then the second `grep` command filters lines containing "false" from the output of the first command. The result is the same line containing "mysql".
+
+## Regular Expressions Practice
+
+Let's practice regular expressions using the `/etc/ssh/sshd_config` file on the Pwnbox instance.
 
 1. Show all lines that do not contain the `#` character.
 
