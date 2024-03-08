@@ -2,6 +2,18 @@
 
 Let's practice regular expressions using the `/etc/ssh/sshd_config` file on the Pwnbox instance.
 
+## Grouping Operators
+
+- `()` : The round brackets are used to group parts of a regex. Within the brackets, you can define further patterns which should be processed together.
+
+- `[]` : The square brackets are used to define character classes. Inside the brackets, you can specify a list of characters to search for.
+
+- `{1,10}` : The curly brackets are used to define quantifiers. Inside the brackets, you can specify a number or a range that indicates how often a previous pattern should be repeated.
+
+- `|` : Also called the OR operator and shows results when one of the two expressions matches.
+
+- `.*` : Also called the AND operator and displays results only if both expressions match.
+
 1. Show all lines that do not contain the `#` character.
 
 ```bash
