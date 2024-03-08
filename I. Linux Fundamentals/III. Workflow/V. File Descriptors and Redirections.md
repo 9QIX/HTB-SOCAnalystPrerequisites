@@ -99,3 +99,5 @@ Multiple redirections can be used in a sequence. Example using `wc` to count the
 ```bash
 $ find /etc/ -name *.conf 2>/dev/null | grep systemd | wc -l
 ```
+
+![alt text](/Images/image-11.png)
