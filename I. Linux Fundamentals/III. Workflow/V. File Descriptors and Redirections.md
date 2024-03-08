@@ -42,6 +42,8 @@ Redirect STDOUT to a file named `results.txt`:
 $ find /etc/ -name shadow 2>/dev/null > results.txt
 ```
 
+![alt text](/Images/image-5.png)
+
 ### Redirect STDOUT and STDERR to Separate Files
 
 Redirect STDOUT and STDERR to different files:
@@ -50,6 +52,8 @@ Redirect STDOUT and STDERR to different files:
 $ find /etc/ -name shadow 2> stderr.txt 1> stdout.txt
 ```
 
+![alt text](/Images/image-6.png)
+
 ### Redirect STDIN
 
 Use the `<` symbol to redirect STDIN. Example using the contents of `stdout.txt` as STDIN for the `cat` command:
@@ -57,6 +61,8 @@ Use the `<` symbol to redirect STDIN. Example using the contents of `stdout.txt`
 ```bash
 $ cat < stdout.txt
 ```
+
+![alt text](/Images/image-7.png)
 
 ### Redirect STDOUT and Append to a File
 
