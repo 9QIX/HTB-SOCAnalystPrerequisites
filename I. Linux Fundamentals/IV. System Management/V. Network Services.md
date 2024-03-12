@@ -110,7 +110,7 @@ OpenVPN customization involves editing `/etc/openvpn/server.conf`. Connecting to
 ### Connect to VPN
 
 ```bash
-sudo openvpn --config internal.ovp
+sudo openvpn --config internal.ovpn
 ```
 
 After establishing a connection, internal hosts on the network become accessible. VPNs are essential for secure remote access and privacy.
