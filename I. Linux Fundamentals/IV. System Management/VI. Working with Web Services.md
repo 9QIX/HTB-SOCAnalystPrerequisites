@@ -10,6 +10,8 @@ apt install apache2 -y
 
 After installation, navigate to the default page using your browser (`http://localhost`) to confirm the server's functionality.
 
+![alt text](/Images/image-12.png)
+
 ### cURL
 
 **cURL** is a powerful tool for transferring files over various protocols. It's commonly pre-installed on Linux systems, aiding in remote website testing and analysis.
