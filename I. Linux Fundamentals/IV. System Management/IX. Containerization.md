@@ -147,6 +147,108 @@ Save and close the file, then restart the LXC service:
 sudo systemctl restart lxc.service
 ```
 
+### Optional Practice
+
+1. Install LXC on your machine and create your first container.
+2. Configure the network settings for your LXC container.
+3. Create a custom LXC image and use it to launch a new container.
+4. Configure resource limits for your LXC containers (CPU, memory, disk space).
+5. Explore the `lxc-*` commands for managing containers.
+6. Use LXC to create a container running a specific version of a web server (e.g., Apache, Nginx).
+7. Configure SSH access to your LXC containers and connect to them remotely.
+8. Create a container with persistence, so changes made to the container are saved and can be reused.
+9. Use LXC to test software in a controlled environment, such as a vulnerable web application or malware.
+
+### Answer
+
+1. **Install LXC:**
+   Install LXC on your system. Here are the commands for Ubuntu:
+
+   ```bash
+   sudo apt update
+   sudo apt install lxc
+   ```
+
+2. **Create your first container:**
+   Create a new LXC container named "mycontainer" using the `lxc-create` command:
+
+   ```bash
+   sudo lxc-create -n mycontainer -t download
+   ```
+
+3. **Configure network settings:**
+   Edit the container configuration file to configure network settings:
+
+   ```bash
+   sudo nano /var/lib/lxc/mycontainer/config
+   ```
+
+   Add or modify network settings as needed. For example:
+
+   ```
+   lxc.net.0.type = veth
+   lxc.net.0.link = lxcbr0
+   lxc.net.0.flags = up
+   lxc.net.0.hwaddr = 00:16:3e:xx:xx:xx
+   ```
+
+4. **Create a custom LXC image:**
+   After making changes to your container, create a snapshot of the container using `lxc-snapshot` command:
+
+   ```bash
+   sudo lxc-snapshot -n mycontainer
+   ```
+
+5. **Configure resource limits:**
+   Edit the container configuration file to configure resource limits:
+
+   ```bash
+   sudo nano /var/lib/lxc/mycontainer/config
+   ```
+
+   Add or modify resource limits as needed. For example:
+
+   ```
+   lxc.cgroup.memory.limit_in_bytes = 1G
+   lxc.cgroup.cpu.cfs_period_us = 100000
+   lxc.cgroup.cpu.cfs_quota_us = 50000
+   ```
+
+6. **Manage containers using lxc-\* commands:**
+   Explore various `lxc-*` commands to manage your containers:
+
+   - Start container: `sudo lxc-start -n mycontainer`
+   - Stop container: `sudo lxc-stop -n mycontainer`
+   - Get container info: `sudo lxc-info -n mycontainer`
+   - List containers: `sudo lxc-ls`
+
+7. **Create a container running a specific version of a web server:**
+   Install a web server inside the container. For example, to install Apache:
+
+   ```bash
+   sudo lxc-start -n mycontainer
+   sudo lxc-attach -n mycontainer -- apt update
+   sudo lxc-attach -n mycontainer -- apt install apache2
+   ```
+
+8. **Configure SSH access:**
+   Install SSH server inside the container and configure SSH as needed:
+
+   ```bash
+   sudo lxc-start -n mycontainer
+   sudo lxc-attach -n mycontainer -- apt update
+   sudo lxc-attach -n mycontainer -- apt install openssh-server
+   ```
+
+   You may also need to configure port forwarding if your containers are behind NAT.
+
+9. **Create a container with persistence:**
+   Create a container with a persistent storage backend such as ZFS or LVM. For example, to create a container with ZFS:
+
+   ```bash
+   sudo lxc-create -n mycontainer -t download -- --storage zfs
+   ```
+
 ## Conclusion 🎉
 
 Containerization technologies like Docker and Linux Containers provide powerful tools for deploying, managing, and securing applications. By leveraging these technologies, users can achieve efficient and secure application deployment, enabling seamless execution across various environments. Whether it's Docker for automated deployment or LXC for lightweight virtualization, containerization offers versatility and scalability for modern software development and deployment practices.
