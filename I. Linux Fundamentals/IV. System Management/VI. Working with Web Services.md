@@ -38,4 +38,6 @@ python3 -m http.server
 
 Accessing `http://0.0.0.0:8000/` allows you to view and interact with the served files. Requests made to the server are logged, providing insight into the communication between the client and server.
 
+![alt text](image-13.png)
+
 Understanding these tools and methods is essential for efficient web server management and troubleshooting.
