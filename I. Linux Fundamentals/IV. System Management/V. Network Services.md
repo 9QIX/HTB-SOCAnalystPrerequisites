@@ -42,6 +42,15 @@ sudo apt install nfs-kernel-server -y
 systemctl status nfs-kernel-server
 ```
 
+| Permissions    | Description                                                                                                                  |
+| -------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| rw             | Gives users and systems read and write permissions to the shared directory.                                                  |
+| ro             | Gives users and systems read-only access to the shared directory.                                                            |
+| no_root_squash | Prevents the root user on the client from being restricted to the rights of a normal user.                                   |
+| root_squash    | Restricts the rights of the root user on the client to the rights of a normal user.                                          |
+| sync           | Synchronizes the transfer of data to ensure that changes are only transferred after they have been saved on the file system. |
+| async          | Transfers data asynchronously, which makes the transfer faster, but may cause inconsistencies in the file system.            |
+
 Configuration lies in `/etc/exports`, specifying shared directories and access rights. Noteworthy access rights include `rw` (read/write), `ro` (read-only), and options like `no_root_squash`.
 
 ### Create NFS Share
