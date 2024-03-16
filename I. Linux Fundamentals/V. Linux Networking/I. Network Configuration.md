@@ -170,3 +170,70 @@ When it comes to implementing cybersecurity measures, there is no one-size-fits-
 10. Configure TCP wrappers to allow access to a specific network service from a range of IP addresses.
 
 These tasks are aimed at enhancing your understanding and practical skills in implementing security measures using SELinux, AppArmor, and TCP Wrappers. Completing them will provide you with valuable experience in securing your system.
+
+## Answers
+
+### SELinux
+
+1. **Install SELinux:**
+
+   ```bash
+   sudo apt-get install selinux
+   ```
+
+2. **Configure SELinux to prevent a user from accessing a specific file:**
+
+   ```bash
+   sudo chcon -t user_home_t /path/to/file
+   ```
+
+3. **Configure SELinux to allow a single user to access a specific network service but deny access to all others:**
+
+   ```bash
+   sudo semanage login -a -s user_u username
+   ```
+
+4. **Configure SELinux to deny access to a specific user or group for a specific network service:**
+   ```bash
+   sudo semanage port -a -t http_port_t -p tcp 8080
+   ```
+
+### AppArmor
+
+5. **Configure AppArmor to prevent a user from accessing a specific file:**
+
+   ```bash
+   sudo aa-complain /path/to/file
+   ```
+
+6. **Configure AppArmor to allow a single user to access a specific network service but deny access to all others:**
+
+   ```bash
+   sudo aa-enforce /etc/apparmor.d/usr.bin.service_name
+   ```
+
+7. **Configure AppArmor to deny access to a specific user or group for a specific network service:**
+   ```bash
+   sudo aa-enforce /etc/apparmor.d/usr.bin.service_name
+   ```
+
+### TCP Wrappers
+
+8. **Configure TCP wrappers to allow access to a specific network service from a specific IP address:**
+
+   ```bash
+   echo "service_name: IP_address" >> /etc/hosts.allow
+   ```
+
+9. **Configure TCP wrappers to deny access to a specific network service from a specific IP address:**
+
+   ```bash
+   echo "service_name: IP_address" >> /etc/hosts.deny
+   ```
+
+10. **Configure TCP wrappers to allow access to a specific network service from a range of IP addresses:**
+    ```bash
+    echo "service_name: IP_address/netmask" >> /etc/hosts.allow
+    ```
+
+These commands provide the basic configurations for each task. Adjustments might be necessary based on your specific setup and requirements. Make sure to read the documentation and understand the implications of each command before applying them.
