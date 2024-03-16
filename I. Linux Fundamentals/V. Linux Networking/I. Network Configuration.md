@@ -147,3 +147,26 @@ Various tools can help us identify and resolve issues regarding network troubles
 Several mechanisms are highly effective in securing Linux systems in keeping our and other companies' data safe. Three such mechanisms are **SELinux**, **AppArmor**, and **TCP wrappers**. These tools are designed to safeguard Linux systems against various security threats, from unauthorized access to malicious attacks, especially while conducting a penetration test.
 
 When it comes to implementing cybersecurity measures, there is no one-size-fits-all approach. It is important to consider the specific information you want to protect and the tools you will use to do so. However, you can practice and implement several optional tasks with others in the Discord channel to increase your knowledge and skills in this area. By taking advantage of the helpfulness of others and sharing your own expertise, you can deepen your understanding of cybersecurity and help others do the same. Remember, explaining concepts to others is essential to teaching and learning.
+
+## Activity
+
+### SELinux
+
+1. Install SELinux on your VM.
+2. Configure SELinux to prevent a user from accessing a specific file.
+3. Configure SELinux to allow a single user to access a specific network service but deny access to all others.
+4. Configure SELinux to deny access to a specific user or group for a specific network service.
+
+### AppArmor
+
+5. Configure AppArmor to prevent a user from accessing a specific file.
+6. Configure AppArmor to allow a single user to access a specific network service but deny access to all others.
+7. Configure AppArmor to deny access to a specific user or group for a specific network service.
+
+### TCP Wrappers
+
+8. Configure TCP wrappers to allow access to a specific network service from a specific IP address.
+9. Configure TCP wrappers to deny access to a specific network service from a specific IP address.
+10. Configure TCP wrappers to allow access to a specific network service from a range of IP addresses.
+
+These tasks are aimed at enhancing your understanding and practical skills in implementing security measures using SELinux, AppArmor, and TCP Wrappers. Completing them will provide you with valuable experience in securing your system.
