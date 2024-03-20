@@ -134,3 +134,80 @@ This example rule matches incoming TCP traffic (-p tcp) on port 80 (--dport 80) 
 10. List all existing rules.
 
 #### Answers
+
+Here are the answers to each task:
+
+1.  Launch a web server on TCP/8080 port and use iptables to block incoming traffic on that port:
+
+```bash
+# Start the web server on port 8080
+sudo systemctl start apache2
+
+# Block incoming traffic on port 8080
+sudo iptables -A INPUT -p tcp --dport 8080 -j DROP
+```
+
+2.  Change iptables rules to allow incoming traffic on TCP/8080 port:
+
+```bash
+# Allow incoming traffic on port 8080
+sudo iptables -D INPUT -p tcp --dport 8080 -j DROP
+```
+
+3.  Block traffic from a specific IP address:
+
+```bash
+# Block traffic from specific IP address
+sudo iptables -A INPUT -s 192.168.1.100 -j DROP
+```
+
+4.  Allow traffic from a specific IP address:
+
+```bash
+# Allow traffic from specific IP address
+sudo iptables -A INPUT -s 192.168.1.100 -j ACCEPT
+```
+
+5.  Block traffic based on protocol:
+
+```bash
+# Block traffic on specific protocol (e.g., ICMP)
+sudo iptables -A INPUT -p icmp -j DROP
+```
+
+6.  Allow traffic based on protocol:
+
+```bash
+# Allow traffic on specific protocol (e.g., ICMP)
+sudo iptables -A INPUT -p icmp -j ACCEPT
+```
+
+7.  Create a new chain:
+
+```bash
+# Create a new chain named "MYCHAIN"
+sudo iptables -N MYCHAIN
+```
+
+8.  Forward traffic to a specific chain:
+
+```bash
+# Forward traffic from INPUT chain to MYCHAIN
+sudo iptables -A INPUT -j MYCHAIN
+```
+
+9.  Delete a specific rule:
+
+```bash
+# Delete rule number 3 from INPUT chain
+sudo iptables -D INPUT 3
+```
+
+10. List all existing rules:
+
+```bash
+# List all existing iptables rules
+sudo iptables -L
+```
+
+These commands provide basic examples for manipulating iptables rules. Make sure to adjust them according to your specific requirements and configurations. Additionally, exercise caution when making changes to iptables rules as incorrect configurations may result in unintended consequences.
