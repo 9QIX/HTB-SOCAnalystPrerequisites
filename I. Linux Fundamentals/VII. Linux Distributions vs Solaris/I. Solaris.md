@@ -22,19 +22,26 @@ Solaris and Linux distributions differ significantly in various aspects, includi
 
 #### Filesystem Overview:
 
-- **/bin:** Essential system binaries for booting and basic operations.
-- **/boot:** Boot-related files like boot loader and kernel images.
-- **/dev:** Device files representing physical and logical devices.
-- **/etc:** System configuration files, startup scripts, and user authentication data.
-- **/home:** User home directories.
-- **/lib:** Libraries required by binaries in /bin and /sbin directories.
-- **/mnt:** Directory for temporary file system mounts.
-- **/opt:** Optional software packages directory.
-- **/proc:** Provides a view into system's process and kernel status.
-- **/sbin:** System binaries for administrative tasks.
-- **/tmp:** Temporary files directory.
-- **/usr:** System-wide read-only data, programs, and executables.
-- **/var:** Contains variable data files like system logs, mail spools, and printer spools.
+| Directory   | Description                                                                                                            |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------- |
+| /           | The root directory contains all other directories and files in the file system.                                        |
+| /bin        | It contains essential system binaries that are required for booting and basic system operations.                       |
+| /boot       | The boot directory contains boot-related files such as boot loader and kernel images.                                  |
+| /dev        | The dev directory contains device files that represent physical and logical devices attached to the system.            |
+| /etc        | The etc directory contains system configuration files, such as system startup scripts and user authentication data.    |
+| /home       | Users’ home directories.                                                                                               |
+| /kernel     | This directory contains kernel modules and other kernel-related files.                                                 |
+| /lib        | Directory for libraries required by the binaries in /bin and /sbin directories.                                        |
+| /lost+found | This directory is used by the file system consistency check and repair tool to store recovered files.                  |
+| /mnt        | Directory for mounting file systems temporarily.                                                                       |
+| /opt        | This directory contains optional software packages that are installed on the system.                                   |
+| /proc       | The proc directory provides a view into the system's process and kernel status as files.                               |
+| /sbin       | This directory contains system binaries required for system administration tasks.                                      |
+| /tmp        | Temporary files created by the system and applications are stored in this directory.                                   |
+| /usr        | The usr directory contains system-wide read-only data and programs, such as documentation, libraries, and executables. |
+| /var        | This directory contains variable data files, such as system logs, mail spools, and printer spools.                     |
+
+This table provides a summary of various directories and their descriptions typically found in a Linux file system.
 
 #### Command Differences and Examples:
 
