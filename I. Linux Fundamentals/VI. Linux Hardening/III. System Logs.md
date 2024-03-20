@@ -60,6 +60,17 @@ These logs contain information about the activities of specific applications run
 
 In this log entry, we can see that the user htb-student used the privileged.sh script to access the api-keys.txt file in the /root/hidden/ directory. On Linux systems, most common services have default locations for access logs:
 
+| Service    | Description                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------- |
+| Apache     | Access logs are stored in the `/var/log/apache2/access.log` file (or similar, depending on the distribution). |
+| Nginx      | Access logs are stored in the `/var/log/nginx/access.log` file (or similar).                                  |
+| OpenSSH    | Access logs are stored in the `/var/log/auth.log` file on Ubuntu and in `/var/log/secure` on CentOS/RHEL.     |
+| MySQL      | Access logs are stored in the `/var/log/mysql/mysql.log` file.                                                |
+| PostgreSQL | Access logs are stored in the `/var/log/postgresql/postgresql-version-main.log` file.                         |
+| Systemd    | Access logs are stored in the `/var/log/journal/` directory.                                                  |
+
+This table provides a summary of various services and the locations where their access logs are stored in a typical Linux environment.
+
 #### Security Logs
 
 These security logs and their events are often recorded in a variety of log files, depending on the specific security application or tool in use. For example, the Fail2ban application records failed login attempts in the `/var/log/fail2ban.log` file, while the UFW firewall records activity in the `/var/log/ufw.log` file. Other security-related events, such as changes to system files or settings, may be recorded in more general system logs such as `/var/log/syslog` or `/var/log/auth.log`. As penetration testers, we can use log analysis tools and techniques to search for specific events or patterns of activity that may indicate a security issue and use that information to further test the system for vulnerabilities or potential attack vectors.
