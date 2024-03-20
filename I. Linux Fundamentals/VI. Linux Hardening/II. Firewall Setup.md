@@ -67,3 +67,45 @@ User-defined chains can simplify rule management by grouping firewall rules base
 Iptables rules are used to define the criteria for filtering network traffic and the actions to take for packets that match the criteria. Rules are added to chains using the `-A` option followed by the chain name, and they can be modified or deleted using various other options.
 
 Each rule consists of a set of criteria or matches and a target specifying the action for packets that match the criteria. The criteria or matches match specific fields in the IP header, such as the source or destination IP address, protocol, source, destination port number, and more. The target specifies the action for packets that match the criteria. They specify the action to take for packets that match a specific rule. For example, targets can accept, drop, reject, or modify the packets. Some of the common targets used in iptables rules include the following:
+
+| Target Name | Description                                                                                                        |
+| ----------- | ------------------------------------------------------------------------------------------------------------------ |
+| ACCEPT      | Allows the packet to pass through the firewall and continue to its destination                                     |
+| DROP        | Drops the packet, effectively blocking it from passing through the firewall                                        |
+| REJECT      | Drops the packet and sends an error message back to the source address, notifying them that the packet was blocked |
+| LOG         | Logs the packet information to the system log                                                                      |
+| SNAT        | Modifies the source IP address of the packet, typically used for Network Address Translation (NAT)                 |
+| DNAT        | Modifies the destination IP address of the packet, typically used for NAT to forward traffic                       |
+| MASQUERADE  | Similar to SNAT but used when the source IP address is not fixed, such as in a dynamic IP address scenario         |
+| REDIRECT    | Redirects packets to another port or IP address                                                                    |
+| MARK        | Adds or modifies the Netfilter mark value of the packet, which can be used for advanced routing or other purposes  |
+
+Let us illustrate a rule and consider that we want to add a new entry to the INPUT chain that allows incoming TCP traffic on port 22 (SSH) to be accepted. The command for that would look like the following:
+
+##### Firewall Setup
+
+```bash
+z0x9n@htb[/htb]$ sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT
+```
+
+#### Matches
+
+Matches are used to specify the criteria that determine whether a firewall rule should be applied to a particular packet or connection. Matches are used to match specific characteristics of network traffic, such as the source or destination IP address, protocol, port number, and more.
+
+| Option              | Description                                                         |
+| ------------------- | ------------------------------------------------------------------- |
+| -p or --protocol    | Specifies the protocol to match (e.g., tcp, udp, icmp)              |
+| --dport             | Specifies the destination port to match                             |
+| --sport             | Specifies the source port to match                                  |
+| -s or --source      | Specifies the source IP address to match                            |
+| -d or --destination | Specifies the destination IP address to match                       |
+| -m state            | Matches the state of a connection (e.g., NEW, ESTABLISHED, RELATED) |
+| -m multiport        | Matches multiple ports or port ranges                               |
+| -m tcp              | Matches TCP packets and includes additional TCP-specific options    |
+| -m udp              | Matches UDP packets and includes additional UDP-specific options    |
+| -m string           | Matches packets that contain a specific string                      |
+| -m limit            | Matches packets at a specified rate limit                           |
+| -m conntrack        | Matches packets based on their connection tracking information      |
+| -m mark             | Matches packets based on their Netfilter mark value                 |
+| -m mac              | Matches packets based on their MAC address                          |
+| -m iprange          | Matches packets based on a range of IP addresses                    |
