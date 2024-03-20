@@ -12,6 +12,14 @@ In Linux, the firewall functionality is typically implemented using the Netfilte
 
 The iptables utility provides a flexible set of rules for filtering network traffic based on various criteria such as source and destination IP addresses, port numbers, protocols, and more. There also exist other solutions like nftables, ufw, and firewalld. Nftables provides a more modern syntax and improved performance over iptables. However, the syntax of nftables rules is not compatible with iptables, so migration to nftables requires some effort. UFW stands for “Uncomplicated Firewall” and provides a simple and user-friendly interface for configuring firewall rules. UFW is built on top of the iptables framework like nftables and provides an easier way to manage firewall rules. Finally, FirewallD provides a dynamic and flexible firewall solution that can be used to manage complex firewall configurations, and it supports a rich set of rules for filtering network traffic and can be used to create custom firewall zones and services.
 
+| Component | Description                                                                                                                            |
+| --------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| Tables    | Tables are used to organize and categorize firewall rules.                                                                             |
+| Chains    | Chains are used to group a set of firewall rules applied to a specific type of network traffic.                                        |
+| Rules     | Rules define the criteria for filtering network traffic and the actions to take for matching packets.                                  |
+| Matches   | Matches are used to specify criteria for filtering network traffic, such as source or destination IP addresses, ports, protocols, etc. |
+| Targets   | Targets specify the action for packets that match a specific rule, such as accept, drop, or reject.                                    |
+
 #### Tables
 
 When working with firewalls on Linux systems, it is important to understand how tables work in iptables. Tables in iptables are used to categorize and organize firewall rules based on the type of traffic that they are designed to handle. These tables are used to organize and categorize firewall rules. Each table is responsible for performing a specific set of tasks.
