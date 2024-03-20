@@ -58,4 +58,6 @@ The PREROUTING chain is used to modify the destination IP address of incoming pa
 - FORWARD
 - POSTROUTING
 
-These chains are used to modify the header fields of
+These chains are used to modify the header fields of incoming and outgoing packets and packets being processed by the corresponding chains.
+
+User-defined chains can simplify rule management by grouping firewall rules based on specific criteria, such as source IP address, destination port, or protocol. They can be added to any of the three main tables. For example, if an organization has multiple web servers that all require similar firewall rules, the rules for each server could be grouped in a user-defined chain. Another example is when a user-defined chain could filter traffic destined for a specific port, such as port 80 (HTTP). The user could then add rules to this chain that specifically filter traffic destined for port 80.
