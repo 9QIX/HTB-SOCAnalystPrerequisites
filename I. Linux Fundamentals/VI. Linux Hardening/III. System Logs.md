@@ -48,6 +48,8 @@ Feb 28 2023 18:15:21 CRON[2345]: pam_unix(cron:session): session opened for user
 Feb 28 2023 18:15:24 CRON[2345]: pam_unix(cron:session): session closed for user root
 ```
 
+In this example, we can see in the first line that a successful public key has been used for authentication for the user admin. Additionally, we can see that this user is in the sudoers group because he can execute commands using sudo. The kernel message indicates that unexpected traffic was allowed on port 22, which could indicate a potential security breach. After that, we see that a new session was created for user "admin" by systemd-logind and that a cron session opened and closed for the user root.
+
 #### Application Logs
 
 These logs contain information about the activities of specific applications running on the system. They are often stored in their own files, such as `/var/log/apache2/error.log` for the Apache web server or `/var/log/mysql/error.log` for the MySQL database server. These logs are particularly important when we are targeting specific applications, such as web servers or databases, as they can provide insights into how these applications are processing and handling data. By examining these logs, we can identify potential vulnerabilities or misconfigurations. For example, access logs can be used to track requests made to a web server, while audit logs can be used to track changes made to the system or to specific files. These logs can be used to identify unauthorized access attempts, data exfiltration, or other suspicious activity.
