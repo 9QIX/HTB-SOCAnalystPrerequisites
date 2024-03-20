@@ -109,3 +109,28 @@ Matches are used to specify the criteria that determine whether a firewall rule 
 | -m mark             | Matches packets based on their Netfilter mark value                 |
 | -m mac              | Matches packets based on their MAC address                          |
 | -m iprange          | Matches packets based on a range of IP addresses                    |
+
+In general, matches are specified using the '-m' option in iptables. For example, the following command adds a rule to the 'INPUT' chain in the 'filter' table that matches incoming TCP traffic on port 80:
+
+##### Firewall Setup
+
+```bash
+z0x9n@htb[/htb]$ sudo iptables -A INPUT -p tcp -m tcp --dport 80 -j ACCEPT
+```
+
+This example rule matches incoming TCP traffic (-p tcp) on port 80 (--dport 80) and jumps to the accept target (-j ACCEPT) if the match is successful.
+
+#### Activity
+
+1. Launch a web server on TCP/8080 port on your target and use iptables to block incoming traffic on that port.
+2. Change iptables rules to allow incoming traffic on the TCP/8080 port.
+3. Block traffic from a specific IP address.
+4. Allow traffic from a specific IP address.
+5. Block traffic based on protocol.
+6. Allow traffic based on protocol.
+7. Create a new chain.
+8. Forward traffic to a specific chain.
+9. Delete a specific rule.
+10. List all existing rules.
+
+#### Answers
