@@ -149,6 +149,8 @@ Here we define another condition (elif [<condition>];then) that prints a line te
 
 ### Exercise Script
 
+Create an "If-Else" condition in the "For"-Loop of the "Exercise Script" that prints you the number of characters of the 35th generated value of the variable "var". Submit the number as the answer.
+
 ```bash
 #!/bin/bash
 # Count number of characters in a variable:
@@ -162,3 +164,5 @@ do
         var=$(echo $var | base64)
 done
 ```
+
+### Asnwer
