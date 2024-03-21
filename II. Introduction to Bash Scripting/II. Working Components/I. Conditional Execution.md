@@ -146,3 +146,19 @@ fi
 ```
 
 Here we define another condition (elif [<condition>];then) that prints a line telling us (echo -e "...") that we have given more than one argument and exits the program with an error (exit 1).
+
+### Exercise Script
+
+```bash
+#!/bin/bash
+# Count number of characters in a variable:
+#     echo $variable | wc -c
+
+# Variable to encode
+var="nef892na9s1p9asn2aJs71nIsm"
+
+for counter in {1..40}
+do
+        var=$(echo $var | base64)
+done
+```
