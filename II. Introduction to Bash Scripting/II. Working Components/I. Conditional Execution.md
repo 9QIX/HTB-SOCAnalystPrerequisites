@@ -105,16 +105,18 @@ fi
 
 #### If-Elif-Else.sh - Execution
 
-```plaintext
-  Conditional Execution
+```bash
+  # Conditional Execution
 z0x9n@htb[/htb]$ bash if-elif-else.sh 5
 
 Given argument is less than 10.
-  Conditional Execution
+
+  # Conditional Execution
 z0x9n@htb[/htb]$ bash if-elif-else.sh 12
 
 Given argument is greater than 10.
-  Conditional Execution
+
+  # Conditional Execution
 z0x9n@htb[/htb]$ bash if-elif-else.sh HTB
 
 if-elif-else.sh: line 5: [: HTB: integer expression expected
@@ -141,8 +143,4 @@ else
 	echo -e "Too many arguments given."
 	exit 1
 fi
-```
-
-```
-
 ```
