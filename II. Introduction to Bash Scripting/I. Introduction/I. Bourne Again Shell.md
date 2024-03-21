@@ -1,4 +1,3 @@
-````markdown
 # Bourne Again Shell 🐚
 
 Bash is the scripting language we use to communicate with Unix-based OS and give commands to the system. Since May 2019, Windows provides a Windows Subsystem for Linux that allows us to use Bash in a Windows environment. It is essential to master the language to work efficiently with it. The main difference between scripting and programming languages is that we don't need to compile the code to execute the scripting language, as opposed to programming languages.
@@ -27,7 +26,6 @@ z0x9n@htb[/htb]$ sh script.sh <optional arguments>
 # Bourne Again Shell
 z0x9n@htb[/htb]$ ./script.sh <optional arguments>
 ```
-````
 
 Let us look at such a script and see how they can be created to get specific results. If we execute this script and specify a domain, we see what information this script provides.
 
