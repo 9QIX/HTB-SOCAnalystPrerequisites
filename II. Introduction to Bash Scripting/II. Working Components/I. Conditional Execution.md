@@ -76,10 +76,10 @@ fi
 
 #### If-Only.sh - Execution
 
-```plaintext
-  Conditional Execution
+```bash
+  # Conditional Execution
 z0x9n@htb[/htb]$ bash if-only.sh 5
-  Conditional Execution
+  # Conditional Execution
 z0x9n@htb[/htb]$ bash if-only.sh 12
 
 Given argument is greater than 10.
