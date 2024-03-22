@@ -85,7 +85,7 @@ In contrast to other programming languages, there is no direct differentiation a
 
 #### Declaring a Variable - Error
 
-```
+```bash
 z0x9n@htb[/htb]$ variable = "this will result with an error."
 
 command not found: variable
@@ -93,7 +93,7 @@ command not found: variable
 
 #### Declaring a Variable - Without an Error
 
-```
+```bash
 z0x9n@htb[/htb]$ variable="Declared without an error."
 z0x9n@htb[/htb]$ echo $variable
 
@@ -116,7 +116,7 @@ echo ${domains[0]}
 
 We can also retrieve them individually using the index using the variable with the corresponding index in curly brackets. Curly brackets are used for variable expansion.
 
-```
+```bash
 z0x9n@htb[/htb]$ ./Arrays.sh
 
 www.inlanefreight.com
