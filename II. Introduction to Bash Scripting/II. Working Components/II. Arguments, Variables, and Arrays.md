@@ -6,7 +6,7 @@ The advantage of bash scripts is that we can always pass up to 9 arguments ($0-$
 
 ```bash
 z0x9n@htb[/htb]$ ./script.sh ARG1 ARG2 ARG3 ... ARG9
-ASSIGNMENTS: $0 $1 $2 $3 ... $9
+    ASSIGNMENTS: $0 $1 $2 $3 ... $9
 ```
 
 This means that we have automatically assigned the corresponding arguments to the predefined variables in this place. These variables are called special variables. These special variables serve as placeholders. If we now look at the code section again, we will see where and which arguments have been used.
@@ -31,13 +31,13 @@ There are several ways how we can execute our script. However, we must first set
 
 #### CIDR.sh - Set Execution Privileges
 
-```
+```bash
 z0x9n@htb[/htb]$ chmod +x cidr.sh
 ```
 
 #### CIDR.sh - Execution without Arguments
 
-```
+```bash
 z0x9n@htb[/htb]$ ./cidr.sh
 
 You need to specify the target domain.
@@ -48,7 +48,7 @@ Usage:
 
 #### CIDR.sh - Execution without Execution Permissions
 
-```
+```bash
 z0x9n@htb[/htb]$ bash cidr.sh
 
 You need to specify the target domain.
