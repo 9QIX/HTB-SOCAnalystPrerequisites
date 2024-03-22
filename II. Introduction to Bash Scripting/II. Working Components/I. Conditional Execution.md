@@ -186,6 +186,10 @@ do
 done
 ```
 
+```bash
+1197735
+```
+
 Explanation:
 
 - Inside the loop, we check if the current iteration (`counter`) is equal to 35 using the `if` condition `[ $counter -eq 35 ]`.
