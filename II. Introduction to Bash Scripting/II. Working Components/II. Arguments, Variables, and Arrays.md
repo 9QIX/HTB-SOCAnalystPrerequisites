@@ -1,15 +1,13 @@
-```markdown
 # Arguments, Variables, and Arrays 📝
 
 ## Arguments
 
 The advantage of bash scripts is that we can always pass up to 9 arguments ($0-$9) to the script without assigning them to variables or setting the corresponding requirements for these. 9 arguments because the first argument $0 is reserved for the script. As we can see here, we need the dollar sign ($) before the name of the variable to use it at the specified position. The assignment would look like this in comparison:
-```
 
+```bash
 z0x9n@htb[/htb]$ ./script.sh ARG1 ARG2 ARG3 ... ARG9
 ASSIGNMENTS: $0 $1 $2 $3 ... $9
-
-````
+```
 
 This means that we have automatically assigned the corresponding arguments to the predefined variables in this place. These variables are called special variables. These special variables serve as placeholders. If we now look at the code section again, we will see where and which arguments have been used.
 
@@ -27,7 +25,7 @@ if [ $# -eq 0 ]; then
 else
 	domain=$1
 fi
-````
+```
 
 There are several ways how we can execute our script. However, we must first set the script's execution privileges before executing it with the interpreter defined in it.
 
