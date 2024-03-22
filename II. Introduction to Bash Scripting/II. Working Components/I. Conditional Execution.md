@@ -166,3 +166,32 @@ done
 ```
 
 ### Asnwer
+
+```bash
+#!/bin/bash
+# Count number of characters in a variable:
+#     echo $variable | wc -c
+
+# Variable to encode
+var="nef892na9s1p9asn2aJs71nIsm"
+
+for counter in {1..40}
+do
+    var=$(echo $var | base64)
+    if [ $counter -eq 35 ]; then
+        num_chars=$(echo "$var" | wc -c)
+        echo "Number of characters in the 35th generated value: $num_chars"
+        break  # Exit the loop once the 35th value is processed
+    fi
+done
+```
+
+Explanation:
+
+- Inside the loop, we check if the current iteration (`counter`) is equal to 35 using the `if` condition `[ $counter -eq 35 ]`.
+- If the condition is true, we use `wc -c` to count the number of characters in the 35th generated value of the variable `var`.
+- We store the result in the variable `num_chars`.
+- We print the number of characters using `echo`.
+- We use `break` to exit the loop once the 35th value is processed, as there is no need to continue looping.
+
+When you run this script, it will print the number of characters in the 35th generated value of the variable `var`.
