@@ -181,3 +181,40 @@ done
 ```
 
 ### Answer
+
+Here's the script with comments explaining each line:
+
+```bash
+#!/bin/bash
+
+# Define the initial values for variables
+var="8dm7KsjU28B7v621Jls"  # Initial value for 'var'
+value="ERmFRMVZ0U2paTlJYTkxDZz09Cg"  # Value to check if 'var' contains it
+
+# Loop 40 times to perform the encoding operation
+for i in {1..40}
+do
+    # Encode 'var' using base64 encoding and update its value
+    var=$(echo $var | base64)
+
+    # If condition to check if 'var' contains 'value' and its length is greater than 113,450
+    if [[ "$var" == *"$value"* && ${#var} -gt 113450 ]]; then
+        # Print the last 20 characters of 'var'
+        echo -e "${var: -19}"
+
+        # Exit the loop once the conditions are met
+        break
+    fi
+done
+```
+
+Explanation:
+
+- `#!/bin/bash`: Shebang line to indicate that the script should be interpreted using the Bash shell.
+- `var="8dm7KsjU28B7v621Jls"`: Initialization of the variable `var` with an initial value.
+- `value="ERmFRMVZ0U2paTlJYTkxDZz09Cg"`: Initialization of the variable `value` with a value to check if `var` contains it.
+- `for i in {1..40}`: Loop to perform the encoding operation 40 times.
+- `var=$(echo $var | base64)`: Command to encode the variable `var` using base64 encoding and update its value.
+- `if [[ "$var" == *"$value"* && ${#var} -gt 113450 ]]; then`: If condition to check if `var` contains `value` and if its length is greater than 113,450.
+- `echo -e "${var: -20}"`: Command to print the last 20 characters of `var`.
+- `break`: Command to exit the loop once the conditions are met.
