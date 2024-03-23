@@ -39,8 +39,7 @@ The output of this script looks like this:
 
 #### Arithmetic.sh - Execution
 
-```
-  Arithmetic
+```bash
 z0x9n@htb[/htb]$ ./Arithmetic.sh
 
 Addition: 10 + 10 = 20
