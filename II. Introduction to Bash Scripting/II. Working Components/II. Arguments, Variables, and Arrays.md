@@ -71,6 +71,14 @@ Special variables use the Internal Field Separator (IFS) to identify when an arg
 
 Of the ones shown above, we have 3 such special variables in our if-else condition.
 
+| Variable | Description                                                                                                                                                                                                                                     |
+| -------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| $#       | In this case, we need just one variable that needs to be assigned to the domain variable. This variable is used to specify the target we want to work with. If we provide just an FQDN as the argument, the $# variable will have a value of 1. |
+| $0       | This special variable is assigned the name of the executed script, which is then shown in the "Usage:" example.                                                                                                                                 |
+| $1       | Separated by a space, the first argument is assigned to that special variable.                                                                                                                                                                  |
+
+This table provides a summary of special variables typically used in shell scripts and their descriptions.
+
 ## Variables
 
 We also see at the end of the if-else loop that we assign the value of the first argument to the variable called "domain". The assignment of variables takes place without the dollar sign ($). The dollar sign is only intended to allow this variable's corresponding value to be used in other code sections. When assigning variables, there must be no spaces between the names and values.
