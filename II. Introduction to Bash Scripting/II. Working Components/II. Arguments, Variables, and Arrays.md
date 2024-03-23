@@ -54,7 +54,7 @@ z0x9n@htb[/htb]$ bash cidr.sh
 You need to specify the target domain.
 
 Usage:
-	cidr.sh domain
+	cidr.sh <domain>
 ```
 
 ## Special Variables
