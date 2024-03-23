@@ -38,6 +38,23 @@ fi
 
 String comparison operators "< / >" work only within the double square brackets `[[ <condition> ]]`.
 
+```bash
+z0x9n@htb[/htb]$ man ascii
+```
+
+| Decimal | Hexadecimal | Character | Description     |
+| ------- | ----------- | --------- | --------------- |
+| 0       | 00          | NUL       | End of a string |
+| ...     | ...         | ...       | ...             |
+| 65      | 41          | A         | Capital A       |
+| 66      | 42          | B         | Capital B       |
+| 67      | 43          | C         | Capital C       |
+| 68      | 44          | D         | Capital D       |
+| ...     | ...         | ...       | ...             |
+| 127     | 7F          | DEL       | Delete          |
+
+ASCII stands for American Standard Code for Information Interchange and represents a 7-bit character encoding. Since each bit can take two values, there are 128 different bit patterns, which can also be interpreted as the decimal integers 0 - 127 or in hexadecimal values 00 - 7F. The first 32 ASCII character codes are reserved as so-called control characters.
+
 ## Integer Operators
 
 Integer comparison operators help in comparing integer numbers:
