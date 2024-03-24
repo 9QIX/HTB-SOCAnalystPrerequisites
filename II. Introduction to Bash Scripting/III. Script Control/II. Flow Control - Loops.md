@@ -63,6 +63,8 @@ There is also the until loop, which is relatively rare. Nevertheless, the until 
 The code inside a until loop is executed as long as the particular condition is false.
 
 ```bash
+#!/bin/bash
+
 counter=0
 
 until [ $counter -eq 10 ]
@@ -71,6 +73,21 @@ do
   ((counter++))
   echo "Counter: $counter"
 done
+```
+
+```bash
+z0x9n@htb[/htb]$ ./Until.sh
+
+Counter: 1
+Counter: 2
+Counter: 3
+Counter: 4
+Counter: 5
+Counter: 6
+Counter: 7
+Counter: 8
+Counter: 9
+Counter: 10
 ```
 
 ### Exercise Script
