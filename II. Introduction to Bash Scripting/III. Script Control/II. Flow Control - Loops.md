@@ -78,6 +78,38 @@ do
 done
 ```
 
+The while loops also work with conditions like if-else. A while loop needs some sort of a counter to orientate itself when it has to stop executing the commands it contains. Otherwise, this leads to an endless loop. Such a counter can be a variable that we have declared with a specific value or a boolean value. While loops run while the boolean value is "True". Besides the counter, we can also use the command "break," which interrupts the loop when reaching this command like in the following example:
+
+```bash
+#!/bin/bash
+
+counter=0
+
+while [ $counter -lt 10 ]
+do
+  # Increase $counter by 1
+  ((counter++))
+  echo "Counter: $counter"
+
+  if [ $counter == 2 ]
+  then
+    continue
+  elif [ $counter == 4 ]
+  then
+    break
+  fi
+done
+```
+
+```bash
+z0x9n@htb[/htb]$ ./WhileBreaker.sh
+
+Counter: 1
+Counter: 2
+Counter: 3
+Counter: 4
+```
+
 #### Until Loops
 
 There is also the until loop, which is relatively rare. Nevertheless, the until loop works precisely like the while loop, but with the difference:
