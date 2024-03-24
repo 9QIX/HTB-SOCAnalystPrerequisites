@@ -90,3 +90,32 @@ When we start a new process, each child process (for example, a function in the 
 | 255\*       | Exit status out of range       |
 
 To get the value of a function back, we can use several methods like return, echo, or a variable. In the next example, we will see how to use "$?" to read the "return code," how to pass the arguments to the function and how to assign the result to a variable.
+
+```bash
+#!/bin/bash
+
+function given_args {
+
+        if [ $# -lt 1 ]
+        then
+                echo -e "Number of arguments: $#"
+                return 1
+        else
+                echo -e "Number of arguments: $#"
+                return 0
+        fi
+}
+
+# No arguments given
+given_args
+echo -e "Function status code: $?\n"
+
+# One argument given
+given_args "argument"
+echo -e "Function status code: $?\n"
+
+# Pass the results of the funtion into a variable
+content=$(given_args "argument")
+
+echo -e "Content of the variable: \n\t$content"
+```
