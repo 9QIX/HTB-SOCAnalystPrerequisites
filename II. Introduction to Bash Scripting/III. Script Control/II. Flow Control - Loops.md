@@ -31,6 +31,27 @@ Of course, we can also write these commands in a single line.
 z0x9n@htb[/htb]$ for ip in 10.10.10.170 10.10.10.174;do ping -c 1 $ip;done
 ```
 
+Let us have another look at our CIDR.sh script. We have added several for loops to the script, but let us stick with this little code section.
+
+```bash
+<SNIP>
+
+# Identify Network range for the specified IP address(es)
+function network_range {
+	for ip in $ipaddr
+	do
+		netrange=$(whois $ip | grep "NetRange\|CIDR" | tee -a CIDR.txt)
+		cidr=$(whois $ip | grep "CIDR" | awk '{print $2}')
+		cidr_ips=$(prips $cidr)
+		echo -e "\nNetRange for $ip:"
+		echo -e "$netrange"
+	done
+}
+
+<SNIP>
+
+```
+
 #### While Loops
 
 The while loop is conceptually simple and follows the following principle:
