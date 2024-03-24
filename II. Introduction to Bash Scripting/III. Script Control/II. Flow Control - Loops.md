@@ -49,8 +49,9 @@ function network_range {
 }
 
 <SNIP>
-
 ```
+
+As in the previous example, for each IP address from the array "ipaddr" we make a "whois" request, whose output is filtered for "NetRange" and "CIDR." This helps us to determine which address range our target is located in. We can use this information to search for additional hosts during a penetration test, if approved by the client. The results that we receive are displayed accordingly and stored in the file "CIDR.txt."
 
 #### While Loops
 
