@@ -68,6 +68,12 @@ three="Third parameter"
 print_pars "$one" "$two" "$three"
 ```
 
+```bash
+z0x9n@htb[/htb]$ ./PrintPars.sh
+
+First parameter Second parameter Third parameter
+```
+
 #### Return Values
 
 When we start a new process, each child process (for example, a function in the executed script) returns a return code to the parent process (bash shell through which we executed the script) at its termination, informing it of the status of the execution. This information is used to determine whether the process ran successfully or whether specific errors occurred. Based on this information, the parent process can decide on further program flow.
