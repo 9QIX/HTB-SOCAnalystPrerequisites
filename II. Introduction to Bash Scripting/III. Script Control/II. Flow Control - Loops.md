@@ -146,6 +146,8 @@ Counter: 10
 
 ### Exercise Script
 
+Create a "For" loop that encodes the variable "var" 28 times in "base64". The number of characters in the 28th hash is the value that must be assigned to the "salt" variable.
+
 ```bash
 #!/bin/bash
 
@@ -186,3 +188,75 @@ else
 	exit 1
 fi
 ```
+
+### Answer
+
+```bash
+#!/bin/bash
+
+# Decrypt function
+function decrypt {
+    # Perform multiple string substitutions to transform the hash
+    MzSaas7k=$(echo $hash | sed 's/988sn1/83unasa/g')
+    Mzns7293sk=$(echo $MzSaas7k | sed 's/4d298d/9999/g')
+    MzSaas7k=$(echo $Mzns7293sk | sed 's/3i8dqos82/873h4d/g')
+    Mzns7293sk=$(echo $MzSaas7k | sed 's/4n9Ls/20X/g')
+    MzSaas7k=$(echo $Mzns7293sk | sed 's/912oijs01/i7gg/g')
+    Mzns7293sk=$(echo $MzSaas7k | sed 's/k32jx0aa/n391s/g')
+    MzSaas7k=$(echo $Mzns7293sk | sed 's/nI72n/YzF1/g')
+    Mzns7293sk=$(echo $MzSaas7k | sed 's/82ns71n/2d49/g')
+    MzSaas7k=$(echo $Mzns7293sk | sed 's/JGcms1a/zIm12/g')
+    Mzns7293sk=$(echo $MzSaas7k | sed 's/MS9/4SIs/g')
+    MzSaas7k=$(echo $Mzns7293sk | sed 's/Ymxj00Ims/Uso18/g')
+    Mzns7293sk=$(echo $MzSaas7k | sed 's/sSi8Lm/Mit/g')
+    MzSaas7k=$(echo $Mzns7293sk | sed 's/9su2n/43n92ka/g')
+    Mzns7293sk=$(echo $MzSaas7k | sed 's/ggf3iunds/dn3i8/g')
+    MzSaas7k=$(echo $Mzns7293sk | sed 's/uBz/TT0K/g')
+
+    # Decrypt the modified hash using base64 and openssl
+    flag=$(echo $MzSaas7k | base64 -d | openssl enc -aes-128-cbc -a -d -salt -pass pass:$salt)
+}
+
+# Variables
+var="9M"
+salt=""
+hash="VTJGc2RHVmtYMTl2ZnYyNTdUeERVRnBtQWVGNmFWWVUySG1wTXNmRi9rQT0K"
+
+# Base64 Encoding Example:
+#        $ echo "Some Text" | base64
+
+# For loop to encode 'var' 28 times
+for i in {1..28}
+do
+    var=$(echo "$var" | base64 )
+done
+
+# Assign the number of characters in the 28th hash to the "salt" variable
+salt=$(( ${#var} + 1 ))
+
+# Check if $salt is not empty
+if [[ ! -z "$salt" ]]
+then
+    decrypt
+    echo $flag
+else
+    exit 1
+fi
+```
+
+```bash
+*** WARNING : deprecated key derivation used.
+Using -iter or -pbkdf2 would be better.
+
+HTBL00p5r0x
+```
+
+Explanation:
+
+- The script defines a function `decrypt` to perform decryption.
+- Inside the function, multiple string substitutions are performed to transform the hash.
+- The hash is decrypted using base64 and openssl in the `decrypt` function.
+- Variables `var`, `salt`, and `hash` are initialized.
+- A for loop is used to encode the variable `var` 28 times in base64.
+- The number of characters in the 28th hash is assigned to the `salt` variable.
+- Finally, the script checks if `salt` is not empty, then calls the `decrypt` function and prints the result. Otherwise, it exits with an error code.
