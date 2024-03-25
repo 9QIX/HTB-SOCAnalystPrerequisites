@@ -1,4 +1,4 @@
-### Introduction to Windows
+# Introduction to Windows
 
 As a penetration tester, understanding Windows operating systems is crucial for various assessment types. Windows, alongside Linux, constitutes a significant portion of systems encountered during assessments, whether on-premise or in the cloud. Having a grasp of how to both attack and defend Windows systems is essential for effective penetration testing activities.
 
@@ -28,9 +28,31 @@ Here's the information presented in a Markdown table:
 
 This table provides a summary of various Windows operating systems along with their version numbers.
 
+We can use the Get-WmiObject cmdlet to find information about the operating system. This cmdlet can be used to get instances of WMI classes or information about available WMI classes. There are a variety of ways to find the version and build number of our system. We can easily obtain this information using the win32_OperatingSystem class, which shows that we are on a Windows 10 host, build number 19041.
+
+```ps1
+PS C:\htb> Get-WmiObject -Class win32_OperatingSystem | select Version,BuildNumber
+
+Version BuildNumber
+
+---
+
+10.0.19041 19041
+```
+
+Some other useful classes that can be used with Get-WmiObject are Win32_Process to get a process listing, Win32_Service to get a listing of services, and Win32_Bios to get Basic Input/Output System (BIOS) information. The BIOS is firmware installed on a computer's motherboard that controls the computer's essential functions, such as power management, input/output interfaces, and system configuration. We can use the ComputerName parameter to get information about remote computers. Get-WmiObject can be used to start and stop services on local and remote computers, and more. Further information about the cmdlet can be found here and here.
+
 #### Accessing Windows
 
-Accessing Windows systems involves local or remote access. Local access is the most common, where input and output occur through physical devices like keyboards, mice, and displays. Remote access, on the other hand, involves accessing a computer over a network. Common remote access methods include Virtual Private Networks (VPN), Secure Shell (SSH), and Remote Desktop Protocol (RDP).
+Accessing Windows systems involves local or remote access. Local access is the most common, where input and output occur through physical devices like keyboards, mice, and displays. Remote access, on the other hand, involves accessing a computer over a network. Common remote access methods include:
+
+- Virtual Private Networks (VPN)
+- Secure Shell (SSH)
+- File Transfer Protocol (FTP)
+- Virtual Network Computing (VNC)
+- Windows Remote Management (or PowerShell Remoting) (WinRM)
+- Remote Desktop Protocol (RDP)
+- We will focus primarily on using RDP in this module.
 
 #### Remote Desktop Protocol (RDP)
 
