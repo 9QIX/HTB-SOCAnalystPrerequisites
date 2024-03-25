@@ -148,3 +148,19 @@ These permissions can be revoked using the command icacls c:\users /remove joe.
 icacls is very powerful and can be used in a domain setting to give certain users or groups specific permissions over a file or folder, explicitly deny access, enable or disable inheritance permissions, and change directory/file ownership.
 
 A full listing of icacls command-line arguments and detailed permission settings can be found here.
+
+#### Questions
+
+What system user has full control over the c:\users directory?
+
+```ps1
+icacls c:\users
+```
+
+```ps1
+.Everyone:(0I)(CI)(RX)
+ NT AUTHORITY\SYSTEM:(0I)(CI)(F)
+ BUILTIN\Administrators:(0I)(CI)(F)
+ WS01\bob.smith:(0I)(CI)(F)
+ BUILTIN\Users:(0I)(CI)(RX)
+```
