@@ -52,15 +52,50 @@ We can navigate and explore the file system using various command-line utilities
   ```
 
 - **tree**: Graphically displays directory structure.
-
-Example commands:
-
-```bash
-# Display directory contents of C drive
-dir c:\ /a
-
-# Display directory structure of a specific path
-tree "c:\Program Files (x86)\VMware"
-```
+  ```ps1
+    C:\htb> tree "c:\Program Files (x86)\VMware"
+  Folder PATH listing
+  Volume serial number is F416-77BE
+  C:\PROGRAM FILES (X86)\VMWARE
+  ├───VMware VIX
+  │   ├───doc
+  │   │   ├───errors
+  │   │   ├───features
+  │   │   ├───lang
+  │   │   │   └───c
+  │   │   │       └───functions
+  │   │   └───types
+  │   ├───samples
+  │   └───Workstation-15.0.0
+  │       ├───32bit
+  │       └───64bit
+  └───VMware Workstation
+    ├───env
+    ├───hostd
+    │   ├───coreLocale
+    │   │   └───en
+    │   ├───docroot
+    │   │   ├───client
+    │   │   └───sdk
+    │   ├───extensions
+    │   │   └───hostdiag
+    │   │       └───locale
+    │   │           └───en
+    │   └───vimLocale
+    │       └───en
+    ├───ico
+    ├───messages
+    │   ├───ja
+    │   └───zh_CN
+    ├───OVFTool
+    │   ├───env
+    │   │   └───en
+    │   └───schemas
+    │       ├───DMTF
+    │       └───vmware
+    ├───Resources
+    ├───tools-upgraders
+    └───x64
+  ```
 
 These commands provide insights into the file system layout and help manage files and directories effectively.
