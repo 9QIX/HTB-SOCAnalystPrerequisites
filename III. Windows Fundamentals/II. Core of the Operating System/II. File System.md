@@ -126,3 +126,9 @@ c:\users WS01\joe:(F)
 
 Successfully processed 1 files; Failed processing 0 files
 ```
+
+These permissions can be revoked using the command icacls c:\users /remove joe.
+
+icacls is very powerful and can be used in a domain setting to give certain users or groups specific permissions over a file or folder, explicitly deny access, enable or disable inheritance permissions, and change directory/file ownership.
+
+A full listing of icacls command-line arguments and detailed permission settings can be found here.
