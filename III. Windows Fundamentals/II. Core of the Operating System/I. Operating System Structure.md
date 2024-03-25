@@ -99,3 +99,7 @@ We can navigate and explore the file system using various command-line utilities
   ```
 
 These commands provide insights into the file system layout and help manage files and directories effectively.
+
+```ps1
+tree c:\ /f | more
+```
