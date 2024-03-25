@@ -90,8 +90,64 @@ Windows Defender Firewall Profiles:
 - Private
 - Domain
 
-### Monitoring Shares and Access
+### NTFS Permissions ACL (Security Tab)
 
-- **`net share` Command**: Display all shared folders on the system.
-- **Computer Management Tool**: Explore Shares, Sessions, and Open Files to monitor shared resources.
-- **Event Viewer**: Review logs to track actions performed on the system, including share access and modifications.
+![alt text](image.png)
+
+The text highlights the significance of NTFS permissions in Windows systems, emphasizing the granular control they offer over users and groups. It explains that gray checkmarks denote permissions inherited from parent directories, with all NTFS permissions being inherited by default. The role of system administrators in managing permissions, particularly over network resources, is underscored, with an indication of their influence compared to non-technical leaders within organizations.
+
+Additionally, it mentions the heightened risk associated with attacks targeting system administrators due to their extensive control over network environments. Finally, it suggests an experiment involving granting the Everyone group Full control at the share level to assess the impact on system behavior.
+
+#### Mounting to the Share
+
+```ps1
+z0x9n@htb[/htb]$ sudo mount -t cifs -o username=htb-student,password=Academy_WinFun! //ipaddoftarget/"Company Data" /home/user/Desktop/
+```
+
+If this command is not working check the syntax. If the syntax is correct yet the command is still not working, cifs-utils may need to be installed. This can be done with the following command:
+
+#### Installing CIFS Utilities
+
+```ps1
+z0x9n@htb[/htb]$ sudo apt-get install cifs-utils
+```
+
+Once we have successfully created the mount point on the Desktop on our Pwnbox, we should look at a couple of tools built-in to Windows that will allow us to track and monitor what we have done.
+
+The net share command allows us to view all the shared folders on the system. Notice the share we created and also the C:\ drive.
+
+Do you remember us sharing the C:\ drive?
+
+We didn't manually share C:. The most important drive with the most critical files on a Windows system is shared via SMB at install. This means anyone with the proper access could remotely access the entire C:\ of each Windows system on a network.
+
+We can also see the share we created.
+
+#### Displaying Shares using net share
+
+```ps1
+C:\Users\htb-student> net share
+
+Share name   Resource                        Remark
+
+-------------------------------------------------------------------------------
+C$           C:\                             Default share
+IPC$                                         Remote IPC
+ADMIN$       C:\WINDOWS                      Remote Admin
+Company Data C:\Users\htb-student\Desktop\Company Data
+
+The command completed successfully.
+```
+
+Computer Management is another tool we can use to identify and monitor shared resources on a Windows system.
+
+#### Monitoring Shares from Computer Management
+
+![alt text](/Images/image-20.png)
+
+We can poke around in Shares, Sessions, and Open Files to get an idea of what information this provides us. Should there be a situation where we assist an individual or organization with responding to a breach related to SMB, these are some great places to check and start to understand how the breach may have happened and what may have been left behind.
+
+#### Viewing Share access logs in Event Viewer
+
+Event Viewer is another good place to investigate actions completed on Windows. Almost every operating system has a logging mechanism and a utility to view the logs that were captured. Know that a log is like a journal entry for a computer, where the computer writes down all the actions that were performed and numerous details associated with that action. We can view the logs created for every action we performed when accessing the Windows 10 target box, as well as when creating, editing and accessing the shared folder.
+
+![alt text](/Images/image-21.png)
