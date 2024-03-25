@@ -72,11 +72,29 @@ Successfully processed 1 files; Failed processing 0 files
 
 The resource access level is listed after each user in the output. The possible inheritance settings are:
 
-- (CI): container inherit
-- (OI): object inherit
-- (IO): inherit only
-- (NP): do not propagate inherit
-- (I): permission inherited from parent container
+1. `(CI): container inherit`:
+
+   - This indicates that the permission is inherited by subfolders within the current folder.
+   - If a folder has this attribute set, any new subfolders created within it will inherit this permission.
+
+2. `(OI): object inherit`:
+
+   - This indicates that the permission is inherited by files within the current folder.
+   - If a folder has this attribute set, any new files created within it will inherit this permission.
+
+3. `(IO): inherit only`:
+
+   - This indicates that the permission is inherited but not directly applied to the current object.
+   - It's typically used when an object (file or folder) is created within a container that has inheritable permissions, but the object itself doesn't directly receive those permissions.
+
+4. `(NP): do not propagate inherit`:
+
+   - This indicates that inheritance is blocked and the permission won't be inherited by child objects.
+   - It's used to prevent permissions from cascading down to subfolders or files within a folder.
+
+5. `(I): permission inherited from parent container`:
+   - This indicates that the permission is inherited from the parent folder or container.
+   - It's shown to denote that the permission was not directly set on the current object but rather inherited from a higher-level container.
 
 In the above example, the NT AUTHORITY\SYSTEM account has object inherit, container inherit, inherit only, and full access permissions. This means that this account has full control over all file system objects in this directory and subdirectories.
 
