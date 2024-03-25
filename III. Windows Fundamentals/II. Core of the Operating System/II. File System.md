@@ -80,9 +80,7 @@ The resource access level is listed after each user in the output. The possible 
 
 In the above example, the NT AUTHORITY\SYSTEM account has object inherit, container inherit, inherit only, and full access permissions. This means that this account has full control over all file system objects in this directory and subdirectories.
 
-This command displays permissions for the Windows directory.
-
-Basic access permissions include:
+Basic access permissions are as follows:
 
 - F : Full access
 - D : Delete access
