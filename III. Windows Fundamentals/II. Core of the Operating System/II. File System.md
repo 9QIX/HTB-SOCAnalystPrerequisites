@@ -164,3 +164,7 @@ icacls c:\users
  WS01\bob.smith:(0I)(CI)(F)
  BUILTIN\Users:(0I)(CI)(RX)
 ```
+
+```ps1
+bob.smith
+```
