@@ -65,3 +65,24 @@ We can use RDP to connect to a Windows target from an attack host running Linux 
 As pentesters, we can benefit from looking for these saved Remote Desktop Files (.rdp) while on an engagement.
 
 Many other Remote Desktop client applications exist, some of which are listed in this Microsoft article called Remote Desktop clients. We will not cover every Remote Desktop client application in this module.
+
+#### Using xfreerdp
+
+From a Linux-based attack host we can use a tool called xfreerdp to remotely access Windows targets. You will notice that we use xfreerdp across multiple modules because of its ease of use, feature set, command line utility, and efficiency.
+
+Remember that we can also copy and paste in xfreerdp commands in the command line, so we do not need to enter options manually. There are several options available to us with xfreerdp, such as drive redirection to be able to tranfer files to/from the target host, which are worth practicing and we will cover in other modules within HTB Academy.
+
+Other RDP clients exist, such as Remmina and rdesktop, and we encourage you to experiment with others and see what works best for you. Now that we have covered these concepts let's apply them by spawning the target below and connecting to it using RDP with the credentials provided.
+
+Connecting to the Windows Target
+Connect via Remote Desktop (RDP) using the following command:
+
+```bash
+[!bash!]$ xfreerdp /v:<targetIp> /u:htb-student /p:Password
+```
+
+Note: It may take 1-2 minutes for your target instance to spawn.
+
+```
+
+```
