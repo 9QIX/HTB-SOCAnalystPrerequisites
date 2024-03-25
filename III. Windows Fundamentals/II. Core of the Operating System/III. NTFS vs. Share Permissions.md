@@ -58,7 +58,9 @@ NTFS permissions apply to the system where the files and folders are hosted, whi
 To comprehend SMB and its relation to NTFS, let's create a network share on a Windows 10 target box.
 
 1. **Creating the Folder**: Begin by creating a new folder on the Windows 10 desktop.
+   ![alt text](/Images/image-15.png)
 2. **Making the Folder a Share**: Utilize the Advanced Sharing option to configure the share, setting permissions accordingly.
+   ![alt text](/Images/image-16.png)
 3. **Mounting to the Share**: Mount the share to a desired location using appropriate credentials.
 
 Remember, the NTFS permissions on the shared folder will interact with share permissions, providing additional layers of security.
