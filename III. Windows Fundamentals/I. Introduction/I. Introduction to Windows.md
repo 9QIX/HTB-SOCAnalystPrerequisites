@@ -60,4 +60,8 @@ RDP enables remote access to Windows systems over a network. It utilizes a clien
 
 Understanding Windows operating systems, accessing them locally or remotely, and leveraging tools like RDP are essential skills for penetration testers to effectively assess Windows environments.
 
-We can use RDP to connect to a Windows target from an attack host running Linux or Windows. If we are connecting to a Windows target from a Windows host, we can use the built-in RDP client application called Remote Desktop Connection (mstsc.exe). Check out the clip below to see basic usage:
+We can use RDP to connect to a Windows target from an attack host running Linux or Windows. If we are connecting to a Windows target from a Windows host, we can use the built-in RDP client application called Remote Desktop Connection (mstsc.exe).
+
+As pentesters, we can benefit from looking for these saved Remote Desktop Files (.rdp) while on an engagement.
+
+Many other Remote Desktop client applications exist, some of which are listed in this Microsoft article called Remote Desktop clients. We will not cover every Remote Desktop client application in this module.
