@@ -74,7 +74,8 @@ Remember that we can also copy and paste in xfreerdp commands in the command lin
 
 Other RDP clients exist, such as Remmina and rdesktop, and we encourage you to experiment with others and see what works best for you. Now that we have covered these concepts let's apply them by spawning the target below and connecting to it using RDP with the credentials provided.
 
-Connecting to the Windows Target
+#### Connecting to the Windows Target
+
 Connect via Remote Desktop (RDP) using the following command:
 
 ```bash
@@ -82,7 +83,3 @@ Connect via Remote Desktop (RDP) using the following command:
 ```
 
 Note: It may take 1-2 minutes for your target instance to spawn.
-
-```
-
-```
