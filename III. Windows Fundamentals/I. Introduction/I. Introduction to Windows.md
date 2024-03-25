@@ -59,3 +59,5 @@ Accessing Windows systems involves local or remote access. Local access is the m
 RDP enables remote access to Windows systems over a network. It utilizes a client/server architecture, with the target computer being the server. RDP listens on port 3389 by default. Remote Desktop Connection, the built-in RDP client in Windows, allows users to connect to remote systems conveniently. Tools like xfreerdp facilitate RDP connections from Linux-based hosts, providing efficiency and flexibility.
 
 Understanding Windows operating systems, accessing them locally or remotely, and leveraging tools like RDP are essential skills for penetration testers to effectively assess Windows environments.
+
+We can use RDP to connect to a Windows target from an attack host running Linux or Windows. If we are connecting to a Windows target from a Windows host, we can use the built-in RDP client application called Remote Desktop Connection (mstsc.exe). Check out the clip below to see basic usage:
