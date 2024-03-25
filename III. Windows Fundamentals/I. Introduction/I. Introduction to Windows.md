@@ -12,15 +12,21 @@ Windows Server, starting with Windows NT 3.1 Advanced Server in 1993, underwent 
 
 Windows versions are identified by version numbers associated with their respective names. Here's a list of major Windows operating systems and their version numbers:
 
-- **Windows NT 4**: 4.0
-- **Windows 2000**: 5.0
-- **Windows XP**: 5.1
-- **Windows Server 2003, 2003 R2**: 5.2
-- **Windows Vista, Server 2008**: 6.0
-- **Windows 7, Server 2008 R2**: 6.1
-- **Windows 8, Server 2012**: 6.2
-- **Windows 8.1, Server 2012 R2**: 6.3
-- **Windows 10, Server 2016, Server 2019**: 10.0
+Here's the information presented in a Markdown table:
+
+| Operating System Name                | Version Number |
+| ------------------------------------ | -------------- |
+| Windows NT 4                         | 4.0            |
+| Windows 2000                         | 5.0            |
+| Windows XP                           | 5.1            |
+| Windows Server 2003, 2003 R2         | 5.2            |
+| Windows Vista, Server 2008           | 6.0            |
+| Windows 7, Server 2008 R2            | 6.1            |
+| Windows 8, Server 2012               | 6.2            |
+| Windows 8.1, Server 2012 R2          | 6.3            |
+| Windows 10, Server 2016, Server 2019 | 10.0           |
+
+This table provides a summary of various Windows operating systems along with their version numbers.
 
 #### Accessing Windows
 
