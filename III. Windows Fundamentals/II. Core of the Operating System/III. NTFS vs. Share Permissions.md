@@ -62,8 +62,23 @@ To comprehend SMB and its relation to NTFS, let's create a network share on a Wi
 2. **Making the Folder a Share**: Utilize the Advanced Sharing option to configure the share, setting permissions accordingly.
    ![alt text](/Images/image-16.png)
 3. **Mounting to the Share**: Mount the share to a desired location using appropriate credentials.
+   ![alt text](/Images/image-18.png)
 
 Remember, the NTFS permissions on the shared folder will interact with share permissions, providing additional layers of security.
+
+#### Using smbclient to Connect to the Share
+
+```ps1
+z0x9n@htb[/htb]$ smbclient -L IPaddressOfTarget -U htb-student
+Enter WORKGROUP\htb-student's password:
+
+	Sharename       Type      Comment
+	---------       ----      -------
+	ADMIN$          Disk      Remote Admin
+	C$              Disk      Default share
+	Company Data    Disk
+	IPC$            IPC       Remote IPC
+```
 
 #### Windows Defender Firewall Considerations
 
