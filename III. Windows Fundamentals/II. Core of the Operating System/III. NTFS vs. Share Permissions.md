@@ -84,6 +84,12 @@ Enter WORKGROUP\htb-student's password:
 
 The Windows Defender Firewall may block SMB share access, particularly from non-joined devices or those outside the same workgroup. Proper firewall rules or exceptions should be configured to allow access without compromising security.
 
+Windows Defender Firewall Profiles:
+
+- Public
+- Private
+- Domain
+
 ### Monitoring Shares and Access
 
 - **`net share` Command**: Display all shared folders on the system.
