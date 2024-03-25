@@ -92,4 +92,16 @@ Note: It may take 1-2 minutes for your target instance to spawn.
 Get-WmiObject -Class win32_OperatingSystem | selectBuildNumber
 ```
 
+```ps1
+19041
+```
+
 - Which Windows NT version is installed on the workstation? (i.e. Windows X - case sensitive)
+
+```ps1
+systeminfo | findstr /B /C:"OS Name" /C:"OS Version"
+```
+
+```ps1
+Windows 10
+```
