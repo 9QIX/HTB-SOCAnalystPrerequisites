@@ -52,7 +52,33 @@ We can list NTFS permissions using `icacls`. For example:
 
 ```bash
 C:\htb> icacls c:\windows
+
+c:\windows NT SERVICE\TrustedInstaller:(F)
+           NT SERVICE\TrustedInstaller:(CI)(IO)(F)
+           NT AUTHORITY\SYSTEM:(M)
+           NT AUTHORITY\SYSTEM:(OI)(CI)(IO)(F)
+           BUILTIN\Administrators:(M)
+           BUILTIN\Administrators:(OI)(CI)(IO)(F)
+           BUILTIN\Users:(RX)
+           BUILTIN\Users:(OI)(CI)(IO)(GR,GE)
+           CREATOR OWNER:(OI)(CI)(IO)(F)
+           APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(RX)
+           APPLICATION PACKAGE AUTHORITY\ALL APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
+           APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(RX)
+           APPLICATION PACKAGE AUTHORITY\ALL RESTRICTED APPLICATION PACKAGES:(OI)(CI)(IO)(GR,GE)
+
+Successfully processed 1 files; Failed processing 0 files
 ```
+
+The resource access level is listed after each user in the output. The possible inheritance settings are:
+
+- (CI): container inherit
+- (OI): object inherit
+- (IO): inherit only
+- (NP): do not propagate inherit
+- (I): permission inherited from parent container
+
+In the above example, the NT AUTHORITY\SYSTEM account has object inherit, container inherit, inherit only, and full access permissions. This means that this account has full control over all file system objects in this directory and subdirectories.
 
 This command displays permissions for the Windows directory.
 
