@@ -83,3 +83,13 @@ Connect via Remote Desktop (RDP) using the following command:
 ```
 
 Note: It may take 1-2 minutes for your target instance to spawn.
+
+#### Activity
+
+- What is the Build Number of the target workstation?
+
+```ps1
+Get-WmiObject -Class win32_OperatingSystem | selectBuildNumber
+```
+
+- Which Windows NT version is installed on the workstation? (i.e. Windows X - case sensitive)
