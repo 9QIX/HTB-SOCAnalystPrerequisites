@@ -50,7 +50,7 @@ Files and folders inherit permissions from their parent folder. We can manage NT
 
 We can list NTFS permissions using `icacls`. For example:
 
-```bash
+```ps1
 C:\htb> icacls c:\windows
 
 c:\windows NT SERVICE\TrustedInstaller:(F)
@@ -93,3 +93,17 @@ Basic access permissions include:
 - W :  Write-only access
 
 We can add and remove permissions using `icacls`, granting or revoking access for specific users or groups. This utility is powerful and useful for managing file permissions efficiently.
+
+```ps1
+C:\htb> icacls c:\Users
+c:\Users NT AUTHORITY\SYSTEM:(OI)(CI)(F)
+         BUILTIN\Administrators:(OI)(CI)(F)
+         BUILTIN\Users:(RX)
+         BUILTIN\Users:(OI)(CI)(IO)(GR,GE)
+         Everyone:(RX)
+         Everyone:(OI)(CI)(IO)(GR,GE)
+
+Successfully processed 1 files; Failed processing 0 files
+```
+
+Using the command icacls c:\users /grant joe:f we can grant the joe user full control over the directory, but given that (oi) and (ci) were not included in the command, the joe user will only have rights over the c:\users folder but not over the user subdirectories and files contained within them.
