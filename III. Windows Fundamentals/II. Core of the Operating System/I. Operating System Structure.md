@@ -1,4 +1,4 @@
-### Operating System Structure
+# Operating System Structure
 
 In Windows operating systems, the directory structure is crucial for organizing and accessing system files and user data. Let's explore the main directories and their functions:
 
