@@ -1,4 +1,4 @@
-### File System 📁
+# File System 📁
 
 There are 5 types of Windows file systems:
 
@@ -13,24 +13,24 @@ FAT12 and FAT16 are no longer used on modern Windows operating systems. Let's de
 #### FAT32
 
 - **Pros**:
-  - Device compatibility 📱🖥️🎮
-  - Operating system cross-compatibility 💻💽🐧
+  - Device compatibility
+  - Operating system cross-compatibility
 - **Cons**:
-  - Limited to files under 4GB in size 📄❌
-  - Lacks built-in data protection or compression features 🔒📦❌
+  - Limited to files under 4GB in size
+  - Lacks built-in data protection or compression features
 
 #### NTFS
 
 - **Pros**:
-  - Reliable with system failure recovery 💪💾
-  - Granular security permissions 🔒🔐
-  - Supports large partitions 📊
-  - Built-in journaling for file modifications 📝
+  - Reliable with system failure recovery
+  - Granular security permissions
+  - Supports large partitions
+  - Built-in journaling for file modifications
 - **Cons**:
-  - Limited support on mobile devices 📱❌
-  - Older media devices might not support NTFS 📺📷❌
+  - Limited support on mobile devices
+  - Older media devices might not support NTFS
 
-### Permissions 🔐
+### Permissions
 
 NTFS offers various permissions:
 
@@ -46,7 +46,7 @@ NTFS offers various permissions:
 
 Files and folders inherit permissions from their parent folder. We can manage NTFS permissions using the `icacls` command-line utility.
 
-### Integrity Control Access Control List (icacls) 🔒
+### Integrity Control Access Control List (icacls)
 
 We can list NTFS permissions using `icacls`. For example:
 
