@@ -2,6 +2,8 @@
 
 Microsoft dominates over 70% of the global market share in desktop operating systems with Windows. Consequently, Windows is a prime target for malware authors due to its widespread usage and high value as a target. Despite common misconceptions, no operating system is immune to malware. Malware can be developed for any OS, including viruses with malicious intent.
 
+![alt text](/Images/image-14.png)
+
 #### SMB Protocol and Windows Shares
 
 The Server Message Block (SMB) protocol facilitates shared resource connections like files and printers in Windows environments, used across enterprises of all sizes.
