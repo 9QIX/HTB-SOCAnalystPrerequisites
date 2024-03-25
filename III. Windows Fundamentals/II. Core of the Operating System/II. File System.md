@@ -107,3 +107,22 @@ Successfully processed 1 files; Failed processing 0 files
 ```
 
 Using the command icacls c:\users /grant joe:f we can grant the joe user full control over the directory, but given that (oi) and (ci) were not included in the command, the joe user will only have rights over the c:\users folder but not over the user subdirectories and files contained within them.
+
+```ps1
+C:\htb> icacls c:\users /grant joe:f
+processed file: c:\users
+Successfully processed 1 files; Failed processing 0 files
+```
+
+```ps1
+C:\htb> >icacls c:\users
+c:\users WS01\joe:(F)
+         NT AUTHORITY\SYSTEM:(OI)(CI)(F)
+         BUILTIN\Administrators:(OI)(CI)(F)
+         BUILTIN\Users:(RX)
+         BUILTIN\Users:(OI)(CI)(IO)(GR,GE)
+         Everyone:(RX)
+         Everyone:(OI)(CI)(IO)(GR,GE)
+
+Successfully processed 1 files; Failed processing 0 files
+```
