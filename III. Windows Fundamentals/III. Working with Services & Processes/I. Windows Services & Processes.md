@@ -116,3 +116,10 @@ These tools can be useful for penetration testers to, for example, discover inte
 ## Task Manager
 
 Windows Task Manager is a powerful tool for managing Windows systems. It provides information about running processes, system performance, running services, startup programs, logged-in users/logged in user processes, and services. Task Manager can be opened by right-clicking on the taskbar and selecting Task Manager, pressing ctrl + shift + Esc, pressing ctrl + alt + del and selecting Task Manager, opening the start menu and typing Task Manager, or typing taskmgr from a CMD or PowerShell console.
+
+![alt text](/Images/image-22.png)
+
+| Tab             | Description                                                                                                                                                                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Processes tab   | Shows a list of running applications and background processes along with the CPU, memory, disk, network, and power usage for each.                                                                                                                            |
+| Performance tab | Shows graphs and data such as CPU utilization, system uptime, memory usage, disk and networking, and GPU usage. We can also open the Resource Monitor, which gives us a much more in-depth view of the current CPU, Memory, Disk, and Network resource usage. |
