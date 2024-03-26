@@ -13,6 +13,26 @@ Services can also be managed via command-line tools like `sc.exe` and PowerShell
 ```powershell
 # Example PowerShell command to list running services
 PS C:\htb> Get-Service | ? {$_.Status -eq "Running"} | select -First 2 |fl
+
+Name                : AdobeARMservice
+DisplayName         : Adobe Acrobat Update Service
+Status              : Running
+DependentServices   : {}
+ServicesDependedOn  : {}
+CanPauseAndContinue : False
+CanShutdown         : False
+CanStop             : True
+ServiceType         : Win32OwnProcess
+
+Name                : Appinfo
+DisplayName         : Application Information
+Status              : Running
+DependentServices   : {}
+ServicesDependedOn  : {RpcSs, ProfSvc}
+CanPauseAndContinue : False
+CanShutdown         : False
+CanStop             : True
+ServiceType         : Win32OwnProcess, Win32ShareProcess
 ```
 
 Service statuses can be Running, Stopped, or Paused, with startup types set as manual, automatic, or delayed at system boot. Services can also be in the process of Starting or Stopping. Windows categorizes services into Local, Network, and System Services, usually manageable only by users with administrative privileges.
