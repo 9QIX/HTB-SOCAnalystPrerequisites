@@ -92,7 +92,7 @@ Windows Defender Firewall Profiles:
 
 ### NTFS Permissions ACL (Security Tab)
 
-![alt text](image.png)
+![alt text](/Images/image-19.png)
 
 The text highlights the significance of NTFS permissions in Windows systems, emphasizing the granular control they offer over users and groups. It explains that gray checkmarks denote permissions inherited from parent directories, with all NTFS permissions being inherited by default. The role of system administrators in managing permissions, particularly over network resources, is underscored, with an indication of their influence compared to non-technical leaders within organizations.
 
