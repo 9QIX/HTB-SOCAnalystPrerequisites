@@ -73,7 +73,7 @@ The SysInternals Tools suite is a set of portable Windows applications that can 
 
 For example, we can run `procdump.exe` directly from this share without downloading it directly to disk.
 
-```plaintext
+```powershell
 C:\htb> \\live.sysinternals.com\tools\procdump.exe -accepteula
 ```
 
@@ -109,4 +109,10 @@ Capture Usage:
                 }
 ```
 
-The suite includes tools such as Process Explorer, an enhanced version of Task Manager, and Process Monitor, which can be used to monitor file system, registry, and
+The suite includes tools such as Process Explorer, an enhanced version of Task Manager, and Process Monitor, which can be used to monitor file system, registry, and network activity related to any process running on the system. Some additional tools are TCPView, which is used to monitor internet activity, and PSExec, which can be used to manage/connect to systems via the SMB protocol remotely.
+
+These tools can be useful for penetration testers to, for example, discover interesting processes and possible privilege escalation paths as well as for lateral movement.
+
+## Task Manager
+
+Windows Task Manager is a powerful tool for managing Windows systems. It provides information about running processes, system performance, running services, startup programs, logged-in users/logged in user processes, and services. Task Manager can be opened by right-clicking on the taskbar and selecting Task Manager, pressing ctrl + shift + Esc, pressing ctrl + alt + del and selecting Task Manager, opening the start menu and typing Task Manager, or typing taskmgr from a CMD or PowerShell console.
