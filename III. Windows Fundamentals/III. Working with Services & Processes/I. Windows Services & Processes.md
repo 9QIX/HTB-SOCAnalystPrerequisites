@@ -123,3 +123,17 @@ Windows Task Manager is a powerful tool for managing Windows systems. It provide
 | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Processes tab   | Shows a list of running applications and background processes along with the CPU, memory, disk, network, and power usage for each.                                                                                                                            |
 | Performance tab | Shows graphs and data such as CPU utilization, system uptime, memory usage, disk and networking, and GPU usage. We can also open the Resource Monitor, which gives us a much more in-depth view of the current CPU, Memory, Disk, and Network resource usage. |
+
+![alt text](/Images/imag-23.png)
+
+| Tab             | Description                                                                                                                        |
+| --------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| App history tab | Shows resource usage for the current user account for each application for a period of time.                                       |
+| Startup tab     | Shows which applications are configured to start at boot as well as the impact on the startup process.                             |
+| Users tab       | Shows logged in users and the processes/resource usage associated with their session.                                              |
+| Details tab     | Shows the name, process ID (PID), status, associated username, CPU, and memory usage for each running application.                 |
+| Services tab    | Shows the name, PID, description, and status of each installed service. The Services add-in can be accessed from this tab as well. |
+
+## Process Explorer
+
+Process Explorer is a part of the Sysinternals tool suite. This tool can show which handles and DLL processes are loaded when a program runs. Process Explorer shows a list of currently running processes, and from there, we can see what handles the process has selected in one view or the DLLs and memory-swapped files that have been loaded in another view. We can also search within the tool to show which processes tie back to a specific handle or DLL. The tool can also be used to analyze parent-child process relationships to see what child processes are spawned by an application and help troubleshoot any issues such as orphaned processed that can be left behind when a process is terminated.
