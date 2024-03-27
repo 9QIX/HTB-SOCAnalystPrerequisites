@@ -143,7 +143,7 @@ Cmdlets are in the form of `Verb-Noun`. For example, the command `Get-ChildItem`
 
 Many cmdlets in PowerShell also have aliases. For example, the aliases for the cmdlet `Set-Location`, to change directories, is either `cd` or `sl`. Meanwhile, the aliases for `Get-ChildItem` are `ls` and `gci`. We can view all available aliases by typing `Get-Alias`.
 
-```
+```powershell
   Interacting with the Windows Operating System
 PS C:\htb> get-alias
 
@@ -166,7 +166,7 @@ Alias           clp -> Clear-ItemProperty
 
 We can also set up our own aliases with `New-Alias` and get the alias for any cmdlet with `Get-Alias -Name`.
 
-```
+```powershell
   Interacting with the Windows Operating System
 PS C:\htb> New-Alias -Name "Show-Files" Get-ChildItem
 PS C:\> Get-Alias -Name "Show-Files"
@@ -178,8 +178,7 @@ Alias           Show-Files
 
 PowerShell has a help system for cmdlets, functions, scripts, and concepts. This is not installed by default, but we can either run the `Get-Help <cmdlet-name> -Online` command to open the online help for a cmdlet or function in our web browser. We can type `Update-Help` to download and install help files locally.
 
-```
-  Interacting with the Windows Operating System
+```powershell
 PS C:\htb> help
 
 TOPIC
