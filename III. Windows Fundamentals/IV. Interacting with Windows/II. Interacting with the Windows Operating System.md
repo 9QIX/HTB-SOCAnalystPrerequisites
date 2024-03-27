@@ -358,3 +358,24 @@ MachinePolicy       Undefined
   CurrentUser       Undefined
  LocalMachine    RemoteSigned
 ```
+
+## Questions
+
+- What is the alias set for the ipconfig.exe command?
+
+```powershell
+Get-ExecutionPolicy -List
+```
+
+```powershell
+       Scope            ExecutionPolicy
+       -----            ----------------
+MachinePolicy           Undefined
+UserPolicy              Undefined
+Process                 Bypass
+CurrentUser             Undefined
+LocalMachine            Unrestricted
+
+```
+
+- Find the Execution Policy set for the LocalMachine scope.
