@@ -38,6 +38,20 @@ CanStop             : True
 ServiceType         : Win32OwnProcess, Win32ShareProcess
 ```
 
+Let's break down the command:
+
+- `Get-Service`: This cmdlet retrieves information about all services installed on the system.
+
+- `|`: The pipe symbol takes the output of the `Get-Service` command and passes it as input to the next command.
+
+- `? {$_.Status -eq "Running"}`: This is a filter using the `Where-Object` cmdlet (`?` is an alias for `Where-Object`). It selects only those services where the `Status` property is equal to "Running".
+
+- `|`: Another pipe symbol to pass the filtered output to the next command.
+
+- `select -First 2`: This cmdlet selects the first two items from the filtered list of running services.
+
+- `|fl`: Another pipe symbol followed by `fl`, which is an alias for the `Format-List` cmdlet. It formats the selected services' properties and values in a detailed list format.
+
 Service statuses can appear as Running, Stopped, or Paused, and they can be set to start manually, automatically, or on a delay at system boot. Services can also be shown in the state of Starting or Stopping if some action has triggered them to either start or stop. Windows has three categories of services: Local Services, Network Services, and System Services. Services can usually only be created, modified, and deleted by users with administrative privileges. Misconfigurations around service permissions are a common privilege escalation vector on Windows systems.
 
 In Windows, we have some critical system services that cannot be stopped and restarted without a system restart. If we update any file or resource in use by one of these services, we must restart the system.
@@ -108,20 +122,6 @@ Capture Usage:
                  {-x Dump_Folder Image_File [Argument, ...]}
                 }
 ```
-
-Let's break down the command:
-
-- `Get-Service`: This cmdlet retrieves information about all services installed on the system.
-
-- `|`: The pipe symbol takes the output of the `Get-Service` command and passes it as input to the next command.
-
-- `? {$_.Status -eq "Running"}`: This is a filter using the `Where-Object` cmdlet (`?` is an alias for `Where-Object`). It selects only those services where the `Status` property is equal to "Running".
-
-- `|`: Another pipe symbol to pass the filtered output to the next command.
-
-- `select -First 2`: This cmdlet selects the first two items from the filtered list of running services.
-
-- `|fl`: Another pipe symbol followed by `fl`, which is an alias for the `Format-List` cmdlet. It formats the selected services' properties and values in a detailed list format.
 
 The suite includes tools such as Process Explorer, an enhanced version of Task Manager, and Process Monitor, which can be used to monitor file system, registry, and network activity related to any process running on the system. Some additional tools are TCPView, which is used to monitor internet activity, and PSExec, which can be used to manage/connect to systems via the SMB protocol remotely.
 
