@@ -217,8 +217,7 @@ LONG DESCRIPTION
 
 Typing a command such as `Get-Help Get-AppPackage` will return just the partial help unless the Help files are installed.
 
-```
-  Interacting with the Windows Operating System
+```powershell
 PS C:\htb>  Get-Help Get-AppPackage
 
 NAME
@@ -245,8 +244,7 @@ The PowerShell ISE (Integrated Scripting Environment) allows users to write Powe
 
 We can run PowerShell scripts in a variety of ways. If we know the functions, we can run the script either locally or after loading into memory with a download cradle like the below example.
 
-```
-  Interacting with the Windows Operating System
+```powershell
 PS C:\htb> .\PowerView.ps1;Get-LocalGroup |fl
 
 Description     : Users of Docker Desktop
@@ -278,8 +276,7 @@ PrincipalSource : Local
 
 One common way to work with a script in PowerShell is to import it so that all functions are then available within our current PowerShell console session: `Import-Module .\PowerView.ps1`. We can then either start a command and cycle through the options or type `Get-Module` to list all loaded modules and their associated commands.
 
-```
-  Interacting with the Windows Operating System
+```powershell
 PS C:\htb> Get-Module | select Name,ExportedCommands | fl
 
 
@@ -308,6 +305,7 @@ ExportedCommands : {[Get-PSReadLineKeyHandler, Get-PSReadLineKeyHandler], [Get-P
 #### Execution Policy
 
 Sometimes we will find that we are unable to run scripts on a system. This is due to a security feature called the execution policy, which attempts to prevent the execution of malicious scripts. The possible policies are:
+Here's the information presented in a Markdown table:
 
 | Policy       | Description                                                                                                                                                                                                                                                      |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -315,4 +313,6 @@ Sometimes we will find that we are unable to run scripts on a system. This is du
 | Bypass       | No scripts or configuration files are blocked, and the user receives no warnings or prompts.                                                                                                                                                                     |
 | Default      | This sets the default execution policy, Restricted for Windows desktop machines and RemoteSigned for Windows servers.                                                                                                                                            |
 | RemoteSigned | Scripts can run but requires a digital signature on scripts that are downloaded from the internet. Digital signatures are not required for scripts that are written locally.                                                                                     |
-| Restricted   | This                                                                                                                                                                                                                                                             |
+| Restricted   | This allows individual commands but does not allow scripts to be run. All script file types, including configuration files (.ps1xml), module script files (.psm1), and PowerShell profiles (.ps1) are blocked.                                                   |
+| Undefined    | No execution policy is set for the current scope. If the execution policy for ALL scopes is set to undefined, then the default execution policy of Restricted will be used.                                                                                      |
+| Unrestricted | This is the default execution policy for non-Windows computers, and it cannot be changed. This policy allows for unsigned scripts to be run but warns the user before running scripts that are not from the local intranet zone.                                 |
