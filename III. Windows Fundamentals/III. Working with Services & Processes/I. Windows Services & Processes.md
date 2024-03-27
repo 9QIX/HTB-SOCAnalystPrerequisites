@@ -109,6 +109,20 @@ Capture Usage:
                 }
 ```
 
+Let's break down the command:
+
+- `Get-Service`: This cmdlet retrieves information about all services installed on the system.
+
+- `|`: The pipe symbol takes the output of the `Get-Service` command and passes it as input to the next command.
+
+- `? {$_.Status -eq "Running"}`: This is a filter using the `Where-Object` cmdlet (`?` is an alias for `Where-Object`). It selects only those services where the `Status` property is equal to "Running".
+
+- `|`: Another pipe symbol to pass the filtered output to the next command.
+
+- `select -First 2`: This cmdlet selects the first two items from the filtered list of running services.
+
+- `|fl`: Another pipe symbol followed by `fl`, which is an alias for the `Format-List` cmdlet. It formats the selected services' properties and values in a detailed list format.
+
 The suite includes tools such as Process Explorer, an enhanced version of Task Manager, and Process Monitor, which can be used to monitor file system, registry, and network activity related to any process running on the system. Some additional tools are TCPView, which is used to monitor internet activity, and PSExec, which can be used to manage/connect to systems via the SMB protocol remotely.
 
 These tools can be useful for penetration testers to, for example, discover interesting processes and possible privilege escalation paths as well as for lateral movement.
