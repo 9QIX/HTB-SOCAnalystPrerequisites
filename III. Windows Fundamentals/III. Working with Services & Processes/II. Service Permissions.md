@@ -11,6 +11,7 @@ We should also be mindful of service permissions and the permissions of the dire
 ## Examining Services using services.msc
 
 As discussed in the processes and services section, we can use `services.msc` to view and manage just about every detail regarding all services. Let's take a closer look at the service associated with Windows Update (wuauserv).
+![alt text](/Images/image-24.png)
 
 ### services.msc
 
