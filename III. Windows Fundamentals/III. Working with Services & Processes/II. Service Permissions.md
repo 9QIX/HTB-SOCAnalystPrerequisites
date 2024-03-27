@@ -11,11 +11,14 @@ We should also be mindful of service permissions and the permissions of the dire
 ## Examining Services using services.msc
 
 As discussed in the processes and services section, we can use `services.msc` to view and manage just about every detail regarding all services. Let's take a closer look at the service associated with Windows Update (wuauserv).
+
 ![alt text](/Images/image-24.png)
 
 ### services.msc
 
 Make a note of the different properties available for viewing and configuration. Knowing the service name is especially useful when using command-line tools to examine and manage services. Path to the executable is the full path to the program and command to execute when the service starts. If the NTFS permissions of the destination directory are configured with weak permissions, an attacker could replace the original executable with one created for malicious purposes. We discuss NTFS permissions more in the NTFS vs. Share permissions section of this module.
+
+![alt text](/Images/image-25.png)
 
 **Log On tab**
 
