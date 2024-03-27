@@ -192,4 +192,22 @@ Can Stop             : True
 Service Type         : Win32OwnProcess, Win32ShareProcess
 ```
 
+`Get-Service | ? {($_.Status -eq "Running") -and ($_.DisplayName -like "*Update*")} | Select -First 2 | fl` line by line:
+
+1. `Get-Service`: This cmdlet retrieves a list of all the services running on the system.
+
+2. `|`: The pipe symbol takes the output of the `Get-Service` command and passes it as input to the next command.
+
+3. `? {($_.Status -eq "Running") -and ($_.DisplayName -like "*Update*")}`: This part filters the list of services using the `Where-Object` cmdlet (`?` is an alias for `Where-Object`). It selects only those services where the status is "Running" (`$_.Status -eq "Running"`) and the display name contains the word "Update" (`$_.DisplayName -like "*Update*"`).
+
+4. `|`: Another pipe symbol to pass the filtered output to the next command.
+
+5. `Select -First 2`: This cmdlet selects the first two services from the filtered list.
+
+6. `|`: Another pipe symbol to pass the selected output to the next command.
+
+7. `fl`: This is an alias for the `Format-List` cmdlet. It formats the selected services' properties and values in a list format.
+
+So, altogether, this PowerShell command retrieves a list of services running on the system, filters them to include only those with the status "Running" and whose display name contains the word "Update", selects the first two services from the filtered list, and then formats the properties and values of these services in a list format for display.
+
 Answer: FoxitReaderUpdateService.exe
