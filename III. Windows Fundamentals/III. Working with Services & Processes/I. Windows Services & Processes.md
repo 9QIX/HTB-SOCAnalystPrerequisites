@@ -124,7 +124,7 @@ Windows Task Manager is a powerful tool for managing Windows systems. It provide
 | Processes tab   | Shows a list of running applications and background processes along with the CPU, memory, disk, network, and power usage for each.                                                                                                                            |
 | Performance tab | Shows graphs and data such as CPU utilization, system uptime, memory usage, disk and networking, and GPU usage. We can also open the Resource Monitor, which gives us a much more in-depth view of the current CPU, Memory, Disk, and Network resource usage. |
 
-![alt text](/Images/imag-23.png)
+![alt text](/Images/image-23.png)
 
 | Tab             | Description                                                                                                                        |
 | --------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
