@@ -34,6 +34,8 @@ Notable built-in service accounts in Windows:
 
 Note: We can also create new accounts and use them for the sole purpose of running a service.
 
+![alt text](/Images/image-26.png)
+
 **Recovery tab**
 
 The recovery tab allows steps to be configured should a service fail. Notice how this service can be set to run a program after the first failure. This is yet another vector that an attacker could use to run malicious programs by utilizing a legitimate service.
