@@ -138,6 +138,26 @@ We may be tempted to read from left to right because that is how the English lan
 
 This table provides a structured presentation of the DACL permissions and their corresponding descriptions.
 
+As we read the security descriptor, it can be easy to get lost in the seemingly random order of characters, but recall that we are essentially viewing access control entries in an access control list. Each set of 2 characters in between the semi-colons represents actions allowed to be performed by a specific user or group.
+
+```powershell
+;;CCLCSWRPLORC;;;
+```
+
+After the last set of semi-colons, the characters specify the security principal (User and/or Group) that is permitted to perform those actions.
+
+```powershell
+;;;AU
+```
+
+The character immediately after the opening parentheses and before the first set of semi-colons defines whether the actions are Allowed or Denied.
+
+```powershell
+A;;
+```
+
+This entire security descriptor associated with the Windows Update (wuauserv) service has three sets of access control entries because there are three different security principals. Each security principal has specific permissions applied.
+
 ## Examine service permissions using PowerShell
 
 ```
