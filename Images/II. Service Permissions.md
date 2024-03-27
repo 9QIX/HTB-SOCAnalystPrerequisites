@@ -44,7 +44,7 @@ The recovery tab allows steps to be configured should a service fail. Notice how
 
 `Sc` can also be used to configure and manage services. Let's experiment with a few commands.
 
-```plaintext
+```powershell
 C:\Users\htb-student>sc qc wuauserv
 [SC] QueryServiceConfig SUCCESS
 
@@ -60,13 +60,15 @@ SERVICE_NAME: wuauserv
         SERVICE_START_NAME : LocalSystem
 ```
 
-```plaintext
+The sc qc command is used to query the service. This is where knowing the names of services can come in handy. If we wanted to query a service on a device over the network, we could specify the hostname or IP address immediately after sc.
+
+```powershell
 C:\Users\htb-student>sc //hostname or ip of box query ServiceName
 ```
 
 We can also use `sc` to start and stop services.
 
-```plaintext
+```powershell
 C:\Users\htb-student> sc stop wuauserv
 
 [SC] OpenService FAILED 5:
@@ -76,7 +78,7 @@ Access is denied.
 
 Notice how we are denied access from performing this action without running it within an administrative context. If we run a command prompt with elevated privileges, we will be permitted to complete this action.
 
-```plaintext
+```powershell
 C:\WINDOWS\system32> sc config wuauserv binPath=C:\Winbows\Perfectlylegitprogram.exe
 
 [SC] ChangeServiceConfig SUCCESS
@@ -101,8 +103,11 @@ If we were investigating a situation where we suspected that the system had malw
 
 Another helpful way we can examine service permissions using `sc` is through the `sdshow` command.
 
-```plaintext
+```powershell
 C:\WINDOWS\system32> sc sdshow wuauserv
+
+D:(A;;CCLCSWRPLORC;;;AU)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)S:(AU;FA;CCDCLCSWRPWPDTLOSDRCWDWO;;;WD)
+
 ```
 
 At an initial glance, the output looks crazy. It almost seems that we have done something wrong in our command, but there is a meaning to this madness. Every named object in Windows is a securable object, and even some unnamed objects are securable. If it's securable in a Windows OS, it will have a security descriptor. Security descriptors identify the object’s owner and a primary group containing a Discretionary Access Control List (DACL) and a System Access Control List (SACL).
