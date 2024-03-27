@@ -165,3 +165,29 @@ Process Explorer is a part of the Sysinternals tool suite. This tool can show wh
 ## Questions
 
 Identify one of the non-standard update services running on the host. Submit the full name of the service executable (not the DisplayName) as your answer.
+
+```powershell
+Get-Service | ? {($_.Status -eq "Running") -and ($_.DisplayName -like "*Update*")} | Select -First 2 | fl
+```
+
+```powerhsell
+Service Name         : FoxitReaderUpdateService
+Display Name         : Foxit Reader Update Service
+Status               : Running
+Dependent Services   : None
+Services Depended On : None
+Can Pause/Continue   : False
+Can Shutdown         : True
+Can Stop             : True
+Service Type         : Win32OwnProcess, InteractiveProcess
+
+Service Name         : UsoSvc
+Display Name         : Update Orchestrator Service
+Status               : Running
+Dependent Services   : None
+Services Depended On : rpcss
+Can Pause/Continue   : False
+Can Shutdown         : True
+Can Stop             : True
+Service Type         : Win32OwnProcess, Win32ShareProcess
+```
