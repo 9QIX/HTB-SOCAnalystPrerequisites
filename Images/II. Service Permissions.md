@@ -114,7 +114,29 @@ At an initial glance, the output looks crazy. It almost seems that we have done 
 
 Generally, a DACL is used for controlling access to an object, and a SACL is used to account for and log access attempts. This section will examine the DACL, but the same concepts would apply to a SACL.
 
+```powershell
+D:(A;;CCLCSWRPLORC;;;AU)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;BA)(A;;CCDCLCSWRPWPDTLOCRSDRCWDWO;;;SY)
+```
+
 This amalgamation of characters crunched together and delimited by opened and closed parentheses is in a format known as the Security Descriptor Definition Language (SDDL).
+
+We may be tempted to read from left to right because that is how the English language is typically written, but it can be much different when interacting with computers. Read the entire security descriptor for the Windows Update (wuauserv) service in this order starting with the first letter and set of parentheses:
+
+**D: (A;;CCLCSWRPLORC;;;AU)**
+
+| Permission | Description                                                 |
+| ---------- | ----------------------------------------------------------- |
+| D:         | DACL permissions                                            |
+| AU         | Authenticated Users                                         |
+| A;;        | Access is allowed                                           |
+| CC         | SERVICE_QUERY_CONFIG - Query service configuration          |
+| LC         | SERVICE_QUERY_STATUS - Query service current status         |
+| SW         | SERVICE_ENUMERATE_DEPENDENTS - Enumerate dependent services |
+| RP         | SERVICE_START - Start the service                           |
+| LO         | SERVICE_INTERROGATE - Query service current status          |
+| RC         | READ_CONTROL - Query service security descriptor            |
+
+This table provides a structured presentation of the DACL permissions and their corresponding descriptions.
 
 ## Examine service permissions using PowerShell
 
