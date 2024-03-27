@@ -18,11 +18,11 @@ As discussed in the processes and services section, we can use `services.msc` to
 
 Make a note of the different properties available for viewing and configuration. Knowing the service name is especially useful when using command-line tools to examine and manage services. Path to the executable is the full path to the program and command to execute when the service starts. If the NTFS permissions of the destination directory are configured with weak permissions, an attacker could replace the original executable with one created for malicious purposes. We discuss NTFS permissions more in the NTFS vs. Share permissions section of this module.
 
-![alt text](/Images/image-25.png)
-
 **Log On tab**
 
 Most services run with LocalSystem privileges by default which is the highest level of access allowed on an individual Windows OS. Not all applications need Local System account-level permissions, so it is beneficial to perform research on a case-by-case basis when considering installing new applications in a Windows environment. It is a good practice to identify applications that can run with the least privileges possible to align with the principle of least privilege.
+
+![alt text](/Images/image-25.png)
 
 Here is one breakdown of the principle of least privilege
 
