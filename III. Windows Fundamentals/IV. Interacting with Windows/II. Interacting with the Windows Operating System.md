@@ -92,8 +92,7 @@ Examples:
 
 Note that certain commands have their own help menus, which can be accessed by typing `<command> /?`. For example, information about the `ipconfig` command can be seen below.
 
-```
-  Interacting with the Windows Operating System
+```powershell
 C:\htb> ipconfig /?
 
 USAGE:
@@ -125,7 +124,7 @@ where
        /showclassid6    Displays all the IPv6 DHCP class IDs allowed for adapter.
        /setclassid6     Modifies the IPv6 DHCP class id.
 
-<SNIP>
+<SNIP
 ```
 
 ### PowerShell
