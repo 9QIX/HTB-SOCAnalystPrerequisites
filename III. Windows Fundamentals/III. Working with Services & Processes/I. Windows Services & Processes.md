@@ -161,3 +161,7 @@ Windows Task Manager is a powerful tool for managing Windows systems. It provide
 ## Process Explorer
 
 Process Explorer is a part of the Sysinternals tool suite. This tool can show which handles and DLL processes are loaded when a program runs. Process Explorer shows a list of currently running processes, and from there, we can see what handles the process has selected in one view or the DLLs and memory-swapped files that have been loaded in another view. We can also search within the tool to show which processes tie back to a specific handle or DLL. The tool can also be used to analyze parent-child process relationships to see what child processes are spawned by an application and help troubleshoot any issues such as orphaned processed that can be left behind when a process is terminated.
+
+## Questions
+
+Identify one of the non-standard update services running on the host. Submit the full name of the service executable (not the DisplayName) as your answer.
