@@ -364,6 +364,12 @@ MachinePolicy       Undefined
 - What is the alias set for the ipconfig.exe command?
 
 ```powershell
+Get-Alias | findstr ipconfig
+```
+
+OR
+
+```powershell
 Get-Alias -Definition ipconfig
 ```
 
