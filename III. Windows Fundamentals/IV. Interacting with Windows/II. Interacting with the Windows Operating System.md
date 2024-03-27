@@ -363,6 +363,19 @@ MachinePolicy       Undefined
 
 - What is the alias set for the ipconfig.exe command?
 
+```powershell
+Get-Alias -Definition ipconfig
+```
+
+```powershell
+CommandType     Name                           Version    Source
+-----------     ----                           -------    ------
+Alias           ifconfig -> ipconfig.exe
+
+```
+
+**Answer: ifconfig**
+
 - Find the Execution Policy set for the LocalMachine scope.
 
 ```powershell
@@ -380,4 +393,4 @@ LocalMachine            Unrestricted
 
 ```
 
-**Answer: LocalMachine Unrestricted**
+**Answer: Unrestricted**
