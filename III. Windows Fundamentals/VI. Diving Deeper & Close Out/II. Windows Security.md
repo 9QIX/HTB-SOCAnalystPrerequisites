@@ -204,11 +204,11 @@ Group Policy can be configured locally, in both domain environments and non-doma
 
 We can open the Local Group Policy Editor by opening the Start menu and typing gpedit.msc. The editor is split into two categories under Local Computer Policy - Computer Configuration and User Configuration.
 
-![Local Group Policy Editor](image-link)
+![Local Group Policy Editor](/Images/image-35.png)
 
 For example, we can open the Local Computer Policy to enable Credential Guard by enabling the setting Turn On Virtualization Based Security. Credential Guard is a feature in Windows 10 that protects against credential theft attacks by isolating the operating system's LSA process.
 
-![Credential Guard Setting](image-link)
+![Credential Guard Setting](/Images/image-36.png)
 
 We can also enable fine-tuned account auditing and configure AppLocker from the Local Group Policy Editor. It is worth exploring Local Group Policy and learning about the wide variety of ways it can be used to lock down a Windows system.
 
@@ -220,7 +220,7 @@ Defender comes with several features such as real-time protection, which protect
 
 Windows Defender is managed from the Security Center, from which a variety of additional security features and settings can be enabled and managed.
 
-![Windows Security Center](image-link)
+![Windows Security Center](/Images/image-37.png)
 
 Real-time protection settings can be tweaked to add files, folders, and memory areas to controlled folder access to prevent unauthorized changes. We can also add files or folders to an exclusion list, so they are not scanned. An example would be excluding a folder of tools used for penetration testing from scanning as they will be flagged malicious and quarantined or removed from the system. Controlled folder access is Defender's built-in Ransomware protection.
 
