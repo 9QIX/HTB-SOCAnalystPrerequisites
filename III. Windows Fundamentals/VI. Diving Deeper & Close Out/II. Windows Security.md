@@ -321,11 +321,28 @@ By implementing a defense-in-depth strategy that combines proactive measures suc
 wmic useraccount where "name='bob.smith'" get sid
 ```
 
-OR
+This command is written for the WMIC (Windows Management Instrumentation Command-line) tool. Here's the breakdown:
+
+- `wmic`: This is the command-line tool used to access and retrieve information from the Windows Management Instrumentation (WMI) database.
+- `useraccount`: This specifies the WMI class to query, which represents user accounts on the system.
+- `where "name='bob.smith'"`: This part filters the user accounts based on the name attribute. It specifies that only user accounts with the name "bob.smith" should be included in the results.
+- `get sid`: This part specifies the property to retrieve from the filtered user accounts. It tells WMIC to retrieve the SID (Security Identifier) property of the selected user accounts.
+
+When you run this WMIC command, it will query the WMI database to find the SID of the user account with the name "bob.smith" and display it in the output.
+
+**_OR_**
 
 ```powershell
 Get-WmiObject -Class Win32_UserAccount -filter “name = ‘bob.smith’”
 ```
+
+This command is written in PowerShell. Here's the breakdown:
+
+- `Get-WmiObject`: This is a cmdlet in PowerShell used to retrieve WMI objects.
+- `-Class Win32_UserAccount`: This specifies the WMI class to query, which in this case is `Win32_UserAccount`, representing user accounts on the system.
+- `-Filter "name = 'bob.smith'"`: This part filters the user accounts based on the name attribute. It specifies that only user accounts with the name "bob.smith" should be included in the results.
+
+When you run this PowerShell command, it will query the WMI database to find user accounts with the name "bob.smith" and return information about those accounts.
 
 ```powershell
 SID
