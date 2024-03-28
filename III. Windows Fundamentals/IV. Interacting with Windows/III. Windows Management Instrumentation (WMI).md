@@ -111,3 +111,20 @@ PSComputerName   :
 ## Conclusion
 
 This section provides a brief overview of WMI, WMIC, and combining WMIC and PowerShell. WMI has a wide variety of uses for both blue team and red team operators. Later sections of this course will show some ways that WMI can be leveraged offensively for both enumeration and lateral movement.
+
+## Question
+
+- Use WMI to find the serial number of the system.
+
+```powershell
+wmic os list brief
+```
+
+```powershell
+BuildNumber  Organization  RegisteredUser  SerialNumber           SystemDirectory      Version
+-----------  ------------  --------------  ------------           -----------------    -------
+19041        mrb3n         00329-10280-00000-AA938  C:\WINDOWS\system32  10.0.19041
+
+```
+
+**Answer: 00329-10280-00000-AA938**
