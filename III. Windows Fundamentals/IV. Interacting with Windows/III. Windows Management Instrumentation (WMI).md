@@ -16,8 +16,6 @@ WMI is a subsystem of PowerShell that provides system administrators with powerf
 | WMI API            | Enables applications to access the WMI infrastructure.                                                                                                                             |
 | WMI Consumer       | Sends queries to objects via the CIM Object Manager.                                                                                                                               |
 
-This table provides a structured presentation of different components related to Windows Management Instrumentation (WMI) and their descriptions.
-
 ## Uses of WMI
 
 Some of the uses for WMI are:
