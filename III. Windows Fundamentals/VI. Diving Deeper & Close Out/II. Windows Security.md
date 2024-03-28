@@ -321,6 +321,12 @@ By implementing a defense-in-depth strategy that combines proactive measures suc
 wmic useraccount where "name='bob.smith'" get sid
 ```
 
+OR
+
+```powershell
+Get-WmiObject -Class Win32_UserAccount -filter “name = ‘bob.smith’”
+```
+
 ```powershell
 SID
 S-1-5-21-2614195641-1726409526-3792725429-1003
