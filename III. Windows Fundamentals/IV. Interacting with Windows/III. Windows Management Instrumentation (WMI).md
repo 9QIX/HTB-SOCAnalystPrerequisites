@@ -80,9 +80,12 @@ WMI can be used with PowerShell by using the `Get-WmiObject` module. This module
 
 Here's an example of getting information about the operating system:
 
-```plaintext
+```powershell
 PS C:\htb> Get-WmiObject -Class Win32_OperatingSystem | select SystemDirectory,BuildNumber,SerialNumber,Version | ft
-# Output of OS information using PowerShell
+
+SystemDirectory     BuildNumber SerialNumber            Version
+---------------     ----------- ------------            -------
+C:\Windows\system32 19041       00123-00123-00123-AAOEM 10.0.19041
 ```
 
 Additionally, the `Invoke-WmiMethod` module is used to call the methods of WMI objects. For example, renaming a file:
