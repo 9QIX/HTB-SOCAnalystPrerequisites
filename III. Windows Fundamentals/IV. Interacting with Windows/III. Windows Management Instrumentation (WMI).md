@@ -90,9 +90,22 @@ C:\Windows\system32 19041       00123-00123-00123-AAOEM 10.0.19041
 
 Additionally, the `Invoke-WmiMethod` module is used to call the methods of WMI objects. For example, renaming a file:
 
-```plaintext
+```powershell
 PS C:\htb> Invoke-WmiMethod -Path "CIM_DataFile.Name='C:\users\public\spns.csv'" -Name Rename -ArgumentList "C:\Users\Public\kerberoasted_users.csv"
-# Output of the method invocation
+
+
+__GENUS          : 2
+__CLASS          : __PARAMETERS
+__SUPERCLASS     :
+__DYNASTY        : __PARAMETERS
+__RELPATH        :
+__PROPERTY_COUNT : 1
+__DERIVATION     : {}
+__SERVER         :
+__NAMESPACE      :
+__PATH           :
+ReturnValue      : 0
+PSComputerName   :
 ```
 
 ## Conclusion
