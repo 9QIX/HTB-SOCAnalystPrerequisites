@@ -316,4 +316,14 @@ By implementing a defense-in-depth strategy that combines proactive measures suc
 ## Questions
 
 - Find the SID of the bob.smith user.
+
+```powershell
+wmic useraccount where "name='bob.smith'" get sid
+```
+
+```powershell
+SID
+S-1-5-21-2614195641-1726409526-3792725429-1003
+```
+
 - What 3rd party security application is disabled at startup for the current user? (The answer is case sensitive).
