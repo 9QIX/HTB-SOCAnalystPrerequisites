@@ -251,7 +251,7 @@ The Windows Firewall is a security feature included in Windows XP and later vers
 
 Windows Firewall is a host-based firewall, meaning it runs on individual computers and can be configured through the Control Panel or via Group Policy in a domain environment.
 
-![Windows Firewall Control Panel](image-link)
+![Windows Firewall Control Panel](/Images/image-38.png)
 
 Windows Firewall with Advanced Security provides an interface for more advanced configuration options, such as creating inbound and outbound rules, configuring connection security rules, and monitoring active firewall rules and security associations.
 
@@ -312,7 +312,3 @@ In summary, while PowerShell is an incredibly powerful tool for both administrat
 Windows security is a vast topic that requires continuous learning and adaptation due to the ever-evolving nature of cyber threats. Understanding the underlying principles of Windows security, such as SIDs, ACLs, and the Registry, is crucial for system administrators and security professionals. Additionally, familiarizing oneself with security features such as UAC, AppLocker, Windows Defender, Windows Firewall, and PowerShell security can help mitigate risks and protect Windows systems from various threats.
 
 By implementing a defense-in-depth strategy that combines proactive measures such as patch management, application whitelisting, and robust security configurations with reactive measures such as antivirus software, firewalls, and intrusion detection systems, organizations can significantly improve their overall security posture and better defend against cyber threats.
-
-```
-
-```
