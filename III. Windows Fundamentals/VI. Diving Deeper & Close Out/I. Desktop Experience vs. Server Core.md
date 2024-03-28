@@ -6,7 +6,7 @@ While Server Core aims to have a smaller footprint by lacking a GUI, some graphi
 
 As of Windows Server 2019, Server Core or Desktop Experience must be selected at installation, and neither can be rolled back (i.e., converting Server Core to Desktop Experience). Once installed, the initial setup for Server Core can be done via Sconfig, which is a text-based interface (actually a VBScript executed by WScript). Sconfig is used for performing a variety of common commands such as configuring networking, checking for/installing Windows updates, account management, configuring remote management, activating Windows, and more.
 
-![Sconfig](image-link)
+![Sconfig](/Images/image-31.png)
 
 Certain server applications cannot run on Server Core, including Microsoft Server Virtual Machine Manager 2019 (SCVMM), System Center Data Protection Manager 2019, SharePoint Server 2019, Project Server 2019.
 
