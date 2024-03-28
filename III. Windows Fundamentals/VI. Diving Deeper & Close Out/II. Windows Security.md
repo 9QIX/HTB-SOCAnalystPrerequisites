@@ -84,7 +84,7 @@ Each folder under Computer is a key. The root keys all start with HKEY. A key su
 
 is dynamically loaded).
 
-![Root Keys](image-link)
+![Root Keys](/Images/image-34.png)
 
 The entire system registry is stored in several files on the operating system. You can find these under C:\Windows\System32\Config\.
 
