@@ -1,4 +1,3 @@
-````markdown
 # Windows Subsystem for Linux (WSL)
 
 WSL is a feature that allows Linux binaries to be run natively on Windows 10 and Windows Server 2019. It was originally intended for developers who needed to run Bash, Ruby, and native Linux command-line tools such as sed, awk, grep, etc., directly on their Windows workstation. The second version of WSL, released in May 2019, introduced a real Linux kernel utilizing a subset of Hyper-V features.
@@ -13,7 +12,6 @@ PS C:\htb> ls /
 bin dev home lib lLib64 media opt root sbin srv tmp var
 boot etc init 1lib32 Libx32 mnt proc run Snap sys usr
 ```
-````
 
 We can access the `C$` volume and other volumes on the host operating system via the `mnt` directory, making the transition from the WSL host and the Windows host OS seamless. Once in this bash shell, we can interact with WSL as we would interact with any Linux-based operating system: running commands, installing updates/packages, etc.
 
