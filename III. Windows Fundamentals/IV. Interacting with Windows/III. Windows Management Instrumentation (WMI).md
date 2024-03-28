@@ -1,4 +1,3 @@
-````markdown
 # Windows Management Instrumentation (WMI)
 
 ## WMI Overview
@@ -37,7 +36,6 @@ WMI can be run via the Windows command prompt by typing `WMIC` to open an intera
 C:\htb> wmic /?
 # WMIC command help output
 ```
-````
 
 An example command lists information about the operating system:
 
@@ -69,7 +67,3 @@ PS C:\htb> Invoke-WmiMethod -Path "CIM_DataFile.Name='C:\users\public\spns.csv'"
 ## Conclusion
 
 This section provides a brief overview of WMI, WMIC, and combining WMIC and PowerShell. WMI has a wide variety of uses for both blue team and red team operators. Later sections of this course will show some ways that WMI can be leveraged offensively for both enumeration and lateral movement.
-
-```
-
-```
