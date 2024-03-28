@@ -350,3 +350,13 @@ S-1-5-21-2614195641-1726409526-3792725429-1003
 ```
 
 - What 3rd party security application is disabled at startup for the current user? (The answer is case sensitive).
+
+To identify the 3rd party security application disabled at startup for the current user using Task Manager in Windows, you can follow these steps:
+
+1. Open Task Manager by right-clicking on the taskbar and selecting "Task Manager", or by pressing `Ctrl + Shift + Esc`.
+2. In Task Manager, go to the "Startup" tab.
+3. Look for the entry related to the 3rd party security application. You can identify it by its name or description.
+4. Check if the status of the application is "Disabled" in the "Status" column.
+5. If found, note down the name of the application.
+
+**Answer: NordVPN**
