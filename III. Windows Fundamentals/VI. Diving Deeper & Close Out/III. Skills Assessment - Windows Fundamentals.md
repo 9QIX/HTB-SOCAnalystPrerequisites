@@ -111,7 +111,7 @@ That concludes the demonstration. If you have any questions or need further clar
   OR
 
   ```powershell
-  wmic useraccount get name, sid
+  wmic useraccount where "name='jim'" get sid
   ```
 
 - List the SID associated with the HR security group you created.
@@ -123,5 +123,5 @@ That concludes the demonstration. If you have any questions or need further clar
   OR
 
   ```powershell
-  wmic group get name, sid
+  wmic group where "name='hr'" get sid
   ```
