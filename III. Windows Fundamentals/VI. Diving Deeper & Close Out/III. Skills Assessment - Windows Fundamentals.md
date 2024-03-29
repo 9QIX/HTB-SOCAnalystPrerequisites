@@ -108,8 +108,20 @@ That concludes the demonstration. If you have any questions or need further clar
   Get-LocalUser -Name jim | Select-Object -Property *
   ```
 
+  OR
+
+  ```powershell
+  wmic useraccount get name, sid
+  ```
+
 - List the SID associated with the HR security group you created.
 
   ```powershell
   Get-LocalGroup -Name hr | Select-Object -Property *
+  ```
+
+  OR
+
+  ```powershell
+  wmic group get name, sid
   ```
