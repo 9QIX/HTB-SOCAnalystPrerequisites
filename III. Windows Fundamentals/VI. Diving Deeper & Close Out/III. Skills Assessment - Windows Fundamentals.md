@@ -97,5 +97,19 @@ That concludes the demonstration. If you have any questions or need further clar
 - What is the name of the group that is present in the Company Data Share Permissions ACL by default?
 - What is the name of the tab that allows you to configure NTFS permissions?
 - What is the name of the service associated with Windows Update?
+
+  ```powershell
+  Get-Service | Where DisplayName -like “windows update”
+  ```
+
 - List the SID associated with the user account Jim you created.
+
+  ```powershell
+  Get-LocalUser -Name jim | Select-Object -Property *
+  ```
+
 - List the SID associated with the HR security group you created.
+
+  ```powershell
+  Get-LocalGroup -Name hr | Select-Object -Property *
+  ```
