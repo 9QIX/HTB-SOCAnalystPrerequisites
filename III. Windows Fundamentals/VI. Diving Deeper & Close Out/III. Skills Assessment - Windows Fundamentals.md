@@ -91,3 +91,11 @@ To list details about a service using PowerShell, follow these steps:
 This will display detailed information about the specified service, including its status, display name, service name, and service type.
 
 That concludes the demonstration. If you have any questions or need further clarification, feel free to ask!
+
+## Questions
+
+- What is the name of the group that is present in the Company Data Share Permissions ACL by default?
+- What is the name of the tab that allows you to configure NTFS permissions?
+- What is the name of the service associated with Windows Update?
+- List the SID associated with the user account Jim you created.
+- List the SID associated with the HR security group you created.
