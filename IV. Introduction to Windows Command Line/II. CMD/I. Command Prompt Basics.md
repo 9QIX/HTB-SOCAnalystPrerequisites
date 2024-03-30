@@ -1,5 +1,4 @@
-```markdown
-## Command Prompt Basics
+# Command Prompt Basics
 
 The first step down the rabbit hole to developing our command-line kung fu is to dive into `cmd.exe` (the Command Prompt application). Let's begin our white-belt level training by going over what `cmd.exe` is, how to access it, and how the shell works.
 
@@ -45,6 +44,7 @@ On the other hand, remote access is the equivalent of accessing the machine usin
 Looking at the Command Prompt, what we see now is similar to what it was decades ago. Moreover, navigation of the Command Prompt has remained mostly unchanged as well. Navigating through the file system is like walking down a hallway filled with doors. As we move into one hallway (directory), we can look to see what is there (using the `dir` command), then either issue additional commands or keep moving. Below, we will cover the basic shell layout, how to walk the halls, and how to acquire a map to get the lay of the land.
 
 #### Using the `dir` Command
+
 ```
 
 CMD Prompt
@@ -84,4 +84,7 @@ In the event of a user lockout or some technical issue preventing/inhibiting reg
 While useful, this also poses a potential risk. For example, on this Windows 7 machine, we can use the recovery Command Prompt to tamper with the filesystem. Specifically, replacing the Sticky Keys (sethc.exe) binary with another copy of cmd.exe
 
 Once the machine is rebooted, we can press Shift five times on the
+
+```
+
 ```
