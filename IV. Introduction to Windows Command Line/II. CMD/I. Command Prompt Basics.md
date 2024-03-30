@@ -86,17 +86,10 @@ When looking at the Command Prompt, it is a basic request-response type conversa
 **Case Study: Windows Recovery**
 
 In the event of a user lockout or some technical issue preventing/inhibiting regular use of the machine, booting from a Windows installation disc gives us the option to boot to Repair Mode. From here, the user is provided access to a Command Prompt, allowing for command-line-based troubleshooting of the device.
+![alt text](image.png)
 
 **Accessing the Command Prompt via Recovery Mode**
 
 While useful, this also poses a potential risk. For example, on this Windows 7 machine, we can use the recovery Command Prompt to tamper with the filesystem. Specifically, replacing the Sticky Keys (sethc.exe) binary with another copy of cmd.exe
 
 Once the machine is rebooted, we can press Shift five times on the
-
-```
-
-```
-
-```
-
-```
