@@ -36,6 +36,8 @@ For this module, you will have access to several Windows hosts from which you ca
 
 To connect to the target hosts as the user via SSH, utilize the following format:
 
-```
+```bash
 ssh htb-student@<IP-Address>
 ```
+
+Once connected, you will be asked to accept the host's certificate and provide the user's password to log in completely. After you authenticate, you are free to dive in.
