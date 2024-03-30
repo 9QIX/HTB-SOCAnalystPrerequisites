@@ -1,4 +1,3 @@
-```markdown
 ## Introduction
 
 The built-in command shell CMD.exe and PowerShell are two implementations included in all Windows hosts. These tools provide direct access to the operating system, automate routine tasks, and provide the user with granular control of any aspect of the computer and installed applications. This module will give us the knowledge, skills, and abilities to effectively administer Windows hosts via the command line.
@@ -36,10 +35,7 @@ We are a system administrator looking to broaden our horizons and dip our toes i
 For this module, you will have access to several Windows hosts from which you can perform any actions needed to complete the lab exercises. Since we are working in a pure CLI-based module, this challenge will use SSH only to connect with the targets.
 
 To connect to the target hosts as the user via SSH, utilize the following format:
-```
 
+```
 ssh htb-student@<IP-Address>
-
-```
-
 ```
