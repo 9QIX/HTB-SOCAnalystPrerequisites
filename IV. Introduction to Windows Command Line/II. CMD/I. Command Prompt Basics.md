@@ -35,6 +35,15 @@ Local access is synonymous with having direct physical access (or virtual in the
 - Using the Windows key + r to bring up the run prompt, and then typing in `cmd`.
 - Accessing the executable from the drive path `C:\Windows\System32\cmd.exe`.
 
+##### cmd.exe Initial Access
+
+```cmd
+Microsoft Windows [Version 10.0.19044.2006]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\htb>
+```
+
 **Remote Access:**
 
 On the other hand, remote access is the equivalent of accessing the machine using virtual peripherals over the network. This level of access does not require direct physical access to the machine but requires the user to be connected to the same network or have a route to the machine they intend to access remotely. We can do this through the use of telnet (insecure and not recommended), Secure Shell (SSH), PsExec, WinRM, RDP, or other protocols as needed. For a sysadmin, remote management and access are a boon to our workflow. We would not have to go to the user's desk and physically access the host to perform our duties. This convenience for sysadmins can also implant a security threat into our network. If these remote access tools are not configured correctly, or a threat gains access to valid credentials, an attacker can now have wide-ranging access to our environments. We must maintain the proper balance of availability and integrity of our networks for a proper security posture.
@@ -45,9 +54,9 @@ Looking at the Command Prompt, what we see now is similar to what it was decades
 
 #### Using the `dir` Command
 
-```
+##### CMD Prompt
 
-CMD Prompt
+```cmd
 Command Prompt Basics
 C:\Users\htb\Desktop> dir
 
@@ -66,7 +75,6 @@ Directory of C:\Users\htb\Desktop
 06/11/2021 11:59 PM 0 write-secrets.ps1
 6 File(s) 2,391 bytes
 2 Dir(s) 35,102,117,888 bytes free
-
 ```
 
 - The current path location (C:\Users\Desktop)
@@ -84,6 +92,10 @@ In the event of a user lockout or some technical issue preventing/inhibiting reg
 While useful, this also poses a potential risk. For example, on this Windows 7 machine, we can use the recovery Command Prompt to tamper with the filesystem. Specifically, replacing the Sticky Keys (sethc.exe) binary with another copy of cmd.exe
 
 Once the machine is rebooted, we can press Shift five times on the
+
+```
+
+```
 
 ```
 
