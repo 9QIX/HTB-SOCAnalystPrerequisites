@@ -895,4 +895,110 @@ C:\Users\htb\Desktop\example> dir /A:H
                0 Dir(s)  38,632,202,240 bytes free
 ```
 
-Notice the new file we did not see before? Now file-99 is showing up in our directory listing hidden files. Remember that much like Linux, you can hide files from the view of users. With the hidden attribute, the file exists and can be called, but it will not be visible within a directory listing or from the GUI unless specifically looking for them. To delete the hidden file, we can perform the same del command as earlier, just changing the attribute
+Notice the new file we did not see before? Now file-99 is showing up in our directory listing hidden files. Remember that much like Linux, you can hide files from the view of users. With the hidden attribute, the file exists and can be called, but it will not be visible within a directory listing or from the GUI unless specifically looking for them. To delete the hidden file, we can perform the same del command as earlier, just changing the attribute from R to H.
+
+### Removing Hidden Files
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Desktop\example>dir /A:H
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+06/16/2021  02:00 PM                 5 file-99
+               1 File(s)              5 bytes
+               0 Dir(s)  38,632,202,240 bytes free
+
+C:\Users\htb\Desktop\example>del /A:H *
+C:\Users\htb\Desktop\example\*, Are you sure (Y/N)? Y
+
+C:\Users\htb\Desktop\example>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+06/16/2021  02:28 PM    <DIR>          .
+06/16/2021  02:28 PM    <DIR>          ..
+06/16/2021  02:00 PM                 5 file-2
+06/16/2021  02:00 PM                 5 file-4
+06/16/2021  02:00 PM                 5 file-6
+               3 File(s)             15 bytes
+               2 Dir(s)  38,631,997,440 bytes free
+
+C:\Users\htb\Desktop\example>dir /A:H
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+File Not Found
+```
+
+Now we successfully deleted a file with the hidden attribute. To erase the directory with the rest of its contents, we can feed the del command with the directory name to remove the contents and follow it up with the rd command to eliminate the directory structure. If a file resides within the directory with the Read-only attribute or some other, utilizing the /F switch will force delete the file.
+
+## Copying and Moving Files
+
+Just like directories, we have several options to copy or move files. Copy and move are the easiest ways to accomplish this. We can use them to make copies of a file in the same directory or move it into another. As a task, this is one of the simplest we will do.
+
+### copy
+
+```cmd
+Working with Directories and Files
+C:\Users\student\Documents\Backup>copy secrets.txt C:\Users\student\Downloads\not-secrets.txt
+
+        1 file(s) copied.
+C:\Users\student\Downloads>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\student\Downloads
+
+06/23/2021  10:35 PM    <DIR>          .
+06/23/2021  10:35 PM    <DIR>          ..
+06/21/2021  11:58 PM             2,418 not-secrets.txt
+               1 File(s)          2,418 bytes
+               2 Dir(s)  39,021,146,112 bytes free
+```
+
+In the example above, we copied secrets.txt and moved it to the Downloads folder, renamed it as not-secrets.txt. By default, copy will complete its task and close. If we wish to ensure the files copied are copied correctly, we can use the /V switch to turn on file validation.
+
+### Copy Validation
+
+```cmd
+Working with Directories and Files
+C:\Windows\System32> copy calc.exe C:\Users\student\Downloads\copied-calc.exe /V
+Overwrite C:\Users\student\Downloads\copied-calc.exe? (Yes/No/All): A
+        1 file(s) copied.
+```
+
+With move, we can move files and directories from one place to another and rename them. Move differs from copy because it can also rename and move directories.
+
+### move
+
+```cmd
+Working with Directories and Files
+C:\Users\student\Desktop>move C:\Users\student\Desktop\bio.txt C:\Users\student\Downloads
+
+        1 file(s) moved.
+
+C:\Users\student\Desktop>dir C:\Users\student\Downloads
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\student\Downloads
+
+06/24/2021  11:10 AM    <DIR>          .
+06/24/2021  11:10 AM    <DIR>          ..
+06/22/2021  03:21 PM             1,140 bio.txt
+12/07/2019  05:09 AM            27,648 copied-calc.exe
+06/21/2021  11:58 PM             2,418 not-secrets.txt
+               3 File(s)         31,206 bytes
+               2 Dir(s)  39,122,550,784 bytes free
+```
+
+Above, we took the bio.txt file and moved it to the Downloads folder. Manipulating files is as easy as that.
+
+Great job! We have now tackled the task of mastering file and folder manipulation. Next up, we will tackle gathering up some critical system information.
