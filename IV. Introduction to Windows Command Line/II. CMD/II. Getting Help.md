@@ -1,4 +1,4 @@
-## Getting Help
+# Getting Help
 
 In the previous section, we were introduced to the general concepts of the Command Prompt and how we can access it. This section will expand upon the previous one by introducing the help functionality within Command Prompt, example output, and some additional resources and concepts.
 
@@ -20,7 +20,7 @@ Let's work on answering the initial question first. While utilizing the Command 
 
 #### Default Help Usage
 
-```powershell
+```cmd
 C:\htb> help
 
 For more information on a specific command, type HELP command-name
@@ -43,7 +43,7 @@ From this output, we can see that it prints out a list of system commands (built
 
 #### Help with Commands
 
-```powershell
+```cmd
 C:\htb> help time
 
 Displays or sets the system time.
@@ -62,7 +62,7 @@ As we can see from the output above, when we issued the command `help time`, it 
 
 #### Detailed Output
 
-```powershell
+```cmd
 C:\htb> help ipconfig
 
 This command is not supported by the help utility. Try "ipconfig /?".
@@ -97,7 +97,7 @@ As shown in our scenario, there will be times when we may not have direct access
 In the previous section, we discussed the importance of utilizing the help system built into the Command Prompt, especially in an environment where external network traffic is non-existent or limited. However, assuming we have access to the Internet, there are dozens of online resources at our disposal for additional help regarding the Command Prompt. As stated before, the Internet is an extremely valuable tool and should be utilized to its fullest extent, especially if unrestricted access exists. To help enhance our understanding of CMD and alleviate some of the time sink involved with searching for material, here are a couple of CMD.exe command references where we can learn more about what can be done with our command shell.
 
 - [Microsoft Documentation](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/windows-commands) has a complete listing of the commands that can be issued within the command-line interpreter as well as detailed descriptions of how to use them. Think of it as an online version of the Man pages.
-- [ss64](https://ss64.com/) Is a handy quick reference for anything command-line related, including cmd, PowerShell, Bash, and more.
+- [ss64](https://ss64.com/) Is a handy quick reference for anything command-line related, including cmd, cmd, Bash, and more.
 
 This is a partial list of resources; however, these should provide a good baseline for working with the Command Prompt.
 
@@ -109,14 +109,15 @@ Now that we have a general understanding of how we can obtain help from external
 
 There are times during our interaction with the command prompt when the amount of output provided to us through multiple commands overcrowding the screen and becomes an unusable mess of information. In this case, we need some way to clear the screen and provide us with an empty prompt. We can use the command `cls` to clear our terminal window of our previous results. This comes in handy when we need to refresh our screen and want to avoid fighting to read the terminal and figuring out where our current output starts and the old input ends.
 
+![alt text](/Images/image-40.png)
+
 #### History
 
 Previously, we expanded upon clearing the output from the Command Prompt session using `cls`. Although that information has been cleared from the screen's output, we can still retrieve the commands that were run up to that point. This is due to a nifty feature built into the Command Prompt known as Command History.
 
 Command history is a dynamic thing. It allows us to view previously ran commands in our Command Prompt's current active session. To do this, CMD provides us with several different methods of interacting with our command history. For example, we can use the arrow keys to move up and down through our history, the page up and page down keys, and if working on a physical Windows host, you can use the function keys to interact with your session history. The last way we can view our history is by utilizing the command `doskey /history`. Doskey is an MS-DOS utility that keeps a history of commands issued and allows them to be referenced again.
 
-```
-
+```cmd
 C:\htb> doskey /history
 
 systeminfo
@@ -130,7 +131,6 @@ help
 doskey /history
 ping 8.8.8.8
 doskey /history
-
 ```
 
 From the output provided above, we can view a list of commands that were run before our original command. This is important and incredibly useful, especially if you are constantly clearing your screen and need to rerun a previous command to collect its output. Interacting and viewing all previously run commands will save you extra time, energy, and heartache.
@@ -161,8 +161,7 @@ One thing to remember is that unlike Bash or other shells, CMD does not keep a p
 
 At some point in our journey working with the Command Prompt, there will be times when we will need to be able to interrupt an actively running process, effectively killing it. This can be due to many different factors. However, a lot of the time, we might have the information that we need from a currently running command or find ourselves dealing with an application that's locking up unexpectedly. Thus, we need some way of interrupting our current session and any process running in it. Take the following as an example:
 
-```
-
+```cmd
 C:\htb> ping 8.8.8.8
 
 Pinging 8.8.8.8 with 32 bytes of data:
@@ -175,7 +174,6 @@ Approximate round trip times in milli-seconds:
 Minimum = 22ms, Maximum = 25ms, Average = 23ms
 Control-C
 ^C
-
 ```
 
 When running a command or process we want to interrupt, we can do so by pressing the `ctrl+c` key combination. As previously stated, this is useful for stopping a currently running process that may be non-responsive or just something we want to be completed immediately. Remember that whatever was running will be incomplete and may need more time to close itself out properly, so always be wary of what you are interrupting.
