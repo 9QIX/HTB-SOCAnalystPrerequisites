@@ -62,12 +62,10 @@ As we can see from the output above, when we issued the command `help time`, it 
 
 #### Detailed Output
 
-```
-
+```powershell
 C:\htb> help ipconfig
 
 This command is not supported by the help utility. Try "ipconfig /?".
-
 ```
 
 In the previous example, the help feature let us know that it could not provide more information as the help utility does not directly support it. However, utilizing the suggested command `ipconfig /?` will provide us with the information we need to utilize the command correctly. Be aware that several commands use the `/?` modifier interchangeably with `help`.
