@@ -61,7 +61,7 @@ CMD provides a one-stop shop for information via the `systeminfo` command. It is
 
 For a hacker, this is a great way to quickly get the lay of the land when you first access a host while leaving a minimal footprint. Running one command is always better than running two or three just to get the same information. We are less likely to be detected this way. Having quick access to things such as the OS version, hotfixes installed, and OS build version can help us quickly determine from a quick Google or ExploitDB search, if an exploit exists that can be quickly leveraged to exploit this host further, elevate privileges, and more.
 
-```
+```cmd
 C:\htb> systeminfo
 
 
@@ -83,13 +83,13 @@ As shown previously, `systeminfo` contains a lot of information to sift through;
 
 The `hostname` utility follows its namesake and provides us with the hostname of the machine, whereas the `ver` command prints out the current operating system version number. Both commands, in tandem, will provide us with an alternative way to retrieve some basic system information we can use while further enumerating the target host.
 
-```
+```cmd
 C:\htb> hostname
 
 DESKTOP-htb
 ```
 
-```
+```cmd
 C:\htb> ver
 
 Microsoft Windows [Version 10.0.19042.2006]
@@ -101,7 +101,7 @@ In addition to the host information provided above, let us quickly look at some 
 
 To gather this information quickly and in one simple-to-use command, Command Prompt offers the `ipconfig` utility. The `ipconfig` utility displays all current TCP/IP network configurations for the machine. Let us look at an example `ipconfig` configuration without providing additional parameters.
 
-```
+```cmd
 C:\htb> ipconfig
 
 Windows IP Configuration
@@ -133,7 +133,7 @@ As we can see from the example above, even without specifying parameters, we are
 
 The `arp` utility effectively displays the contents and entries contained within the Address Resolution Protocol (ARP) cache. We can also use this command to modify the table entries effectively. However, that in itself is beyond the scope of this module. To better understand what type of information the ARP cache contains, let us quickly look at the following example:
 
-```
+```cmd
 C:\htb> arp /a
 
 <SNIP>
@@ -173,7 +173,7 @@ Now that we have some basic host information to get us started, we should furthe
 
 `whoami` allows us to display the user, group, and privilege information for the user that is currently logged in. In this case, we should run it without any parameters first and see what kind of output we end up with.
 
-```
+```cmd
 C:\htb> whoami
 
 ACADEMY-WIN11\htb-student
@@ -187,7 +187,7 @@ Note: If the current user is not a domain-joined account, the NetBIOS name will 
 
 As previously mentioned, we can also use `whoami` to view our current user's security privileges on the system. By understanding what privileges are enabled for our current user, we can determine our capabilities on our target host. Let us try running `whoami /priv` from our compromised user account.
 
-```
+```cmd
 C:\htb> whoami /priv
 
 PRIVILEGES INFORMATION
@@ -208,26 +208,25 @@ From the output above, we only seem to have access to a basic permission set, an
 
 On top of having a thorough understanding of our current user's privileges, we should also take some time to see what groups our account is a member of. This can provide insight into other groups our current user is a part of, including any default groups (built-ins) and, more importantly, any custom groups to which our user was explicitly granted access. To view the groups our current user is a part of, we can issue the following command: `whoami /groups`.
 
-```
-
+```cmd
 C:\htb> whoami /groups
 
-## GROUP INFORMATION
+GROUP INFORMATION
+-----------------
 
-Group Name Type SID Attributes
+Group Name                             Type             SID          Attributes
 ====================================== ================ ============ ==================================================
-Everyone Well-known group S-1-1-0 Mandatory group, Enabled by default, Enabled group
-BUILTIN\Users Alias S-1-5-32-545 Mandatory group, Enabled by default, Enabled group
-BUILTIN\Performance Log Users Alias S-1-5-32-559 Mandatory group, Enabled by default, Enabled group
-NT AUTHORITY\INTERACTIVE Well-known group S-1-5-4 Mandatory group, Enabled by default, Enabled group
-CONSOLE LOGON Well-known group S-1-2-1 Mandatory group, Enabled by default, Enabled group
-NT AUTHORITY\Authenticated Users Well-known group S-1-5-11 Mandatory group, Enabled by default, Enabled group
-NT AUTHORITY\This Organization Well-known group S-1-5-15 Mandatory group, Enabled by default, Enabled group
-NT AUTHORITY\Local account Well-known group S-1-5-113 Mandatory group, Enabled by default, Enabled group
-LOCAL Well-known group S-1-2-0 Mandatory group, Enabled by default, Enabled group
-NT AUTHORITY\NTLM Authentication Well-known group S-1-5-64-10 Mandatory group, Enabled by default, Enabled group
-Mandatory Label\Medium Mandatory Level Label S-1-16-8192
-
+Everyone                               Well-known group S-1-1-0      Mandatory group, Enabled by default, Enabled group
+BUILTIN\Users                          Alias            S-1-5-32-545 Mandatory group, Enabled by default, Enabled group
+BUILTIN\Performance Log Users          Alias            S-1-5-32-559 Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\INTERACTIVE               Well-known group S-1-5-4      Mandatory group, Enabled by default, Enabled group
+CONSOLE LOGON                          Well-known group S-1-2-1      Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Authenticated Users       Well-known group S-1-5-11     Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\This Organization         Well-known group S-1-5-15     Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\Local account             Well-known group S-1-5-113    Mandatory group, Enabled by default, Enabled group
+LOCAL                                  Well-known group S-1-2-0      Mandatory group, Enabled by default, Enabled group
+NT AUTHORITY\NTLM Authentication       Well-known group S-1-5-64-10  Mandatory group, Enabled by default, Enabled group
+Mandatory Label\Medium Mandatory Level Label            S-1-16-8192
 ```
 
 Our user is not a member of any other groups besides the built-ins added to our account upon creation. However, it is essential to note that in some cases, users can be provided additional access, privileges, and permissions based on the groups to which they belong.
