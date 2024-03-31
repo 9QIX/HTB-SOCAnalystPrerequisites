@@ -1,4 +1,3 @@
-```markdown
 ## System Navigation
 
 So far, most of what we have covered is introductory information to help us get a basic understanding and feel of the Command Prompt. Continuing with that flow, our next goal should be utilizing our Command Prompt to successfully navigate and move around on the system. In this section, we attempt to conquer our surroundings by:
@@ -13,6 +12,7 @@ Additionally, at the end of the section, we will briefly look into certain direc
 ### Listing A Directory
 
 One of the easiest things we can do when initially poking around on a Windows host is to get a listing of the directory we are currently working in. We do that with the `dir` command.
+
 ```
 
 System Navigation
@@ -61,13 +61,12 @@ Using our newfound skills, we should branch out and explore the system earnestly
 
 As promised, we have nearly reached the end of this section. With our current skill set, navigating the system should be much more approachable now than initially seemed. Let us take a minute to discuss some directories that can come in handy from an attacker's perspective on a system. Below is a table of common directories that an attacker can abuse to drop files to disk, perform reconnaissance, and help facilitate attack surface mapping on a target host.
 
-| Name               | Location                    | Description                                                                                                  |
-|--------------------|-----------------------------|--------------------------------------------------------------------------------------------------------------|
-| %SYSTEMROOT%\Temp  | C:\Windows\Temp             | Global directory containing temporary system files accessible to all users on the system.                  |
-| %TEMP%             | C:\Users\<user>\AppData\Local\Temp | Local directory containing a user's temporary files accessible only to the user account that it is attached to. |
-| %PUBLIC%           | C:\Users\Public            | Publicly accessible directory allowing any interactive logon account full access to files and subfolders within. |
-| %ProgramFiles%     | C:\Program Files            | Folder containing all 64-bit applications installed on the system.                                             |
-| %ProgramFiles(x86)%| C:\Program Files (x86)     | Folder containing all 32-bit applications installed on the system.                                             |
+| Name                | Location                           | Description                                                                                                      |
+| ------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| %SYSTEMROOT%\Temp   | C:\Windows\Temp                    | Global directory containing temporary system files accessible to all users on the system.                        |
+| %TEMP%              | C:\Users\<user>\AppData\Local\Temp | Local directory containing a user's temporary files accessible only to the user account that it is attached to.  |
+| %PUBLIC%            | C:\Users\Public                    | Publicly accessible directory allowing any interactive logon account full access to files and subfolders within. |
+| %ProgramFiles%      | C:\Program Files                   | Folder containing all 64-bit applications installed on the system.                                               |
+| %ProgramFiles(x86)% | C:\Program Files (x86)             | Folder containing all 32-bit applications installed on the system.                                               |
 
 With the end of this section, we have become proficient at moving around the Windows filesystem and understanding where we are in relation to other directories and files on the system. In the next section, we will discuss gathering system information to provide us with a solid understanding of our surrounding environment.
-```
