@@ -13,7 +13,7 @@ Additionally, at the end of the section, we will briefly look into certain direc
 
 One of the easiest things we can do when initially poking around on a Windows host is to get a listing of the directory we are currently working in. We do that with the `dir` command.
 
-```
+```cmd
   System Navigation
 C:\Users\htb\Desktop> dir
 
@@ -40,7 +40,7 @@ As seen through the example above, `dir` is an easy-to-use and surprisingly vers
 
 Before doing anything on a host, it is helpful to know where we are in the filesystem. We can determine that by utilizing the `cd` or `chdir` commands.
 
-```
+```cmd
   System Navigation
 C:\htb> cd
 
@@ -57,7 +57,7 @@ Those familiar with Linux should begin to recognize this structure and be famili
 
 ### Current Working Directory
 
-```
+```cmd
   System Navigation
 C:\htb> cd
 
@@ -70,7 +70,7 @@ This should look familiar, right? It is the same example used in the previous se
 
 ### Absolute Path
 
-```
+```cmd
   System Navigation
 C:\htb> cd C:\Users\htb\Pictures
 
@@ -81,7 +81,7 @@ In this example, we can see that our initial working directory is located in `C:
 
 ### Relative Path
 
-```
+```cmd
   System Navigation
 C:\htb> cd .\Pictures
 
@@ -94,7 +94,7 @@ Understanding both of these terms is imperative as we can effectively use this k
 
 We are currently in the `C:\Users\htb\Pictures` directory provided in our previous example. However, we wish to quickly move all the way back to the root of the file system in just one command. To do so, we can perform the following:
 
-```
+```cmd
   System Navigation
 C:\Users\htb\Pictures>  cd ..\..\..\
 
@@ -109,7 +109,7 @@ Using our newfound skills, we should branch out and explore the system earnestly
 
 ### Listing the Contents of the File System
 
-```
+```cmd
   System Navigation
 C:\htb\student\> tree
 
@@ -139,7 +139,7 @@ From a hacker perspective, this can be super useful when searching for files and
 
 ### Tree /F
 
-```
+```cmd
   System Navigation
 C:\htb\student\> tree /F
 
