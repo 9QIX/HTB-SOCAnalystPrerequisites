@@ -1,4 +1,3 @@
-```markdown
 ## Getting Help
 
 In the previous section, we were introduced to the general concepts of the Command Prompt and how we can access it. This section will expand upon the previous one by introducing the help functionality within Command Prompt, example output, and some additional resources and concepts.
@@ -20,8 +19,8 @@ How do I use these commands?
 Let's work on answering the initial question first. While utilizing the Command Prompt, finding help is as easy as typing `help`. Without any additional parameters, this command provides a list of built-in commands and basic information about each displayed command's usage. Let's take a look at it below.
 
 #### Default Help Usage
-```
 
+```powershell
 C:\htb> help
 
 For more information on a specific command, type HELP command-name
@@ -35,15 +34,11 @@ CD Displays the name of or changes the current directory.
 CHCP Displays or sets the active code page number.
 CHDIR Displays the name of or changes the current directory.
 CHKDSK Checks a disk and displays a status report.
-...
-
 ```
 
 From this output, we can see that it prints out a list of system commands (built-ins) and provides a basic description of its functionality. This is important because we can quickly and efficiently parse the list of built-in functions provided by the command prompt to find the function that suits our needs. From here, we can transition into answering the second question on how these commands are used. To print out detailed information about a particular command, we can issue the following: `help <command name>`.
 
 #### Help with Commands
-
-```
 
 C:\htb> help time
 
@@ -86,7 +81,7 @@ This question is multifaceted, so let us start breaking it down piece by piece. 
 
 Although this scenario might seem slightly exaggerated, there will be scenarios similar to this one as an attacker where our network access will be heavily limited, monitored, or strictly unavailable. Sometimes, we do not have every command and all parameters and syntax memorized; however, we will still be expected to perform
 
- even under these limitations. In instances where we are expected to perform, we will need alternate ways to gather the information we need instead of relying on the Internet as a quick fix to our problems. Now that we have our scenario, let us look back and break down our original question:
+even under these limitations. In instances where we are expected to perform, we will need alternate ways to gather the information we need instead of relying on the Internet as a quick fix to our problems. Now that we have our scenario, let us look back and break down our original question:
 
 **Why does the help utility exist?**
 
@@ -143,21 +138,21 @@ From the output provided above, we can view a list of commands that were run bef
 
 It would be helpful to have some way of remembering some of the key functionality provided by our terminal history. With this in mind, the table below shows a list of some of the most valuable functions and commands that can be run to interact with our session history. This list is not exhaustive. For
 
- example, the function keys F1 - F9 all serve a purpose when working with history.
+example, the function keys F1 - F9 all serve a purpose when working with history.
 
-| Key/Command       | Description                                                                                     |
-|-------------------|-------------------------------------------------------------------------------------------------|
-| doskey /history   | doskey /history will print the session's command history to the terminal or output it to a file when specified. |
-| page up           | Places the first command in our session history to the prompt.                                 |
-| page down         | Places the last command in history to the prompt.                                               |
-| ⇧                 | Allows us to scroll up through our command history to view previously run commands.             |
-| ⇩                 | Allows us to scroll down to our most recent commands run.                                       |
-| ⇨                 | Types the previous command to prompt one character at a time.                                    |
-| ⇦                 | N/A                                                                                             |
-| F3                | Will retype the entire previous entry to our prompt.                                             |
-| F5                | Pressing F5 multiple times will allow you to cycle through previous commands.                   |
-| F7                | Opens an interactive list of previous commands.                                                 |
-| F9                | Enters a command to our prompt based on the number specified. The number corresponds to the commands place in our history. |
+| Key/Command     | Description                                                                                                                |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| doskey /history | doskey /history will print the session's command history to the terminal or output it to a file when specified.            |
+| page up         | Places the first command in our session history to the prompt.                                                             |
+| page down       | Places the last command in history to the prompt.                                                                          |
+| ⇧               | Allows us to scroll up through our command history to view previously run commands.                                        |
+| ⇩               | Allows us to scroll down to our most recent commands run.                                                                  |
+| ⇨               | Types the previous command to prompt one character at a time.                                                              |
+| ⇦               | N/A                                                                                                                        |
+| F3              | Will retype the entire previous entry to our prompt.                                                                       |
+| F5              | Pressing F5 multiple times will allow you to cycle through previous commands.                                              |
+| F7              | Opens an interactive list of previous commands.                                                                            |
+| F9              | Enters a command to our prompt based on the number specified. The number corresponds to the commands place in our history. |
 
 One thing to remember is that unlike Bash or other shells, CMD does not keep a persistent record of the commands you issue through sessions. So once you close that instance, that history is gone. To save a copy of our issued commands, we can use `doskey` again to output the history to a file, show it on the screen, and then copy it.
 
@@ -185,4 +180,9 @@ Control-C
 When running a command or process we want to interrupt, we can do so by pressing the `ctrl+c` key combination. As previously stated, this is useful for stopping a currently running process that may be non-responsive or just something we want to be completed immediately. Remember that whatever was running will be incomplete and may need more time to close itself out properly, so always be wary of what you are interrupting.
 
 Now that we understand how to utilize the command prompt and its basic help functionality let us keep pressing forward and look at how we can begin navigating our system through the Command Prompt.
+
+```
+
+```
+
 ```
