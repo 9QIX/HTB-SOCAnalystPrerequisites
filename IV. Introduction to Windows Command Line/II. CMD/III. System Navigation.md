@@ -13,8 +13,7 @@ Additionally, at the end of the section, we will briefly look into certain direc
 
 One of the easiest things we can do when initially poking around on a Windows host is to get a listing of the directory we are currently working in. We do that with the `dir` command.
 
-```
-
+```cmd
 System Navigation
 C:\Users\htb\Desktop> dir
 
@@ -33,20 +32,17 @@ Directory of C:\Users\htb\Desktop
 06/11/2021 11:59 PM 0 write-secrets.ps1
 6 File(s) 2,391 bytes
 2 Dir(s) 35,102,117,888 bytes free
-
 ```
 
 ### Finding Our Place
 
 Before doing anything on a host, it is helpful to know where we are in the filesystem. We can determine that by utilizing the `cd` or `chdir` commands.
 
-```
-
+```cmd
 System Navigation
 C:\htb> cd
 
 C:\htb
-
 ```
 
 ### Moving Around Using CD/CHDIR
