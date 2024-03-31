@@ -241,18 +241,15 @@ After investigating our current compromised user account, we need to branch out 
 
 `Net User` allows us to display a list of all users on a host, information about a specific user, and to create or delete users.
 
-```
-
+```cmd
 C:\htb> net user
 
 User accounts for \\ACADEMY-WIN11
 
----
-
-Administrator DefaultAccount Guest
-htb-student WDAGUtilityAccount
+-------------------------------------------------------------------------------
+Administrator            DefaultAccount           Guest
+htb-student              WDAGUtilityAccount
 The command completed successfully.
-
 ```
 
 From the provided output, only a few user accounts have been created for this machine. However, if we were on a more populated network, we might come across more accounts to attempt to compromise.
@@ -263,21 +260,20 @@ In addition to user accounts, we should also take a quick look into what groups 
 
 `Net Group` will display any groups that exist on the host from which we issued the command, create and delete groups, and add or remove users from groups. It will also display domain group information if the host is joined to the domain. Keep in mind, `net group` must be run against a domain server such as the DC, while `net localgroup` can be run against any host to show us the groups it contains.
 
-```
-
+```cmd
 C:\htb> net group
 net group
 This command can be used only on a Windows Domain Controller.
 
 More help is available by typing NET HELPMSG 3515.
 
+
 C:\htb>net localgroup
 
 Aliases for \\ACADEMY-WIN11
 
----
-
-***vmware**
+-------------------------------------------------------------------------------
+*__vmware__
 *Access Control Assistance Operators
 *Administrators
 *Backup Operators
@@ -298,7 +294,6 @@ Aliases for \\ACADEMY-WIN11
 *System Managed Accounts Group
 *Users
 The command completed successfully.
-
 ```
 
 ### Exploring Resources on the Network
