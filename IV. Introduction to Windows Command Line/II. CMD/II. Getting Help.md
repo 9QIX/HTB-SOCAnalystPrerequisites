@@ -24,16 +24,19 @@ Let's work on answering the initial question first. While utilizing the Command 
 C:\htb> help
 
 For more information on a specific command, type HELP command-name
-ASSOC Displays or modifies file extension associations.
-ATTRIB Displays or changes file attributes.
-BREAK Sets or clears extended CTRL+C checking.
-BCDEDIT Sets properties in boot database to control boot loading.
-CACLS Displays or modifies access control lists (ACLs) of files.
-CALL Calls one batch program from another.
-CD Displays the name of or changes the current directory.
-CHCP Displays or sets the active code page number.
-CHDIR Displays the name of or changes the current directory.
-CHKDSK Checks a disk and displays a status report.
+
+ASSOC          Displays or modifies file extension associations.
+ATTRIB         Displays or changes file attributes.
+BREAK          Sets or clears extended CTRL+C checking.
+BCDEDIT        Sets properties in boot database to control boot loading.
+CACLS          Displays or modifies access control lists (ACLs) of files.
+CALL           Calls one batch program from another.
+CD             Displays the name of or changes the current directory.
+CHCP           Displays or sets the active code page number.
+CHDIR          Displays the name of or changes the current directory.
+CHKDSK         Checks a disk and displays a status report.
+
+<snip>
 ```
 
 From this output, we can see that it prints out a list of system commands (built-ins) and provides a basic description of its functionality. This is important because we can quickly and efficiently parse the list of built-in functions provided by the command prompt to find the function that suits our needs. From here, we can transition into answering the second question on how these commands are used. To print out detailed information about a particular command, we can issue the following: `help <command name>`.
