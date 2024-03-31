@@ -589,3 +589,310 @@ C:\Users\htb\Desktop>dir
 ```
 
 We utilized ren to change the name of demo.txt to superdemo.txt. It can be issued as ren or rename. They are links to the same basic command.
+
+### Input / Output
+
+We have seen this a few times already, but let us take a minute to talk about I/O. We can utilize the <, >, |, and & to send input and output from the console and files to where we need them. With > we can push the output of a command to a file.
+
+## Output To A File
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Documents>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Documents
+
+06/23/2021  02:44 PM    <DIR>          .
+06/23/2021  02:44 PM    <DIR>          ..
+06/21/2021  10:38 PM    <DIR>          Backup
+06/14/2021  10:34 PM                97 Project plans.txt
+06/14/2021  08:38 PM               114 secrets.txt
+               2 File(s)            211 bytes
+               3 Dir(s)  39,028,850,688 bytes free
+
+C:\Users\htb\Documents>ipconfig /all > details.txt
+
+C:\Users\htb\Documents>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Documents
+
+06/23/2021  02:44 PM    <DIR>          .
+06/23/2021  02:44 PM    <DIR>          ..
+06/21/2021  10:38 PM    <DIR>          Backup
+06/23/2021  02:44 PM             1,813 details.txt
+06/14/2021  10:34 PM                97 Project plans.txt
+06/14/2021  08:38 PM               114 secrets.txt
+               3 File(s)          2,024 bytes
+               3 Dir(s)  39,028,760,576 bytes free
+
+C:\Users\htb\Documents>type details.txt
+
+Windows IP Configuration
+
+   Host Name . . . . . . . . . . . . : DESKTOP-LSM3BSF
+   Primary Dns Suffix  . . . . . . . :
+   Node Type . . . . . . . . . . . . : Hybrid
+   IP Routing Enabled. . . . . . . . : No
+   WINS Proxy Enabled. . . . . . . . : No
+   DNS Suffix Search List. . . . . . : greenhorn.corp
+
+Ethernet adapter Ethernet0:
+
+   Connection-specific DNS Suffix  . : greenhorn.corp
+   Description . . . . . . . . . . . : Intel(R) 82574L Gigabit Network Connection
+   Physical Address. . . . . . . . . : 00-0C-29-D7-67-BF
+   DHCP Enabled. . . . . . . . . . . : Yes
+   Autoconfiguration Enabled . . . . : Yes
+   Link-local IPv6 Address . . . . . : fe80::59fe:9ed2:fea6:1371%8(Preferred)
+   IPv4 Address. . . . . . . . . . . : 172.16.146.5(Preferred)
+   Subnet Mask . . . . . . . . . . . : 255.255.255.0
+   Lease Obtained. . . . . . . . . . : Wednesday, June 23, 2021 2:42:19 PM
+   Lease Expires . . . . . . . . . . : Thursday, June 24, 2021 2:27:59 PM
+   Default Gateway . . . . . . . . . : 172.16.146.1
+```
+
+Looking above, we can see that the output from our ipconfig /all command was pushed to details.txt. When we check the file, we see when it was created, and the content's output successfully inside. Using > this way will create the file if it does not exist, or it will overwrite the specified file's contents. To append to an already populated file, we can utilize >>.
+
+## Append to a File
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Documents> echo a b c d e > test.txt
+
+C:\Users\htb\Documents>type test.txt
+a b c d e
+
+C:\Users\htb\Documents>echo f g h i j k see how this works now? >> test.txt
+
+C:\Users\htb\Documents>type test.txt
+a b c d e
+f g h i j k see how this works now?
+```
+
+We created the test.txt file with a string, then appended our following line (f g h i j k see how this works now?) to the file with >>. We were feeding input from a command out before; let us feed input into a command now. We will accomplish that with <.
+
+## Pass in a Text File to a Command
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Documents>find /i "see" < test.txt
+
+f g h i j k see how this works now?
+```
+
+In the session above, we took the contents of test.txt and fed it into our find command. In this way, we were searching for the string see. We can see it kicked back the results by showing us the line where it found see. These were fairly simple commands, but remember that we can use < like this to search for keywords or strings in large text files, sort for unique items, and much more. This can be extremely helpful for us as a hacker looking for key information. Another route we can take is to feed the output from a command directly into another command with the | called pipe.
+
+## Pipe Output Between Commands
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Documents>ipconfig /all | find /i "IPV4"
+
+   IPv4 Address. . . . . . . . . . . : 172.16.146.5(Preferred)
+```
+
+With pipe, we could issue the command ipconfig /all and send it to find to search for a specific string. We know it worked because it returns our result in the following line. This effectively took our console output and redirected it to a new pipe. If you get this concept down, you can do endless things.
+
+Let us say we wish to have two commands executed in succession. We can issue the command and follow it with & and then our next command. This will ensure that in this instance, our command A runs first then the session will run command B. It does not care if the command succeeded or failed. It just issues them.
+
+## Run A Then B
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Documents>ping 8.8.8.8 & type test.txt
+
+Pinging 8.8.8.8 with 32 bytes of data:
+Reply from 8.8.8.8: bytes=32 time=22ms TTL=114
+Reply from 8.8.8.8: bytes=32 time=19ms TTL=114
+Reply from 8.8.8.8: bytes=32 time=17ms TTL=114
+Reply from 8.8.8.8: bytes=32 time=16ms TTL=114
+
+Ping statistics for 8.8.8.8:
+    Packets: Sent = 4, Received = 4, Lost = 0 (0% loss),
+Approximate round trip times in milli-seconds:
+    Minimum = 16ms, Maximum = 22ms, Average = 18ms
+a b c d e
+f g h i j k see how this works now?
+```
+
+If we care about the result or state of the commands being run, we can utilize && to say run command A, and if it succeeds, run command B. This can be useful if you are doing something that is results dependent such as our cmd-session below.
+
+## State Dependent &&
+
+```cmd
+Working with Directories and Files
+C:\Users\student\Documents>cd C:\Users\student\Documents\Backup && echo 'did this work' > yes.txt
+
+C:\Users\student\Documents\Backup>type yes.txt
+'did this work'
+```
+
+We can see that on my first line with &&, we asked to change our working directory, then echo a string into a file if it succeeded. We can tell it succeeded because our cmd path changed and when we type the file, it echo'd our string into the file. You can also accomplish the opposite of this with ||. By using (pipe pipe), we are saying run command A. If it fails, run command B.
+
+We have spent much time leveling up our file creation and modification skills. Now, what if we want to remove objects from the host? Let us look at the del and erase commands.
+
+## Deleting Files
+
+### Dynamic Del And Erase
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Desktop\example> dir
+
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+06/16/2021  02:00 PM    <DIR>          .
+06/16/2021  02:00 PM    <DIR>          ..
+06/16/2021  02:00 PM                 5 file-1
+06/16/2021  02:00 PM                 5 file-2
+06/16/2021  02:00 PM                 5 file-3
+06/16/2021  02:00 PM                 5 file-4
+06/16/2021  02:00 PM                 5 file-5
+06/16/2021  02:00 PM                 5 file-6
+06/16/2021  02:00 PM                 5 file-66
+               7 File(s)             35 bytes
+               2 Dir(s)  38,633,730,048 bytes free
+
+C:\Users\htb\Desktop\example>del file-1
+
+C:\Users\htb\Desktop\example>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+06/16/2021  02:03 PM    <DIR>          .
+06/16/2021  02:03 PM    <DIR>          ..
+06/16/2021  02:00 PM                 5 file-2
+06/16/2021  02:00 PM                 5 file-3
+06/16/2021  02:00 PM                 5 file-4
+06/16/2021  02:00 PM                 5 file-5
+06/16/2021  02:00 PM                 5 file-6
+06/16/2021  02:00 PM                 5 file-66
+               6 File(s)             30 bytes
+               2 Dir(s)  38,633,730,048 bytes free
+```
+
+When utilizing del or erase, remember that we can specify a directory, a filename, a list of names, or even a specific attribute to target when trying to delete files. Above, we listed the example directory and then deleted file-1. Simple enough, right? Now let us erase a list of files.
+
+### Using Del And Erase to remove a list of files
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Desktop\example> erase file-3 file-5
+
+dir
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+06/16/2021  02:06 PM    <DIR>          .
+06/16/2021  02:06 PM    <DIR>          ..
+06/16/2021  02:00 PM                 5 file-2
+06/16/2021  02:00 PM                 5 file-4
+06/16/2021  02:00 PM                 5 file-6
+06/16/2021  02:00 PM                 5 file-66
+               4 File(s)             20 bytes
+               2 Dir(s)  38,633,218,048 bytes free
+```
+
+We can see in the session above that we utilized erase instead of del this time. This was to show the interoperability of both commands. Think of them as symbolic links. Both commands do the same thing. This time we fed erase a list of two files, file-3 and file-5. It erased the files without issue.
+
+Let us say we want to get rid of a read-only or hidden file. We can do that with the /A: switch. /A can delete files based on a specific attribute. Let us look at the help for del quickly and see what those attributes are.
+
+### Del Help Documentation
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Desktop\example> help del
+
+Deletes one or more files.
+
+DEL [/P] [/F] [/S] [/Q] [/A[[:]attributes]] names
+ERASE [/P] [/F] [/S] [/Q] [/A[[:]attributes]] names
+
+  names         Specifies a list of one or more files or directories.
+                Wildcards may be used to delete multiple files. If a
+                directory is specified, all files within the directory
+                will be deleted.
+
+  /P            Prompts for confirmation before deleting each file.
+  /F            Force deleting of read-only files.
+  /S            Delete specified files from all subdirectories.
+  /Q            Quiet mode, do not ask if ok to delete on global wildcard
+  /A            Selects files to delete based on attributes
+  attributes    R  Read-only files            S  System files
+                H  Hidden files               A  Files ready for archiving
+                I  Not content indexed Files  L  Reparse Points
+                O  Offline files              -  Prefix meaning not
+```
+
+So, to delete a read-only file, we can use A:R. This will remove anything within our path that is Read-only. However, how do we identify if a file is read-only, hidden, or has some other attribute? Dir can come to the rescue again. Utilizing dir /A:R will show us anything with the Read-only attribute. Let us give it a try.
+
+### View Files With the Read-only Attribute
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Desktop\example> dir /A:R
+
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+06/16/2021  02:00 PM                 5 file-66
+               1 File(s)              5 bytes
+               0 Dir(s)  38,632,652,800 bytes free
+```
+
+Now we know one file matches our Read-only attribute in the example directory. Let us delete it.
+
+### Delete a Read-only File
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Desktop\example > del /A:R *
+
+C:\Users\htb\Desktop\example\*, Are you sure (Y/N)? Y
+
+C:\Users\htb\Desktop\example>dir
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+06/16/2021  02:22 PM    <DIR>          .
+06/16/2021  02:22 PM    <DIR>          ..
+06/16/2021  02:00 PM                 5 file-2
+06/16/2021  02:00 PM                 5 file-4
+06/16/2021  02:00 PM                 5 file-6
+               3 File(s)             15 bytes
+               2 Dir(s)  38,632,529,920 bytes free
+```
+
+Notice that we used \* to specify any file. Now when we look at the example directory again, file-66 is missing, but files 2, 4, and 6 are still there. Let us give del a swing again with the hidden attribute. To identify if there are any hidden files within the directory, we can use dir /A:H
+
+### Viewing Hidden Files
+
+```cmd
+Working with Directories and Files
+C:\Users\htb\Desktop\example> dir /A:H
+ Volume in drive C has no label.
+ Volume Serial Number is 26E7-9EE4
+
+ Directory of C:\Users\htb\Desktop\example
+
+06/16/2021  02:00 PM                 5 file-99
+               1 File(s)              5 bytes
+               0 Dir(s)  38,632,202,240 bytes free
+```
+
+Notice the new file we did not see before? Now file-99 is showing up in our directory listing hidden files. Remember that much like Linux, you can hide files from the view of users. With the hidden attribute, the file exists and can be called, but it will not be visible within a directory listing or from the GUI unless specifically looking for them. To delete the hidden file, we can perform the same del command as earlier, just changing the attribute
