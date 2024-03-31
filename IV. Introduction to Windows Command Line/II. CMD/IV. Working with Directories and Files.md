@@ -430,7 +430,7 @@ Notice that the bottom of the cmd-session shows us the percentage of the file be
 
 #### More /S
 
-```
+```cmd
 C:\Users\htb\Documents\Backup> more /S secrets.txt
 
 The TVA has several copies of the Infinity Stones..
@@ -492,7 +492,7 @@ With `openfiles`, we can see what file on our local pc or a remote host has open
 
 #### Type
 
-```
+```cmd
 C:\Users\htb\Desktop>type bio.txt
 
 James Buchanan "Bucky" Barnes Jr. is a fictional character appearing in American comic books published by Marvel Comics. Originally introduced as a sidekick to Captain America, the character was created by Joe Simon and Jack Kirby and first appeared in Captain America Comics #1 (cover-dated March 1941) (which was published by Marvel's predecessor, Timely Comics). Barnes' original costume (or one based on it) and the Bucky nickname have been used by other superheroes in the Marvel Universe over the years.[1] The character is brought back from supposed death as the brainwashed assassin cyborg called Winter Soldier (Russian: ╨ù╨╕╨╝╨╜╨╕╨╣ ╨í╨╛╨╗╨┤╨░╤é, translit. Zimniy Sold├ít). The character's memories and personality are later restored, leading him to become a dark hero in search of redemption. He temporarily assumes the role of "Captain America" when Steve Rogers was presumed to be dead. During the 2011 crossover Fear Itself, Barnes is injected with the Infinity Formula, which increases his natural vitality and physical traits in a way that is similar to (but less powerful than) the super-soldier serum used on Captain America.[2]
@@ -502,7 +502,7 @@ That is all there is to it. `Type` provides Simple file output. We can also use 
 
 #### Redirect With Type
 
-```
+```cmd
 C:\Users\htb\Desktop>type passwords.txt >> secrets.txt
 
 C:\Users\htb\Desktop>type secrets.txt
@@ -524,7 +524,7 @@ Creating and modifying a file from the command line is relatively easy. We have 
 
 #### Echo to Create and Append Files
 
-```
+```cmd
 C:\Users\htb\Desktop>echo Check out this text > demo.txt
 
 C:\Users\htb\Desktop>type demo.txt
@@ -555,7 +555,7 @@ C:\Users\htb\Desktop>type for-sure.txt
 
 #### Ren(ame) A file
 
-```
+```cmd
 C:\Users\htb\Desktop> ren demo.txt superdemo.txt
 
 C:\Users\htb\Desktop>dir
@@ -576,4 +576,16 @@ C:\Users\htb\Desktop>dir
 06/14/2021  10:59 PM                26 normal-file.txt
 06/15/2021  09:29 PM    <DIR>          Notes
 06/14/2021  10:28 PM                97 passwords.txt
+06/14/2021  10:34 PM                97 Project plans.txt
+06/22/2021  03:24 PM               211 secrets.txt
+06/22/2021  04:14 PM                52 superdemo.txt
+06/22/2021  03:18 PM             2,534 type.txt
+06/21/2021  11:33 AM                 0 why-tho.txt
+12/07/2019  05:08 AM            38,380 Windows Startup.wav
+06/15/2021  09:29 PM    <DIR>          Work-Policies
+06/15/2021  10:28 PM    <DIR>          yet-another-dir
+              13 File(s)         42,618 bytes
+               7 Dir(s)  39,091,531,776 bytes free
 ```
+
+We utilized ren to change the name of demo.txt to superdemo.txt. It can be issued as ren or rename. They are links to the same basic command.
