@@ -13,8 +13,7 @@ Additionally, at the end of the section, we will briefly look into certain direc
 
 One of the easiest things we can do when initially poking around on a Windows host is to get a listing of the directory we are currently working in. We do that with the `dir` command.
 
-```
-
+```cmd
 System Navigation
 C:\Users\htb\Desktop> dir
 
@@ -33,7 +32,6 @@ Directory of C:\Users\htb\Desktop
 06/11/2021 11:59 PM 0 write-secrets.ps1
 6 File(s) 2,391 bytes
 2 Dir(s) 35,102,117,888 bytes free
-
 ```
 
 As seen through the example above, `dir` is an easy-to-use and surprisingly versatile command. Simply calling upon the command without any arguments will give us a listing of our current directory and its contents. As shown in the Getting Help section, we can also use the `/?` argument to provide us with a complete listing of the `dir`'s functionality and any additional arguments that we can provide to utilize it is advanced searching capabilities. In a later section, we will further discuss the meaning behind the above output and how we can use `dir` to aid us in our search for important files and directories. For now, understanding the basic usage of `dir` will provide us with more than enough utility to efficiently move around the system.
@@ -42,13 +40,11 @@ As seen through the example above, `dir` is an easy-to-use and surprisingly vers
 
 Before doing anything on a host, it is helpful to know where we are in the filesystem. We can determine that by utilizing the `cd` or `chdir` commands.
 
-```
-
+```cmd
 System Navigation
 C:\htb> cd
 
 C:\htb
-
 ```
 
 As shown by the example above, issuing the command without arguments gives us our current working directory. Our current working directory is our initial starting point. It describes our current directory as the one we are currently working in. Any command(s) run here without specifying the path of another directory or file will reference this initial point. This is very important, considering that everything we do moving forward will reference our current working directory unless specified otherwise.
@@ -61,13 +57,11 @@ Those familiar with Linux should begin to recognize this structure and be famili
 
 ### Current Working Directory
 
-```
-
+```cmd
 System Navigation
 C:\htb> cd
 
 C:\htb
-
 ```
 
 This should look familiar, right? It is the same example used in the previous section. Let us expand upon this a bit. First, we need to define our root directory. To keep things simple, think of the root directory as the topmost directory in the structure, as it contains everything else within it. In this example, our root directory is `C:\`.
@@ -76,26 +70,22 @@ This should look familiar, right? It is the same example used in the previous se
 
 ### Absolute Path
 
-```
-
+```cmd
 System Navigation
 C:\htb> cd C:\Users\htb\Pictures
 
 C:\Users\htb\Pictures>
-
 ```
 
 In this example, we can see that our initial working directory is located in `C:\htb`. We used `cd` and provided the path as our argument to move ourselves to the `C:\Users\htb\Pictures` directory. As we can see, the provided path starts with `C:\` as it is the root directory and follows the structure until it reaches its destination, being the `\Pictures` directory. Putting the pieces together, we can conclude that `C:\Users\htb\Pictures` would be considered the absolute path in this case as it follows the complete structure of the file system starting from the root directory and ending at the destination directory.
 
 ### Relative Path
 
-```
-
+```cmd
 System Navigation
 C:\htb> cd .\Pictures
 
 C:\Users\htb\Pictures>
-
 ```
 
 On the other hand, following this example, we can see that something is slightly off in how our path is specified in the `cd` command. Instead of starting from the root directory, we are greeted with a `.` followed by the destination directory (`\Pictures`). The `.` character points to one directory down from our current working directory (`C:\htb`). Using our working directory as the starting point to reference directories either above it or below it in the file system hierarchy is considered a relative path, as its position is relative to the current working directory.
@@ -104,13 +94,11 @@ Understanding both of these terms is imperative as we can effectively use this k
 
 We are currently in the `C:\Users\htb\Pictures` directory provided in our previous example. However, we wish to quickly move all the way back to the root of the file system in just one command. To do so, we can perform the following:
 
-```
-
+```cmd
 System Navigation
 C:\Users\htb\Pictures> cd ..\..\..\
 
 C:\>
-
 ```
 
 This one command lets us move up the directory structure, starting from the `\Pictures` directory and moving up to the root directory in one swift stroke. Pretty neat, huh? Understanding this fundamental concept will be very important moving forward, so we should practice and familiarize ourselves now while we have the chance.
@@ -121,8 +109,7 @@ Using our newfound skills, we should branch out and explore the system earnestly
 
 ### Listing the Contents of the File System
 
-```
-
+```cmd
 System Navigation
 C:\htb\student\> tree
 
@@ -146,15 +133,13 @@ C:.
 ├───Searches
 └───Videos
 └───Captures
-
 ```
 
 From a hacker perspective, this can be super useful when searching for files and folders with juicy information we may want, like configurations, project files and folders, and maybe even that holy grail, a file or folder containing passwords. We can utilize the `/F` parameter with the `tree` command to see a listing of each file and the directories along with the directory tree of the path.
 
 ### Tree /F
 
-```
-
+```cmd
 System Navigation
 C:\htb\student\> tree /F
 
@@ -191,7 +176,6 @@ C:.
 └───Captures
 
     <SNIP>
-
 ```
 
 From this example, we can quickly get a feel for the system and see some juicy files such as `passwords.txt.txt` and `secrets.txt`. Of course, since this performs a complete listing of every single file and directory on a system, we must be aware of how much output this command will kick up. Later during the module, we will learn a more manageable way of handling the output and working with other command line applications to manipulate it into a much more desirable format. For now, be aware that after attempting to run this command, we should probably interrupt its execution using `Ctrl-C` after retrieving the desired information.
