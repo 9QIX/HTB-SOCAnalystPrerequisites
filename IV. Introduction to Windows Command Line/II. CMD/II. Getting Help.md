@@ -43,6 +43,7 @@ From this output, we can see that it prints out a list of system commands (built
 
 #### Help with Commands
 
+```powershell
 C:\htb> help time
 
 Displays or sets the system time.
@@ -55,7 +56,6 @@ for a new one. Press ENTER to keep the same time.
 If Command Extensions are enabled, the TIME command supports
 the /T switch which tells the command to just output the
 current time, without prompting for a new time.
-
 ```
 
 As we can see from the output above, when we issued the command `help time`, it printed the help details for `time`. This will work for any system command built-in but not for every command accessible on the system. Certain commands do not have a help page associated with them. However, they will redirect you to running the proper command to retrieve the desired information. For example, running `help ipconfig` will give us the following output.
@@ -183,6 +183,8 @@ Control-C
 When running a command or process we want to interrupt, we can do so by pressing the `ctrl+c` key combination. As previously stated, this is useful for stopping a currently running process that may be non-responsive or just something we want to be completed immediately. Remember that whatever was running will be incomplete and may need more time to close itself out properly, so always be wary of what you are interrupting.
 
 Now that we understand how to utilize the command prompt and its basic help functionality let us keep pressing forward and look at how we can begin navigating our system through the Command Prompt.
+
+```
 
 ```
 
