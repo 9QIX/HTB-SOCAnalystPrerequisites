@@ -304,20 +304,17 @@ Previously, we honed in on what our current user has access to in terms of the h
 
 One way of doing so involves using the `net share` command. `Net Share` allows us to display info about shared resources on the host and to create new shared resources as well.
 
-```
-
+```cmd
 C:\htb> net share
 
-Share name Resource Remark
+Share name   Resource                        Remark
 
----
-
-C$ C:\ Default share
-IPC$ Remote IPC
-ADMIN$ C:\Windows Remote Admin
-Records D:\Important-Files Mounted share for records storage
+-------------------------------------------------------------------------------
+C$           C:\                             Default share
+IPC$                                         Remote IPC
+ADMIN$       C:\Windows                      Remote Admin
+Records      D:\Important-Files              Mounted share for records storage
 The command completed successfully.
-
 ```
 
 As we can see from the example above, we have a list of shares that our current compromised user has access to. By reading the remarks, we can take an educated guess that `Records` is a manually mounted share that could contain some potentially interesting information for us to enumerate. Ideally, if we were to find an open share like this while on an engagement, we would need to keep track of the following:
@@ -334,10 +331,8 @@ If we are not explicitly looking for shares and wish to search the environment b
 
 `Net View` will display to us any shared resources the host you are issuing the command against knows of. This includes domain resources, shares, printers, and more.
 
-```
-
+```cmd
 C:\htb> net view
-
 ```
 
 ### Piecing Things Together
