@@ -159,7 +159,7 @@ The output from `FC` is much easier to interpret and gives us a bit more clarity
 
 ### Sort
 
-```
+```cmd
 C:\Users\student\Desktop> type .\file-1.md
 a
 b
@@ -189,7 +189,7 @@ Above, we can see using `sort` on the file `file-1.md` and then sending the resu
 
 ### unique
 
-```
+```cmd
 C:\htb> type .\sort-1.md
 
 a
