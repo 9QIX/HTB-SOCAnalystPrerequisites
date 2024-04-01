@@ -18,6 +18,8 @@ To answer this question, we need to have a basic understanding of all the differ
 
 Note: This example is aimed toward the enumeration of the Windows operating system and may not be fully compatible with other system types. Also, note that this example is a partial list of all information found on a system.
 
+![alt text](image.png)
+
 ### Types of Information
 
 | Type                       | Description                                                                                                                                                                                                                                                                                                                                  |
