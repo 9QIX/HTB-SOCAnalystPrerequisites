@@ -117,4 +117,104 @@ We should now be familiar with some of the primary differences between both comm
 
 ### Creating Variables
 
-Creating environment variables is quite a simple task. We can use either `set` or `setx` depending on the task at hand and our overall goal. The following examples will show both being put into action to give us a feel for the syntax surrounding either command. Please note that the syntax between both in some cases is very similar; however, `setx`
+Creating environment variables is quite a simple task. We can use either `set` or `setx` depending on the task at hand and our overall goal. The following examples will show both being put into action to give us a feel for the syntax surrounding either command. Please note that the syntax between both in some cases is very similar; however, `setx` does have some additional features that we will attempt to explore here. Additionally, to ensure things are not getting too repetitive, we will only show both the `set` and `setx` commands for creating variables and utilizing `setx` for every other example. Just know that the syntax between creating, removing, and editing environment variables is identical.
+
+Let us go ahead and create a variable to hold the value of the IP address of the Domain Controller (DC) since we might find it useful for testing connectivity to the domain or querying for updates. We can do this using the `set` command.
+
+#### Using set
+
+```cmd
+C:\htb> set DCIP=172.16.5.2
+```
+
+Upon running this command, there is no immediate output. However, know that the variable has been set for our current command prompt session. We can verify this by printing out its value using `echo`.
+
+#### Validating the Change
+
+```cmd
+C:\htb> echo %DCIP%
+
+172.16.5.2
+```
+
+As we can see, the environment variable `%DCIP%` is now set and available for us to access. As stated above, this change is considered part of the process scope, as whenever we exit the command prompt and start a new session, this variable will cease to exist on the system. We can remedy this situation by permanently setting this variable in the environment using `setx`.
+
+#### Using setx
+
+```cmd
+C:\htb> setx DCIP 172.16.5.2
+
+SUCCESS: Specified value was saved.
+```
+
+From this example, we can see that the syntax between commands varies slightly. Previously, we had to set the variable's value equal to the variable itself. Here we have to provide the variable's name followed by the value. The syntax is as follows: `setx <variable name> <value> <parameters>`. After running this command, we see that our value was saved in the registry since we were provided with the `SUCCESS` message. Of course, if we are curious if the value is truly set, we can validate it exactly as done above. Remember that this change will only occur after we open up another command prompt session. On a remote system, variables created or modified by this tool will be available at the next logon session.
+
+### Editing Variables
+
+In addition to creating our own variables, we can edit existing ones. Since we are already familiar with creating them, editing is just as easy, except we will replace the existing values. Let us say that the IP address of our DC changed, and we need to update the value of our custom environment variable to reflect this change.
+
+#### Using setx
+
+```cmd
+C:\htb> setx DCIP 172.16.5.5
+
+SUCCESS: Specified value was saved.
+```
+
+In the previous example, we set `172.16.5.2` as the value for the DC on the network; however, using `set`, we can update this value by simply setting the value again to our new address, `172.16.5.5`.
+
+#### Validating the edit
+
+```cmd
+C:\htb> echo %DCIP%
+
+172.16.5.5
+```
+
+We have successfully edited our initial custom variable to reflect the DC's IP change. We can now move on and discuss removing variables.
+
+### Removing Variables
+
+Much like creating and editing variables, we can also remove environment variables in a very similar manner. To remove variables, we cannot directly delete them like we would a file or directory; instead, we must clear their values by setting them equal to nothing. This action will effectively delete the variable and prevent it from being used as intended due to the value being removed. In our first example, we created the variable `%DCIP%` containing the value of the IP address of the domain controller on the network and permanently saved it into the registry. We can attempt to remove it by doing the following:
+
+#### Using setx
+
+```cmd
+C:\htb> setx DCIP ""
+
+SUCCESS: Specified value was saved.
+```
+
+This command will remove `%DCIP%` from our system's current environment variables and will also be reflected in the registry once we open a new command prompt session. We can verify that this is indeed the case by doing the following:
+
+#### Verifying the Variable has Been Removed
+
+```cmd
+C:\htb> set DCIP
+Environment variable DCIP not defined
+
+C:\htb> echo %DCIP%
+%DCIP%
+```
+
+Using both `set` and `echo`, we can verify that the `%DCIP%` variable is no longer set and is not defined in our environment anymore.
+
+## Important Environment Variables
+
+Now that we are comfortable creating, editing, and removing our own environment variables, let us discuss some crucial variables we should be aware of when performing enumeration on a host's environment. Remember that all information found here is provided to us in clear text due to the nature of environment variables. As an attacker, this can provide us with a wealth of information about the current system and the user account accessing it.
+
+| Variable Name         | Description                                                                                                                                                                                                                                                                         |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `%PATH%`              | Specifies a set of directories(locations) where executable programs are located.                                                                                                                                                                                                    |
+| `%OS%`                | The current operating system on the user's workstation.                                                                                                                                                                                                                             |
+| `%SYSTEMROOT%`        | Expands to `C:\Windows`. A system-defined read-only variable containing the Windows system folder. Anything Windows considers important to its core functionality is found here, including important data, core system binaries, and configuration files.                           |
+| `%LOGONSERVER%`       | Provides us with the login server for the currently active user followed by the machine's hostname. We can use this information to know if a machine is joined to a domain or workgroup.                                                                                            |
+| `%USERPROFILE%`       | Provides us with the location of the currently active user's home directory. Expands to `C:\Users\{username}`.                                                                                                                                                                      |
+| `%ProgramFiles%`      | Equivalent of `C:\Program Files`. This location is where all the programs are installed on an x64 based system.                                                                                                                                                                     |
+| `%ProgramFiles(x86)%` | Equivalent of `C:\Program Files (x86)`. This location is where all 32-bit programs running under WOW64 are installed. Note that this variable is only accessible on a 64-bit host. It can be used to indicate what kind of host we are interacting with. (x86 vs. x64 architecture) |
+
+Provided here is only a tiny fraction of the information we can learn through enumerating the environment variables on a system. However, the abovementioned ones will often appear when performing enumeration on an engagement. For a complete list, we can visit the following link. Using this information as a guide, we can start gathering any required information from these variables to help us learn about our host and its target environment inside and out.
+
+## Moving On
+
+Following the end of this section, we should have a comfortable grasp of what environment variables are and how we can manage them in a system. Environment variables are a part of the core functionality of the Windows OS and are considered very useful to both attackers and defenders. Any modifications that can affect system-wide variables should be handled with extreme caution. If we find it necessary for our scripts or tools, make a new variable before editing one already on the system. Now that we have that information out of the way let us move on to using the command line to work with services on our host.
