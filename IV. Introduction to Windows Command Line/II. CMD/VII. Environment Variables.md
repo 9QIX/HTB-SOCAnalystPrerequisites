@@ -6,7 +6,7 @@ Now that we have our feet under us when it comes to using the Command Prompt let
 
 Environment variables are settings that are often applied globally to our hosts. They can be found on Windows, Linux, and macOS hosts. This concept is not specific to one OS type, but they function differently on each OS. Environment variables can be accessed by most users and applications on the host and are used to run scripts and speed up how applications function and reference data. On a Windows host, environment variables are not case sensitive and can have spaces and numbers in the name. The only real catch we will find is that they cannot have a name that starts with a number or include an equal sign. When referenced, we will see these variables called like so:
 
-```
+```cmd
 %SUPER_IMPORTANT_VARIABLE%
 ```
 
@@ -28,7 +28,7 @@ Let us walk through an example scenario together to understand the differences b
 
 **Example 1:**
 
-```
+```cmd
 C:\Users\alice> echo %WINDIR%
 
 C:\Windows
@@ -36,7 +36,7 @@ C:\Windows
 
 **Example 2:**
 
-```
+```cmd
 C:\Users\bob> echo %WINDIR%
 
 C:\Windows
@@ -48,7 +48,7 @@ We can see that this variable is accessible to both users. As such, both users c
 
 **Example 1:**
 
-```
+```cmd
 C:\Users\alice> set SECRET=HTB{5UP3r_53Cr37_V4r14813}
 
 C:\Users\alice> echo %SECRET%
@@ -57,7 +57,7 @@ HTB{5UP3r_53Cr37_V4r14813}
 
 **Example 2:**
 
-```
+```cmd
 C:\Users\bob> echo %SECRET%
 %SECRET%
 
@@ -85,7 +85,7 @@ To understand the changes to environment variables taking place, we need some wa
 
 ### Display with Set
 
-```
+```cmd
 C:\Users\htb\Desktop>set %SYSTEMROOT%
 
 Environment variable C:\Windows not defined
@@ -95,7 +95,7 @@ Upon opening the command prompt, you can issue the command `set` to print all av
 
 ### Display with Echo
 
-```
+```cmd
 C:\Users\htb\>echo %PATH%
 
 C:\Users\htb\Desktop
