@@ -6,7 +6,7 @@ Now, we are comfortable creating, modifying, moving, and deleting files and dire
 
 ### Using Where
 
-```
+```cmd
 C:\Users\student\Desktop>where calc.exe
 
 C:\Windows\System32\calc.exe
@@ -22,7 +22,7 @@ The second attempt we see failed. This is because we are searching for a file th
 
 ### Recursive Where
 
-```
+```cmd
 C:\Users\student\Desktop>where /R C:\Users\student\ bio.txt
 
 C:\Users\student\Downloads\bio.txt
@@ -32,7 +32,7 @@ Above, we searched recursively, looking for `bio.txt`. The file was found in the
 
 ### Using Wildcards
 
-```
+```cmd
 C:\Users\student\Desktop>where /R C:\Users\student\ *.csv
 
 C:\Users\student\AppData\Local\live-hosts.csv
@@ -42,7 +42,7 @@ We used `where` to give us an idea of how to search for files and applications o
 
 ### Basic Find
 
-```
+```cmd
 C:\Users\student\Desktop> find "password" "C:\Users\student\not-passwords.txt"
 ```
 
@@ -50,7 +50,7 @@ We can modify the way `find` searches using several switches. The `/V` modifier 
 
 ### Find Modifiers
 
-```
+```cmd
 C:\Users\student\Desktop> find /N /I /V "IP Address" example.txt
 ```
 
@@ -58,7 +58,7 @@ For quick searches, `find` is easy to use, but it could be more robust in how it
 
 ### Findstr
 
-```
+```cmd
 C:\Users\student\Desktop> findstr
 ```
 
@@ -70,7 +70,7 @@ We have seen how to work with, search for certain files and search for strings i
 
 ### Compare
 
-```
+```cmd
 C:\Users\student\Desktop> comp .\file-1.md .\file-2.md
 
 Comparing .\file-1.md and .\file-2.md...
@@ -81,7 +81,7 @@ Above, we see the comparison come back OK. The files are the same. We can use th
 
 ### Comparing Different Files
 
-```
+```cmd
 PS C:\htb> echo a > .\file-1.md
 PS C:\Users\MTanaka\Desktop> echo a > .\file-2.md
 PS C:\Users\MTanaka\Desktop> comp .\file-1.md .\file-2.md /A
@@ -100,7 +100,7 @@ We used `echo` to ensure the strings differed and then reran the comparison. Not
 
 ### FC Help
 
-```
+```cmd
 C:\htb> fc.exe /?
 
 Compares two files or sets of files and displays the differences between
@@ -132,7 +132,7 @@ When `FC` performs its inspection, it is case-sensitive and cares more than just
 
 ### FC
 
-```
+```cmd
 C:\Users\student\Desktop> fc passwords.txt modded.txt /N
 
 Comparing files passwords.txt and MODDED.TXT
