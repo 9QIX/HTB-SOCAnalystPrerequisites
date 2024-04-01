@@ -145,5 +145,74 @@ Comparing files passwords.txt and MODDED.TXT
     3:  password
 *****
 
+***** passwords.txt
+    5:  12345
+    6:  qwerty
+***** MODDED.TXT
+    6:  12345
+    7:  Just something extra to show functionality. Did it see the space inserted above?
+    8:  qwerty
 *****
 ```
+
+The output from `FC` is much easier to interpret and gives us a bit more clarity about the differences between the files. When comparing files such as text files, spreadsheets, or lists, it is prudent to sort them first to ensure the data on each string is the same. Otherwise, every line will be different, and our comparison will not help. Let us look at `sort` now to help us with that. With `Sort`, we can receive input from the console, pipeline, or a file, sort it and send the results to the console or into a file or another command. It is relatively simple to use and often will be used in conjunction with pipeline operators such as `|`, `<`, and `>`. We can give it a try now by feeding the contents of the file `file` to `sort`.
+
+### Sort
+
+```
+C:\Users\student\Desktop> type .\file-1.md
+a
+b
+d
+h
+w
+a
+q
+h
+g
+
+C:\Users\MTanaka\Desktop> sort.exe .\file-1.md /O .\sort-1.md
+C:\Users\MTanaka\Desktop> type .\sort-1.md
+
+a
+a
+b
+d
+g
+h
+h
+q
+w
+```
+
+Above, we can see using `sort` on the file `file-1.md` and then sending the result with the `/O` modifier to the file `sort-1.md`, we took our list of letters, sorted them in alphabetical order, and wrote them to the new file. It can get more complex when working with larger datasets, but the basic usage is still the same. If we wanted `sort` only to return unique entries, we could also use the `/unique` modifier. Notice the first two entries in the `sort-1.md` file. Let us try using `unique` and see what happens.
+
+### unique
+
+```
+C:\htb> type .\sort-1.md
+
+a
+a
+b
+d
+g
+h
+h
+q
+w
+
+PS C:\Users\MTanaka\Desktop> sort.exe .\sort-1.md /unique
+
+a
+b
+d
+g
+h
+q
+w
+```
+
+Notice how we have fewer overall results now. This is because `sort` did not write duplicate entries from the file to the console.
+
+Finding files and directories, sorting datasets, and comparing files are all essential skills we should have in our arsenal. Next, we will discuss Environment variables and what they provide us as a cmd-prompt user.
