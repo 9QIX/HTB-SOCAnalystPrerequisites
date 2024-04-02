@@ -322,5 +322,140 @@ C:\WINDOWS\system32> sc start bits
 
 [SC] StartService FAILED 1058:
 
-The service cannot be started, either because it is disabled
+The service cannot be started, either because it is disabledor because it has no enabled devices associated with it.
+```
+
+Note: To revert everything back to normal, you can set `start= auto` to make sure that the services can be restarted and function appropriately.
+
+We have verified that both services are now disabled, as we cannot start them manually. Due to the changes made here, Windows cannot utilize its updating feature to provide any system or security updates. This can be very beneficial to an attacker to ensure that a system can remain out of date and not retrieve any updates that would inhibit the usage of certain exploits on a target system. Be aware that by doing this in this manner, we will likely be triggering alerts for this sort of action set up by the resident blue team. This method is not quiet and does require elevated permissions in a lot of cases to perform.
+
+### Other Routes to Query Services
+
+During the course of this section, we have only focused on using sc to query, start, stop, and modify services. However, we have other choices regarding how to accomplish some of these same tasks using different commands. In this section, we will strictly focus on using some of these other commands to help with our enumeration by being able to query services and display the available information in different ways.
+
+#### Using Tasklist
+
+Tasklist is a command line tool that gives us a list of currently running processes on a local or remote host. However, we can utilize the `/svc` parameter to provide a list of services running under each process on the system. Let's look at some of the output this can provide.
+
+```
+C:\htb> tasklist /svc
+
+
+Image Name                     PID Services
+========================= ======== ============================================
+System Idle Process              0 N/A
+System                           4 N/A
+Registry                       108 N/A
+smss.exe                       412 N/A
+csrss.exe                      612 N/A
+wininit.exe                    684 N/A
+csrss.exe                      708 N/A
+services.exe                   768 N/A
+lsass.exe                      796 KeyIso, SamSs, VaultSvc
+winlogon.exe                   856 N/A
+svchost.exe                    984 BrokerInfrastructure, DcomLaunch, PlugPlay,
+                                   Power, SystemEventsBroker
+fontdrvhost.exe               1012 N/A
+fontdrvhost.exe               1020 N/A
+svchost.exe                    616 RpcEptMapper, RpcSs
+svchost.exe                    996 LSM
+dwm.exe                       1068 N/A
+svchost.exe                   1236 CoreMessagingRegistrar
+svchost.exe                   1244 lmhosts
+svchost.exe                   1324 NcbService
+svchost.exe                   1332 TimeBrokerSvc
+svchost.exe                   1352 Schedule
+<SNIP>
+```
+
+As we can see, we have a full listing of processes that are currently running on the system, their respective PID, and what service(s) are hosted under each process. This can be very helpful in quickly locating what process hosts what service(s).
+
+#### Using Net Start
+
+Net start is a very simple command that will allow us to quickly list all of the current running services on a system. In addition to `net start`, there is also `net stop`, `net pause`, and `net continue`. These will behave very similarly to sc as we can provide the name of the service afterward and be able to perform the actions specified in the command against the service that we provide.
+
+```
+C:\htb> net start
+
+These Windows services are started:
+
+   Application Information
+   AppX Deployment Service (AppXSVC)
+   AVCTP service
+   Background Tasks Infrastructure Service
+   Base Filtering Engine
+   BcastDVRUserService_3321a
+   Capability Access Manager Service
+   cbdhsvc_3321a
+   CDPUserSvc_3321a
+   Client License Service (ClipSVC)
+   CNG Key Isolation
+   COM+ Event System
+   COM+ System Application
+   Connected Devices Platform Service
+   Connected User Experiences and Telemetry
+   CoreMessaging
+   Credential Manager
+   Cryptographic Services
+   Data Usage
+   DCOM Server Process Launcher
+   Delivery Optimization
+   Device Association Service
+   DHCP Client
+   <SNIP>
+```
+
+From the output above, we can see that using `net start` without specifying a service will list all of the active services on the system.
+
+#### Using WMIC
+
+Last but not least, we have WMIC. The Windows Management Instrumentation Command (WMIC) allows us to retrieve a vast range of information from our local host or host(s) across the network. The versatility of this command is wide in that it allows for pulling such a wide arrangement of information. However, we will only be going over a very small subset of the functionality provided by the SERVICE component residing inside this application.
+
+To list all services existing on our system and information on them, we can issue the following command: `wmic service list brief`.
+
+```
+C:\htb> wmic service list brief
+
+ExitCode  Name                                      ProcessId  StartMode  State    Status
+1077      AJRouter                                  0          Manual     Stopped  OK
+1077      ALG                                       0          Manual     Stopped  OK
+1077      AppIDSvc                                  0          Manual     Stopped  OK
+0         Appinfo                                   5016       Manual     Running  OK
+1077      AppMgmt                                   0          Manual     Stopped  OK
+1077      AppReadiness                              0          Manual     Stopped  OK
+1077      AppVClient                                0          Disabled   Stopped  OK
+0         AppXSvc                                   9996       Manual     Running  OK
+1077      AssignedAccessManagerSvc                  0          Manual     Stopped  OK
+0         AudioEndpointBuilder                      2076       Auto       Running  OK
+0         Audiosrv                                  2332       Auto       Running  OK
+1077      autotimesvc                               0          Manual     Stopped  OK
+1077      AxInstSV                                  0          Manual     Stopped  OK
+1077      BDESVC                                    0          Manual     Stopped  OK
+0         BFE                                       2696       Auto       Running  OK
+0         BITS                                      0          Manual     Stopped  OK
+0         BrokerInfrastructure                      984        Auto       Running  OK
+1077      BTAGService                               0          Manual     Stopped  OK
+0         BthAvctpSvc                               4448       Manual     Running  OK
+1077      bthserv                                   0          Manual     Stopped  OK
+0         camsvc                                    5676       Manual     Running  OK
+0         CDPSvc                                    4724       Auto       Running  OK
+1077      CertPropSvc                               0          Manual     Stopped  OK
+0         ClipSVC                                   9156       Manual     Running  OK
+1077      cloudidsvc                                0          Manual     Stopped  OK
+0         COMSysApp                                 3668       Manual     Running  OK
+0         CoreMessagingRegistrar                    1236       Auto       Running  OK
+0         CryptSvc                                  2844       Auto       Running  OK
+<SNIP>
+```
+
+After doing so, we can see that we have a nice list containing important information such as the Name, ProcessID, StartMode, State, and Status of every service on the system, regardless of whether or not it is currently running.
+
+Note: It is important to be aware that the WMIC command-line utility is currently deprecated as of the current Windows version. As such, it is advised against relying upon using the utility in most situations. You can find further information regarding this change by following [this link](https://learn.microsoft.com/en-us/windows/win32/wmisdk/wmic).
+
+### Moving On
+
+As penetration testers, we will constantly interact with Windows services. Since we will not always have GUI access to a host on which we are trying to escalate privileges, we need to understand how to work with services via the command line in various ways. In a later section, we walk through the PowerShell equivalents for the commands shown in this section and show a more blue team approach to working with and monitoring services. Now that we've finished talking about working with services via cmd.exe, let's dive into the all-important topic of Windows Scheduled Tasks.
+
+```
+
 ```
