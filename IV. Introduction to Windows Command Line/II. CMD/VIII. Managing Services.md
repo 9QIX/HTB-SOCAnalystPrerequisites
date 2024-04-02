@@ -337,7 +337,7 @@ During the course of this section, we have only focused on using sc to query, st
 
 Tasklist is a command line tool that gives us a list of currently running processes on a local or remote host. However, we can utilize the `/svc` parameter to provide a list of services running under each process on the system. Let's look at some of the output this can provide.
 
-```
+```cmd
 C:\htb> tasklist /svc
 
 
@@ -374,7 +374,7 @@ As we can see, we have a full listing of processes that are currently running on
 
 Net start is a very simple command that will allow us to quickly list all of the current running services on a system. In addition to `net start`, there is also `net stop`, `net pause`, and `net continue`. These will behave very similarly to sc as we can provide the name of the service afterward and be able to perform the actions specified in the command against the service that we provide.
 
-```
+```cmd
 C:\htb> net start
 
 These Windows services are started:
@@ -413,7 +413,7 @@ Last but not least, we have WMIC. The Windows Management Instrumentation Command
 
 To list all services existing on our system and information on them, we can issue the following command: `wmic service list brief`.
 
-```
+```cmd
 C:\htb> wmic service list brief
 
 ExitCode  Name                                      ProcessId  StartMode  State    Status
@@ -455,7 +455,3 @@ Note: It is important to be aware that the WMIC command-line utility is currentl
 ### Moving On
 
 As penetration testers, we will constantly interact with Windows services. Since we will not always have GUI access to a host on which we are trying to escalate privileges, we need to understand how to work with services via the command line in various ways. In a later section, we walk through the PowerShell equivalents for the commands shown in this section and show a more blue team approach to working with and monitoring services. Now that we've finished talking about working with services via cmd.exe, let's dive into the all-important topic of Windows Scheduled Tasks.
-
-```
-
-```
