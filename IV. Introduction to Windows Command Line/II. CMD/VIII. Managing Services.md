@@ -153,4 +153,174 @@ SERVICE_NAME: Spooler
         STATE              : 4  RUNNING
                                 (STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
         WIN32_EXIT_CODE    : 0
+(0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+```
+
+As we can see from the output above, the Spooler service is actively running on our current system.
+
+##### Stopping the Print Spooler Service
+
+```
+C:\WINDOWS\system32> sc stop Spooler
+
+SERVICE_NAME: Spooler
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 3  STOP_PENDING
+                                (NOT_STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x3
+        WAIT_HINT          : 0x4e20
+
+C:\WINDOWS\system32> sc query Spooler
+
+SERVICE_NAME: Spooler
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 1  STOPPED
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+```
+
+As stated above, we can issue the command `sc stop Spooler` to have Windows issue a STOP control request to the service. It is important to note that not all services will respond to these requests, regardless of our permissions, especially if other running programs and services depend on the service we are attempting to stop.
+
+#### Starting Services
+
+Much like stopping services, we are also able to start services as well. Although stopping services seems to offer a bit more practicality at first to the red team, being able to start services can lend itself to be especially useful in conjunction with being able to modify existing services.
+
+Starting from our previous example, we are still working with the Spooler service that was stopped previously. We can restart this service by issuing the `sc start Spooler` command. Let's try it now.
+
+##### Starting the Print Spooler Service
+
+```
+C:\WINDOWS\system32> sc start Spooler
+
+SERVICE_NAME: Spooler
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 2  START_PENDING
+                                (NOT_STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x7d0
+        PID                : 34908
+        FLAGS              :
+
+C:\WINDOWS\system32> sc query Spooler
+
+SERVICE_NAME: Spooler
+        TYPE               : 110  WIN32_OWN_PROCESS  (interactive)
+        STATE              : 4  RUNNING
+                                (STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+```
+
+We can see here that upon issuing a start request to the Spooler service, we can see that it begins in a START_PENDING state and, after another query, is fully up and operational. Typically services will take a few seconds or so to initialize after a request to start is issued.
+
+### Modifying Services
+
+In addition to being able to start and stop services, we can also attempt to modify existing services as well. This is where attackers can thrive as we try to modify existing services to serve whatever purpose we need them to. In some cases, we can change them to be disabled at startup or modify the service's path to the binary itself. Be aware that these examples are only some of the possibilities of the actions we can take. With such a versatile command, we have many options for manipulating services to do whatever we need them to. Let's go ahead and see if we can modify some services to prevent Windows from updating itself.
+
+#### Disabling Windows Updates Using SC
+
+To configure services, we must use the config parameter in sc. This will allow us to modify the values of existing services, regardless if they are currently running or not. All changes made with this command are reflected in the Windows registry as well as the database for Service Control Manager (SCM). Remember that all changes to existing services will only fully update after restarting the service.
+
+Note: It is important to be aware that modifying existing services can effectively take them out permanently as any changes made are recorded and saved in the registry, which can persist on reboot. Please exercise caution when modifying services in this manner.
+
+With all this information out of the way, let's try to take out Windows Updates for our current compromised host.
+
+Unfortunately, the Windows Update feature (Version 10 and above) does not just rely on one service to perform its functionality. Windows updates rely on the following services:
+
+| Service  | Display Name                            |
+| -------- | --------------------------------------- |
+| wuauserv | Windows Update Service                  |
+| bits     | Background Intelligent Transfer Service |
+
+Let's query all of the required services and see what is currently running and needs to be stopped before making our required changes.
+
+Important: The scenario below requires access to a privileged account. Making updates to services will typically require a set of higher permissions than a regular user will have access to.
+
+##### Checking the State of the Required Services
+
+```
+C:\WINDOWS\system32> sc query wuauserv
+
+SERVICE_NAME: wuauserv
+        TYPE               : 30  WIN32
+        STATE              : 1  STOPPED
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+
+C:\WINDOWS\system32> sc query bits
+
+SERVICE_NAME: bits
+        TYPE               : 30  WIN32
+        STATE              : 4  RUNNING
+                                (STOPPABLE, NOT_PAUSABLE, ACCEPTS_PRESHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x0
+        WAIT_HINT          : 0x0
+```
+
+From the information provided above, we can see that the wuauserv service is not currently active as the system is not currently in the process of updating. However, the bits service (required to download updates) is currently running on our system. We can issue a stop to this service using our knowledge from the prior section by doing the following:
+
+##### Stopping BITS
+
+```
+C:\WINDOWS\system32> sc stop bits
+
+SERVICE_NAME: bits
+        TYPE               : 30  WIN32
+        STATE              : 3  STOP_PENDING
+                                (NOT_STOPPABLE, NOT_PAUSABLE, IGNORES_SHUTDOWN)
+        WIN32_EXIT_CODE    : 0  (0x0)
+        SERVICE_EXIT_CODE  : 0  (0x0)
+        CHECKPOINT         : 0x1
+        WAIT_HINT          : 0x0
+```
+
+After ensuring that both services are currently stopped, we can modify the start type of both services. We can issue this change by performing the following:
+
+##### Disabling Windows Update Service
+
+```
+C:\WINDOWS\system32> sc config wuauserv start= disabled
+
+[SC] ChangeServiceConfig SUCCESS
+```
+
+##### Disabling Background Intelligent Transfer Service
+
+```
+C:\WINDOWS\system32> sc config bits start= disabled
+
+[SC] ChangeServiceConfig SUCCESS
+```
+
+We can see the confirmation that both services have been modified successfully. This means that when both services attempt to start, they will be unable to as they are currently disabled. As previously mentioned, this change will persist upon reboot, meaning that when the system attempts to check for updates or update itself, it cannot do so because both services will remain disabled. We can verify that both services are indeed disabled by attempting to start them.
+
+##### Verifying Services are Disabled
+
+```
+C:\WINDOWS\system32> sc start wuauserv
+
+[SC] StartService FAILED 1058:
+
+The service cannot be started, either because it is disabled or because it has no enabled devices associated with it.
+
+C:\WINDOWS\system32> sc start bits
+
+[SC] StartService FAILED 1058:
+
+The service cannot be started, either because it is disabled
 ```
