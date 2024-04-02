@@ -163,7 +163,7 @@ As we can see from the output above, the Spooler service is actively running on 
 
 ##### Stopping the Print Spooler Service
 
-```
+```cmd
 C:\WINDOWS\system32> sc stop Spooler
 
 SERVICE_NAME: Spooler
@@ -196,7 +196,7 @@ Starting from our previous example, we are still working with the Spooler servic
 
 ##### Starting the Print Spooler Service
 
-```
+```cmd
 C:\WINDOWS\system32> sc start Spooler
 
 SERVICE_NAME: Spooler
@@ -249,7 +249,7 @@ Important: The scenario below requires access to a privileged account. Making up
 
 ##### Checking the State of the Required Services
 
-```
+```cmd
 C:\WINDOWS\system32> sc query wuauserv
 
 SERVICE_NAME: wuauserv
@@ -276,7 +276,7 @@ From the information provided above, we can see that the wuauserv service is not
 
 ##### Stopping BITS
 
-```
+```cmd
 C:\WINDOWS\system32> sc stop bits
 
 SERVICE_NAME: bits
@@ -293,7 +293,7 @@ After ensuring that both services are currently stopped, we can modify the start
 
 ##### Disabling Windows Update Service
 
-```
+```cmd
 C:\WINDOWS\system32> sc config wuauserv start= disabled
 
 [SC] ChangeServiceConfig SUCCESS
@@ -301,7 +301,7 @@ C:\WINDOWS\system32> sc config wuauserv start= disabled
 
 ##### Disabling Background Intelligent Transfer Service
 
-```
+```cmd
 C:\WINDOWS\system32> sc config bits start= disabled
 
 [SC] ChangeServiceConfig SUCCESS
@@ -311,7 +311,7 @@ We can see the confirmation that both services have been modified successfully. 
 
 ##### Verifying Services are Disabled
 
-```
+```cmd
 C:\WINDOWS\system32> sc start wuauserv
 
 [SC] StartService FAILED 1058:
