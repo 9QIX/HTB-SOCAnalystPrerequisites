@@ -12,7 +12,7 @@ SC is a Windows executable utility that allows us to query, modify, and manage h
 
 ### SC without Parameters
 
-```
+```cmd
 C:\htb> sc
 
 DESCRIPTION:
@@ -58,7 +58,7 @@ Note: The spacing for the optional query parameters is crucial. For example, `ty
 
 #### Query All Active Services
 
-```
+```cmd
 C:\htb> sc query type= service
 
 SERVICE_NAME: Appinfo
@@ -98,7 +98,7 @@ We can see a complete list of the actively running services on this system. Usin
 
 #### Querying for Windows Defender
 
-```
+```cmd
 C:\htb> sc query windefend
 
 SERVICE_NAME: windefend
@@ -117,7 +117,7 @@ Now, what do we see above? We can tell that Windows Defender is running and, wit
 
 #### Stopping an Elevated Service
 
-```
+```cmd
 C:\htb> sc stop windefend
 
 Access is denied.
@@ -129,7 +129,7 @@ Now that we've attempted and failed to stop the windefend service under a user w
 
 #### Stopping an Elevated Service as Administrator
 
-```
+```cmd
 C:\WINDOWS\system32> sc stop windefend
 
 Access is denied.
@@ -145,7 +145,7 @@ Moving on, let's find ourselves a service we can take out as an Administrator. T
 
 ##### Finding the Print Spooler Service
 
-```
+```cmd
 C:\WINDOWS\system32> sc query Spooler
 
 SERVICE_NAME: Spooler
