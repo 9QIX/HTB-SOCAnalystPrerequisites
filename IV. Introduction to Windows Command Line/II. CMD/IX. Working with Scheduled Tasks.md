@@ -1,4 +1,3 @@
-```markdown
 # Working With Scheduled Tasks
 
 Scheduled tasks are an excellent way for administrators to ensure that tasks they want to run regularly happen, but they are also an excellent persistence point for attackers. In this section, we will discuss using schtasks to:
@@ -49,11 +48,12 @@ Query Syntax
 | /p     |           | Sets the password in use for command execution when we specify a user to run the task. Users must be members of the Administrator's group on the host (or in the domain). The u and p values are only valid when used with the s parameter. |
 
 We can view the tasks that already exist on our host by utilizing the `schtasks` command like so:
+
 ```
 
 C:\htb> SCHTASKS /Query /V /FO list
 
-Folder: \  
+Folder: \
 HostName: DESKTOP-Victim
 TaskName: \Check Network Access
 Next Run Time: N/A
