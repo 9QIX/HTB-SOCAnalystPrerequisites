@@ -131,3 +131,190 @@ PS C:\Windows\system32> Update-Help
 ```
 
 Notice how much more information was populated regarding `Test-Wsman` after running `Update-Help`. Feel free to compare this output to the output shown earlier when we first covered `Get-Help`.
+
+### Using Get-Help After Running Update-Help
+
+```powershell
+PS C:\Windows\system32> Get-Help  Test-Wsman
+
+NAME
+    Test-WSMan
+
+SYNOPSIS
+    Tests whether the WinRM service is running on a local or remote computer.
+
+
+SYNTAX
+    Test-WSMan [[-ComputerName] <System.String>] [-ApplicationName <System.String>]
+    [-Authentication {None | Default | Digest | Negotiate | Basic | Kerberos |
+    ClientCertificate | Credssp}] [-CertificateThumbprint <System.String>]
+    [-Credential <System.Management.Automation.PSCredential>] [-Port <System.Int32>]
+    [-UseSSL] [<CommonParameters>]
+
+
+DESCRIPTION
+    The `Test-WSMan` cmdlet submits an identification request that determines
+    whether the WinRM service is running on a local or remote computer. If the
+    tested computer is running the service, the cmdlet displays the WS-Management
+    identity schema, the protocol version, the product vendor, and the product
+    version of the tested service.
+
+
+RELATED LINKS
+    Online Version: https://docs.microsoft.com/powershell/module/microsoft.wsman.mana
+    gement/test-wsman?view=powershell-5.1&WT.mc_id=ps-gethelp
+    Connect-WSMan
+    Disable-WSManCredSSP
+    Disconnect-WSMan
+    Enable-WSManCredSSP
+    Get-WSManCredSSP
+    Get-WSManInstance
+    Invoke-WSManAction
+    New-WSManInstance
+    New-WSManSessionOption
+    Remove-WSManInstance
+    Set-WSManInstance
+    Set-WSManQuickConfig
+
+REMARKS
+    To see the examples, type: "get-help Test-WSMan -examples".
+    For more information, type: "get-help Test-WSMan -detailed".
+    For technical information, type: "get-help Test-WSMan -full".
+    For online help, type: "get-help Test-WSMan -online"
+```
+
+## Getting Around in PowerShell
+
+Now that we have covered what PowerShell is and the basics of the built-in help features, let us get into basic navigation and usage of PowerShell.
+
+### Where Are We?
+
+We can only move around if we know where we are already, right? We can determine our current working directory (in relation to the host system) by utilizing the `Get-Location` cmdlet.
+
+#### Get-Location
+
+```powershell
+PS C:\htb> Get-Location
+
+Path
+----
+C:\Users\DLarusso
+```
+
+We can see it printed the full path of the directory we are currently working from; in this case, that would be `C:\Users\DLarusso`. Now that we have our bearings let us look at what objects and files exist within this directory.
+
+### List the Directory
+
+The `Get-ChildItem` cmdlet can display the contents of our current directory or the one we specify.
+
+#### Get-ChildItem
+
+```powershell
+PS C:\htb> Get-ChildItem
+
+Directory: C:\Users\DLarusso
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        10/26/2021  10:26 PM                .ssh
+d-----         1/28/2021   7:05 PM                .vscode
+d-r---         1/27/2021   2:44 PM                3D Objects
+d-r---         1/27/2021   2:44 PM                Contacts
+d-r---         9/18/2022  12:35 PM                Desktop
+d-r---         9/18/2022   1:01 PM                Documents
+d-r---         9/26/2022  12:27 PM                Downloads
+d-r---         1/27/2021   2:44 PM                Favorites
+d-r---         1/27/2021   2:44 PM                Music
+dar--l         9/26/2022  12:03 PM                OneDrive
+d-r---         5/22/2022   2:00 PM                Pictures
+```
+
+We can see several other directories within our current working directory. Let's explore one.
+
+### Move to a New Directory
+
+Changing our location is simple; we can do so utilizing the `Set-Location` cmdlet.
+
+#### Set-Location
+
+```powershell
+PS C:\htb>  Set-Location .\Documents\
+
+PS C:\Users\tru7h\Documents> Get-Location
+
+Path
+----
+C:\Users\DLarusso\Documents
+```
+
+We fed the parameters `.\Documents\` to the `Set-Location` cmdlet, telling PowerShell that we want to move into the Documents directory, which resides within our current working directory. We could have also given it the full file path like this:
+
+```powershell
+Set-Location C:\Users\DLarusso\Documents
+```
+
+### Display Contents of a File
+
+Now, if we wish to see the contents of a file, we can use `Get-Content`. Looking in the Documents directory, we notice a file called `Readme.md`. Let us check it out.
+
+#### Get-Content
+
+```powershell
+PS C:\htb> Get-Content Readme.md
+
+# ![logo][] PowerShell
+
+Welcome to the PowerShell GitHub Community!
+PowerShell Core is a cross-platform (Windows, Linux, and macOS) automation and configuration tool/framework that works well with your existing tools and is optimized
+for dealing with structured data (e.g., JSON, CSV, XML, etc.), REST APIs, and object models.
+It includes a command-line shell, an associated scripting language and a framework for processing cmdlets.
+
+<SNIP>
+```
+
+It looks like the `Readme` file was from the PowerShell GitHub page. Utilizing the `Get-Content` cmdlet is as simple as that. Navigating within the PowerShell CLI is pretty straightforward. Now that we have that skill down, let us look at a few helpful tips and tricks that can make utilizing the CLI even smoother.
+
+## Tips & Tricks for PowerShell Usage
+
+### Get-Command
+
+`Get-Command` is a great way to find a pesky command that might be slipping from our memory right when we need to use it. With PowerShell using the verb-noun convention for cmdlets, we can search on either.
+
+#### Get-Command Usage
+
+```powershell
+PS C:\htb> Get-Command
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Add-AppPackage                                     2.0.1.0    Appx
+Alias           Add-AppPackageVolume                               2.0.1.0    Appx
+Alias           Add-AppProvisionedPackage                          3.0        Dism
+Alias           Add-ProvisionedAppPackage                          3.0        Dism
+Alias           Add-ProvisionedAppxPackage                         3.0        Dism
+Alias           Add-ProvisioningPackage                            3.0        Provisioning
+Alias           Add-TrustedProvisioningCertificate                 3.0        Provisioning
+Alias           Apply-WindowsUnattend                              3.0        Dism
+Alias           Disable-PhysicalDiskIndication                     2.0.0.0    Storage
+Alias           Disable-StorageDiagnosticLog                       2.0.0.0    Storage
+Alias           Dismount-AppPackageVolume                          2.0.1.0    Appx
+Alias           Enable-PhysicalDiskIndication                      2.0.0.0    Storage
+Alias           Enable-StorageDiagnosticLog                        2.0.0.0    Storage
+Alias           Flush-Volume                                       2.0.0.0    Storage
+Alias           Get-AppPackage                                     2.0.1.0    Appx
+
+<SNIP>
+```
+
+The output above was snipped for the sake of saving screen space. Using `Get-Command` without additional modifiers will perform a complete output of each cmdlet currently loaded into the PowerShell session. We can trim this down more by filtering on the verb or the noun portion of the cmdlet.
+
+#### Get-Command (verb)
+
+```powershell
+PS C:\htb> Get-Command -verb get
+
+<SNIP>
+Cmdlet          Get-Acl                                            3.0.0.0    Microsoft.Pow...
+Cmdlet          Get
+```
