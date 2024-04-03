@@ -437,7 +437,7 @@ Our last tip to mention is Aliases. A PowerShell alias is another name for a cmd
 
 #### Using Get-Alias
 
-````powershell
+```powershell
 PS C:\Windows\system32> Get-Alias
 
 CommandType     Name                                               Version    Source
@@ -446,9 +446,7 @@ CommandType     Name                                               Version    So
 Alias           % -> ForEach-Object
 Alias           ? -> Where-Object
 Alias           ac -> Add-Content
-Alias           a
-```markdown
-snp -> Add-PSSnapin
+Alias           asnp -> Add-PSSnapin
 Alias           cat -> Get-Content
 Alias           cd -> Set-Location
 Alias           CFS -> ConvertFrom-String                          3.1.0.0    Mi...
@@ -474,7 +472,7 @@ Alias           diff -> Compare-Object
 Alias           dir -> Get-ChildItem
 
 <SNIP>
-````
+```
 
 It is an excellent practice to make aliases shorter than the name of the actual cmdlet, command, or executable. Even the `Get-Alias` cmdlet has a default alias of `gal`, as seen in the clip below.
 
