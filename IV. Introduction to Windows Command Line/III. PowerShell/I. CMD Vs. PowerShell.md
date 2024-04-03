@@ -517,9 +517,3 @@ Below we also include a list of several aliases we find to be most helpful. Some
 For those familiar with BASH, you may have noticed that many of the aliases match up to commands widely used within Linux distributions. This knowledge can be helpful and help ease the learning curve.
 
 This section has been a bit long, and for a good reason. We covered all the essentials to move us along our path to PowerShell mastery. From here, we will dive deep into PowerShell modules and cmdlets.
-
-## VPN Servers
-
-```
-
-```
