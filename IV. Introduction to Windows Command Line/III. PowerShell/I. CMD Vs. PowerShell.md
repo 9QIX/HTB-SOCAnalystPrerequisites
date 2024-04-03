@@ -311,19 +311,17 @@ The output above was snipped for the sake of saving screen space. Using `Get-Com
 
 #### Get-Command (verb)
 
-````powershell
+```powershell
 PS C:\htb> Get-Command -verb get
 
 <SNIP>
 Cmdlet          Get-Acl                                            3.0.0.0    Microsoft.Pow...
-Cmdlet          Get
-```markdown
--Alias                                          3.1.0.0    Microsoft.Pow...
+Cmdlet          Get-Alias                                          3.1.0.0    Microsoft.Pow...
 Cmdlet          Get-AppLockerFileInformation                       2.0.0.0    AppLocker
 Cmdlet          Get-AppLockerPolicy                                2.0.0.0    AppLocker
 Cmdlet          Get-AppvClientApplication                          1.0.0.0    AppvClient
 <SNIP>
-````
+```
 
 Using the `-verb` modifier and looking for any cmdlet, alias, or function with the term `get` in the name, we are provided with a detailed list of everything PowerShell is currently aware of. We can also perform the exact search using the filter `get*` instead of the `-verb get`. The `Get-Command` cmdlet recognizes the `*` as a wildcard and shows each variant of `get(anything)`. We can do something similar by searching on the noun as well.
 
