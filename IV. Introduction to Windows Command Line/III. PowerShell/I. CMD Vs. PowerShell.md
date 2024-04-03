@@ -65,8 +65,6 @@ We can also launch PowerShell from within CMD. This action may seem trivial, but
 PS C:\> powershell
 ```
 
-````
-
 ## Taking a Look at the Shell
 
 One of the first things we may examine when accessing PowerShell on a local or remote system is the prompt.
@@ -133,4 +131,7 @@ PS C:\Windows\system32> Update-Help
 ```
 
 Notice how much more information was populated regarding `Test-Wsman` after running `Update-Help`. Feel free to compare this output to the output shown earlier when we first covered `Get-Help`.
-````
+
+```
+
+```
