@@ -1,4 +1,3 @@
-````markdown
 # CMD Vs. PowerShell
 
 Up to this point, we have discussed the built-in Windows Command-line interpreter cmd.exe. Moving forward, we will look at Window's modern successor to CMD, PowerShell. This section will cover what PowerShell is, the differences between PowerShell and CMD, how to get help within the CLI, and basic navigation within the CLI.
@@ -65,6 +64,7 @@ We can also launch PowerShell from within CMD. This action may seem trivial, but
 ```powershell
 PS C:\> powershell
 ```
+
 ````
 
 ## Taking a Look at the Shell
@@ -133,3 +133,4 @@ PS C:\Windows\system32> Update-Help
 ```
 
 Notice how much more information was populated regarding `Test-Wsman` after running `Update-Help`. Feel free to compare this output to the output shown earlier when we first covered `Get-Help`.
+````
