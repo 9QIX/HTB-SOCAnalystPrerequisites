@@ -311,10 +311,142 @@ The output above was snipped for the sake of saving screen space. Using `Get-Com
 
 #### Get-Command (verb)
 
-```powershell
+````powershell
 PS C:\htb> Get-Command -verb get
 
 <SNIP>
 Cmdlet          Get-Acl                                            3.0.0.0    Microsoft.Pow...
 Cmdlet          Get
+```markdown
+-Alias                                          3.1.0.0    Microsoft.Pow...
+Cmdlet          Get-AppLockerFileInformation                       2.0.0.0    AppLocker
+Cmdlet          Get-AppLockerPolicy                                2.0.0.0    AppLocker
+Cmdlet          Get-AppvClientApplication                          1.0.0.0    AppvClient
+<SNIP>
+````
+
+Using the `-verb` modifier and looking for any cmdlet, alias, or function with the term `get` in the name, we are provided with a detailed list of everything PowerShell is currently aware of. We can also perform the exact search using the filter `get*` instead of the `-verb get`. The `Get-Command` cmdlet recognizes the `*` as a wildcard and shows each variant of `get(anything)`. We can do something similar by searching on the noun as well.
+
+#### Get-Command (noun)
+
+```powershell
+PS C:\htb> Get-Command -noun windows*
+
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Alias           Apply-WindowsUnattend                              3.0        Dism
+Function        Get-WindowsUpdateLog                               1.0.0.0    WindowsUpdate
+Cmdlet          Add-WindowsCapability                              3.0        Dism
+Cmdlet          Add-WindowsDriver                                  3.0        Dism
+Cmdlet          Add-WindowsImage                                   3.0        Dism
+Cmdlet          Add-WindowsPackage                                 3.0        Dism
+Cmdlet          Clear-WindowsCorruptMountPoint                     3.0        Dism
+Cmdlet          Disable-WindowsErrorReporting                      1.0        WindowsErrorR...
+Cmdlet          Disable-WindowsOptionalFeature                     3.0        Dism
+Cmdlet          Dismount-WindowsImage                              3.0        Dism
+Cmdlet          Enable-WindowsErrorReporting                       1.0        WindowsErrorR...
+Cmdlet          Enable-WindowsOptionalFeature                      3.0        Dism
+```
+
+In the above output, we utilized the `-noun` modifier, took the filter a step further, and looked for any portion of the noun that contained `windows*`, so our results came up pretty specific. Anything that begins with `windows` in the noun portion and is followed by anything else would match this filter. These were just a few demonstrations of how powerful the `Get-Command` cmdlet can be. Paired with the `Get-Help` cmdlet, these can be powerful help functions provided to us directly by PowerShell. Our next tip dives into our PowerShell session History.
+
+### History
+
+PowerShell keeps a history of the commands run in two different ways. The first is the built-in session history which is implemented and deleted at the start and end of each console session. The other is through the `PSReadLine` module. The `PSReadLine` module tracks the history of any PowerShell commands used in all sessions across the host, among many other features. By default, PowerShell keeps the last 4096 commands entered, but this setting can be modified by changing the `$MaximumHistoryCount` variable.
+
+#### Get-History
+
+```powershell
+PS C:\htb> Get-History
+
+ Id CommandLine
+  -- -----------
+   1 Get-Command
+   2 clear
+   3 get-command -verb set
+   4 get-command set*
+   5 clear
+   6 get-command -verb get
+   7 get-command -noun windows
+   8 get-command -noun windows*
+   9 get-module
+  10 clear
+  11 get-history
+  12 clear
+  13 ipconfig /all
+  14 arp -a
+  15 get-help
+  16 get-help get-module
+```
+
+By default, `Get-History` will only show the commands that have been run during this active session. Notice how the commands are numbered; we can recall those commands by using the alias `r` followed by the number to run that command again. For example, if we wanted to rerun the `arp -a` command, we could issue `r 14`, and PowerShell will action it. Keep in mind that if we close the shell window, or in the instance of a remote shell through command and control, once we kill that session or process that we are running, our PowerShell history will disappear. With `PSReadLine`, however, that is not the case. `PSReadLine` stores everything in a file called `$($host.Name)_history.txt` located at `$env:APPDATA\Microsoft\Windows\PowerShell\PSReadLine`.
+
+#### Viewing PSReadLine History
+
+```powershell
+PS C:\htb> get-content C:\Users\DLarusso\AppData\Roaming\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt
+
+get-module
+Get-ChildItem Env: | ft Key,Value
+Get-ExecutionPolicy
+clear
+ssh administrator@10.172.16.110.55
+powershell -nop -c "iex(New-Object Net.WebClient).DownloadString('https://download.sysinternals.com/files/PSTools.zip')"
+Get-ExecutionPolicy
+
+<SNIP>
+```
+
+If we ran the above command and were a frequent user of the CLI, we would have an extensive history file to sort through. The output above was snipped to save time and screen space. One great feature of `PSReadline` from an admin perspective is that it will automatically attempt to filter any entries that include the strings:
+
+- password
+- asplaintext
+- token
+- apikey
+- secret
+
+This behavior is excellent for us as admins since it will help clear any entries from the `PSReadLine` history file that contain keys, credentials, or other sensitive information. The built-in session history does not do this.
+
+### Clear Screen
+
+This tip is one of convenience. If it bothers us to have a ton of output on our screen all the time, we can remove the text from our console window by using the command `Clear-Host`. It will only affect our current display and will not get rid of any variables or other objects we may have set or made during the session. We can also use `clear` or `cls` if we prefer using short commands or aliases.
+
+### Hotkeys
+
+Unless we are working in the CLI from a GUI environment, our mouse will not often work. For example, let's say we landed a shell on a host during a pentest. We will have access to CMD or PowerShell from this shell, but we will not be able to utilize the GUI. So we need to be comfortable using just a keyboard. Hotkeys can enable us to perform more complex actions that typically require a mouse with just our keys. Below is a quick list of some of the more useful hotkeys.
+
+| HotKey           | Description                                                                                                                                       |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| CTRL+R           | It makes for a searchable history. We can start typing after, and it will show us results that match previous commands.                           |
+| CTRL+L           | Quick screen clear.                                                                                                                               |
+| CTRL+ALT+Shift+? | This will print the entire list of keyboard shortcuts PowerShell will recognize.                                                                  |
+| Escape           | When typing into the CLI, if you wish to clear the entire line, instead of holding backspace, you can just hit escape, which will erase the line. |
+| ↑                | Scroll up through our previous history.                                                                                                           |
+| ↓                | Scroll down through our previous history.                                                                                                         |
+| F7               | Brings up a TUI with a scrollable interactive history from our session.                                                                           |
+
+This list is not all of the functionality we can use in PowerShell but those we find ourselves using the most.
+
+### Tab Completion
+
+One of PowerShell's best functionalities must be tab completion of commands. We can use tab and SHIFT+tab to move through options that can complete the command we are typing.
+
+![Autocomplete Example](autocomplete.png)
+
+### Aliases
+
+Our last tip to mention is Aliases. A PowerShell alias is another name for a cmdlet, command, or executable file. We can see a list of default aliases using the `Get-Alias` cmdlet. Most built-in aliases are shortened versions of the cmdlet, making it easier to remember and quick to use.
+
+#### Using Get-Alias
+
+```powershell
+PS C:\Windows\system32> Get-Alias
+
+CommandType     Name                                               Version    Source
+
+-----------     ----                                               -------    -----
+Alias           % -> ForEach-Object
+Alias           ? -> Where-Object
+Alias           ac -> Add-Content
+Alias           a
 ```
