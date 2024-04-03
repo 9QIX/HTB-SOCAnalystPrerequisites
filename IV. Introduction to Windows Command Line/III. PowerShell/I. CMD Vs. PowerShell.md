@@ -437,7 +437,7 @@ Our last tip to mention is Aliases. A PowerShell alias is another name for a cmd
 
 #### Using Get-Alias
 
-```powershell
+````powershell
 PS C:\Windows\system32> Get-Alias
 
 CommandType     Name                                               Version    Source
@@ -447,4 +447,81 @@ Alias           % -> ForEach-Object
 Alias           ? -> Where-Object
 Alias           ac -> Add-Content
 Alias           a
+```markdown
+snp -> Add-PSSnapin
+Alias           cat -> Get-Content
+Alias           cd -> Set-Location
+Alias           CFS -> ConvertFrom-String                          3.1.0.0    Mi...
+Alias           chdir -> Set-Location
+Alias           clc -> Clear-Content
+Alias           clear -> Clear-Host
+Alias           clhy -> Clear-History
+Alias           cli -> Clear-Item
+Alias           clp -> Clear-ItemProperty
+Alias           cls -> Clear-Host
+Alias           clv -> Clear-Variable
+Alias           cnsn -> Connect-PSSession
+Alias           compare -> Compare-Object
+Alias           copy -> Copy-Item
+Alias           cp -> Copy-Item
+Alias           cpi -> Copy-Item
+Alias           cpp -> Copy-ItemProperty
+Alias           curl -> Invoke-WebRequest
+Alias           cvpa -> Convert-Path
+Alias           dbp -> Disable-PSBreakpoint
+Alias           del -> Remove-Item
+Alias           diff -> Compare-Object
+Alias           dir -> Get-ChildItem
+
+<SNIP>
+````
+
+It is an excellent practice to make aliases shorter than the name of the actual cmdlet, command, or executable. Even the `Get-Alias` cmdlet has a default alias of `gal`, as seen in the clip below.
+
+```powershell
+PS C:\Windows\system32> gal
+
+CommandType     Name                                               Version    Source
+
+-----------     ----                                               -------    -----
+Alias           % -> ForEach-Object
+Alias           ? -> Where-Object
+...
+```
+
+We can also set an alias for a specific cmdlet using `Set-Alias`. Let us practice with this by making an alias for the `Get-Help` cmdlet.
+
+#### Using Set-Alias
+
+```powershell
+PS C:\Windows\system32> Set-Alias -Name gh -Value Get-Help
+```
+
+When using `Set-Alias`, we need to specify the name of the alias (`-Name gh`) and the corresponding cmdlet (`-Value Get-Help`).
+
+![Set Alias](set-alias.png)
+
+Below we also include a list of several aliases we find to be most helpful. Some commands have more than one alias as well. Be sure to look at the complete list for other aliases you may find helpful.
+
+#### Helpful Aliases
+
+| Alias         | Description                                                                                               |
+| ------------- | --------------------------------------------------------------------------------------------------------- |
+| `pwd`         | `gl` can also be used. This alias can be used in place of `Get-Location`.                                 |
+| `ls`          | `dir` and `gci` can also be used in place of `ls`. This is an alias for `Get-ChildItem`.                  |
+| `cd`          | `sl` and `chdir` can be used in place of `cd`. This is an alias for `Set-Location`.                       |
+| `cat`         | `type` and `gc` can also be used. This is an alias for `Get-Content`.                                     |
+| `clear`       | Can be used in place of `Clear-Host`.                                                                     |
+| `curl`        | `Curl` is an alias for `Invoke-WebRequest`, which can be used to download files. `wget` can also be used. |
+| `fl` and `ft` | These aliases can be used to format output into list and table outputs.                                   |
+| `man`         | Can be used in place of `help`.                                                                           |
+
+For those familiar with BASH, you may have noticed that many of the aliases match up to commands widely used within Linux distributions. This knowledge can be helpful and help ease the learning curve.
+
+This section has been a bit long, and for a good reason. We covered all the essentials to move us along our path to PowerShell mastery. From here, we will dive deep into PowerShell modules and cmdlets.
+
+## VPN Servers
+
+```
+
 ```
