@@ -131,7 +131,3 @@ PS C:\Windows\system32> Update-Help
 ```
 
 Notice how much more information was populated regarding `Test-Wsman` after running `Update-Help`. Feel free to compare this output to the output shown earlier when we first covered `Get-Help`.
-
-```
-
-```
