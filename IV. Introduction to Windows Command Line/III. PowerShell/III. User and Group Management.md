@@ -119,8 +119,170 @@ Administrator      False   Built-in account for administering the computer/domai
 DefaultAccount     False   A user account managed by the system.
 demo               True
 Guest              False   Built-in account for guest access to the computer/domain
+JLawrence          True    CEO EagleFang
+```
+
+As for making and modifying users, it is as simple as what we see above. Now, let us move on to checking out groups. If it feels like a bit of an echo...well, it is. The commands are similar in use.
+
+```powershell
+Get-LocalGroup
 ```
 
 ```
+Name                                Description
+----                                -----------
+Access Control Assistance Operators Members of this group can remotely query authorization attr...
+Administrators                      Administrators have complete and unrestricted access to the...
+Backup Operators                    Backup Operators can override security restrictions for the...
+Cryptographic Operators             Members are authorized to perform cryptographic operations.
+Device Owners                       Members of this group can change system-wide settings.
+Distributed COM Users               Members are allowed to launch, activate and use Distributed...
+Event Log Readers                   Members of this group can read event logs from local machine
+Guests                              Guests have the same access as members of the Users group b...
+Hyper-V Administrators              Members of this group have complete and unrestricted access...
+IIS_IUSRS                           Built-in group used by Internet Information Services.
+Network Configuration Operators     Members in this group can have some administrative privileg...
+Performance Log Users               Members of this group may schedule logging of performance c...
+Performance Monitor Users           Members of this group can access performance counter data l...
+Power Users                         Power Users are included for backwards compatibility and po...
+Remote Desktop Users                Members in this group are granted the right to logon remotely
+Remote Management Users             Members of this group can access WMI resources over managem...
+Replicator                          Supports file replication in a domain
+System Managed Accounts Group       Members of this group are managed by the system.
+Users                               Users are prevented from making accidental or intentional s...
+```
+
+```powershell
+Get-LocalGroupMember -Name "Users"
+```
 
 ```
+ObjectClass Name                             PrincipalSource
+----------- ----                             ---------------
+User        DESKTOP-B3MFM77\demo             Local
+User        DESKTOP-B3MFM77\JLawrence        Local
+Group       NT AUTHORITY\Authenticated Users Unknown
+Group       NT AUTHORITY\INTERACTIVE         Unknown
+```
+
+In the output above, we ran the Get-LocalGroup cmdlet to get a printout of each group on the host. In the second command, we decided to inspect the Users group and see who is a member of said group. We did this with the Get-LocalGroupMember command. Now, if we wish to add another group or user to a group, we can use the Add-LocalGroupMember command. We will add JLawrence to the Remote Desktop Users group in the example below.
+
+### Adding a Member To a Group
+
+```powershell
+Add-LocalGroupMember -Group "Remote Desktop Users" -Member "JLawrence"
+Get-LocalGroupMember -Name "Remote Desktop Users"
+```
+
+```
+ObjectClass Name                      PrincipalSource
+----------- ----                      ---------------
+User        DESKTOP-B3MFM77\JLawrence Local
+```
+
+After running the command, we checked the group membership and saw that our user was indeed added to the Remote Desktop Users group. Maintaining local users and groups is simple and does not require external modules. Managing Active Directory Users and Groups requires a bit more work.
+
+## Managing Domain Users and Groups
+
+Before we can access the cmdlets we need and work with Active Directory, we must install the ActiveDirectory PowerShell Module. If you installed the AdminToolbox, the AD module might already be on your host. If not, we can quickly grab the AD modules and get to work. One requirement is to have the optional feature Remote System Administration Tools installed. This feature is the only way to get the official ActiveDirectory PowerShell module. The edition in AdminToolbox and other Modules is repackaged, so use caution.
+
+### Installing RSAT
+
+```powershell
+Get-WindowsCapability -Name RSAT* -Online | Add-WindowsCapability -Online
+```
+
+```
+Path          :
+Online        : True
+RestartNeeded : False
+```
+
+The above command will install ALL RSAT features in the Microsoft Catalog. If we wish to stay lightweight, we can install the package named Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0. Now we should have the ActiveDirectory module installed. Let us check.
+
+### Locating The AD Module
+
+```powershell
+Get-Module -Name ActiveDirectory -ListAvailable
+```
+
+```
+    Directory: C:\Windows\system32\WindowsPowerShell\v1.0\Modules
+
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Manifest   1.0.1.0    ActiveDirectory                     {Add-ADCentralAccessPolicyMember, Add-ADComputerServiceAccount, Add-ADDomainControllerPasswordReplicationPolicy, Add-A...
+```
+
+Nice. Now that we have the module, we can get started with AD User and Group management. The easiest way to locate a specific user is by searching with the Get-ADUser cmdlet.
+
+```powershell
+Get-ADUser -Filter *
+```
+
+```
+DistinguishedName : CN=user14,CN=Users,DC=greenhorn,DC=corp
+Enabled           : True
+GivenName         :
+Name              : user14
+ObjectClass       : user
+ObjectGUID        : bef9787d-2716-4dc9-8e8f-f8037a72c3d9
+SamAccountName    : user14
+SID               : S-1-5-21-1480833693-1324064541-2711030367-1110
+Surname           :
+UserPrincipalName :
+
+DistinguishedName : CN=sshd,CN=Users,DC=greenhorn,DC=corp
+Enabled           : True
+GivenName         :
+Name              : sshd
+ObjectClass       : user
+ObjectGUID        : 7a324e98-00e4-480b-8a1a-fa465d558063
+SamAccountName    : sshd
+SID               : S-1-5-21-1480833693-1324064541-2711030367-1112
+Surname           :
+UserPrincipalName :
+
+DistinguishedName : CN=TSilver,CN=Users,DC=greenhorn,DC=corp
+Enabled           : True
+GivenName         :
+Name              : TSilver
+ObjectClass       : user
+ObjectGUID        : a19a6c8a-000a-4cbf-aa14-0c7fca643c37
+SamAccountName    : TSilver
+SID               : S-1-5-21-1480833693-1324064541-2711030367-1602
+Surname           :
+UserPrincipalName :
+
+<SNIP>
+```
+
+The parameter -Filter \* lets us grab all users within Active Directory. Depending on our organization's size, this could produce a ton of output. We can use the -Identity parameter to perform a more specific search for a user by distinguished name, GUID, the objectSid, or SamAccountName. Do not worry if these options seem like gibberish to you; that is all right. The specifics of these are not important right now; for more reading on the topic, check out this article or the Intro To Active Directory module. We are going to search for the user TSilver now.
+
+### Get a Specific User
+
+```powershell
+Get-ADUser -Identity TSilver
+```
+
+```
+DistinguishedName : CN=TSilver,CN=Users,DC=greenhorn,DC=corp
+Enabled           : True
+GivenName         :
+Name              : TSilver
+ObjectClass       : user
+ObjectGUID        : a19a6c8a-000a-4cbf-aa14-0c7fca643c37
+SamAccountName    : TSilver
+SID               : S-1-5-21-1480833693-1324064541-2711030367-1602
+Surname           :
+UserPrincipalName :
+```
+
+We can see from the output several pieces of information about the user, including:
+
+- Object Class: which specifies if the object is a user, computer, or another type of object.
+- DistinguishedName: Specifies the object's relative path within the AD schema.
+- Enabled: Tells us if the user is active and can log in.
+- SamAccountName: The representation of the username used to log into the ActiveDirectory hosts.
+- ObjectGUID: Is the unique identifier of the user
