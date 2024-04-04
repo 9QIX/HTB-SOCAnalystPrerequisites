@@ -1,4 +1,3 @@
-````markdown
 # All About Cmdlets and Modules
 
 In this section, we will cover the following:
@@ -55,6 +54,7 @@ Contents of `PowerSploit.psm1`:
 ```powershell
 Get-ChildItem $PSScriptRoot | ? { $_.PSIsContainer -and !('Tests','docs' -contains $_.Name) } | % { Import-Module $_.FullName -DisableNameChecking }
 ```
+
 ````
 
 The `Get-ChildItem` cmdlet gets the items in the current directory (represented by the `$PSScriptRoot` automatic variable), and the `Where-Object` cmdlet (aliased as the `?` character) filters those down to only the items that are folders and do not have the names "Tests" or "docs". Finally, the `ForEach-Object` cmdlet (aliased as the `%` character) executes the `Import-Module` cmdlet against each of those remaining items, passing the `DisableNameChecking` parameter to prevent errors if the module contains cmdlets or functions with the same names as cmdlets or functions in the current session.
@@ -134,3 +134,4 @@ SYNTAX
     [-Function <System.String[]>] [-Global] [-MaximumVersion <System.String>] [-MinimumVersion <System.Version>]
     [-NoClobber] [-PassThru] [-Prefix <System.String>] [-RequiredVersion <System.Version>] [-Scope {Local |
 ```
+````
