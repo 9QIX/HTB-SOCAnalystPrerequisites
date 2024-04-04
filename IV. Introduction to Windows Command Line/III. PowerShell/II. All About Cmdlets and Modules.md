@@ -271,9 +271,7 @@ Conveniently for us, There is already a module built into PowerShell meant to he
 
 ```powershell
 Get-Command -Module PowerShellGet
-```
 
-```
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
 Function        Find-Command                                       1.0.0.1    PowerShellGet
@@ -307,9 +305,7 @@ This module has many different functions to help us work with and download exist
 
 ```powershell
 Find-Module -Name AdminToolbox
-```
 
-```
 Version    Name                                Repository           Description
 -------    ----                                ----------           -----------
 11.0.8     AdminToolbox                        PSGallery            Master module for a col...
@@ -340,7 +336,3 @@ Below we will quickly list a few PowerShell modules and projects we, as penetrat
 - **BloodHound / SharpHound**: Bloodhound/Sharphound allows us to visually map out an Active Directory Environment using graphical analysis tools and data collectors written in C# and PowerShell.
 
 Working with PowerShell modules and cmdlets is intuitive and easy to master quickly. This skill will come in handy for the rest of this module since we will be dealing with various tools and topics within PowerShell that may require us to install, import, or examine modules and cmdlets. If you get stuck, be sure to refer back to this section. Now it is time to move on to User and Group management.
-
-```
-
-```
