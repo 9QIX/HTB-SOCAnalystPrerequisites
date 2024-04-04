@@ -114,8 +114,6 @@ REMARKS
 
 `Get-Help` can give helpful information about a cmdlet. Notice that the `Syntax` output shows us several available options and additional keywords that can be used with each option. Aliases are also mentioned, essentially shorter names for our commands. We will discuss Aliases in more depth later in this section. The `Remarks` output provides us with further information about the cmdlet and even additional options we can use to learn more about the cmdlet. One of these additional options is `-online`, which will open a Microsoft docs webpage for the corresponding cmdlet if the host has Internet access.
 
-![Get-Help Online](get-help-online.png)
-
 We can also use a helpful cmdlet called `Update-Help` to ensure we have the most up-to-date information for each cmdlet on the Windows system.
 
 ### Using Update-Help
