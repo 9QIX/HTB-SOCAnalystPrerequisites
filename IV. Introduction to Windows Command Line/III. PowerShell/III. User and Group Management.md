@@ -43,11 +43,7 @@ Groups are a way to sort user accounts logically and, in doing so, provide granu
 
 ```powershell
 Get-LocalGroup
-```
 
-````
-
-```
 Name                                Description
 ----                                -----------
 __vmware__                          VMware User Group
@@ -82,9 +78,7 @@ Like most other things in PowerShell, we use the get, new, and set verbs to find
 
 ```powershell
 Get-LocalUser
-```
 
-```
 Name               Enabled Description
 ----               ------- -----------
 Administrator      False   Built-in account for administering the computer/domain
@@ -101,9 +95,7 @@ Get-LocalUser will display the users on our host. These users only have access t
 
 ```powershell
 New-LocalUser -Name "JLawrence" -NoPassword
-```
 
-```
 Name      Enabled Description
 ----      ------- -----------
 JLawrence True
@@ -120,9 +112,7 @@ $Password = Read-Host -AsSecureString
 ****************
 Set-LocalUser -Name "JLawrence" -Password $Password -Description "CEO EagleFang"
 Get-LocalUser
-```
 
-```
 Name               Enabled Description
 ----               ------- -----------
 Administrator      False   Built-in account for administering the computer/domain
@@ -130,4 +120,7 @@ DefaultAccount     False   A user account managed by the system.
 demo               True
 Guest              False   Built-in account for guest access to the computer/domain
 ```
-````
+
+```
+
+```
