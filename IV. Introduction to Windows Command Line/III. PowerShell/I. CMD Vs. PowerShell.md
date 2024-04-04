@@ -421,8 +421,6 @@ This list is not all of the functionality we can use in PowerShell but those we 
 
 One of PowerShell's best functionalities must be tab completion of commands. We can use tab and SHIFT+tab to move through options that can complete the command we are typing.
 
-![Autocomplete Example](autocomplete.png)
-
 ### Aliases
 
 Our last tip to mention is Aliases. A PowerShell alias is another name for a cmdlet, command, or executable file. We can see a list of default aliases using the `Get-Alias` cmdlet. Most built-in aliases are shortened versions of the cmdlet, making it easier to remember and quick to use.
