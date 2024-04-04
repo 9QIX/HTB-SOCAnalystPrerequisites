@@ -251,5 +251,96 @@ Alias           Invoke-UserHunter                                  3.0.0.0    Po
 Alias           Request-SPNTicket                                  3.0.0.0    PowerSploit
 Alias           Set-ADObject                                       3.0.0.0    PowerSploit
 Function        Add-Persistence                                    3.0.0.0    PowerSploit
-Function        Add
+Function        Add-ServiceDacl                                    3.0.0.0    PowerSploit
+Function        Find-AVSignature                                   3.0.0.0    PowerSploit
+Function        Find-InterestingFile                               3.0.0.0    PowerSploit
+Function        Find-LocalAdminAccess                              3.0.0.0    PowerSploit
+Function        Find-PathDLLHijack                                 3.0.0.0    PowerSploit
+Function        Find-ProcessDLLHijack                              3.0.0.0    PowerSploit
+Function        Get-ApplicationHost                                3.0.0.0    PowerSploit
+Function        Get-GPPPassword                                    3.0.0.0    PowerSploit
+```
+
+Now we can see what was loaded by PowerSploit. From this point, we can use the scripts and functions as needed. This is the easy part, pick the function and let it run.
+
+## Deep Dive: Finding & Installing Modules from PowerShell Gallery & GitHub
+
+In today's day and age, sharing information is extremely easy. That goes for solutions and new creations as well. When it comes to PowerShell modules, the PowerShell Gallery Is the best place for that. It is a repository that contains PowerShell scripts, modules, and more created by Microsoft and other users. They can range from anything as simple as dealing with user attributes to solving complex cloud storage issues.
+
+Conveniently for us, There is already a module built into PowerShell meant to help us interact with the PowerShell Gallery called PowerShellGet. Let us take a look at it:
+
+```powershell
+Get-Command -Module PowerShellGet
+```
+
+```
+CommandType     Name                                               Version    Source
+-----------     ----                                               -------    ------
+Function        Find-Command                                       1.0.0.1    PowerShellGet
+Function        Find-DscResource                                   1.0.0.1    PowerShellGet
+Function        Find-Module                                        1.0.0.1    PowerShellGet
+Function        Find-RoleCapability                                1.0.0.1    PowerShellGet
+Function        Find-Script                                        1.0.0.1    PowerShellGet
+Function        Get-InstalledModule                                1.0.0.1    PowerShellGet
+Function        Get-InstalledScript                                1.0.0.1    PowerShellGet
+Function        Get-PSRepository                                   1.0.0.1    PowerShellGet
+Function        Install-Module                                     1.0.0.1    PowerShellGet
+Function        Install-Script                                     1.0.0.1    PowerShellGet
+Function        New-ScriptFileInfo                                 1.0.0.1    PowerShellGet
+Function        Publish-Module                                     1.0.0.1    PowerShellGet
+Function        Publish-Script                                     1.0.0.1    PowerShellGet
+Function        Register-PSRepository                              1.0.0.1    PowerShellGet
+Function        Save-Module                                        1.0.0.1    PowerShellGet
+Function        Save-Script                                        1.0.0.1    PowerShellGet
+Function        Set-PSRepository                                   1.0.0.1    PowerShellGet
+Function        Test-ScriptFileInfo                                1.0.0.1    PowerShellGet
+Function        Uninstall-Module                                   1.0.0.1    PowerShellGet
+Function        Uninstall-Script                                   1.0.0.1    PowerShellGet
+Function        Unregister-PSRepository                            1.0.0.1    PowerShellGet
+Function        Update-Module                                      1.0.0.1    PowerShellGet
+Function        Update-ModuleManifest                              1.0.0.1    PowerShellGet
+Function        Update-Script                                      1.0.0.1    PowerShellGet
+Function        Update-ScriptFileInfo                              1.0.0.1    PowerShellGet
+```
+
+This module has many different functions to help us work with and download existing modules from the gallery and make and upload our own. From our function listing, let us give `Find-Module` a try. One module that will prove extremely useful to system admins is the AdminToolbox module. It is a collection of several other modules with tools meant for Active Directory management, Microsoft Exchange, virtualization, and many other tasks an admin would need on any given day.
+
+```powershell
+Find-Module -Name AdminToolbox
+```
+
+```
+Version    Name                                Repository           Description
+-------    ----                                ----------           -----------
+11.0.8     AdminToolbox                        PSGallery            Master module for a col...
+```
+
+Like with many other PowerShell cmdlets, we can also search using wildcards. Once we have found a module we wish to utilize, installing it is as easy as `Install-Module`. Remember that it requires administrative rights to install modules in this manner.
+
+```powershell
+Find-Module -Name AdminToolbox | Install-Module
+```
+
+In the image above, we chained `Find-Module` with `Install-Module` to simultaneously perform both actions. This example takes advantage of PowerShell's Pipeline functionality. We will cover this deeper in another section, but for now, it allowed us to find and install the module with one command string. Remember that modern instances of PowerShell will auto-import a module installed the first time we run a cmdlet or function from it, so there is no need to import the module after installing it. This differs from custom modules or modules we bring onto the host (from GitHub, for example). We will have to manually import it each time we want to use it unless we modify our PowerShell Profile. We can find the locations for each specific PowerShell profile [Here](https://docs.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_profiles?view=powershell-7.2).
+
+Besides creating our own modules and scripts or importing them from the PowerShell Gallery, we can also take advantage of Github and all the amazing content the IT community has come up with externally. Utilizing Git and Github for now requires the installation of other applications and knowledge of other concepts we have yet to cover, so we will save this for later in the module.
+
+## Tools To Be Aware Of
+
+Below we will quickly list a few PowerShell modules and projects we, as penetration testers and sysadmins, should be aware of. Each of these tools brings a new capability to use within PowerShell. Of course, there are plenty more than just our list; these are just several we find ourselves returning to on every engagement.
+
+- **AdminToolbox**: AdminToolbox is a collection of helpful modules that allow system administrators to perform any number of actions dealing with things like Active Directory, Exchange, Network management, file and storage issues, and more.
+
+- **ActiveDirectory**: This module is a collection of local and remote administration tools for all things Active Directory. We can manage users, groups, permissions, and much more with it.
+
+- **Empire / Situational Awareness**: Is a collection of PowerShell modules and scripts that can provide us with situational awareness on a host and the domain they are apart of. This project is being maintained by BC Security as a part of their Empire Framework.
+
+- **Inveigh**: Inveigh is a tool built to perform network spoofing and Man-in-the-middle attacks.
+
+- **BloodHound / SharpHound**: Bloodhound/Sharphound allows us to visually map out an Active Directory Environment using graphical analysis tools and data collectors written in C# and PowerShell.
+
+Working with PowerShell modules and cmdlets is intuitive and easy to master quickly. This skill will come in handy for the rest of this module since we will be dealing with various tools and topics within PowerShell that may require us to install, import, or examine modules and cmdlets. If you get stuck, be sure to refer back to this section. Now it is time to move on to User and Group management.
+
+```
+
 ```
