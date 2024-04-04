@@ -487,8 +487,6 @@ PS C:\Windows\system32> Set-Alias -Name gh -Value Get-Help
 
 When using `Set-Alias`, we need to specify the name of the alias (`-Name gh`) and the corresponding cmdlet (`-Value Get-Help`).
 
-![Set Alias](set-alias.png)
-
 Below we also include a list of several aliases we find to be most helpful. Some commands have more than one alias as well. Be sure to look at the complete list for other aliases you may find helpful.
 
 #### Helpful Aliases
