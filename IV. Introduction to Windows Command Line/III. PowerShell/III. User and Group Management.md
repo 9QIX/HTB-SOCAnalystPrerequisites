@@ -279,11 +279,7 @@ Users have many different attributes ( not all shown here ) and can all be used 
 
 ```powershell
 Get-ADUser -Filter {EmailAddress -like '*greenhorn.corp'}
-```
 
-````
-
-```
 DistinguishedName : CN=TSilver,CN=Users,DC=greenhorn,DC=corp
 Enabled           : True
 GivenName         :
@@ -304,17 +300,13 @@ We need to create a new user for an employee named Mori Tanaka who just joined G
 
 ```powershell
 New-ADUser -Name "MTanaka" -Surname "Tanaka" -GivenName "Mori" -Office "Security" -OtherAttributes @{'title'="Sensei";'mail'="MTanaka@greenhorn.corp"} -Accountpassword (Read-Host -AsSecureString "AccountPassword") -Enabled $true
-```
 
-```
 AccountPassword: ****************
 ```
 
 ```powershell
 Get-ADUser -Identity MTanaka -Properties * | Format-Table Name,Enabled,GivenName,Surname,Title,Office,Mail
-```
 
-```
 Name    Enabled GivenName Surname Title  Office   Mail
 ----    ------- --------- ------- -----  ------   ----
 MTanaka    True Mori      Tanaka  Sensei Security MTanaka@greenhorn.corp
@@ -343,9 +335,7 @@ Seeing the commands broken down like this helps demystify the strings. Now, what
 Set-ADUser -Identity MTanaka -Description " Sensei to Security Analyst's Rocky, Colt, and Tum-Tum"
 
 Get-ADUser -Identity MTanaka -Property Description
-```
 
-```
 Description       :  Sensei to Security Analyst's Rocky, Colt, and Tum-Tum
 DistinguishedName : CN=MTanaka,CN=Users,DC=greenhorn,DC=corp
 Enabled           : True
@@ -368,6 +358,3 @@ Users and groups provide a wealth of opportunities regarding Pentesting a Window
 ## Moving On
 
 Now that we have the User and Group management down let's move on to working with files, folders, and other objects with PowerShell.
-
-
-````
