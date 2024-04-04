@@ -65,7 +65,7 @@ One of the first things we may examine when accessing PowerShell on a local or r
 
 ### PowerShell Prompt
 
-```
+```powershell
 PS C:\Users\htb-student> ipconfig
 
 Ethernet adapter VMware Network Adapter VMnet8:
