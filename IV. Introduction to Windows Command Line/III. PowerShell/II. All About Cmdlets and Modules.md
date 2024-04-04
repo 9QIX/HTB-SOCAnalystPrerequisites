@@ -190,9 +190,7 @@ The host's execution policy makes it so that we cannot run our script. We can ge
 
 ```powershell
 Get-ExecutionPolicy
-```
 
-```
 Restricted
 ```
 
@@ -208,9 +206,7 @@ By setting the policy to undefined, we are telling PowerShell that we do not wis
 Import-Module .\PowerSploit.psd1
 
 Get-Module
-```
 
-```
 ModuleType Version    Name                                ExportedCommands
 ---------- -------    ----                                ----------------
 Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Check...
@@ -227,9 +223,7 @@ Note: As a sysadmin, these kinds of changes are common and should always be reve
 ```powershell
 Set-ExecutionPolicy -scope Process
 Get-ExecutionPolicy -list
-```
 
-```
 Scope ExecutionPolicy
         ----- ---------------
 MachinePolicy       Undefined
@@ -247,9 +241,7 @@ If we wish to see what aliases, cmdlets, and functions an imported module brough
 
 ```powershell
 Get-Command -Module PowerSploit
-```
 
-```
 CommandType     Name                                               Version    Source
 -----------     ----                                               -------    ------
 Alias           Invoke-ProcessHunter                               3.0.0.0    PowerSploit
