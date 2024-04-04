@@ -43,19 +43,13 @@ We can access PowerShell directly on a host through the peripherals attached to 
 
 We can type PowerShell in Windows Search to find and launch the PowerShell application and command console.
 
-![Searching for PowerShell](search-powershell.png)
-
 ### Using the Windows Terminal Application
 
 Windows Terminal is a newer terminal emulator application developed by Microsoft to give anyone using the Windows command line a way to access multiple different command line interfaces, systems, and sub-systems through a single app. This application will likely become the default terminal emulator on Windows operating systems.
 
-![PowerShell in Windows Terminal](powershell-windows-terminal.png)
-
 ### Using Windows PowerShell ISE
 
 The Windows PowerShell Integrated Scripting Environment (ISE) is like an IDE for PowerShell. It can make it easier to develop, debug and test the PowerShell scripts we create. Using PowerShell ISE can be incredibly useful when learning PowerShell.
-
-![PowerShell ISE](powershell-ise.png)
 
 ### Using PowerShell in CMD
 
