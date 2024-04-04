@@ -63,9 +63,7 @@ Once we decide what PowerShell module we want to use, we will have to determine 
 
 ```powershell
 Get-Module
-```
 
-```
 ModuleType Version    Name                                ExportedCommands
 ---------- -------    ----                                ----------------
 Script     0.0        chocolateyProfile                   {TabExpansion, Update-SessionEnvironment, refreshenv}
@@ -77,9 +75,7 @@ Script     2.0.0      PSReadline                          {Get-PSReadLineKeyHand
 
 ```powershell
 Get-Module -ListAvailable
-```
 
-```
 Directory: C:\Users\tru7h\Documents\WindowsPowerShell\Modules
 
 
@@ -140,9 +136,7 @@ To understand the idea of importing the module into our current PowerShell sessi
 ```powershell
 Import-Module .\PowerSploit.psd1
 Get-NetLocalgroup
-```
 
-```
 ComputerName GroupName                           Comment
 ------------ ---------                           -------
 WS01         Access Control Assistance Operators Members of this group can remotely query authorization attributes a...
@@ -169,9 +163,7 @@ Notice how at the beginning of the clip, `Get-NetLocalgroup` was not recognized.
 
 ```powershell
 $env:PSModulePath
-```
 
-```
 C:\Users\htb-student\Documents\WindowsPowerShell\Modules;C:\Program Files\WindowsPowerShell\Modules;C:\Windows\system32\WindowsPowerShell\v1.0\Modules
 ```
 
@@ -183,9 +175,7 @@ An essential factor to consider when attempting to use PowerShell scripts and mo
 
 ```powershell
 Import-Module .\PowerSploit.psd1
-```
 
-```
 Import-Module : File C:\Users\Users\htb-student\PowerSploit.psm1
 cannot be loaded because running scripts is disabled on this system. For more information, see
 about_Execution_Policies at https:/go.microsoft.com/fwlink/?LinkID=135170.
