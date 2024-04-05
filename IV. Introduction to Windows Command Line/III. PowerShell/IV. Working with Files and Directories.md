@@ -218,7 +218,7 @@ We can quickly knock this task out using the Rename-Item cmdlet. Lets' give it a
 
 #### Renaming An Object
 
-```
+```powershell
 Working with Files and Directories
 PS C:\Users\MTanaka\Documents\SOPs\Cyber Sec> ls
 
@@ -242,7 +242,7 @@ All we needed to do above was issue the Rename-Item cmdlet, give it the original
 
 Files1-5.txt are on MTanaka's Desktop
 
-```
+```powershell
 Working with Files and Directories
 PS C:\Users\MTanaka\Desktop> ls
 
