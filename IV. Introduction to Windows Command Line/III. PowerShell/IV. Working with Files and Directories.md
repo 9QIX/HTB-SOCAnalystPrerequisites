@@ -132,7 +132,7 @@ We should be able to quickly knock this out using the New-Item cmdlet and the Ad
 
 #### Making Files
 
-```
+```powershell
 Working with Files and Directories
 PS C:\htb> PS C:\Users\MTanaka\Documents\SOPs> new-Item "Readme.md" -ItemType File
 
@@ -196,7 +196,7 @@ Now that we have our files, we need to add content inside them. We can do so wit
 
 #### Adding Content
 
-```
+```powershell
 Working with Files and Directories
 PS C:\htb> Add-Content .\Readme.md "Title: Insert Document Title Here
 >> Date: x/x/202x
