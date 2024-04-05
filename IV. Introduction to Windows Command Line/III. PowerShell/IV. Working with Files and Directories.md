@@ -36,7 +36,7 @@ We will use the Get-Item, Get-ChildItem, and New-Item commands to create our fol
 
 #### Finding Our Place
 
-```
+```powershell
 Working with Files and Directories
 PS C:\htb> Get-Location
 
@@ -52,7 +52,7 @@ Now that we are in the correct directory, it's time to get to work. Next, we nee
 
 #### New-Item
 
-```
+```powershell
 Working with Files and Directories
 PS C:\Users\MTanaka\Documents>  new-item -name "SOPs" -type directory
 
