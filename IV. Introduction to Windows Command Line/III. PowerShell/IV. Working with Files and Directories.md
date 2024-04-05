@@ -69,7 +69,7 @@ Awesome. Our main directory exists now. Let us create our nested folders Physica
 
 #### Making More Directories
 
-```
+```powershell
 Working with Files and Directories
 PS C:\Users\MTanaka\Documents> cd SOPs
 
@@ -121,7 +121,7 @@ Now that we have our directory structure in place. It's time to start populating
 
 In each file, he has requested this header at the top:
 
-```
+```powershell
 Title: Insert Document Title Here
 Date: x/x/202x
 Author: MTanaka
