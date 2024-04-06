@@ -301,7 +301,7 @@ As a result, the pipeline output the total count (113) of unique processes runni
 
 _Currently, Windows PowerShell 5.1 and older do not support Pipeline Chain Operators used in this fashion. If you see errors, you must install PowerShell 7 alongside Windows PowerShell. They are not the same thing._
 
-You can find a great example of [installing PowerShell 7 here](https://docs.microsoft.com/enContinuing the document:
+You can find a great example of [installing PowerShell 7 here](https://docs.microsoft.com/enContinuing) the document:
 
 ## Pipeline Chain Operators (`&&` and `||`)
 
