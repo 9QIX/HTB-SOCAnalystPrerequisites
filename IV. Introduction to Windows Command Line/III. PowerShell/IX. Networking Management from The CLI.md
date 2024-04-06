@@ -496,4 +496,82 @@ As long as credentials to access the system are known, anyone who can reach the 
 
 #### Testing PowerShell Remote Access
 
-Once we have enabled and configured WinRM,
+Once we have enabled and configured WinRM, we can test remote access using the `Test-WSMan` PowerShell cmdlet.
+
+##### Testing Unauthenticated Access
+
+```powershell
+PS C:\Users\administrator> Test-WSMan -ComputerName "10.129.224.248"
+
+wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
+ProtocolVersion : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
+ProductVendor   : Microsoft Corporation
+ProductVersion  : OS: 0.0.0 SP: 0.0 Stack: 3.0
+```
+
+Running this cmdlet sends a request that checks if the WinRM service is running. Keep in mind that this is unauthenticated, so no credentials are used, which is why no OS version is detected. This shows us that the WinRM service is running on the target.
+
+##### Testing Authenticated Access
+
+```powershell
+PS C:\Users\administrator> Test-WSMan -ComputerName "10.129.224.248" -Authentication Negotiate
+
+
+wsmid           : http://schemas.dmtf.org/wbem/wsman/identity/1/wsmanidentity.xsd
+ProtocolVersion : http://schemas.dmtf.org/wbem/wsman/1/wsman.xsd
+ProductVendor   : Microsoft Corporation
+ProductVersion  : OS: 10.0.17763 SP: 0.0 Stack: 3.0
+```
+
+We can run the same command with the option `-Authentication Negotiate` to test if WinRM is authenticated, and we will receive the OS version (10.0.11764).
+
+#### PowerShell Remote Sessions
+
+We also have the option to use the `Enter-PSSession` cmdlet to establish a PowerShell session with a Windows target.
+
+##### Establishing a PowerShell Session
+
+```powershell
+PS C:\Users\administrator> Enter-PSSession -ComputerName 10.129.224.248 -Credential htb-student -Authentication Negotiate
+[10.129.5.129]: PS C:\Users\htb-student\Documents> $PSVersionTable
+
+Name                           Value
+----                           -----
+PSVersion                      5.1.17763.592
+PSEdition                      Desktop
+PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
+BuildVersion                   10.0.17763.592
+CLRVersion                     4.0.30319.42000
+WSManStackVersion              3.0
+PSRemotingProtocolVersion      2.3
+SerializationVersion           1.1.0.1
+```
+
+We can perform this same action from a Linux-based attack host with PowerShell core installed (like in Pwnbox). Remember that PowerShell is not exclusive to Windows and will run on other operating systems now.
+
+##### Using Enter-PSSession from Linux
+
+```bash
+[!bash!]$ [PS]> Enter-PSSession -ComputerName 10.129.224.248 -Credential htb-student -Authentication Negotiate
+
+PowerShell credential request
+Enter your credentials.
+Password for user htb-student: ***************
+
+[10.129.224.248]: PS C:\Users\htb-student\Documents> $PSVersionTable
+
+Name                           Value
+----                           -----
+PSVersion                      5.1.19041.1
+PSEdition                      Desktop
+PSCompatibleVersions           {1.0, 2.0, 3.0, 4.0...}
+BuildVersion                   10.0.19041.1
+CLRVersion                     4.0.30319.42000
+WSManStackVersion              3.0
+PSRemotingProtocolVersion      2.3
+SerializationVersion           1.1.0.1
+```
+
+Along with being OS agnostic, there are now tons of different tools that we can use to interact remotely with hosts. Picking a means to remotely administer our hosts mostly comes down to what you are comfortable with and what you can use based on the engagement or your environment security settings.
+
+Networking is a pretty straightforward task to manage on Windows hosts. As your environments get more complex with cloud servers, multiple domains, and multiple sites across large geographical distances, network management at the level can get tedious. Luckily, we are only focused on our local host and how to manage a singular host. Moving forward, we will look at how we can interact with the web using PowerShell.
