@@ -190,10 +190,38 @@ PS C:\htb> New-Item -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnc
 Name                           Property
 ----                           --------
 TestKey
+```
 
+```powershell
 # Set New Registry Item Property
 PS C:\htb>  New-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\TestKey -Name  "access" -PropertyType String -Value "C:\Users\htb-student\Downloads\payload.exe"
 
 access       : C:\Users\htb-student\Downloads\payload.exe
-PSPath       : Microsoft.PowerShell.Core\Registry
+PSPath       : Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\
+               TestKey
+PSParentPath : Microsoft.PowerShell.Core\Registry::HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce
+PSChildName  : TestKey
+PSDrive      : HKCU
+PSProvider   : Microsoft.PowerShell.Core\Registry
 ```
+
+If we wanted to add the same key/value pair using `Reg.exe`, we would do so like this:
+
+```powershell
+reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\RunOnce\TestKey" /v access /t REG_SZ /d "C:\Users\htb-student\Downloads\payload.exe"
+```
+
+Now in a real pentest, we would have left an executable payload on the host, and in the instance that the host reboots or the user logs in, we would acquire a new shell to our C2. This value doesn't do much for us right now, so let's practice deleting it.
+
+```powershell
+# Delete Reg properties
+PS C:\htb> Remove-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\TestKey -Name  "access"
+
+PS C:\htb> Get-ItemProperty -Path HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\RunOnce\TestKey
+```
+
+If no error window popped up, our key/value pair was deleted successfully. However, this is one of those things you should be extremely careful with. Removing entries from the Windows Registry could negatively affect the host and how it functions. Be sure you know what it is you are removing before. In the wise words of Uncle Ben, "With great power comes great responsibility."
+
+## Onwards
+
+Now that we have Registry management down, it's time to move on to handling Event Logs through PowerShell.
