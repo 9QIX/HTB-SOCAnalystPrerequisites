@@ -308,4 +308,33 @@ An account was successfully logged on.
 PS C:\htb> Get-WinEvent -FilterHashTable @{LogName='Security';ID='4625 '}
 
    ProviderName: Microsoft-Windows
+
+PS C:\htb> Get-WinEvent -FilterHashTable @{LogName='Security';ID='4625 '}
+
+   ProviderName: Microsoft-Windows-Security-Auditing
+
+TimeCreated                      Id LevelDisplayName Message
+-----------                      -- ---------------- -------
+11/16/2022 2:53:16 PM          4625 Information      An account failed to log on....
+11/16/2022 2:53:16 PM          4625 Information      An account failed to log on....
+11/16/2022 2:53:12 PM          4625 Information      An account failed to log on....
+11/16/2022 2:50:36 PM          4625 Information      An account failed to log on....
+11/16/2022 2:50:29 PM          4625 Information      An account failed to log on....
+11/16/2022 2:50:21 PM          4625 Information      An account failed to log on....
 ```
+
+### Filtering for Critical System Logs
+
+```powershell
+PS C:\htb> Get-WinEvent -FilterHashTable @{LogName='System';Level='1'} | select-object -ExpandProperty Message
+
+The system has rebooted without cleanly shutting down first. This error could be caused if the system stopped responding, crashed, or lost power unexpectedly.
+```
+
+Practice more with `wevtutil` and `Get-WinEvent` to become more comfortable with searching logs. Microsoft provides some examples for `Get-WinEvent`, while this site shows examples for `wevtutil`, and this site has some additional examples for using `Get-WinEvent`.
+
+## Moving On
+
+This section introduced the Windows Event Log, a vast topic that we will dig much deeper into in later modules. Try out the various examples in this section and get comfortable using both tools to query for specific information. In later modules, we will see how we can sometimes find sensitive data, such as passwords, in Event Logs. Logging on Windows is very powerful when configured properly. Each system generates a massive amount of logs, and, as we saw with all the possible Event IDs, we can get quite granular with what exactly we choose to log. All of this data on its own would be very difficult to constantly query and is most effective when forwarded to a SIEM tool that can be used to set up alerts on specific Event IDs which may be indicative of an attack, such as Kerberoasting, Password Spraying, or other less common attacks. As penetration testers, we should be familiar with Windows Event Log, how we can use it to gain information about the environment, and sometimes even extract sensitive data. For blue teamers, in-depth knowledge of Windows Event Log and how to leverage it for effective alerting and monitoring is critical.
+
+In the next section, we will cover working with networking operations from the command line on a Windows system.
