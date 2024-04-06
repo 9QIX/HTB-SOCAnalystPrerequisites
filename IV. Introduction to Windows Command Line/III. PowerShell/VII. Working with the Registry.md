@@ -45,7 +45,8 @@ For a detailed list of all Registry Hives and their supporting files within the 
 
 Values represent data in the form of objects that pertain to that specific Key. These values consist of a name, a type specification, and the required data to identify what it's for. The image below visually represents Values as the data between the Orange lines. Those values are nested within the Installer key, which is, in turn, inside another key.
 
-![Values](https://i.imgur.com/ER2O4Mu.png)
+**Values**
+![alt text](/Images/image-43.png)
 
 We can reference the complete list of Registry Key Values [HERE](https://docs.microsoft.com/en-us/windows/win32/sysinfo/registry-value-types). In all, there are 11 different value types that can be configured.
 
