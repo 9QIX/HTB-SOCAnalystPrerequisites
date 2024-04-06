@@ -267,10 +267,188 @@ It's as simple as that. Nothing too crazy with comments. Now we need to include 
 
 PowerShell utilizes a form of Comment-based help to embed whatever you need for the script or module. We can utilize comment blocks like those we discussed above, along with recognized keywords to build the help section out and even call it using `Get-Help` afterward. When it comes to placement, we have two options here. We can place the help within the function itself or outside of the function in the script. If we wish to place it within the function, it must be at the beginning of the function, right after the opening line for the function, or at the end of the function, one line after the last action of the function. If we place it within the script but outside of the function itself, we must place it above our function with no more than one line between the help and function. For a deeper dive into help within PowerShell, check out [this article](https://example.com). Now let's define our help section. We will place it outside of the function at the top of the script for now.
 
+````powershell
+Import-Module ActiveDirectory
+
+<#
+.Description
+This function performs some simple recon tasks for the user. We import the module and issue the 'Get-Recon' command to retrieve our output. Each variable and line within the function and script are commented for our understanding. Right now, this module Continuing the PowerShell script with the module help section:
+
 ```powershell
 Import-Module ActiveDirectory
 
 <#
 .Description
-This function performs some simple recon tasks for the user. We import the module and issue the 'Get-Recon' command to retrieve our output. Each variable and line within the function and script are commented for our understanding. Right now, this module
+This function performs some simple recon tasks for the user. We import the module and issue the 'Get-Recon' command to retrieve our output. Each variable and line within the function and script are commented for our understanding. Right now, this module will only work on the local host from which you run it, and the output will be sent to a file named 'recon.txt' on the Desktop of the user who opened the shell. Remote Recon functions are coming soon!
+
+.Example
+After importing the module run "Get-Recon"
+'Get-Recon
+
+
+    Directory: C:\Users\MTanaka\Desktop
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         11/3/2022  12:46 PM              0 recon.txt '
+
+.Notes
+Remote Recon functions coming soon! This script serves as our initial introduction to writing functions and scripts and making PowerShell modules.
+
+#>
+
+function Get-Recon {
+<SNIP>
+````
+
+Notice our use of keywords. To specify a keyword within the comment block, we use the syntax `.keyword` and then place the flavor text underneath. We only specified `Description`, `Example`, and `Notes`, but several more keywords can be placed in the help block. To see all the available keywords, reference [this article on Comment Based Help Keywords](https://example.com). Our last portion to discuss before wrapping everything up into our nice PowerShell Module file, is Exporting and Protecting functions.
+
+### Protecting Functions
+
+We may add functions to our scripts that we do not want to be accessed, exported, or utilized by other scripts or processes within PowerShell. To protect a function from being exported or to explicitly set it for export, the `Export-ModuleMember` is the cmdlet for the job. The contents are exportable if we leave this out of our script modules. If we place it in the file but leave it blank like so:
+
+```powershell
+Export-ModuleMember
 ```
+
+It ensures that the module's variables, aliases, and functions cannot be exported. If we wish to specify what to export, we can add them to the command string like so:
+
+```powershell
+Export-ModuleMember -Function Get-Recon -Variable Hostname
+```
+
+Alternatively, if you only wanted to export all functions and a specific variable, for example, you could issue the `*` after `-Function` and then specify the Variables to export explicitly. So let's add the `Export-ModuleMember` cmdlet to our script and specify that we want to allow our function `Get-Recon` and our variable `Hostname` to be available for export.
+
+```powershell
+<SNIP>
+function Get-Recon {
+    # Collect the hostname of our PC
+    $Hostname = $env:ComputerName
+    # Collect the IP configuration
+    $IP = ipconfig
+    # Collect basic domain information
+    $Domain = Get-ADDomain
+    # Output the users who have logged in and built out a basic directory structure in "C:\Users"
+    $Users = Get-ChildItem C:\Users\
+    # Create a new file to place our recon results in
+    new-Item ~\Desktop\recon.txt -ItemType File
+    # A variable to hold the results of our other variables
+    $Vars = "***---Hostname info---***", $Hostname, "***---Domain Info---***", $Domain, "***---IP INFO---***",  $IP, "***---USERS---***", $Users
+    # It does the thing
+    Add-Content ~\Desktop\recon.txt $Vars
+  }
+
+Export-ModuleMember -Function Get-Recon -Variable Hostname
+```
+
+### Scope
+
+When dealing with scripts, the PowerShell session, and how stuff is recognized at the Commandline, the concept of Scope comes into play. Scope, in essence, is how PowerShell recognizes and protects objects within the session from unauthorized access or modification. PowerShell currently uses three different Scope levels:
+
+| Scope  | Description                                                                                                                                                                                                                                                       |
+| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Global | This is the default scope level for PowerShell. It affects all objects that exist when PowerShell starts, or a new session is opened. Any variables, aliases, functions, and anything you specify in your PowerShell profile will be created in the Global scope. |
+| Local  | This is the current scope you are operating in. This could be any of the default scopes or child scopes that are made.                                                                                                                                            |
+| Script | This is a temporary scope that applies to any scripts being run. It only applies to the script and its contents. Other scripts and anything outside of it will not know it exists. To the script, Its scope is the local scope.                                   |
+
+This matters to us if we do not want anything outside the scope we are running the script in to access its contents. Additionally, we can have child scopes created within the main scopes. For example, when you run a script, the script scope is instantiated, and then any function that is called can also spawn a child scope surrounding that function and its included variables. If we wanted to ensure that the contents of that specific function were not accessible to the rest of the script or the PowerShell session itself, we could modify its scope. This is a complex topic and something above the level of this module currently, but we felt it was worth mentioning. For more on Scope in PowerShell, check out the [documentation here](https://example.com).
+
+## Putting It All Together
+
+Now that we have gone through and created our pieces and parts let's see it all together.
+
+```powershell
+import-module ActiveDirectory
+
+<#
+.Description
+This function performs some simple recon tasks for the user. We import the module and then issue the 'Get-Recon' command to retrieve our output. Each variable and line within the function and script are commented for your understanding. Right now, this only works on the local host from which you run it, and the output will be sent to a file named 'recon.txt' on the Desktop of the user who opened the shell. Remote Recon functions coming soon!
+
+.Example
+After importing the module run "Get-Recon"
+'Get-Recon
+
+
+    Directory: C:\Users\MTanaka\Desktop
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----         11/3/2022  12:46 PM              0 recon.txt '
+
+.Notes
+Remote Recon functions coming soon! This script serves as our initial introduction to writing functions and scripts and making PowerShell modules.
+
+#>
+function Get-Recon {
+    # Collect the hostname of our PC
+    $Hostname = $env:ComputerName
+    # Collect the IP configuration
+    $IP = ipconfig
+    # Collect basic domain information
+    $Domain = Get-ADDomain
+    # Output the users who have logged in and built out a basic directory structure in "C:\Users"
+    $Users = Get-ChildItem C:\Users\
+    # Create a new file to place our recon results in
+    new-Item ~\Desktop\recon.txt -ItemType File
+    # A variable to hold the results of our other variables
+    $Vars = "***---Hostname info---***", $Hostname, "***---Domain Info---***", $Domain, "***---IP INFO---***",  $IP, "***---USERS---***", $Users
+    # It does the thing
+    Add-Content ~\Desktop\recon.txt $Vars
+  }
+
+Export-ModuleMember -Function Get-Recon -Variable Hostname
+```
+
+And there we have it, our full module file. Our use of Comment-based help, functions, variables and content protection makes for a dynamic and clear-to-read script. From here we can save this file in our Module directory we created and import it from within PowerShell for use.
+
+### Importing the Module For Use
+
+```powershell
+Import-Module 'C:\Users\MTanaka\Documents\WindowsPowerShell\Modules\quick-recon.psm1`
+
+PS C:\Users\MTanaka\Documents\WindowsPowerShell\Modules\quick-recon> get-module
+
+ModuleType Version    Name                                ExportedCommands
+---------- -------    ----                                ----------------
+Manifest   3.1.0.0    Microsoft.PowerShell.Management     {Add-Computer, Add-Content, Checkpoint-Computer, Clear-Con...
+Script     2.0.0      PSReadline                          {Get-PSReadLineKeyHandler, Get-PSReadLineOption, Remove-PS...
+Script     0.0        quick-recon                         Get-Recon
+```
+
+Perfect. We can see that our module was imported using the `Import-Module` cmdlet, and to ensure it was loaded into our session, we ran the `Get-Module` cmdlet. It has shown us that our module `quick-recon` was imported and has the command `Get-Recon` that could be exported. We can also test the Comment-based help by trying to run `Get-Help` against our module.
+
+### Help Validation
+
+```powershell
+get-help get-recon
+
+NAME
+    Get-Recon
+
+SYNOPSIS
+
+
+SYNTAX
+    Get-Recon [<CommonParameters>]
+
+
+DESCRIPTION
+    This function performs some simple recon tasks for the user. We simply import the module and then issue the
+    'Get-Recon' command to retrieve our output. Each variable and line within the function and script are commented for
+    your understanding. Right now, this only works on the local host from which you run it, and the output will be sent
+    to a file named 'recon.txt' on the Desktop of the user who opened the shell. Remote Recon functions coming soon!
+
+
+RELATED LINKS
+
+REMARKS
+    To see the examples, type: "get-help Get-Recon -examples."
+    For more information, type: "get-help Get-Recon -detailed."
+    For technical information, type: "get-help Get-Recon -full."
+```
+
+Our help works as well. So we now have a fully functioning module for our use. We can use this as a basis for anything we build further and could even modify this one to encompass more reconnaissance functions in the future.
+
+This was a simple example of what can be done from an automation perspective with PowerShell, but a great way to see it built and in use. We can use module building and scripting to our advantage and simplify our processes as we go. Saving time ultimately enables us to do more as operators and spend time on other tasks that need our attention. If you would like a copy of the `quick-recon` module for your use, there is a copy saved in the Resources of this module at the top right corner of any section page.
