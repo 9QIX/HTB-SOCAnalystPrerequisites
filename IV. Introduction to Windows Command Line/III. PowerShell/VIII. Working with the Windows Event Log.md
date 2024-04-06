@@ -74,6 +74,27 @@ The Windows Event Log provides information about hardware and software events on
 
 The Windows Event Log is handled by the EventLog services. On a Windows system, the service's display name is "Windows Event Log", and it runs inside the service host process `svchost.exe`. It is set to start automatically at system boot by default. It is difficult to stop the EventLog service as it has multiple dependency services. If it is stopped, it will likely cause significant system instability. By default, Windows Event Logs are stored in `C:\Windows\System32\winevt\logs` with the file extension `.evtx`.
 
+```powershell
+PS C:\htb> ls C:\Windows\System32\winevt\logs
+
+    Directory: C:\Windows\System32\winevt\logs
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+-a----        11/16/2022   2:19 PM        7409664 Application.evtx
+-a----         6/14/2022   8:20 PM          69632 HardwareEvents.evtx
+-a----         6/14/2022   8:20 PM          69632 Internet Explorer.evtx
+-a----         6/14/2022   8:20 PM          69632 Key Management Service.evtx
+-a----         8/23/2022   7:01 PM          69632 Microsoft-Client-License-Flexible-P
+                                                  latform%4Admin.evtx
+-a----        11/16/2022   2:19 PM        1052672 Microsoft-Client-Licensing-Platform
+                                                  %4Admin.evtx
+
+
+<SNIP>
+```
+
 ## Working with the Windows Event Log
 
 We can interact with the Windows Event log using the Windows Event Viewer GUI application, the command line utility `wevtutil`, or using the `Get-WinEvent` PowerShell cmdlet. Both `wevtutil` and `Get-WinEvent` can be used to query Event Logs on both local and remote Windows systems via `cmd.exe` or PowerShell.
