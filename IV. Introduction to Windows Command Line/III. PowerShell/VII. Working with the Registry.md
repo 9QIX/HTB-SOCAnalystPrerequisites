@@ -8,7 +8,8 @@ At its core, the Registry can be considered a hierarchal tree that contains two 
 
 Keys, in essence, are containers that represent a specific component of the PC. Keys can contain other keys and values as data. These entries can take many forms, and naming contexts only require that a Key be named using alphanumeric (printable) characters and is not case-sensitive. As a visual example of Keys, if we look at the image below, each folder within the Green rectangle is a Key and contains sub-keys.
 
-![Keys (Green)](https://i.imgur.com/9V37PzD.png)
+**Keys (Green)**
+![alt text](/Images/image-42.png)
 
 ## Registry Key Files
 
