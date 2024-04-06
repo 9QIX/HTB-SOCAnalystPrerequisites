@@ -248,4 +248,18 @@ Mode                 LastWriteTime         Length Name
 
 So it worked. Let's break down what we did:
 
-1. First we have the Download cradle `(New-Object Net.WebClient).DownloadFile()`, which is how we tell it to
+Continuing the explanation of the `Net.WebClient` download example:
+
+So it worked. Let's break down what we did:
+
+1. First we have the Download cradle `(New-Object Net.WebClient).DownloadFile()`, which is how we tell it to execute our request.
+2. Next, we need to include the URI of the file we want to download as the first parameter in the `()`. For this example, that was `"https://github.com/BloodHoundAD/BloodHound/releases/download/4.2.0/BloodHound-win32-x64.zip"`.
+3. Finally, we need to tell the command where we want the file written to with the second parameter, `"Bloodhound.zip"`.
+
+The command above would have downloaded the file to the current directory we are working from as `Bloodhound.zip`. Looking at our terminal, we can see that it executed successfully because the file `Bloodhound.zip` now exists in our working directory. If we wanted to place it somewhere else, we would have to specify the full path.
+
+From here, we can extract the tools and run them as we see fit. Keep in mind this is noisy because you will have web requests entering and leaving your network along with file reads and writes, so it WILL leave logs. If your transfers are done locally, only host to host, for example, you only leave logs on those hosts, which are a bit harder to sift through and leave less of a trace since we aren't writing ingress/egress logs at the customer boundary.
+
+## Wrapping Up
+
+This section has only scratched the surface of what we could do with PowerShell when interacting with the web. Be sure to take some time and practice the different types of requests you can send and even the many different ways you can filter and use the information you get. From this point, we will move on and talk about automation with PowerShell and how it can benefit us.
