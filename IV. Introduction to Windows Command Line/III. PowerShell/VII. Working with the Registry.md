@@ -207,6 +207,8 @@ PSDrive      : HKCU
 PSProvider   : Microsoft.PowerShell.Core\Registry
 ```
 
+![alt text](/Images/image-44.png)
+
 If we wanted to add the same key/value pair using `Reg.exe`, we would do so like this:
 
 ```powershell
