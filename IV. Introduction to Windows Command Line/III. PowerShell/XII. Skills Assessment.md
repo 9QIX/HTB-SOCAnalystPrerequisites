@@ -23,3 +23,11 @@ If you wish, play around and see if you can find multiple ways to achieve the sa
 6. How many users exist on this host? (Excluding the DefaultAccount and WDAGUtility)
 
 7. For this level, you need to find the Registered Owner of the host. The Owner name is the flag.
+
+8. For this level, you must successfully authenticate to the Domain Controller host at 172.16.5.155 via SSH after first authenticating to the target host. This host seems to have several PowerShell modules loaded, and this user's flag is hidden in one of them.
+
+9. This flag is the GivenName of a domain user with the Surname "Flag".
+
+10. Use the tasklist command to print running processes and then sort them in reverse order by name. The name of the process that begins with "vm" is the flag for this user.
+
+11. What user account on the Domain Controller has many Event ID (4625) logon failures generated in rapid succession, which is indicative of a password brute forcing attack? The flag is the name of the user account.
