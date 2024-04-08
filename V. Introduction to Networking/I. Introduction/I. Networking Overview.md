@@ -29,3 +29,28 @@ Most networks use a /24 subnet, so much so that many Penetration Testers will se
 - Pentester IP: 10.20.0.252/24 (Set Gateway to 10.20.0.1)
 
 The Pentester communicated with the Client Workstations and thought they did an excellent job because they managed to steal a workstation password via Impacket. However, due to a failure to understand the network, they never managed to get off the Client Network and reach more "high value" targets such as database servers. Hopefully, if this sounds confusing to you, you can come back to this statement at the end of the module and understand it!
+
+## Basic Information
+
+Let us look at the following high-level diagram of how a Work From Home setup may work.
+
+![image](https://user-images.githubusercontent.com/72584733/230755548-6794fc9e-ee74-4796-90f4-33f4c7a02aec.png)
+
+The entire internet is based on many subdivided networks, as shown in the example and marked as "Home Network" and "Company Network." We can imagine networking as the delivery of mail or packages sent by one computer and received by the other.
+
+Suppose we imagine as a scenario that we want to visit a company's website from our "Home Network." In that case, we exchange data with the company's website located in their "Company Network." As with sending mail or packets, we know the address where the packets should go. The website address or Uniform Resource Locator (URL) which we enter into our browser is also known as Fully Qualified Domain Name (FQDN).
+
+The difference between URLs and FQDNs is that:
+
+- an FQDN (www.hackthebox.eu) only specifies the address of the "building" and
+- an URL (https://www.hackthebox.eu/example?floor=2&office=dev&employee=17) also specifies the "floor," "office," "mailbox" and the corresponding "employee" for whom the package is intended.
+
+We will discuss the exact representations and definitions more clearly and precisely in other sections.
+
+The fact is that we know the address, but not the exact geographical location of the address. In this situation, the post office can determine the exact location, which then forwards the packets to the desired location. Therefore, our post office forwards our packets to the main post office, representing our Internet Service Provider (ISP).
+
+Our post office is our router which we utilize to connect to the "Internet" in networking.
+
+As soon as we send our packet through our post office (router), the packet is forwarded to the main post office (ISP). This main post office looks in the address register/phonebook (Domain Name Service) where this address is located and returns the corresponding geographical coordinates (IP address). Now that we know the address's exact location, our packet is sent directly there by a direct flight via our main post office.
+
+After the web server has received our packet with the request of what their website looks like, the webserver sends us back the packet with the data for the presentation of the website via the post office (router) of the "Company Network" to the specified return address (our IP address).
