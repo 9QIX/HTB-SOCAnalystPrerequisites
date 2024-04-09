@@ -27,7 +27,7 @@ We can divide the entire network topology area into three areas:
    | Gateways     | Connects dissimilar networks, translates protocols |
    | Firewalls    | Protects network from unauthorized access          |
 
-Network nodes are the transmission medium's connection points to transmitters and receivers of electrical, optical, or radio signals in the medium. A node may be connected to a computer, but certain types may have only one microcontroller on a node or may have no programmable device at all.
+   Network nodes are the transmission medium's connection points to transmitters and receivers of electrical, optical, or radio signals in the medium. A node may be connected to a computer, but certain types may have only one microcontroller on a node or may have no programmable device at all.
 
 3. Classifications
    We can imagine a topology as a virtual form or structure of a network. This form does not necessarily correspond to the actual physical arrangement of the devices in the network. Therefore, these topologies can be either physical or logical. For example, the computers on a LAN may be arranged in a circle in a bedroom, but it is very unlikely to have an actual ring topology.
@@ -53,7 +53,7 @@ The simplest network topology with a dedicated connection between two hosts is t
 
 Point-to-point topologies are the basic model of traditional telephony and must not be confused with P2P (Peer-to-Peer architecture).
 
-![Point-To-Point Topology](https://i.imgur.com/mGtYPtl.png)
+![alt text](/Images/image-46.png)
 
 ## Bus
 
