@@ -110,7 +110,7 @@ There are both logical tree structures according to the spanning tree and physic
 
 Hybrid networks combine two or more topologies so that the resulting network does not present any standard topologies. For example, a tree network can represent a hybrid topology in which star networks are connected via interconnected bus networks. However, a tree network that is linked to another tree network is still topologically a tree network. A hybrid topology is always created when two different basic network topologies are interconnected.
 
-![alt text](image.png)
+![alt text](/Images/image-52.png)
 
 ## Daisy Chain
 
@@ -120,4 +120,4 @@ Since this creates a chain of connections, it is also known as a daisy-chain con
 
 Daisy chaining is based on the physical arrangement of the nodes, in contrast to token procedures, which are structural but can be made independent of the physical layout. The signal is sent to and from a component via its previous nodes to the computer system.
 
-![alt text](image.png)
+![alt text](/Images/image-53.png)
