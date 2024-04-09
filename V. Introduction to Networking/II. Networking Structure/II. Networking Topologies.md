@@ -96,7 +96,7 @@ Each node of a fully meshed topology has the same routing functions and knows th
 
 In the partially meshed structure, the endpoints are connected by only one connection. In this type of network topology, specific nodes are connected to exactly one other node, and some other nodes are connected to two or more other nodes with a point-to-point connection.
 
-![Mesh Topology](https://i.imgur.com/PEQSDy0.png)
+![alt text](image.png)
 
 ## Tree
 
@@ -104,7 +104,7 @@ The tree topology is an extended star topology that more extensive local network
 
 There are both logical tree structures according to the spanning tree and physical ones. Modular modern networks, based on structured cabling with a hub hierarchy, also have a tree structure. Tree topologies are also used for broadband networks and city networks (MAN).
 
-![Tree Topology](https://i.imgur.com/DhXBPqP.png)
+![alt text](image.png)
 
 ## Hybrid
 
