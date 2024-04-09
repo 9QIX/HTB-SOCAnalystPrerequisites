@@ -61,13 +61,13 @@ All hosts are connected via a transmission medium in the bus topology. Every hos
 
 Since the medium is shared with all the others, only one host can send, and all the others can only receive and evaluate the data and see whether it is intended for itself.
 
-![Bus Topology](https://i.imgur.com/20GVl3n.png)
+![alt text](image.png)
 
 ## Star
 
 The star topology is a network component that maintains a connection to all hosts. Each host is connected to the central network component via a separate link. This is usually a router, a hub, or a switch. These handle the forwarding function for the data packets. To do this, the data packets are received and forwarded to the destination. The data traffic on the central network component can be very high since all data and connections go through it.
 
-![Star Topology](https://i.imgur.com/IPdMcj0.png)
+![alt text](image.png)
 
 ## Ring
 
@@ -82,7 +82,7 @@ A logical ring topology is based on a physical star topology, where a distributo
 
 The information is transmitted in a predetermined transmission direction. Typically, the transmission medium is accessed sequentially from station to station using a retrieval system from the central station or a token. A token is a bit pattern that continually passes through a ring network in one direction, which works according to the claim token process.
 
-![Ring Topology](https://i.imgur.com/mtQOTNT.png)
+![alt text](image.png)
 
 ## Mesh
 
