@@ -8,16 +8,12 @@ We can divide the entire network topology area into three areas:
 
 1. Connections
 
-   - Wired connections
-     - Coaxial cabling
-     - Glass fiber cabling
-     - Twisted-pair cabling
-     - and others
-   - Wireless connections
-     - Wi-Fi
-     - Cellular
-     - Satellite
-     - and others
+   | Wired connections    | Wireless connections |
+   | -------------------- | -------------------- |
+   | Coaxial cabling      | Wi-Fi                |
+   | Glass fiber cabling  | Cellular             |
+   | Twisted-pair cabling | Satellite            |
+   | and others           | and others           |
 
 2. Nodes - Network Interface Controller (NICs)
    - Repeaters
