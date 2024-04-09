@@ -34,7 +34,7 @@ The Pentester communicated with the Client Workstations and thought they did an 
 
 Let us look at the following high-level diagram of how a Work From Home setup may work.
 
-![image](https://user-images.githubusercontent.com/72584733/230755548-6794fc9e-ee74-4796-90f4-33f4c7a02aec.png)
+![alt text](image.png)
 
 The entire internet is based on many subdivided networks, as shown in the example and marked as "Home Network" and "Company Network." We can imagine networking as the delivery of mail or packages sent by one computer and received by the other.
 
