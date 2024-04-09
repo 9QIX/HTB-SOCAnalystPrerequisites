@@ -61,13 +61,13 @@ All hosts are connected via a transmission medium in the bus topology. Every hos
 
 Since the medium is shared with all the others, only one host can send, and all the others can only receive and evaluate the data and see whether it is intended for itself.
 
-![alt text](image.png)
+![alt text](/Images/image-47.png)
 
 ## Star
 
 The star topology is a network component that maintains a connection to all hosts. Each host is connected to the central network component via a separate link. This is usually a router, a hub, or a switch. These handle the forwarding function for the data packets. To do this, the data packets are received and forwarded to the destination. The data traffic on the central network component can be very high since all data and connections go through it.
 
-![alt text](image.png)
+![alt text](/Images/image-48.png)
 
 ## Ring
 
