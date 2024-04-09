@@ -16,31 +16,36 @@ We can divide the entire network topology area into three areas:
    | and others           | and others           |
 
 2. Nodes - Network Interface Controller (NICs)
-   - Repeaters
-   - Hubs
-   - Bridges
-   - Switches
-   - Router/Modem
-   - Gateways
-   - Firewalls
+
+   | Equipment    | Function                                           |
+   | ------------ | -------------------------------------------------- |
+   | Repeaters    | Extends network range                              |
+   | Hubs         | Shares network bandwidth                           |
+   | Bridges      | Connects different networks                        |
+   | Switches     | Manages network traffic                            |
+   | Router/Modem | Connects networks, provides internet access        |
+   | Gateways     | Connects dissimilar networks, translates protocols |
+   | Firewalls    | Protects network from unauthorized access          |
 
 Network nodes are the transmission medium's connection points to transmitters and receivers of electrical, optical, or radio signals in the medium. A node may be connected to a computer, but certain types may have only one microcontroller on a node or may have no programmable device at all.
 
 3. Classifications
    We can imagine a topology as a virtual form or structure of a network. This form does not necessarily correspond to the actual physical arrangement of the devices in the network. Therefore, these topologies can be either physical or logical. For example, the computers on a LAN may be arranged in a circle in a bedroom, but it is very unlikely to have an actual ring topology.
 
-Network topologies are divided into the following eight basic types:
+   Network topologies are divided into the following eight basic types:
 
-- Point-to-Point
-- Bus
-- Star
-- Ring
-- Mesh
-- Tree
-- Hybrid
-- Daisy Chain
+   | Topology       | Description                                          |
+   | -------------- | ---------------------------------------------------- |
+   | Point-to-Point | Direct connection between two nodes                  |
+   | Bus            | All nodes share a common communication line          |
+   | Star           | All nodes connect to a central hub or switch         |
+   | Ring           | Nodes are connected in a closed loop                 |
+   | Mesh           | Nodes are interconnected with multiple paths         |
+   | Tree           | Hierarchical structure with a root node and branches |
+   | Hybrid         | Combination of different topologies                  |
+   | Daisy Chain    | Nodes are connected in a linear fashion              |
 
-More complex networks can be built as hybrids of two or more of the basic topologies mentioned above.
+   More complex networks can be built as hybrids of two or more of the basic topologies mentioned above.
 
 ## Point-to-Point
 
