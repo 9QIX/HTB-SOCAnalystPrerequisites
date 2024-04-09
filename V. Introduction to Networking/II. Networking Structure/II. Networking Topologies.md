@@ -82,7 +82,7 @@ A logical ring topology is based on a physical star topology, where a distributo
 
 The information is transmitted in a predetermined transmission direction. Typically, the transmission medium is accessed sequentially from station to station using a retrieval system from the central station or a token. A token is a bit pattern that continually passes through a ring network in one direction, which works according to the claim token process.
 
-![alt text](image.png)
+![alt text](/Images/image-49.png)
 
 ## Mesh
 
@@ -96,7 +96,7 @@ Each node of a fully meshed topology has the same routing functions and knows th
 
 In the partially meshed structure, the endpoints are connected by only one connection. In this type of network topology, specific nodes are connected to exactly one other node, and some other nodes are connected to two or more other nodes with a point-to-point connection.
 
-![alt text](image.png)
+![alt text](/Images/image-50.png)
 
 ## Tree
 
@@ -104,7 +104,7 @@ The tree topology is an extended star topology that more extensive local network
 
 There are both logical tree structures according to the spanning tree and physical ones. Modular modern networks, based on structured cabling with a hub hierarchy, also have a tree structure. Tree topologies are also used for broadband networks and city networks (MAN).
 
-![alt text](image.png)
+![alt text](/Images/image-51.png)
 
 ## Hybrid
 
