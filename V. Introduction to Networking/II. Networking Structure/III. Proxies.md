@@ -41,7 +41,7 @@ Penetration Testers will configure reverse proxies on infected endpoints. The in
 
 Another common Reverse Proxy is ModSecurity, a Web Application Firewall (WAF). Web Application Firewalls inspect web requests for malicious content and block the request if it is malicious. If you want to learn more about this, we recommend reading into the ModSecurity Core Rule Set, as its a great starting point. Cloudflare, also can act as a WAF but doing so requires letting them decrypt HTTPS Traffic, which some organizations may not want.
 
-![Reverse Proxy](reverse_proxy.png)
+![alt text](image.png)
 
 #### (Non-) Transparent Proxy
 
