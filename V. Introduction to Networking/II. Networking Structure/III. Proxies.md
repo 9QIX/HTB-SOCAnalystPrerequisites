@@ -29,7 +29,7 @@ Alternatively, malware could use DNS as a c2 mechanism, but if an organization i
 
 Another example of a Forward Proxy is Burp Suite, as most people utilize it to forward HTTP Requests. However, this application is the swiss army knife of HTTP Proxies and can be configured to be a reverse proxy or transparent!
 
-![Forward Proxy](forward_proxy.png)
+![alt text](/Images/image-55.png)
 
 #### Reverse Proxy
 
