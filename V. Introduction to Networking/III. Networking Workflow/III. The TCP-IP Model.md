@@ -11,6 +11,8 @@ The `TCP/IP` model is also a layered reference model, often referred to as the `
 
 With `TCP/IP`, every application can transfer and exchange data over any network, and it does not matter where the receiver is located. `IP` ensures that the data packet reaches its destination, and `TCP` controls the data transfer and ensures the connection between data stream and application. The main difference between `TCP/IP` and `OSI` is the number of layers, some of which have been combined.
 
+![alt text](image.png)
+
 The most important tasks of `TCP/IP` are:
 
 | Task                 | Protocol | Description                                                                                                                                                                                                                                                                                                                            |
