@@ -1,7 +1,5 @@
 # IPv6 Addresses
 
----
-
 `IPv6` is the successor of IPv4. In contrast to IPv4, the `IPv6` address is `128` bit long. The `prefix` identifies the host and network parts. The Internet Assigned Numbers Authority (`IANA`) is responsible for assigning IPv4 and IPv6 addresses and their associated network portions. In the long term, `IPv6` is expected to completely replace IPv4, which is still predominantly used on the Internet. In principle, however, IPv4 and IPv6 can be made available simultaneously (`Dual Stack`).
 
 IPv6 consistently follows the `end-to-end` principle and provides publicly accessible IP addresses for any end devices without the need for NAT. Consequently, an interface can have multiple IPv6 addresses, and there are special IPv6 addresses to which multiple interfaces are assigned.
@@ -25,8 +23,6 @@ IPv6 consistently follows the `end-to-end` principle and provides publicly acces
 | Dynamic addressing | DHCP          | SLAAC / DHCPv6               |
 | IPsec              | Optional      | Mandatory                    |
 
----
-
 There are four different types of IPv6 addresses:
 
 | **Type**    | **Description**                                                                |
@@ -35,8 +31,6 @@ There are four different types of IPv6 addresses:
 | `Anycast`   | Addresses for multiple interfaces, where only one of them receives the packet. |
 | `Multicast` | Addresses for multiple interfaces, where all receive the same packet.          |
 | `Broadcast` | Do not exist and is realized with multicast addresses.                         |
-
----
 
 ## Hexadecimal System
 
@@ -67,8 +61,6 @@ Let's look at an example with an IPv4, at how the IPv4 address (`192.168.12.160`
 | Binary             | 1100 0000     | 1010 1000     | 0000 1100     | 1010 0000     |
 | Hex                | C0            | A8            | 0C            | A0            |
 | Decimal            | 192           | 168           | 12            | 160           |
-
----
 
 In total, the IPv6 address consists of `16 bytes`. Because of its length, an `IPv6` address is represented in a `hexadecimal` notation. Therefore the `128 bits` are divided into `8 blocks` multiplied by 16 bits (or `4 hex` numbers). All four hex numbers are grouped and separated by a colon (`:`) instead of a simple dot (`.`) as in IPv4. To simplify the notation, we leave out leading at least `4` zeros in the blocks, and we can replace them with two colons (`::`).
 
