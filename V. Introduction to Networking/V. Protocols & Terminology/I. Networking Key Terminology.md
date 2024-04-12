@@ -4,7 +4,7 @@ There are many different terms in the field of information technology. However, 
 
 The key terminology is the rough alphabet we need to know to understand what we will talk about in the other modules. We have created a list with many different but still with the most common protocols and their descriptions to create this foundation. It is important to note that this list is incomplete, and we will cover one or two protocols in other modules. However, we recommend that you review this list from time to time and expand it as you learn new protocols.
 
-\
+
 | Protocol | Acronym | Description | Port |
 | ------------------------------------------------- | ------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------- |
 | Wired Equivalent Privacy | WEP | WEP is a type of security protocol that was commonly used to secure wireless networks. | N/A |
