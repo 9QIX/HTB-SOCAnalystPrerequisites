@@ -268,7 +268,7 @@ An adversary can carry out this attack following three steps. Bare in mind that 
 
 Scapy allows carrying out the double-tagging VLAN hopping attack, in addition to Yersinia:
 
-![Yersinia_Double_Tagging_VLAN_Hopping_Attack](Yersinia_Double_Tagging_VLAN_Hopping_Attack.png)
+![alt text](image.png)
 
 ### VXLAN
 
