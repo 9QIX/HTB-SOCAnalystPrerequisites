@@ -212,3 +212,95 @@ PS C:\> Set-NetAdapter -Name "Ethernet 2" -VlanID 10
 ```
 
 However, remember that this operation only succeeds if the network interface supports this functionality; otherwise, PowerShell will throw an error indicating that the interface does not support it.
+
+Analyzing VLAN Tagged Traffic
+We can identify and analyze VLAN tagged traffic on a network with Wireshark using the `vlan` filter. For example, when analyzing a network packet dump, we can inspect packets with 802.1Q tagging using the filter `vlan`:
+
+![Wireshark_VLAN_Filter](Wireshark_VLAN_Filter.png)
+
+Moreover, we can search for packets with a specific VLAN ID; for example, to search for packets having VLAN 10, we can use the filter `vlan.id == 10`:
+
+![Wireshark_VLAN_ID_Filter](Wireshark_VLAN_ID_Filter.png)
+
+Additionally, to enumerate the used VLAN IDs from a packet dump, we can utilize `tshark`:
+
+```bash
+$ tshark -r "The Ultimate PCAP v20221220.pcapng" -T fields -e vlan.id | sort -n -u
+
+1
+2
+3
+7
+10
+20
+30
+40
+50
+60
+70
+80
+90
+121
+125
+224
+```
+
+Security Implications and VLAN Attacks
+Regardless of improving a network's security posture, adversaries can still circumvent the defensive mechanisms put forth by VLANs. Although in modern switched networks, the utilization of VLANs brings numerous advantages (such as simplified network maintenance and improved performance), it also introduces potential security risks, leading to various VLAN attacks. It is essential to grasp the underlying methodologies of these attacks and implement practical mitigation approaches to safeguard networks.
+
+### VLAN Hopping
+
+VLAN hopping attacks enable traffic from one VLAN to be seen by another VLAN without the aid of a router. It exploits Cisco's Dynamic Trunking Protocol (DTP), a protocol used to automatically negotiate the formation of a trunk link between two Cisco devices. An adversary needs to configure a host to mimic/act like a switch to take advantage of the automatic trunking port feature enabled by default on most switch ports. To exploit VLAN hopping, an adversary must be able to physically connect with a switch port that has DTP enabled. The adversary can abuse this connection by configuring a host connected to the switch on that specific port to spoof 802.1Q signaling and the DTP packets. If successful, the switch will eventually establish a trunk link with the adversary's host, exposing the network packets, not only for a specific VLAN.
+
+We can use tools such as Yersinia to perform VLAN hopping attacks:
+
+![Yersinia_DTP_Attack](Yersinia_DTP_Attack.png)
+
+### Double-tagging VLAN Hopping
+
+The double-tagging VLAN hopping attack is an increasingly more sophisticated attack against VLANs. Although VLAN double-tagging is a legitimate practice that entities such as Internet Service Providers (ISPs) utilize (they can use their VLANs internally while carrying traffic from clients that are already VLAN tagged), adversaries can also attempt to abuse it. In a double-tagging VLAN hopping attack, an adversary embeds a hidden 802.1Q tag inside an Ethernet frame that already has an 802.1Q tag, allowing the frame to go to a different VLAN, which the original 802.1Q tag did not specify.
+
+An adversary can carry out this attack following three steps. Bare in mind that this attack only works if the adversary is connected to a port residing in the same VLAN as the native VLAN of the trunk port:
+
+1. The adversary sends a double-tagged 802.1Q Ethernet frame to the switch with the outer header having the VLAN ID of the adversary, which is the same as the native VLAN of the trunk port. Assume that the native VLAN is VLAN 10 and that VLAN 30 is the VLAN the adversary wants to reach, where the victim resides.
+2. The outer 4-byte 802.1Q tag arrives on the switch, and it is seen to be destined for VLAN 10, the native VLAN. After removing the VLAN 10 tag, the frame is forwarded on all VLAN 10 ports. On the trunk port, the VLAN 10 tag is stripped (removed), and the packet is not re-tagged because it is part of the native VLAN. However, the VLAN 30 tag is still intact (not stripped), and the first switch has not inspected it.
+3. Subsequently, the switch will look only at the inner 802.1Q tag that the adversary sent, and it decides that the frame must be forwarded for VLAN 30, which is the adversary's chosen VLAN. Now, the second switch will either send the frame to the victim port directly or flood it, depending on whether there is an existing MAC address table entry for the victim host.
+
+Scapy allows carrying out the double-tagging VLAN hopping attack, in addition to Yersinia:
+
+![Yersinia_Double_Tagging_VLAN_Hopping_Attack](Yersinia_Double_Tagging_VLAN_Hopping_Attack.png)
+
+### VXLAN
+
+We mentioned previously that the VID field within the '802.1Q' header inside an 'Ethernet' frame is only 12 bits, allowing for 4094 VLANs. While this number of VLANs might be sufficient for small networks, more is needed for data centers and cloud service providers, which require extensive segmentation. Additionally, current Layer 2 networks utilize the IEEE 802.1D Spanning Tree Protocol (STP) to prevent network loops caused by redundant paths. However, some data center operators encounter limitations with STP, such as link blocking, which reduces available ports and prevents resiliency through multipathing. These challenges hinder network efficiency in virtualized environments that rely on Layer 2 physical infrastructure. A critical requirement in such environments is the seamless scalability of the Layer 2 network across the entire data center and even between data centers to allocate computing, networking, and storage resources efficiently. Nevertheless, traditional approaches like STP, while ensuring a loop-free topology, can deactivate many links, further exacerbating the problem.
+
+RFC7348 offers a solution to these problems and limitations in Layer 2 networks by introducing Virtual eXtensible Local Area Network (VXLAN), which is essentially a 'Layer 2 overlay scheme on a Layer 3 network.' VXLAN is specifically designed to address the limitations of traditional Layer 2 networks and cater to the requirements of Layer 2 and Layer 3 data center network infrastructures in a multi-tenant environment with virtual machines (VMs). Operating over the existing networking infrastructure, VXLAN provides an innovative way to seamlessly extend a Layer 2 network. Its primary objective is to facilitate the scaling of Layer 2 networks across expansive data center landscapes, even spanning multiple physical data locations. Each VXLAN overlay is termed a VXLAN segment, ensuring that only VMs within the same VXLAN segment can communicate with each other, thus maintaining network isolation and security. A 24-bit segment ID, known as the VXLAN Network Identifier (VNI), uniquely identifies each VXLAN segment. Adopting VXLAN allows for the coexistence of 16 million VXLAN segments within the same administrative domain, providing scalability and flexibility for modern data centers and virtualized environments.
+
+Cisco Discovery Protocol
+Cisco Discovery Protocol (CDP) is a layer-2 network protocol from Cisco that is used by Cisco devices such as routers, switches, and bridges to gather information about other directly connected Cisco devices. This information can be used to discover and track the network's topology and help manage and troubleshoot the network. This protocol is usually enabled in Cisco devices, but it can be disabled if it is not needed or if it should be disabled for security reasons.
+
+### CDP Network Traffic
+
+```
+22:14:11.563654 CDPv2, ttl: 180s, checksum: 0xebc1 (incorrect -> 0x8b71), length: 180
+        Device-ID (0x01), length: 14 bytes: 'router.inlanefreight.loc'
+        Addresses (0x02), length: 8 bytes:
+                IPv4 (0x01), length: 4: 10.129.100.1
+        Port-ID (0x03), length: 9 bytes: 'Ethernet0/0'
+        Capability (0x04), length: 4: (0x00000010): Router
+        Version String (0x05), length: 27 bytes: 'Cisco IOS Software, C880 Software'
+        Platform (0x06), length: 26 bytes: 'Cisco 881 (MPC8300) processor'
+```
+
+The shown message contains information about the device itself, such as the device name, IP address, port name, and functionality of the router, as well as information about the operating system and hardware platform of the device. Besides, we can see in the first line from the CDPv2 that we are dealing with the Cisco Discovery Protocol.
+
+For comparison, we can look at another protocol called Spanning Tree Protocol (STP). The STP is a network protocol that ensures no loops in a network with multiple connections between switches. There are no loops, and it prevents data packets from circulating in a loop and congesting the network.
+
+### STP Network Traffic
+
+```
+22:14:11.563654 STP 802.1w, Rapid STP, Flags [Learn, Forward], bridge-id 8001.00:11:22:33:44:55.8000, length 43
+        root-id 8001.AA:AA:AA:AA:AA:AA, cost 0, port-id 8001, message-age 0.00s, max-age 20.00s, hello-time 2.00s, forward-delay 15.00s
+```
+
+In this example, we see that an STP message was sent containing information about the root switch, the MAC address of the root switch, the ID of the port over which the message was sent, and other configuration parameters such as the maximum aging time, hello time, and forward delay.
