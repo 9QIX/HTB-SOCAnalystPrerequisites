@@ -216,11 +216,11 @@ However, remember that this operation only succeeds if the network interface sup
 Analyzing VLAN Tagged Traffic
 We can identify and analyze VLAN tagged traffic on a network with Wireshark using the `vlan` filter. For example, when analyzing a network packet dump, we can inspect packets with 802.1Q tagging using the filter `vlan`:
 
-![alt text](image.png)
+![alt text](/Images/image-65.png)
 
 Moreover, we can search for packets with a specific VLAN ID; for example, to search for packets having VLAN 10, we can use the filter `vlan.id == 10`:
 
-![Wireshark_VLAN_ID_Filter](Wireshark_VLAN_ID_Filter.png)
+![alt text](/Images/image-66.png)
 
 Additionally, to enumerate the used VLAN IDs from a packet dump, we can utilize `tshark`:
 
