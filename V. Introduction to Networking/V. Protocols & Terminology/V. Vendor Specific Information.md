@@ -176,7 +176,7 @@ On Windows, to assign a VLAN for a physical network adapter that supports VLAN t
 
 Then we need to click on Properties for the Ethernet interface we want to assign to a VLAN:
 
-![Windows_Device_Manager_Adapter_Properties](Windows_Device_Manager_Adapter_Properties.png)
+![alt text](image-1.png)
 
 Within Advanced, there will be a VLAN ID property to which we can assign a value. After clicking OK, if the adapter supports assigning a VLAN, it will be set; otherwise, the window will close, and no VLAN tag will be added to any packets originating from this host:
 
