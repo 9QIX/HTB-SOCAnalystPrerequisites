@@ -172,7 +172,7 @@ $ ip a | grep eth0.20
 
 On Windows, to assign a VLAN for a physical network adapter that supports VLAN tagging, first we need to open Device Manager:
 
-![Windows_Device_Manager](Windows_Device_Manager.png)
+![alt text](image.png)
 
 Then we need to click on Properties for the Ethernet interface we want to assign to a VLAN:
 
