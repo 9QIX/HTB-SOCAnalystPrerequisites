@@ -205,4 +205,10 @@ Name                      DisplayName                    DisplayValue           
 Ethernet 2                VLAN ID                        10                                     VLAN_ID               {10}
 ```
 
-We can also set the VLAN ID of a physical
+We can also set the VLAN ID of a physical network address using the Set-NetAdapter Cmdlet along with the VlanID flag; this powerful Cmdlet can also be used to customize other properties of interfaces such as MAC addresses:
+
+```powershell
+PS C:\> Set-NetAdapter -Name "Ethernet 2" -VlanID 10
+```
+
+However, remember that this operation only succeeds if the network interface supports this functionality; otherwise, PowerShell will throw an error indicating that the interface does not support it.
