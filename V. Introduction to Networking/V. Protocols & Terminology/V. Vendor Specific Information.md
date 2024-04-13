@@ -172,15 +172,15 @@ $ ip a | grep eth0.20
 
 On Windows, to assign a VLAN for a physical network adapter that supports VLAN tagging, first we need to open Device Manager:
 
-![alt text](image.png)
+![alt text](/Images/image-62.png)
 
 Then we need to click on Properties for the Ethernet interface we want to assign to a VLAN:
 
-![alt text](image-1.png)
+![alt text](/Images/image-63.png)
 
 Within Advanced, there will be a VLAN ID property to which we can assign a value. After clicking OK, if the adapter supports assigning a VLAN, it will be set; otherwise, the window will close, and no VLAN tag will be added to any packets originating from this host:
 
-![Windows_Device_Manager_Adapter_Properties_VLAN_ID](Windows_Device_Manager_Adapter_Properties_VLAN_ID.png)
+![alt text](/Images/image-64.png)
 
 Instead of relying on the GUI, we can use PowerShell. First, let us get the names of all the available physical network adapters using the `Get-NetAdapter` Cmdlet:
 
