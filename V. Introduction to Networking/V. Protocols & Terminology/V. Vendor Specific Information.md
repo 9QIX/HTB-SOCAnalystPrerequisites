@@ -254,7 +254,7 @@ VLAN hopping attacks enable traffic from one VLAN to be seen by another VLAN wit
 
 We can use tools such as Yersinia to perform VLAN hopping attacks:
 
-![Yersinia_DTP_Attack](Yersinia_DTP_Attack.png)
+![alt text](/Images/image-67.png)
 
 ### Double-tagging VLAN Hopping
 
