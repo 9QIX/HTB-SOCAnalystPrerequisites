@@ -4,16 +4,25 @@ Active Directory (AD) is a directory service for Windows network environments. I
 
 Active Directory flaws and misconfigurations can often be used to obtain a foothold (internal access), move laterally and vertically within a network, and gain unauthorized access to protected resources such as databases, file shares, source code, and more. AD is essentially a large database accessible to all users within the domain, regardless of their privilege level. A basic AD user account with no added privileges can be used to enumerate the majority of objects contained within AD, including but not limited to:
 
-- Domain Computers
-- Domain Users
-- Domain Group Information
-- Organizational Units (OUs)
-- Default Domain Policy
-- Functional Domain Levels
-- Password Policy
-- Group Policy Objects (GPOs)
-- Domain Trusts
-- Access Control Lists (ACLs)
+| **Domain Computers**                                  | **Domain Users**                                |
+| ----------------------------------------------------- | ----------------------------------------------- |
+| Represents all computer objects joined to the domain. | Represents all user accounts within the domain. |
+
+| **Domain Group Information**                                                                                    | **Organizational Units (OUs)**                                                                                                                                                                          |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Contains information about groups created within the domain, including security groups and distribution groups. | Organizational units (OUs) are containers within a domain used to organize and manage objects like users, computers, and groups. OUs provide a way to apply policies and delegate administrative tasks. |
+
+| **Default Domain Policy**                                                                                                        | **Functional Domain Levels**                                                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Defines default settings and configurations applied to all objects within the domain. This policy is linked at the domain level. | The functional level of a domain determines which Active Directory features are available. It impacts the capabilities and compatibility of domain controllers. |
+
+| **Password Policy**                                                                                       | **Group Policy Objects (GPOs)**                                                                                                                                                                                      |
+| --------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Specifies rules and requirements for user passwords, such as length, complexity, and expiration settings. | Group Policy Objects (GPOs) are containers for configuring and applying policy settings across domain-joined computers and users. GPOs can control security settings, software deployment, and other configurations. |
+
+| **Domain Trusts**                                                                                                                                                                         | **Access Control Lists (ACLs)**                                                                                                                                                                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Domain trusts establish relationships between domains to allow authentication and access across domains. Trusts define the level of access one domain has to resources in another domain. | Access Control Lists (ACLs) are security descriptors attached to objects within Active Directory. ACLs define permissions and control access to objects like files, folders, and Active Directory objects. |
 
 For this reason, we must understand how Active Directory is set up and the basics of administration before attempting to attack it. It's always easier to "break" things if we already know how to build them.
 
