@@ -4,7 +4,7 @@ We will often see the term "objects" when referring to AD. What is an object? An
 
 ## AD Objects
 
-![](image)
+![alt text](image.png)
 
 ### Users
 
