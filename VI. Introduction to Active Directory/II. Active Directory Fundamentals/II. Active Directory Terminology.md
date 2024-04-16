@@ -1,4 +1,4 @@
-## Active Directory Terminology
+# Active Directory Terminology
 
 Before we go any further, let's take a step back and define some key terminology that will be used throughout this module and in general when dealing with Active Directory in any capacity.
 
