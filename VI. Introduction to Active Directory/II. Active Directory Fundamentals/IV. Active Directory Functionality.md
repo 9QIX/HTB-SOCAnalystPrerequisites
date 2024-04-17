@@ -53,7 +53,7 @@ There are several trust types.
 | Tree-root    | a two-way transitive trust between a forest root domain and a new tree root domain. They are created by design when you set up a new tree root domain within a forest. |
 | Forest       | a transitive trust between two forest root domains.                                                                                                                    |
 
-![alt text](image.png)
+![alt text](/Images/image-74.png)
 
 Trusts can be transitive or non-transitive.
 
