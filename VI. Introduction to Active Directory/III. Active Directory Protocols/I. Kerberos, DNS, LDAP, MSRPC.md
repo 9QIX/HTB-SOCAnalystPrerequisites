@@ -78,7 +78,7 @@ AD stores user account information and security information such as passwords an
 
 An LDAP session begins by first connecting to an LDAP server, also known as a Directory System Agent. The Domain Controller in AD actively listens for LDAP requests, such as security authentication requests.
 
-![alt text](image.png)
+![alt text](/Images/image-77.png)
 
 The relationship between AD and LDAP can be compared to Apache and HTTP. The same way Apache is a web server that uses the HTTP protocol, Active Directory is a directory server that uses the LDAP protocol.
 
