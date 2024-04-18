@@ -30,7 +30,7 @@ Active Directory Domain Services (AD DS) uses DNS to allow clients (workstations
 
 Let's look at an example. We can perform a nslookup for the domain name and retrieve all Domain Controllers' IP addresses in a domain.
 
-```
+```powershell
 PS C:\htb> nslookup INLANEFREIGHT.LOCAL
 
 Server:  172.16.6.5
@@ -44,7 +44,7 @@ Address:  172.16.6.5
 
 If we would like to obtain the DNS name of a single host using the IP address, we can do this as follows:
 
-```
+```powershell
 PS C:\htb> nslookup 172.16.6.5
 
 Server:  172.16.6.5
@@ -58,7 +58,7 @@ Address:  172.16.6.5
 
 If we would like to find the IP address of a single host, we can do this in reverse. We can do this with or without specifying the FQDN.
 
-```
+```powershell
 PS C:\htb> nslookup ACADEMY-EA-DC01
 
 Server:   172.16.6.5
