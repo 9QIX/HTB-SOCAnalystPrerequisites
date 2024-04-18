@@ -16,6 +16,8 @@ Kerberos authentication effectively decouples users' credentials from their requ
 4. The TGS is encrypted with the NTLM password hash of the service or computer account in whose context the service instance is running and is delivered to the user in the TGS_REP.
 5. The user presents the TGS to the service, and if it is valid, the user is permitted to connect to the resource (AP_REQ).
 
+![alt text](image.png)
+
 The Kerberos protocol uses port 88 (both TCP and UDP). When enumerating an Active Directory environment, we can often locate Domain Controllers by performing port scans looking for open port 88 using a tool such as Nmap.
 
 ## DNS
