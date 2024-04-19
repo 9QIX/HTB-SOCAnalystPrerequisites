@@ -108,7 +108,3 @@ In an AD environment, the authentication methods mentioned in this section and t
 ## Moving On
 
 Now that we have covered authentication protocols and associated password hashes let's look at users and groups in Active Directory, which are typically the most important target for penetration testers and attackers alike. They can have varying privileges and be used to move laterally in an environment or gain access to protected resources.
-
-```
-
-```
