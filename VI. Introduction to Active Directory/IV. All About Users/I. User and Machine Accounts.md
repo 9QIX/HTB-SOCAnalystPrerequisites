@@ -57,4 +57,18 @@ Surname           : student
 UserPrincipalName : htb-student@INLANEFREIGHT.LOCAL
 ```
 
-For a deeper look at user object attributes, check out [this page](https://docs.microsoft.com/en-us/windows/desktop/ADSchema/user-object). Many attributes can be set for any object in AD. Many objects will never be used or are not
+For a deeper look at user object attributes, check out [this page](https://docs.microsoft.com/en-us/windows/desktop/ADSchema/user-object). Many attributes can be set for any object in AD. Many objects will never be used or are not relevant to us as security professionals. Still, it is essential to familiarize ourselves with the most common and more obscure ones that may contain sensitive data or help mount an attack.
+
+## Domain-joined vs. Non-Domain-joined Machines
+
+When it comes to computer resources, there are several ways they are typically managed. Below we will discuss the differences between a host joined to a domain versus a host that is only in a workgroup.
+
+### Domain joined
+
+Hosts joined to a domain have greater ease of information sharing within the enterprise and a central management point (the DC) to gather resources, policies, and updates from. A host joined to a domain will acquire any configurations or changes necessary through the domain's Group Policy. The benefit here is that a user in the domain can log in and access resources from any host joined to the domain, not just the one they work on. This is the typical setup you will see in enterprise environments.
+
+### Non-domain joined
+
+Non-domain joined computers or computers in a workgroup are not managed by domain policy. With that in mind, sharing resources outside your local network is much more complicated than it would be on a domain. This is fine for computers meant for home use or small business clusters on the same LAN. The advantage of this setup is that the individual users are in charge of any changes they wish to make to their host. Any user accounts on a workgroup computer only exist on that host, and profiles are not migrated to other hosts within the workgroup.
+
+It is important to note that a machine account (NT AUTHORITY\SYSTEM level access) in an AD environment will have most of the same rights as a standard domain user account. This is important because we do not always need to obtain a set of valid credentials for an individual user's account to begin enumerating and attacking a domain (as we will see in later modules). We may obtain SYSTEM level access to a domain-joined Windows host through a successful remote code execution exploit or by escalating privileges on a host. This access is often overlooked as only useful for pillaging sensitive data (i.e., passwords, SSH keys, sensitive files, etc.) on a particular host. In reality, access in the context of the SYSTEM account will allow us read access to much of the data within the domain and is a great launching point for gathering as much information about the domain as possible before proceeding with applicable AD-related attacks.
