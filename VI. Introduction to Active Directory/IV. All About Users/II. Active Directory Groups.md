@@ -92,4 +92,18 @@ Several built-in security groups are created with a Domain Local Group scope whe
 
 Nested group membership is an important concept in AD. As mentioned previously, a Domain Local Group can be a member of another Domain Local Group in the same domain. Through this membership, a user may inherit privileges not assigned directly to their account or even the group they are directly a member of, but rather the group that their group is a member of. This can sometimes lead to unintended privileges granted to a user that are difficult to uncover without an in-depth assessment of the domain. Tools such as BloodHound are particularly useful in uncovering privileges that a user may inherit through one or more nestings of groups. This is a key tool for penetration testers for uncovering nuanced misconfigurations and is also extremely powerful for sysadmins and the like to gain deep insights (visually) into the security posture of their domain(s).
 
-Below is an example
+Below is an example of privileges inherited through nested group membership. Though DCorner is not a direct member of Helpdesk Level 1, their membership in Help Desk grants them the same privileges that any member of Helpdesk Level 1 has. In this case, the privilege would allow them to add a member to the Tier 1 Admins group (GenericWrite). If this group confers any elevated privileges in the domain, it would likely be a key target for a penetration tester. Here, we could add our user to the group and obtain privileges that members of the Tier 1 Admins group are granted, such as local administrator access to one or more hosts that could be used to further access.
+
+![Examining Nested Groups via BloodHound](image)
+
+## Important Group Attributes
+
+Like users, groups have many attributes. Some of the most important group attributes include:
+
+- **cn**: The cn or Common-Name is the name of the group in Active Directory Domain Services.
+- **member**: Which user, group, and contact objects are members of the group.
+- **groupType**: An integer that specifies the group type and scope.
+- **memberOf**: A listing of any groups that contain the group as a member (nested group membership).
+- **objectSid**: This is the security identifier or SID of the group, which is the unique value used to identify the group as a security principal.
+
+Groups are fundamental objects in AD that can be used to group other objects together and facilitate the management of rights and access. Take the time to study the differences between group types and scopes. This knowledge is useful for administering AD as well as understanding the relationships between groups in the same and different domains and what information can be enumerated during the recon phase of a penetration test. Understanding how different group types can be utilized to perform attacks in a single domain and across trust boundaries is an excellent bit of knowledge to have. We deep-dived into Groups in this section, now let's examine the differences between Rights and Privileges.
