@@ -12,7 +12,7 @@ Groups in Active Directory have two fundamental characteristics: type and scope.
 
 ## Group Type And Scope
 
-![Group Type And Scope](image)
+![alt text](image.png)
 
 The Security groups type is primarily for ease of assigning permissions and rights to a collection of users instead of one at a time. They simplify management and reduce overhead when assigning permissions and rights for a given resource. All users added to a security group will inherit any permissions assigned to the group, making it easier to move users in and out of groups while leaving the group's permissions unchanged.
 
@@ -41,6 +41,7 @@ The universal group scope can be used to manage resources distributed across mul
 ```powershell
 AD Group Scope Examples
   Active Directory Groups
+
 PS C:\htb> Get-ADGroup  -Filter * |select samaccountname,groupscope
 
 samaccountname                           groupscope
