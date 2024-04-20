@@ -12,7 +12,7 @@ Groups in Active Directory have two fundamental characteristics: type and scope.
 
 ## Group Type And Scope
 
-![alt text](image.png)
+![alt text](/Images/image-80.png)
 
 The Security groups type is primarily for ease of assigning permissions and rights to a collection of users instead of one at a time. They simplify management and reduce overhead when assigning permissions and rights for a given resource. All users added to a security group will inherit any permissions assigned to the group, making it easier to move users in and out of groups while leaving the group's permissions unchanged.
 
@@ -38,8 +38,9 @@ Global groups can be used to grant access to resources in another domain. A glob
 
 The universal group scope can be used to manage resources distributed across multiple domains and can be given permissions to any object within the same forest. They are available to all domains within an organization and can contain users from any domain. Unlike domain local and global groups, universal groups are stored in the Global Catalog (GC), and adding or removing objects from a universal group triggers forest-wide replication. It is recommended that administrators maintain other groups (such as global groups) as members of universal groups because global group membership within universal groups is less likely to change than individual user membership in global groups. Replication is only triggered at the individual domain level when a user is removed from a global group. If individual users and computers (instead of global groups) are maintained within universal groups, it will trigger forest-wide replication each time a change is made. This can create a lot of network overhead and potential for issues. Below is an example of the groups in AD and their scope settings. Please pay attention to some of the critical groups and their scope. ( Enterprise and Schema admins compared to Domain admins, for example.)
 
+### AD Group Scope Examples
+
 ```powershell
-AD Group Scope Examples
   Active Directory Groups
 
 PS C:\htb> Get-ADGroup  -Filter * |select samaccountname,groupscope
@@ -95,7 +96,7 @@ Nested group membership is an important concept in AD. As mentioned previously, 
 
 Below is an example of privileges inherited through nested group membership. Though DCorner is not a direct member of Helpdesk Level 1, their membership in Help Desk grants them the same privileges that any member of Helpdesk Level 1 has. In this case, the privilege would allow them to add a member to the Tier 1 Admins group (GenericWrite). If this group confers any elevated privileges in the domain, it would likely be a key target for a penetration tester. Here, we could add our user to the group and obtain privileges that members of the Tier 1 Admins group are granted, such as local administrator access to one or more hosts that could be used to further access.
 
-![Examining Nested Groups via BloodHound](image)
+![alt text](/Images/image-81.png)
 
 ## Important Group Attributes
 
