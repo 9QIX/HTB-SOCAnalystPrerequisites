@@ -139,7 +139,7 @@ SeIncreaseWorkingSetPrivilege Increase a process working set DisabledetPrivilege
 
 ### Domain Admin Rights Non-Elevated
 
-```plaintext
+```powershell
 PRIVILEGES INFORMATION
 ----------------------
 
