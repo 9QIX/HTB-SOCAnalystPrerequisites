@@ -69,4 +69,44 @@ Let's look at another example using the Group Policy Management Console on a Dom
 
 This image also shows an example of several GPOs being linked to the Corp OU. When more than one GPO is linked to an OU, they are processed based on the Link Order. The GPO with the lowest Link Order is processed last, or the GPO with link order 1 has the highest precedence, then 2, and 3, and so on. So in our example above, the Disallow LM Hash GPO will have precedence over the Block Removable Media and Disable Guest Account GPOs, meaning it will be processed first.
 
-It is possible to specify the Enforced option to enforce settings in a specific GPO. If this option is set, policy settings in GPOs linked to lower OUs CANNOT override the settings. If a GPO is set at the domain level with the Enforced option selected, the settings contained in that GPO will be applied to all OUs in the domain and cannot be overridden by lower-level OU policies. In the past, this setting was called No Override and was set on the container in question under Active Directory Users and Computers. Below we can see an example of an Enforced GPO, where the Logon Banner GPO is taking precedence over GPOs linked to lower OUs and therefore will not be overr
+It is possible to specify the Enforced option to enforce settings in a specific GPO. If this option is set, policy settings in GPOs linked to lower OUs CANNOT override the settings. If a GPO is set at the domain level with the Enforced option selected, the settings contained in that GPO will be applied to all OUs in the domain and cannot be overridden by lower-level OU policies. In the past, this setting was called No Override and was set on the container in question under Active Directory Users and Computers. Below we can see an example of an Enforced GPO, where the Logon Banner GPO is taking precedence over GPOs linked to lower OUs and therefore will not be overridden.
+
+### Enforced GPO Policy Precedence
+
+![Enforced GPO Policy Precedence](image)
+
+Regardless of which GPO is set to enforced, if the Default Domain Policy GPO is enforced, it will take precedence over all GPOs at all levels.
+
+### Default Domain Policy Override
+
+![Default Domain Policy Override](image)
+
+It is also possible to set the Block inheritance option on an OU. If this is specified for a particular OU, then policies higher up (such as at the domain level) will NOT be applied to this OU. If both options are set, the No Override option has precedence over the Block inheritance option. Here is a quick example. The Computers OU is inheriting GPOs set on the Corp OU in the below image.
+
+![OU Inheritance Example](image)
+
+If the Block Inheritance option is chosen, we can see that the 3 GPOs applied higher up to the Corp OU are no longer enforced on the Computers OU.
+
+### Block Inheritance
+
+![Block Inheritance](image)
+
+## Group Policy Refresh Frequency
+
+When a new GPO is created, the settings are not automatically applied right away. Windows performs periodic Group Policy updates, which by default is done every 90 minutes with a randomized offset of +/- 30 minutes for users and computers. The period is only 5 minutes for domain controllers to update by default. When a new GPO is created and linked, it could take up to 2 hours (120 minutes) until the settings take effect. This random offset of +/- 30 minutes is set to avoid overwhelming domain controllers by having all clients request Group Policy from the domain controller simultaneously.
+
+It is possible to change the default refresh interval within Group Policy itself. Furthermore, we can issue the command `gpupdate /force` to kick off the update process. This command will compare the GPOs currently applied on the machine against the domain controller and either modify or skip them depending on if they have changed since the last automatic update.
+
+We can modify the refresh interval via Group Policy by clicking on `Computer Configuration --> Policies --> Administrative Templates --> System --> Group Policy` and selecting `Set Group Policy refresh interval for computers`. While it can be changed, it should not be set to occur too often, or it could cause network congestion leading to replication issues.
+
+![Group Policy Refresh Interval](image)
+
+## Security Considerations of GPOs
+
+As mentioned earlier, GPOs can be used to carry out attacks. These attacks may include adding additional rights to a user account that we control, adding a local administrator to a host, or creating an immediate scheduled task to run a malicious command such as modifying group membership, adding a new admin account, establishing a reverse shell connection, or even installing targeted malware throughout a domain. These attacks typically happen when a user has the rights required to modify a GPO that applies to an OU that contains either a user account that we control or a computer.
+
+Below is an example of a GPO attack path identified using the BloodHound tool. This example shows that the Domain Users group can modify the Disconnect Idle RDP GPO due to nested group membership. In this case, we would next look to see which OUs this GPO applies to and if we can leverage these rights to gain control over a high-value user (administrator or Domain Admin) or computer (server, DC, or critical host) and move laterally to escalate privileges within the domain.
+
+![GPO Attack Path](image)
+
+We have covered a lot of information up to this point. Active Directory is a vast topic, and we have just scratched the surface. We have covered the foundational theory now; let's get our hands dirty and play around with Active Directory objects, Group Policy, and more in the next section.
