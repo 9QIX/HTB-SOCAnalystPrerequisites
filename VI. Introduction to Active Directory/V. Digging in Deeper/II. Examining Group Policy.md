@@ -64,7 +64,7 @@ Let's look at another example using the Group Policy Management Console on a Dom
 
 ### GPMC Hive Example
 
-![GPMC Hive Example](image)
+![alt text](/Images/image-87.png)
 
 This image also shows an example of several GPOs being linked to the Corp OU. When more than one GPO is linked to an OU, they are processed based on the Link Order. The GPO with the lowest Link Order is processed last, or the GPO with link order 1 has the highest precedence, then 2, and 3, and so on. So in our example above, the Disallow LM Hash GPO will have precedence over the Block Removable Media and Disable Guest Account GPOs, meaning it will be processed first.
 
@@ -72,13 +72,13 @@ It is possible to specify the Enforced option to enforce settings in a specific 
 
 ### Enforced GPO Policy Precedence
 
-![Enforced GPO Policy Precedence](image)
+![alt text](/Images/image-88.png)
 
 Regardless of which GPO is set to enforced, if the Default Domain Policy GPO is enforced, it will take precedence over all GPOs at all levels.
 
 ### Default Domain Policy Override
 
-![Default Domain Policy Override](image)
+![alt text](/Images/image-89.png)
 
 It is also possible to set the Block inheritance option on an OU. If this is specified for a particular OU, then policies higher up (such as at the domain level) will NOT be applied to this OU. If both options are set, the No Override option has precedence over the Block inheritance option. Here is a quick example. The Computers OU is inheriting GPOs set on the Corp OU in the below image.
 
