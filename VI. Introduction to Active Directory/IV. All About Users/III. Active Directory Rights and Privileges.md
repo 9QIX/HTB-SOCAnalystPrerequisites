@@ -87,6 +87,21 @@ whenCreated                     : 10/27/2021 8:14:34 AM
 
 As we can see above, the default state of the Server Operators group is to have no members and is a domain local group by default. In contrast, the Domain Admins group seen below has several members and service accounts assigned to it. Domain Admins are also Global groups instead of domain local. More on group membership can be found later in this module. Be wary of who, if anyone, you give access to these groups. An attacker could easily gain the keys to the enterprise if they gain access to a user assigned to these groups.
 
+## Domain Admins Group Membership
+
+```powershell
+PS C:\htb>  Get-ADGroup -Identity "Domain Admins" -Properties * | select DistinguishedName,GroupCategory,GroupScope,Name,Members
+
+DistinguishedName : CN=Domain Admins,CN=Users,DC=INLANEFREIGHT,DC=LOCAL
+GroupCategory     : Security
+GroupScope        : Global
+Name              : Domain Admins
+Members           : {CN=htb-student_adm,CN=Users,DC=INLANEFREIGHT,DC=LOCAL, CN=sharepoint
+                    admin,CN=Users,DC=INLANEFREIGHT,DC=LOCAL, CN=FREIGHTLOGISTICSUSER,OU=Service
+                    Accounts,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL, CN=PROXYAGENT,OU=Service
+                    Accounts,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL...}
+```
+
 ## User Rights Assignment
 
 Depending on their group membership and other factors such as privileges assigned via Group Policy (GPO), users can have various rights assigned to their account. This [Microsoft article on User Rights Assignment](https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment) provides a detailed explanation of each of the user rights that can be set in Windows. Not every right listed here is important to us from a security standpoint as penetration testers or defenders, but some rights granted to an account can lead to unintended consequences such as privilege escalation or access to sensitive files.
