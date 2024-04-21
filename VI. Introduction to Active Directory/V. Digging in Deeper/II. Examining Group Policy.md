@@ -37,8 +37,7 @@ These are just a few examples of what can be done with Group Policy. There are h
 
 ### RDP GPO Settings
 
-![RDP GPO Settings](image)
-
+![alt text](/Images/image-85.png)
 GPO settings are processed using the hierarchical structure of AD and are applied using the Order of Precedence rule as seen in the table below:
 
 ### Order of Precedence
@@ -59,7 +58,7 @@ GPOs are processed from the top down when viewing them from a domain organizatio
 
 ### GPO Precedence Order
 
-![GPO Precedence Order](image)
+![alt text](/Images/image-86.png)
 
 Let's look at another example using the Group Policy Management Console on a Domain Controller. In this image, we see several GPOs. The Disabled Forced Restarts GPO will have precedence over the Logon Banner GPO since it would be processed last. Any settings configured in the Disabled Forced Restarts GPO could potentially override settings in any GPOs higher up in the hierarchy (including those linked to the Corp OU).
 
