@@ -146,7 +146,7 @@ Force Password Change (`Set-ADUser`)
 PS C:\htb> Set-ADUser -Identity amasters -ChangePasswordAtLogon $true
 ```
 
-Unlock from Snap-in
+#### Unlock from Snap-in
 
 Unlocking this user account will take several steps. The first is to unlock the account, then we set it so that the user must change his password at the next login, and then we reset his password to a temporary one so that he can log in and reset it himself. We can do so by:
 
@@ -276,7 +276,7 @@ PS C:\htb> New-GPLink -Name "Security Analysts Control" -Target "ou=Security Ana
 
 The command above will take the new GPO we created, link it to the OU Security Analysts, and enable it. For now, that's all we are going to do from PowerShell. We still need to make a few modifications to the policy, but we will perform these actions from Group Policy Management Console. Editing GPO preferences from PowerShell can be a bit daunting and way beyond the scope of this module.
 
-Modify a GPO via GPMC
+#### Modify a GPO via GPMC
 
 To modify our new policy object:
 
@@ -286,4 +286,31 @@ To modify our new policy object:
 - We need to modify the removable media settings and ensure they are set to block any removable media from access. We will expressly allow security analysts to access PowerShell and CMD since their daily duties require it.
   - Location of removable media policy settings = User Configuration > Policies > Administrative Templates > System > Removable Storage Access.
   - Location of Command Prompt settings = User Configuration > Policies > Administrative Templates > System.
-- For Computer settings, we need to ensure the Logon Banner is applied and that the password policy
+- For Computer settings, we need to ensure the Logon Banner is applied and that the password policysettings for this group are strengthened.
+- Location of Logon Banner settings = Computer Configuration > Policies > Windows Settings > Security Settings > Local Policies > Security Options.
+- For reference, this setting should already be enabled since the GPO we copied was for a Logon Banner. We are validating the settings and ensuring it is enabled and applied.
+- Location of Password Policy settings = Computer Configuration > Policies > Windows Settings > Security Settings > Account Policies > Password Policy.
+
+Let's get started.
+
+User Configuration Group Policies
+
+This slideshow will walk us through modifying group policies that affect Users directly. We will be modifying the policies affecting users access to the command prompt as well as their ability to use removeable media.
+
+1. Right-click the GPO we wish to modify and select "Edit". This will bring up the Group Policy Configuration Editor window.
+
+![Image description](image)
+
+Now, let's modify the group policies affecting our Computer settings. We don't have to exit from the GPMC editor; we can just collapse the user configuration section and expand the Computer Configuration section.
+
+Computer Configuration Group Policies
+
+This slideshow will walk us through modifying group policies that affect computers in the group. We will be modifying the policies affecting the Logon Banner for the host, and setting a more restrictive password policy.
+
+1. Move from the User Configuration hive into the Computer Configuration hive. We will be validating the "Logon Banner" settings first. We validate the setting in "Interactive Logon Message Text" and "Interactive Logon Message Title".
+
+![Image description](image)
+
+## Summary
+
+This wraps it up for the first part of the guided lab. We covered how to manage users, groups, and Group Policy. In the next section, we will add a Computer to the INLANEFREIGHT domain, change the OU it exists in, ensuring that it is in the proper group to receive the Group Policy we created earlier.
