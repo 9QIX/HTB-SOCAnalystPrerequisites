@@ -35,6 +35,56 @@ AD contains many default or built-in security groups, some of which grant their 
 | Schema Admins                      | Members can modify the Active Directory schema. Only exists in the root domain of an AD forest.                                                                 |
 | Server Operators                   | Exists only on domain controllers. Members can modify services, access SMB shares, and backup files on DCs.                                                     |
 
+Below we have provided some output regarding domain admins and server operators.
+
+## Server Operators Group Details
+
+```powershell
+PS C:\htb>  Get-ADGroup -Identity "Server Operators" -Properties *
+
+adminCount                      : 1
+CanonicalName                   : INLANEFREIGHT.LOCAL/Builtin/Server Operators
+CN                              : Server Operators
+Created                         : 10/27/2021 8:14:34 AM
+createTimeStamp                 : 10/27/2021 8:14:34 AM
+Deleted                         :
+Description                     : Members can administer domain servers
+DisplayName                     :
+DistinguishedName               : CN=Server Operators,CN=Builtin,DC=INLANEFREIGHT,DC=LOCAL
+dSCorePropagationData           : {10/28/2021 1:47:52 PM, 10/28/2021 1:44:12 PM, 10/28/2021 1:44:11 PM, 10/27/2021
+                                  8:50:25 AM...}
+GroupCategory                   : Security
+GroupScope                      : DomainLocal
+groupType                       : -2147483643
+HomePage                        :
+instanceType                    : 4
+isCriticalSystemObject          : True
+isDeleted                       :
+LastKnownParent                 :
+ManagedBy                       :
+MemberOf                        : {}
+Members                         : {}
+Modified                        : 10/28/2021 1:47:52 PM
+modifyTimeStamp                 : 10/28/2021 1:47:52 PM
+Name                            : Server Operators
+nTSecurityDescriptor            : System.DirectoryServices.ActiveDirectorySecurity
+ObjectCategory                  : CN=Group,CN=Schema,CN=Configuration,DC=INLANEFREIGHT,DC=LOCAL
+ObjectClass                     : group
+ObjectGUID                      : 0887487b-7b07-4d85-82aa-40d25526ec17
+objectSid                       : S-1-5-32-549
+ProtectedFromAccidentalDeletion : False
+SamAccountName                  : Server Operators
+sAMAccountType                  : 536870912
+sDRightsEffective               : 0
+SID                             : S-1-5-32-549
+SIDHistory                      : {}
+systemFlags                     : -1946157056
+uSNChanged                      : 228556
+uSNCreated                      : 12360
+whenChanged                     : 10/28/2021 1:47:52 PM
+whenCreated                     : 10/27/2021 8:14:34 AM
+```
+
 ## User Rights Assignment
 
 Depending on their group membership and other factors such as privileges assigned via Group Policy (GPO), users can have various rights assigned to their account. This [Microsoft article on User Rights Assignment](https://docs.microsoft.com/en-us/windows/security/threat-protection/security-policy-settings/user-rights-assignment) provides a detailed explanation of each of the user rights that can be set in Windows. Not every right listed here is important to us from a security standpoint as penetration testers or defenders, but some rights granted to an account can lead to unintended consequences such as privilege escalation or access to sensitive files.
