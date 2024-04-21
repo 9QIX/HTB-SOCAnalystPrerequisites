@@ -98,7 +98,7 @@ It is possible to change the default refresh interval within Group Policy itself
 
 We can modify the refresh interval via Group Policy by clicking on `Computer Configuration --> Policies --> Administrative Templates --> System --> Group Policy` and selecting `Set Group Policy refresh interval for computers`. While it can be changed, it should not be set to occur too often, or it could cause network congestion leading to replication issues.
 
-![Group Policy Refresh Interval](image)
+![alt text](/Images/image-92.png)
 
 ## Security Considerations of GPOs
 
@@ -106,6 +106,6 @@ As mentioned earlier, GPOs can be used to carry out attacks. These attacks may i
 
 Below is an example of a GPO attack path identified using the BloodHound tool. This example shows that the Domain Users group can modify the Disconnect Idle RDP GPO due to nested group membership. In this case, we would next look to see which OUs this GPO applies to and if we can leverage these rights to gain control over a high-value user (administrator or Domain Admin) or computer (server, DC, or critical host) and move laterally to escalate privileges within the domain.
 
-![GPO Attack Path](image)
+![alt text](/Images/image-93.png)
 
 We have covered a lot of information up to this point. Active Directory is a vast topic, and we have just scratched the surface. We have covered the foundational theory now; let's get our hands dirty and play around with Active Directory objects, Group Policy, and more in the next section.
