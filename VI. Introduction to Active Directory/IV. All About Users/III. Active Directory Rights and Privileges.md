@@ -125,13 +125,16 @@ After logging into a host, typing the command `whoami /priv` will give a listing
 
 ### Standard Domain User's Rights
 
-```plaintext
+```powershell
 PS C:\htb> whoami /priv
 
 PRIVILEGES INFORMATION
 ----------------------
+
+Privilege Name                Description                    State
+============================= ============================== ========
 SeChangeNotifyPrivilege       Bypass traverse checking       Enabled
-SeIncreaseWorkingSetPrivilege Increase a process working set Disabled
+SeIncreaseWorkingSetPrivilege Increase a process working set DisabledetPrivilege Increase a process working set Disabled
 ```
 
 ### Domain Admin Rights Non-Elevated
