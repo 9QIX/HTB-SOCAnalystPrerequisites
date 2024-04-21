@@ -108,12 +108,14 @@ Depending on their group membership and other factors such as privileges assigne
 
 For example, let's say we can gain write access over a Group Policy Object (GPO) applied to an OU containing one or more users that we control. In this example, we could potentially leverage a tool such as SharpGPOAbuse to assign targeted rights to a user. We may perform many actions in the domain to further our access with these new rights. A few examples include:
 
-- **SeRemoteInteractiveLogonRight**: Allows the user to log onto a host via Remote Desktop (RDP), potentially accessing sensitive data or escalating privileges.
-- **SeBackupPrivilege**: Grants the ability to create system backups, obtain copies of sensitive system files like SAM and NTDS.dit, which contain passwords.
-- **SeDebugPrivilege**: Allows debugging and adjusting memory of a process, potentially retrieving stored credentials.
-- **SeImpersonatePrivilege**: Allows impersonation of privileged accounts, aiding in privilege escalation.
-- **SeLoadDriverPrivilege**: Enables loading and unloading of device drivers, which can be used to escalate privileges or compromise a system.
-- **SeTakeOwnershipPrivilege**: Allows taking ownership of objects, providing access to otherwise restricted resources.
+| Privilege                     | Description                                                                                                                                                                                                                                              |
+| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| SeRemoteInteractiveLogonRight | This privilege could give our target user the right to log onto a host via Remote Desktop (RDP), which could potentially be used to obtain sensitive data or escalate privileges.                                                                        |
+| SeBackupPrivilege             | This grants a user the ability to create system backups and could be used to obtain copies of sensitive system files that can be used to retrieve passwords such as the SAM and SYSTEM Registry hives and the NTDS.dit Active Directory database file.   |
+| SeDebugPrivilege              | This allows a user to debug and adjust the memory of a process. With this privilege, attackers could utilize a tool such as Mimikatz to read the memory space of the Local System Authority (LSASS) process and obtain any credentials stored in memory. |
+| SeImpersonatePrivilege        | This privilege allows us to impersonate a token of a privileged account such as NT AUTHORITY\SYSTEM. This could be leveraged with a tool such as JuicyPotato, RogueWinRM, PrintSpoofer, etc., to escalate privileges on a target system.                 |
+| SeLoadDriverPrivilege         | A user with this privilege can load and unload device drivers that could potentially be used to escalate privileges or compromise a system.                                                                                                              |
+| SeTakeOwnershipPrivilege      | This allows a process to take ownership of an object. At its most basic level, we could use this privilege to gain access to a file share or a file on a share that was otherwise not accessible to us.                                                  |
 
 There are many techniques available to abuse user rights, and it's essential to understand the impact that assigning the wrong privilege to an account can have within Active Directory. A small admin mistake can lead to a complete system or enterprise compromise.
 
