@@ -82,13 +82,13 @@ Regardless of which GPO is set to enforced, if the Default Domain Policy GPO is 
 
 It is also possible to set the Block inheritance option on an OU. If this is specified for a particular OU, then policies higher up (such as at the domain level) will NOT be applied to this OU. If both options are set, the No Override option has precedence over the Block inheritance option. Here is a quick example. The Computers OU is inheriting GPOs set on the Corp OU in the below image.
 
-![OU Inheritance Example](image)
+![alt text](/Images/image-90.png)
 
 If the Block Inheritance option is chosen, we can see that the 3 GPOs applied higher up to the Corp OU are no longer enforced on the Computers OU.
 
 ### Block Inheritance
 
-![Block Inheritance](image)
+![alt text](/Images/image-91.png)
 
 ## Group Policy Refresh Frequency
 
