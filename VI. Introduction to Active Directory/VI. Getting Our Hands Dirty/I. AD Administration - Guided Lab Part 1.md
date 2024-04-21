@@ -148,4 +148,142 @@ PS C:\htb> Set-ADUser -Identity amasters -ChangePasswordAtLogon $true
 
 Unlock from Snap-in
 
-Unlocking this user account will take several steps. The first is to unlock the account, then we set it so that the user must change his password at the next login, and then we
+Unlocking this user account will take several steps. The first is to unlock the account, then we set it so that the user must change his password at the next login, and then we reset his password to a temporary one so that he can log in and reset it himself. We can do so by:
+
+- Right-click on the user and select Reset Password.
+- In the next window, type in the temporary password, confirm it, and check the boxes for "User must change password at next logon" and "Unlock the user's account."
+- Once done, hit OK to apply changes. If no error occurs, you will get a prompt informing you that the user's password was changed.
+
+Unlock Users Account From GUI
+
+To unlock Adam Masters' account, we will use the ADUC snap-in just like when we added a user to the domain above.
+
+1. Right-click on Adam Master's account and select "Reset Password".
+
+![Image description](image)
+
+### Task 2: Manage Groups and Other Organizational Units
+
+Next up for us is to create a new Security Group called Analysts and then add our new hires into the group. This group should also be nested in an OU named the same under the IT hive. The `New-ADOrganizationalUnit` PowerShell command should enable you to quickly add a new security group. We can also utilize the AD Users and Computers snap-in like in Task-1 to complete this task.
+
+#### Solution: Task 2
+
+Create a New AD OU and Security Group from PowerShell
+
+To create a new OU and Group, we can perform the following actions:
+
+```powershell
+PS C:\htb> New-ADOrganizationalUnit -Name "Security Analysts" -Path "OU=IT,OU=HQ-NYC,OU=Employees,OU=CORP,DC=INLANEFREIGHT,DC=LOCAL"
+```
+
+First, we created the new OU to hold our Analysts and their resources. Next, we need to create a security group for these users.
+
+```powershell
+PS C:\htb> New-ADGroup -Name "Security Analysts" -SamAccountName analysts -GroupCategory Security -GroupScope Global -DisplayName "Security Analysts" -Path "OU=Security Analysts,OU=IT,OU=HQ-NYC,OU=Employees,OU=Corp,DC=INLANEFREIGHT,DC=LOCAL" -Description "Members of this group are Security Analysts under the IT OU"
+```
+
+From MMC Snap-in
+
+This will be a quick two-step process for us. We first need to create a new OU to host our Security Analysts. To do so, we will:
+
+- Navigate to the "Corp > Employees > HQ-NYC > IT " OU. We are going to build out a new container within IT.
+- Right-click on IT and select "New > Organizational Unit". A new window should appear.
+- Input the name Security Analysts into the Name field and leave the default option set for the Protect checkbox. Hit OK, and the OU should be created.
+
+Create A New OU Under I.T.
+
+Our new OU "Security Analysts" should exist in the IT hive.
+
+1. From within the IT OU, Right-click and select "New" > "Organizational Unit"
+
+![Image description](image)
+
+Now that we have our OU, let's create the Security Group for our Analysts.
+
+Right-click on our new OU Security Analysts and select "New > Group" and a popup window should appear.
+
+- Input the name of the group Security Analysts
+- Select the Group scope Domain local
+- Ensure group type says Security not "Distribution".
+- Once you check the options, hit OK.
+
+Creating A Security Group
+
+Our Security Group will go in the OU we just created.
+
+1. Right-click on our new OU `Security Analysts` and select "New > Group". A popup window should appear.
+
+![Image description](image)
+
+When done, a new Security Group should exist in our OU. We need to move our new users into the OU and add them to the security group. Keep in mind the purpose of this is to logically organize our AD objects for easy location and administration. Utilizing the security groups, we can quickly assign permissions and resources to specific users instead of managing each user individually.
+
+To ADD a user to a group, we can:
+
+Add User to Group via PowerShell
+
+```powershell
+PS C:\htb> Add-ADGroupMember -Identity analysts -Members ACepheus,OStarchaser,ACallisto
+```
+
+Here we use the SAMAccountName of the users to add them to the Analysts group via the `Add-ADGroupMember` Cmdlet. Ensure your list is comma-separated without spaces between each.
+
+From MMC Snap-in
+
+To add the users to the security group, we can:
+
+- Find the user you wish to add
+- Right-click on the user and select "Add to a group". A new window will appear for you to specify the group name.
+- Type in part or all of the group you wish to add the user to. In this case, we are adding Andromeda to the Security Analysts group. If our query matches one or more groups, another dialog box will appear, providing us with a list of groups to choose from. Pick the group you need and hit "OK".
+- The choice you selected will now be highlighted in the previous window. More than one group can be selected at a time if necessary. Once done, hit "OK."
+- If no issues arise, you will get a new popup informing you that the operation is completed. To validate, we can view the group or user properties.
+
+Add A User To A Security Group
+
+In this example, we are adding Andromeda to the Security Analysts group, then moving her into the correct OU.
+
+1. Right-click on the user and select "Add to a group"
+
+![Image description](image)
+
+That's two of our major tasks for the day done. Now let's move on to managing some Group Policy Objects.
+
+### Task 3: Manage Group Policy Objects
+
+Next, we have been asked to duplicate the group policy Logon Banner, rename it Security Analysts Control, and modify it to work for the new Analysts OU. We will need to make the following changes to the Policy Object:
+
+- We will be modifying the Password policy settings for users in this group and expressly allowing users to access PowerShell and CMD since their daily duties require it.
+- For computer settings, we need to ensure the Logon Banner is applied and that removable media is blocked from access.
+
+Once done, make sure the Group Policy is applied to the Security Analysts OU. This will require the use of the Group Policy Management snap-in found under Tools in the Server Manager window. For more of a challenge, the `Copy-GPO` cmdlet in PowerShell can also be utilized.
+
+#### Solution: Task 3
+
+To Duplicate a Group Policy Object we can use the `Copy-GPO` cmdlet or do it from the Group Policy Management Console.
+
+Duplicate the Object via PowerShell
+
+```powershell
+PS C:\htb> Copy-GPO -SourceName "Logon Banner" -TargetName "Security Analysts Control"
+```
+
+The command above will take Logon Banner GPO and copy it to a new object named Security Analyst Control. This object will have all the old attributes of the Logon Banner GPO, but it will not be applied to anything until we link it.
+
+Link the New GPO to an OU
+
+```powershell
+PS C:\htb> New-GPLink -Name "Security Analysts Control" -Target "ou=Security Analysts,ou=IT,OU=HQ-NYC,OU=Employees,OU=Corp,dc=INLANEFREIGHT,dc=LOCAL" -LinkEnabled Yes
+```
+
+The command above will take the new GPO we created, link it to the OU Security Analysts, and enable it. For now, that's all we are going to do from PowerShell. We still need to make a few modifications to the policy, but we will perform these actions from Group Policy Management Console. Editing GPO preferences from PowerShell can be a bit daunting and way beyond the scope of this module.
+
+Modify a GPO via GPMC
+
+To modify our new policy object:
+
+- We need to open GPMC and expand the Group Policy Objects hive so we can see what GPOs exist.
+- Right-click on the policy object we wish to modify and select "Edit. The Group Policy Management Editor should pop up in a new window.
+- From here, we have several options to enable or disable.
+- We need to modify the removable media settings and ensure they are set to block any removable media from access. We will expressly allow security analysts to access PowerShell and CMD since their daily duties require it.
+  - Location of removable media policy settings = User Configuration > Policies > Administrative Templates > System > Removable Storage Access.
+  - Location of Command Prompt settings = User Configuration > Policies > Administrative Templates > System.
+- For Computer settings, we need to ensure the Logon Banner is applied and that the password policy
