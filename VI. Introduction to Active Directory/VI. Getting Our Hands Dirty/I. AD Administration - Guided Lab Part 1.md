@@ -10,19 +10,19 @@ In this section, we will serve as domain administrators to Inlanefreight for a d
 
 For this lab, you will have access to a domain-joined Windows server from which you can perform any actions needed to complete the lab. The environment will require you to RDP from Pwnbox or your own VM over VPN to the Windows server. Follow the steps below to utilize RDP and connect to the lab's Windows host.
 
-Click below in the Questions section to spawn the target host and obtain an IP address. The image below shows where to spawn the target and acquire a VPN key for the lab if needed.
+- Click below in the Questions section to spawn the target host and obtain an IP address. The image below shows where to spawn the target and acquire a VPN key for the lab if needed.
 
-IP ==
-Username == htb-student_adm
-Password == Academy_student_DA!
+  - IP ==
+  - Username == htb-student_adm
+  - Password == Academy_student_DA!
 
-We will use xfreerdp to connect with the target.
+- We will use xfreerdp to connect with the target.
 
-Open a terminal in pwnbox or from your lab vm over vpn and enter the following command:
+- Open a terminal in pwnbox or from your lab vm over vpn and enter the following command:
 
-```bash
-xfreerdp /v: /u:htb-student_adm /p:Academy_student_DA!
-```
+  ```bash
+  xfreerdp /v: /u:htb-student_adm /p:Academy_student_DA!
+  ```
 
 Once connected, open an MMC console, PowerShell, or the ADDS tools to begin.
 
@@ -299,7 +299,7 @@ This slideshow will walk us through modifying group policies that affect Users d
 
 1. Right-click the GPO we wish to modify and select "Edit". This will bring up the Group Policy Configuration Editor window.
 
-![Image description](image)
+![alt text](/Images/image-102.png)
 
 Now, let's modify the group policies affecting our Computer settings. We don't have to exit from the GPMC editor; we can just collapse the user configuration section and expand the Computer Configuration section.
 
@@ -309,7 +309,7 @@ This slideshow will walk us through modifying group policies that affect compute
 
 1. Move from the User Configuration hive into the Computer Configuration hive. We will be validating the "Logon Banner" settings first. We validate the setting in "Interactive Logon Message Text" and "Interactive Logon Message Title".
 
-![Image description](image)
+![alt text](/Images/image-103.png)
 
 ## Summary
 
