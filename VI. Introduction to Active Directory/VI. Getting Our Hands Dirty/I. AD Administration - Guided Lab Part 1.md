@@ -85,7 +85,7 @@ To add an AD user via the GUI we first need to open Active Directory Users and C
 
 1. Right-click on "IT", Select "New" > "User".
 
-![Add A User](image)
+![alt text](image.png)
 
 We will add the new user Andromeda Cepheus to our domain. We can do so by:
 
