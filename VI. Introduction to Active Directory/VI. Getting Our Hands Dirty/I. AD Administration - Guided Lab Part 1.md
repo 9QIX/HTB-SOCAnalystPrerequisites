@@ -85,7 +85,7 @@ To add an AD user via the GUI we first need to open Active Directory Users and C
 
 1. Right-click on "IT", Select "New" > "User".
 
-![alt text](image.png)
+![alt text](/Images/image-96.png)
 
 We will add the new user Andromeda Cepheus to our domain. We can do so by:
 
@@ -114,7 +114,7 @@ The most straightforward method from the ADUC snap-in will be to use the find fu
 - Now, right-click on the user and select delete. A popup window will appear to confirm the deletion of the user. Hit yes.
 - To validate the user is deleted, you can use the Find feature again to search for the user.
 
-Deleting a User via the GUI
+##### Deleting a User via the GUI
 
 To delete a user via the GUI, we will use the ADUC snap-in just like when we added a user to the domain above.
 
