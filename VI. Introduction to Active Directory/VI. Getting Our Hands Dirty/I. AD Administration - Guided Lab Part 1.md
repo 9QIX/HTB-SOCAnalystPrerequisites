@@ -120,7 +120,7 @@ To delete a user via the GUI, we will use the ADUC snap-in just like when we add
 
 1. Right-click on the "Employees OU" and select "find".
 
-![Image description](image)
+![alt text](image.png)
 
 Now we need to help Adam Masters out and unlock his account again.
 
