@@ -243,7 +243,7 @@ In this example, we are adding Andromeda to the Security Analysts group, then mo
 
 1. Right-click on the user and select "Add to a group"
 
-![Image description](image)
+![alt text](/Images/image-101.png)
 
 That's two of our major tasks for the day done. Now let's move on to managing some Group Policy Objects.
 
