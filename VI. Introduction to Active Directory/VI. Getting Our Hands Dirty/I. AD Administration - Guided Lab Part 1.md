@@ -120,7 +120,7 @@ To delete a user via the GUI, we will use the ADUC snap-in just like when we add
 
 1. Right-click on the "Employees OU" and select "find".
 
-![alt text](image.png)
+![alt text](/Images/image-97.png)
 
 Now we need to help Adam Masters out and unlock his account again.
 
@@ -160,7 +160,7 @@ To unlock Adam Masters' account, we will use the ADUC snap-in just like when we 
 
 1. Right-click on Adam Master's account and select "Reset Password".
 
-![Image description](image)
+![alt text](/Images/image-98.png)
 
 ### Task 2: Manage Groups and Other Organizational Units
 
@@ -196,7 +196,7 @@ Our new OU "Security Analysts" should exist in the IT hive.
 
 1. From within the IT OU, Right-click and select "New" > "Organizational Unit"
 
-![Image description](image)
+![alt text](/Images/image-99.png)
 
 Now that we have our OU, let's create the Security Group for our Analysts.
 
