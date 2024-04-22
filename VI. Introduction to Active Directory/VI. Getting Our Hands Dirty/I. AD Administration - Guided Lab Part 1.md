@@ -213,7 +213,7 @@ Our Security Group will go in the OU we just created.
 
 1. Right-click on our new OU `Security Analysts` and select "New > Group". A popup window should appear.
 
-![Image description](image)
+![alt text](/Images/image-100.png)
 
 When done, a new Security Group should exist in our OU. We need to move our new users into the OU and add them to the security group. Keep in mind the purpose of this is to logically organize our AD objects for easy location and administration. Utilizing the security groups, we can quickly assign permissions and resources to specific users instead of managing each user individually.
 
