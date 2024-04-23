@@ -12,7 +12,7 @@ For this lab, you will have access to a domain-joined Windows server from which 
 
 - Click below in the Questions section to spawn the target host and obtain an IP address. The image below shows where to spawn the target and acquire a VPN key for the lab if needed.
 
-  - IP ==
+  - IP =
   - Username == htb-student_adm
   - Password == Academy_student_DA!
 
