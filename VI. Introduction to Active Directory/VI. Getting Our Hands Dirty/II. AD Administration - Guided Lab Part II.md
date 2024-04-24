@@ -1,5 +1,3 @@
-Sure, here's the markdown-friendly version:
-
 # **AD Administration: Guided Lab Part II**
 
 ---
