@@ -1,10 +1,6 @@
 # **AD Administration: Guided Lab Part II**
 
----
-
 In this section of the guided lab, we will be completing the final tasks for the day. We have to add a computer to the domain and change the OU it resides in.
-
----
 
 ## **Connection Instructions**
 
@@ -15,8 +11,6 @@ For this lab, you will utilize RDP and have access to a non-domain-joined Window
   - IP ==
   - Username == `image`
   - Password == `Academy_student_AD!`
-
----
 
 ## **Task 4 Add and Remove Computers To The Domain**
 
@@ -30,8 +24,6 @@ The host we need to join to the INLANEFREIGHT domain is named: `ACADEMY-IAD-W10`
 Once you have access to the host, utilize your `htb-student_adm`: `Academy_student_DA!` account to join the host to the domain.
 
 `Solution: Task 4`
-
----
 
 ## **Summary**
 
