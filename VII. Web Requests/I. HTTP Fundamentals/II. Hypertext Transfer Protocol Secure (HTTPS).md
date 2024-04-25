@@ -36,7 +36,7 @@ Note: Depending on the circumstances, an attacker may be able to perform an HTTP
 
 cURL should automatically handle all HTTPS communication standards and perform a secure handshake and then encrypt and decrypt data automatically. However, if we ever contact a website with an invalid SSL certificate or an outdated one, then cURL by default would not proceed with the communication to protect against the earlier mentioned MITM attacks:
 
-```
+```bash
 z0x9n@htb[/htb]$ curl https://inlanefreight.com
 
 curl: (60) SSL certificate problem: Invalid certificate chain
