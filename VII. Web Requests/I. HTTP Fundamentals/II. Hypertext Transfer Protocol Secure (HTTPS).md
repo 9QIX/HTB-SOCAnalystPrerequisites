@@ -6,7 +6,9 @@ To counter this issue, the HTTPS (HTTP Secure) protocol was created, in which al
 
 ## HTTPS Overview
 
-If we examine an HTTP request, we can see the effect of not enforcing secure communications between a web browser and a web application. For example, the following is the content of an HTTP login request: http_clear
+If we examine an HTTP request, we can see the effect of not enforcing secure communications between a web browser and a web application. For example, the following is the content of an HTTP login request:
+
+![alt text](/Images/image-106.png)
 
 We can see that the login credentials can be viewed in clear-text. This would make it easy for someone on the same network (such as a public wireless network) to capture the request and reuse the credentials for malicious purposes.
 
