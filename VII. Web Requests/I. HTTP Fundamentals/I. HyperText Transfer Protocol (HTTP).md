@@ -47,7 +47,7 @@ cURL (client URL) is a command-line tool and library that primarily supports HTT
 We can send a basic HTTP request to any URL by using it as an argument for cURL, as follows:
 
 ```bash
-$ curl inlanefreight.com
+z0x9n@htb[/htb]$ curl inlanefreight.com
 
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
 <html><head>
@@ -63,6 +63,7 @@ $ curl -O inlanefreight.com/index.html
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
 100 464    0 464    0     0  17858      0 --:--:-- --:--:-- --:--:-- 18069
+
 $ ls
 index.html
 ```
