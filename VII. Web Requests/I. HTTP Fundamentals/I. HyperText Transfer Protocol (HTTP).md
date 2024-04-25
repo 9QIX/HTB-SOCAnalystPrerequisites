@@ -8,7 +8,7 @@ HTTP communication consists of a client and a server, where the client requests 
 
 Resources over HTTP are accessed via a URL, which offers many more specifications than simply specifying a website we want to visit. Let's look at the structure of a URL:
 
-![alt text](image.png)
+![alt text](image-104.png)
 
 Here is what each component stands for:
 
