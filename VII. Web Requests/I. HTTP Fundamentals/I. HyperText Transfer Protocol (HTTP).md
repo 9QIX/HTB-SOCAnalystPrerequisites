@@ -26,7 +26,7 @@ Not all components are required to access a resource. The main mandatory fields 
 
 ## HTTP Flow
 
-![HTTP Flow](HTTP_Flow.png)
+![alt text](image.png)
 
 The diagram above presents the anatomy of an HTTP request at a very high level. The first time a user enters the URL (inlanefreight.com) into the browser, it sends a request to a DNS (Domain Name Resolution) server to resolve the domain and get its IP. The DNS server looks up the IP address for inlanefreight.com and returns it. All domain names need to be resolved this way, as a server can't communicate without an IP address.
 
