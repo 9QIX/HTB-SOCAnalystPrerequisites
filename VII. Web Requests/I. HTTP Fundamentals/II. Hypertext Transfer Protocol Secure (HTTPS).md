@@ -30,7 +30,7 @@ Note: Although the data transferred through the HTTPS protocol may be encrypted,
 
 Let's look at how HTTPS operates at a high level:
 
-![alt text](image.png)
+![alt text](/Images/image-109.png)
 
 If we type `http://` instead of `https://` to visit a website that enforces HTTPS, the browser attempts to resolve the domain and redirects the user to the webserver hosting the target website. A request is sent to port 80 first, which is the unencrypted HTTP protocol. The server detects this and redirects the client to secure HTTPS port 443 instead. This is done via the 301 Moved Permanently response code, which we will discuss in an upcoming section.
 
