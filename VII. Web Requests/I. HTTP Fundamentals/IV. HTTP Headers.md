@@ -103,8 +103,7 @@ Exercise: Try to go through all of the above headers, and see whether you can re
 
 In addition to viewing headers, cURL also allows us to set request headers with the `-H` flag, as we will see in a later section. Some headers, like the User-Agent or Cookie headers, have their own flags. For example, we can use the `-A` to set our User-Agent, as follows:
 
-```
-HTTP Headers
+```bash
 z0x9n@htb[/htb]$ curl https://www.inlanefreight.com -A 'Mozilla/5.0'
 
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 2.0//EN">
