@@ -117,10 +117,6 @@ Exercise: Try to use the `-I` or the `-v` flags with the above example, to ensur
 
 Finally, let's see how we can preview the HTTP headers using the browser devtools. Just as we did in the previous section, we can go to the Network tab to view the different requests made by the page. We can click on any of the requests to view its details:
 
-![devtools_network_requests_details](devtools_network_requests_details.png)
+![alt text](image.png)
 
 In the first Headers tab, we see both the HTTP request and HTTP response headers. The devtools automatically arrange the headers into sections, but we can click on the Raw button to view their details in their raw format. Furthermore, we can check the Cookies tab to see any cookies used by the request, as discussed in an upcoming section.
-
-```
-
-```
