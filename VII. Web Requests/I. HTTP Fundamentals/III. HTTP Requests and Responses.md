@@ -8,7 +8,7 @@ Once the server receives the HTTP request, it processes it and responds by sendi
 
 Let's start by examining the following example HTTP request:
 
-`raw_request`
+![alt text](/Images/image-110.png)
 
 The image above shows an HTTP GET request to the URL:
 
@@ -29,7 +29,7 @@ Note: HTTP version 1.X sends requests as clear-text, and uses a new-line charact
 
 Once the server processes our request, it sends its response. The following is an example HTTP response:
 
-`raw_response`
+![alt text](image.png)
 
 The first line of an HTTP response contains two fields separated by spaces. The first being the HTTP version (e.g. HTTP/1.1), and the second denotes the HTTP response code (e.g. 200 OK).
 
