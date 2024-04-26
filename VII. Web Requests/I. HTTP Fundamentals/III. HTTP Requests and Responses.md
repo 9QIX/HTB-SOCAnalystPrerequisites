@@ -41,9 +41,9 @@ Finally, the response may end with a response body, which is separated by a new 
 
 In our earlier examples with cURL, we only specified the URL and got the response body in return. However, cURL also allows us to preview the full HTTP request and the full HTTP response, which can become very handy when performing web penetration tests or writing exploits. To view the full HTTP request and response, we can simply add the -v verbose flag to our earlier commands, and it should print both the request and response:
 
-```
+#### HTTP Requests and Responses
 
-HTTP Requests and Responses
+```bash
 z0x9n@htb[/htb]$ curl inlanefreight.com -v
 
 - Trying SERVER_IP:80...
@@ -66,7 +66,6 @@ z0x9n@htb[/htb]$ curl inlanefreight.com -v
   <html><head>
 
 ...SNIP...
-
 ```
 
 As we can see, this time, we get the full HTTP request and response. The request simply sent GET / HTTP/1.1 along with the Host, User-Agent and Accept headers. In return, the HTTP response contained the HTTP/1.1 401 Unauthorized, which indicates that we do not have access over the requested resource, as we will see in an upcoming section. Similar to the request, the response also contained several headers sent by the server, including Date, Content-Length, and Content-Type. Finally, the response contained the response body in HTML, which is the same one we received earlier when using cURL without the -v flag.
@@ -84,7 +83,3 @@ If we click on the Network tab and refresh the page, we should be able to see th
 As we can see, the devtools show us at a glance the response status (i.e. response code), the request method used (GET), the requested resource (i.e. URL/domain), along with the requested path. Furthermore, we can use Filter URLs to search for a specific request, in case the website loads too many to go through.
 
 Exercise: Try clicking on any of the requests to view their details. You can then click on the Response tab to view the response body, and then click on the Raw button to view the raw (unrendered) source code of the response body.
-
-```
-
-```
