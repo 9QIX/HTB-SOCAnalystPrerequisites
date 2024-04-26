@@ -1,4 +1,3 @@
-```markdown
 # HTTP Headers
 
 We have seen examples of HTTP requests and response headers in the previous section. Such HTTP headers pass information between the client and the server. Some headers are only used with either requests or responses, while some other general headers are common to both.
@@ -76,6 +75,7 @@ Note: This section only mentions a small subset of commonly seen HTTP headers. T
 In the previous section, we saw how using the `-v` flag with cURL shows us the full details of the HTTP request and response. If we were only interested in seeing the response headers, then we can use the `-I` flag to send a HEAD request and only display the response headers. Furthermore, we can use the `-i` flag to display both the headers and the response body (e.g. HTML code). The difference between the two is that `-I` sends a HEAD request (as will see in the next section), while `-i` sends any request we specify and prints the headers as well.
 
 The following command shows an example output of using the `-I` flag:
+
 ```
 
 HTTP Headers
@@ -83,3 +83,4 @@ z0x9n@htb[/htb]$ curl -I https://www.inlanefreight.com
 
 Host: www.inlanefreight.com
 User
+```
