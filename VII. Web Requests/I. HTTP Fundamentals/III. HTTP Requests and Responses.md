@@ -78,7 +78,9 @@ Most modern web browsers come with built-in developer tools (DevTools), which ar
 
 Whenever we visit any website or access any web application, our browser sends multiple web requests and handles multiple HTTP responses to render the final view we see in the browser window. To open the browser devtools in either Chrome or Firefox, we can click [CTRL+SHIFT+I] or simply click [F12]. The devtools contain multiple tabs, each of which has its own use. We will mostly be focusing on the Network tab in this module, as it is responsible for web requests.
 
-If we click on the Network tab and refresh the page, we should be able to see the list of requests sent by the page: `devtools_network_requests`
+If we click on the Network tab and refresh the page, we should be able to see the list of requests sent by the page:
+
+![alt text](/Images/image-112.png)
 
 As we can see, the devtools show us at a glance the response status (i.e. response code), the request method used (GET), the requested resource (i.e. URL/domain), along with the requested path. Furthermore, we can use Filter URLs to search for a specific request, in case the website loads too many to go through.
 
