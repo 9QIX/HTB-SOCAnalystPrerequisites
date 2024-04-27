@@ -122,4 +122,22 @@ Connection: keep-alive
 Cookie: PHPSESSID=c1nsa6op7vtk7kdis7bcnbadf1
 ```
 
-Indeed, we do have `Content-Type: application/json`. Let's try to replicate this request as we did earlier, but include both the cookie and content-type headers, and send our request to `
+Indeed, we do have Content-Type: application/json. Let's try to replicate this request as we did earlier, but include both the cookie and content-type headers, and send our request to search.php:
+
+```
+POST
+z0x9n@htb[/htb]$ curl -X POST -d '{"search":"london"}' -b 'PHPSESSID=c1nsa6op7vtk7kdis7bcnbadf1' -H 'Content-Type: application/json' http://<SERVER_IP>:<PORT>/search.php
+["London (UK)"]
+```
+
+As we can see, we were able to interact with the search function directly without needing to login or interact with the web application front-end. This can be an essential skill when performing web application assessments or bug bounty exercises, as it is much faster to test web applications this way.
+
+**Exercise**: Try to repeat the above request without adding the cookie or content-type headers, and see how the web app would act differently.
+
+Finally, let's try to repeat the same above request by using Fetch, as we did in the previous section. We can right-click on the request and select `Copy>Copy as Fetch`, and then go to the Console tab and execute our code there: `web_requests_fetch_post`
+
+Our request successfully returns the same data we got with cURL. Try to search for different cities by directly interacting with the `search.php` through Fetch or cURL.
+
+```
+
+```
