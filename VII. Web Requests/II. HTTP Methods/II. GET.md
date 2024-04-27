@@ -31,8 +31,6 @@ Content-Type: text/html; charset=UTF-8
 Access denied
 ```
 
-````
-
 As we can see, we get Access denied in the response body, and we also get Basic realm="Access denied" in the WWW-Authenticate header, which confirms that this page indeed uses basic HTTP auth, as discussed in the Headers section. To provide the credentials through cURL, we can use the -u flag, as follows:
 
 ```bash
@@ -140,4 +138,7 @@ Note: The copied command will contain all headers used in the HTTP request. Howe
 We can also repeat the exact request right within the browser devtools, by selecting Copy>Copy as Fetch. This will copy the same HTTP request using the JavaScript Fetch library. Then, we can go to the JavaScript console tab by clicking [CTRL+SHIFT+K], paste our Fetch command and hit enter to send the request: network_clear_requests
 
 As we see, the browser sent our request, and we can see the response returned after it. We can click on the response to view its details, expand various details, and read them.
-````
+
+```
+
+```
