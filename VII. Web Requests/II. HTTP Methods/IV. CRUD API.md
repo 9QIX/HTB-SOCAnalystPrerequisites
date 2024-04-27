@@ -135,7 +135,6 @@ fetch("http://<SERVER_IP>:<PORT>/api.php/city", {
     credentials: "omit",
     mode: "cors"
 });
-
 ```
 
 ## Update
