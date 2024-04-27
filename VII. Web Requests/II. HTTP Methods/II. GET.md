@@ -10,11 +10,11 @@ When we visit the exercise found at the end of this section, it prompts us to en
 
 To access the page, we have to enter a valid pair of credentials, which are admin:admin in this case:
 
-http://<SERVER_IP>:<PORT>/
+![alt text](image.png)
 
 Once we enter the credentials, we would get access to the page:
 
-http://<SERVER_IP>:<PORT>/
+![alt text](image-1.png)
 
 Let's try to access the page with cURL, and we'll add -i to view the response headers:
 
