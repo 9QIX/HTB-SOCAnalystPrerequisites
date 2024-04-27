@@ -10,11 +10,11 @@ When we visit the exercise found at the end of this section, it prompts us to en
 
 To access the page, we have to enter a valid pair of credentials, which are admin:admin in this case:
 
-![alt text](image.png)
+![alt text](/Images/image-114.png)
 
 Once we enter the credentials, we would get access to the page:
 
-![alt text](image-1.png)
+![alt text](/Images/image-115.png)
 
 Let's try to access the page with cURL, and we'll add -i to view the response headers:
 
