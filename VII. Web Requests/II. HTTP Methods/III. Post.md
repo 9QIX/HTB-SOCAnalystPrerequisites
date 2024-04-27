@@ -102,7 +102,7 @@ As we can see, the search form sends a POST request to `search.php`, with the fo
 
 The POST data appear to be in JSON format, so our request must have specified the `Content-Type` header to be `application/json`. We can confirm this by right-clicking on the request, and selecting `Copy>Copy Request Headers`:
 
-```bash
+```json
 POST /search.php HTTP/1.1
 Host: server_ip
 User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:97.0) Gecko/20100101 Firefox/97.0
