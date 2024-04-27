@@ -15,17 +15,13 @@ So, let's see some examples of how POST requests work, and how we can utilize to
 The exercise at the end of this section is similar to the example we saw in the GET section. However, once we visit the web application, we see that it utilizes a PHP login form instead of HTTP basic auth:
 
 ```
-
 http://<SERVER_IP>:<PORT>/
-
 ```
 
 If we try to login with `admin:admin`, we get in and see a similar search function to the one we saw earlier in the GET section:
 
 ```
-
 http://<SERVER_IP>:<PORT>/
-
 ```
 
 If we clear the Network tab in our browser devtools and try to log in again, we will see many requests being sent. We can filter the requests by our server IP, so it would only show requests going to the web application's web server (i.e. filter out external requests), and we will notice the following POST request being sent: `web_requests_login_request`
@@ -40,7 +36,7 @@ With the request data at hand, we can try to send a similar request with cURL, t
 
 We will use the `-X POST` flag to send a POST request. Then, to add our POST data, we can use the `-d` flag and add the above data after it, as follows:
 
-```
+```bash
 POST
 z0x9n@htb[/htb]$ curl -X POST -d 'username=admin&password=admin' http://<SERVER_IP>:<PORT>/
 
@@ -57,7 +53,7 @@ If we examine the HTML code, we will not see the login form code, but will see t
 
 If we were successfully authenticated, we should have received a cookie so our browsers can persist our authentication, and we don't need to login every time we visit the page. We can use the `-v` or `-i` flags to view the response, which should contain the `Set-Cookie` header with our authenticated cookie:
 
-```
+```bash
 POST
 z0x9n@htb[/htb]$ curl -X POST -d 'username=admin&password=admin' http://<SERVER_IP>:<PORT>/ -i
 
@@ -73,7 +69,7 @@ Set-Cookie: PHPSESSID=c1nsa6op7vtk7kdis7bcnbadf1; path=/
 
 With our authenticated cookie, we should now be able to interact with the web application without needing to provide our credentials every time. To test this, we can set the above cookie with the `-b` flag in cURL, as follows:
 
-```
+```bash
 POST
 z0x9n@htb[/htb]$ curl -b 'PHPSESSID=c1nsa6op7vtk7kdis7bcnbadf1' http://<SERVER_IP>:<PORT>/
 
@@ -124,7 +120,7 @@ Cookie: PHPSESSID=c1nsa6op7vtk7kdis7bcnbadf1
 
 Indeed, we do have Content-Type: application/json. Let's try to replicate this request as we did earlier, but include both the cookie and content-type headers, and send our request to search.php:
 
-```
+```bash
 POST
 z0x9n@htb[/htb]$ curl -X POST -d '{"search":"london"}' -b 'PHPSESSID=c1nsa6op7vtk7kdis7bcnbadf1' -H 'Content-Type: application/json' http://<SERVER_IP>:<PORT>/search.php
 ["London (UK)"]
@@ -137,7 +133,3 @@ As we can see, we were able to interact with the search function directly withou
 Finally, let's try to repeat the same above request by using Fetch, as we did in the previous section. We can right-click on the request and select `Copy>Copy as Fetch`, and then go to the Console tab and execute our code there: `web_requests_fetch_post`
 
 Our request successfully returns the same data we got with cURL. Try to search for different cities by directly interacting with the `search.php` through Fetch or cURL.
-
-```
-
-```
