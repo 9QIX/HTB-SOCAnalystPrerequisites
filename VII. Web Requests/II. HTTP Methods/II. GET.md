@@ -120,7 +120,9 @@ As the page returns our results, it may be contacting a remote resource to obtai
 
 ![alt text](/Images/image-117.png)
 
-After that, we can enter any search term and hit enter, and we will immediately notice a new request being sent to the backend: network_clear_requests
+After that, we can enter any search term and hit enter, and we will immediately notice a new request being sent to the backend:
+
+![alt text](/Images/image-118.png)
 
 When we click on the request, it gets sent to search.php with the GET parameter search=le used in the URL. This helps us understand that the search function requests another page for the results.
 
