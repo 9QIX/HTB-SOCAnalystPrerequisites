@@ -94,7 +94,9 @@ As we can see, having a valid cookie may be enough to get authenticated into man
 
 ## JSON Data
 
-Finally, let's see what requests get sent when we interact with the City Search function. To do so, we will go to the Network tab in the browser devtools, and then click on the trash icon to clear all requests. Then, we can make any search query to see what requests get sent: `web_requests_search_request`
+Finally, let's see what requests get sent when we interact with the City Search function. To do so, we will go to the Network tab in the browser devtools, and then click on the trash icon to clear all requests. Then, we can make any search query to see what requests get sent:
+
+![alt text](/Images/image-125.png)
 
 As we can see, the search form sends a POST request to `search.php`, with the following data:
 
@@ -132,6 +134,8 @@ As we can see, we were able to interact with the search function directly withou
 
 **Exercise**: Try to repeat the above request without adding the cookie or content-type headers, and see how the web app would act differently.
 
-Finally, let's try to repeat the same above request by using Fetch, as we did in the previous section. We can right-click on the request and select `Copy>Copy as Fetch`, and then go to the Console tab and execute our code there: `web_requests_fetch_post`
+Finally, let's try to repeat the same above request by using Fetch, as we did in the previous section. We can right-click on the request and select `Copy>Copy as Fetch`, and then go to the Console tab and execute our code there:
+
+![alt text](/Images/image-126.png)
 
 Our request successfully returns the same data we got with cURL. Try to search for different cities by directly interacting with the `search.php` through Fetch or cURL.
