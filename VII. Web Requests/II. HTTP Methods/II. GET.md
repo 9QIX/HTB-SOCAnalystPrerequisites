@@ -141,6 +141,6 @@ Note: The copied command will contain all headers used in the HTTP request. Howe
 
 We can also repeat the exact request right within the browser devtools, by selecting Copy>Copy as Fetch. This will copy the same HTTP request using the JavaScript Fetch library. Then, we can go to the JavaScript console tab by clicking [CTRL+SHIFT+K], paste our Fetch command and hit enter to send the request:
 
-![alt text](image.png)
+![alt text](/Images/image-119.png)
 
 As we see, the browser sent our request, and we can see the response returned after it. We can click on the response to view its details, expand various details, and read them.
