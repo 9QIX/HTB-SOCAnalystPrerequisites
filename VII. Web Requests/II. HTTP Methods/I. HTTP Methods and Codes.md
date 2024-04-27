@@ -4,8 +4,6 @@ HTTP supports multiple methods for accessing a resource. In the HTTP protocol, s
 
 We saw different HTTP methods used in the HTTP requests we tested in the previous sections. With cURL, if we use `-v` to preview the full request, the first line contains the HTTP method (e.g. `GET / HTTP/1.1`), while with browser devtools, the HTTP method is shown in the `Method` column. Furthermore, the response headers also contain the HTTP response code, which states the status of processing our HTTP request.
 
----
-
 ## Request Methods
 
 The following are some of the commonly used methods:
@@ -23,8 +21,6 @@ The following are some of the commonly used methods:
 The list only highlights a few of the most commonly used HTTP methods. The availability of a particular method depends on the server as well as the application configuration. For a full list of HTTP methods, you can visit this link.
 
 **Note:** Most modern web applications mainly rely on the `GET` and `POST` methods. However, any web application that utilizes REST APIs also rely on `PUT` and `DELETE`, which are used to update and delete data on the API endpoint, respectively. Refer to the Introduction to Web Applications module for more details.
-
----
 
 ## Response Codes
 
