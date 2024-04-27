@@ -117,6 +117,27 @@ As we can see, a new city was created, which did not exist before.
 
 Exercise: Try adding a new city through the browser devtools, by using one of the Fetch POST requests you used in the previous section.
 
+```json
+fetch("http://<SERVER_IP>:<PORT>/api.php/city", {
+    method: "POST",
+    headers: {
+        "Content-Type": "application/json",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; rv:102.0) Gecko/20100101 Firefox/102.0",
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+        "Accept-Language": "en-US,en;q=0.5",
+        "Upgrade-Insecure-Requests": "1",
+        "Sec-GPC": "1"
+    },
+    body: JSON.stringify({
+        city_name: "HTB_City",
+        country_name: "HTB"
+    }),
+    credentials: "omit",
+    mode: "cors"
+});
+
+```
+
 ## Update
 
 Now that we know how to read and write entries through APIs, let's start discussing two other HTTP methods we have not used so far: PUT and DELETE. As mentioned at the beginning of the section, PUT is used to update API entries and modify their details, while DELETE is used to remove a specific entity.
