@@ -28,6 +28,8 @@ We can click on the request, click on the Request tab (which shows the request b
 username=admin&password=admin
 ```
 
+![alt text](/Images/image-122.png)
+
 With the request data at hand, we can try to send a similar request with cURL, to see whether this would allow us to login as well. Furthermore, as we did in the previous section, we can simply right-click on the request and select `Copy>Copy as cURL`. However, it is important to be able to craft POST requests manually, so let's try to do so.
 
 We will use the `-X POST` flag to send a POST request. Then, to add our POST data, we can use the `-d` flag and add the above data after it, as follows:
