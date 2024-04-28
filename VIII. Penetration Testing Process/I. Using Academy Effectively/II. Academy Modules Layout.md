@@ -61,4 +61,72 @@ As we know, large IT networks need to be closely managed and secured. Most compa
    Tier 0 | Fundamental | General | 16 Sections+ | 107 hours
 
 9. **Getting Started**
-   What
+   What causes the most significant difficulty for most when starting out? The answer to this is much easier than most may imagine because all we have to do is Get Started. This module includes many tips and tricks for those just starting out, examples of what technologies we will see and what attack methods we will use, and a guided walkthrough of solving a vulnerable box, culminating in solving (for some of us) our first box without assistance.
+   Tier 0 | Fundamental | Offensive | 23 Sections+ | 108 hours
+
+## Information Gathering
+
+Information gathering is an essential part of any assessment. Because information, the knowledge gained from it, the conclusions we draw, and the steps we take are based on the information available. This information must be obtained from somewhere, so it is critical to know how to retrieve it and best leverage it based on our assessment goals.
+
+From this stage, the next part of our path is clear:
+
+| Path                     | Description                                                                                                                                                                                                                                                                                                                                        |
+| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vulnerability Assessment | The next stop on our journey is Vulnerability Assessment, where we use the information found to identify potential weaknesses. We can use vulnerability scanners that will scan the target systems for known vulnerabilities and manual analysis where we try to look behind the scenes to discover where the potential vulnerabilities might lie. |
+
+The information we gather in advance will influence the results of the Exploitation stage. From this, we can see if we have collected enough or dived deep enough. Time, patience, and personal commitment all play a significant role in information gathering. This is when many penetration testers tend to jump straight into exploiting a potential vulnerability. This often fails and can lead, among other things, to a significant loss of time. Before attempting to exploit anything, we should have completed thorough information gathering, keeping detailed notes along the way, focusing on things to hone in on once we get to the exploitation stage. Most assessments are time-based, so we don't want to waste time bouncing around, which could lead to us missing something critical. Organization and patience are vital while being as thorough as possible.
+
+10. **Network Enumeration with Nmap**
+    Suppose we limit our scope to the corporate network infrastructure. In that case, we should know how to perform the Network Enumeration with Nmap, identify the potential targets, and bypass security measures like firewalls, intrusion prevention, and intrusion detection systems (IPS/IDS).
+    Tier I | Easy | Offensive | 12 Sections+ | 107 hours
+
+11. **Footprinting**
+    Once we have identified the potential targets, we need to know how the individual services of these hosts can be examined. It is essential to understand what these services are used for, how they can be misconfigured, and how we, as attackers, can exploit them for our purposes. Because every service that communicates via the network leaves its own Footprint that we have to discover, knowing these footprints will give us a more accurate picture of what steps we can take next as we head into the exploitation phase.
+    Tier II | Medium | Offensive | 20 Sections+ | 202 days
+
+12. **Information Gathering - Web Edition**
+    In most cases, web servers and web applications contain a great deal of information that can be used against them. Since web is a vast technical area in its own right, it will be treated separately. A web server can run many web applications, and some of these applications may be only intended for the developers and administrators. Therefore, finding these is an essential part of our Information Gathering - Web Edition. We also want to discover as many web applications as possible and gather detailed information on their structure and function which will help inform our attacks.
+    Tier II | Easy | Offensive | 10 Sections+ | 207 hours
+
+Things can become quite complex when we want to find information about a target company on the Internet. After all, sifting through various sources and social media platforms is time-consuming and requires a great deal of attention and patience.
+
+13. **OSINT: Corporate Recon**
+    This type of research is called open-source intelligence (OSINT) and has many subcategories. In summary, this process involves gathering information from all publicly available sources. OSINT: Corporate Recon, gives us a clear and structured approach that will allow us to work through many different types of data and information sources. A simple example would be finding a private SSH key that allows us to log into the corporate network as an administrator.
+    Tier IV | Hard | Offensive | 23 Sections+ | 2002 days
+
+## Vulnerability Assessment
+
+The vulnerability assessment stage is divided into two areas. On the one hand, it is an approach to scan for known vulnerabilities using automated tools. On the other hand, it is analyzing for potential vulnerabilities through the information found. Many companies conduct regular vulnerability assessment audits to check their infrastructure for new known vulnerabilities and compare them with the latest entries in these tools' databases.
+
+An analysis is more about thinking outside the box. We try to discover gaps and opportunities to trick the systems and applications to our advantage and gain unintended access or privileges. This requires creativity and a deep technical understanding. We must connect the various information points we obtain and understand its processes.
+
+From this stage, there are four paths we can take, depending on how far we have come:
+
+| Path                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Exploitation          | The first we can jump into is the Exploitation stage. This happens when we do not yet have access to a system or application. Of course, this assumes that we have already identified at least one gap and prepared everything necessary to attempt to exploit it.                                                                                                                                                                                                                                                   |
+| Post-Exploitation     | The second way leads to the Post-Exploitation stage, where we escalate privileges on the target system. This assumes that we are already on the target system and can interact with it.                                                                                                                                                                                                                                                                                                                              |
+| Lateral Movement      | Our third option is the Lateral Movement stage, where we move from the already exploited system through the network and attack other systems. Again, this assumes that we are already on a target system and can interact with it. However, privilege escalation is not strictly necessary because interacting with the system already allows us to move further in the network under certain circumstances. Other times we will need to escalate privileges before moving laterally. Every assessment is different. |
+| Information Gathering | The last option is returning to the Information Gathering stage when we do not have enough information on hand. Here we can dig deeper to find more information that will give us a more accurate view.                                                                                                                                                                                                                                                                                                              |
+
+The ability to analyze comes with time and experience. However, it also needs to be trained because proper analysis makes connections between different points and information. Connecting this information about the target network or target system and our experience will often allow us to recognize specific patterns. We can compare this to reading. Once we have read certain words often enough, we will know that word at some point and understand what it means just by looking at the letters.
+
+14. **Vulnerability Assessment**
+    After summarizing the information, we can use automated tools to scan the defined targets to detect known vulnerabilities in the systems. First, however, we need to know the scoring systems and learn how to configure and use these tools efficiently. The Vulnerability Assessment performed by these tools can give us a better overview of the potential vulnerabilities and the configuration of the target system. From this, new paths and opportunities can be revealed to us to help us find another way into the system.
+    Tier 0 | Easy | Offensive | 17 Sections+ | 102 hours
+
+15. **File Transfers**
+    Before we can efficiently exploit the potential vulnerabilities, we need to be familiar with techniques and methods to transfer the required data to the target systems. This is because manual adjustments are often necessary to circumvent specific restrictions. Knowing the ways and means to perform File Transfers is an essential component that we must master and there are many ways to transfer files both to and from Windows and Linux hosts. If we have found a potential gap and do not know how to transfer the corresponding data to the target system, it will lead us to a dead end.
+    Tier 0 | Medium | Offensive | 8 Sections+ | 103 hours
+
+16. **Shells & Payloads**
+    We also need to know what files we need to transfer to gain initial or further access to the systems. For this, it is necessary to know what Shell & Payloads are. With the help of the transmitted payloads, we get access to the command line of the target system. Many things have to be taken into consideration because these shells and payloads must be adapted to the environment and the targeted system.
+    Tier I | Medium | Offensive | 17 Sections+ | 102 days
+
+17. **Using the Metasploit-Framework**
+    In addition, there is a handy framework called Metasploit-Framework that covers many attacks, enumeration, and privilege escalation methods and makes it faster for us to configure and execute. It can help us speed up our processes and get into the target systems in a semi-automated way. However, before we can do this, we need to understand what this tool is capable of and its limitations.
+    Tier 0 | Easy | Offensive | 15 Sections+ | 105 hours
+
+## Exploitation
+
+Exploitation is the attack performed against a system or application based on the potential vulnerability discovered during our information gathering and enum
