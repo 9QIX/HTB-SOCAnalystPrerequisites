@@ -8,6 +8,8 @@ With this in mind, we have laid a foundation for our students because, in our ex
 
 The remainder of this section will explain how we have structured the modules in the way that we did to give you insight into our thought process and teaching philosophy. Our primary focus is creating engaging and empowering training resources that benefit individuals at ALL skill levels.
 
+![alt text](/Images/image-127.png)
+
 ## Pre-Engagement
 
 The pre-engagement stage is where the main commitments, tasks, scope, limitations, and related agreements are documented in writing. During this stage, contractual documents are drawn up, and essential information is exchanged that is relevant for penetration testers and the client, depending on the type of assessment.
