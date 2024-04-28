@@ -61,20 +61,22 @@ The less information we are provided with, the longer and more complex the appro
 
 Apart from the test method and the type of test, another consideration is what is to be tested, which can be summarized in the following categories:
 
-- Network
-- Web App
-- Mobile
-- API
-- Thick Clients
-- IoT
-- Cloud
-- Source Code
-- Physical Security
-- Employees
-- Hosts
-- Server
-- Security Policies
-- Firewalls
-- IDS/IPS
+| Component         | Description                                                                            |
+| ----------------- | -------------------------------------------------------------------------------------- |
+| Network           | Infrastructure, routers, switches, network services                                    |
+| Web App           | Web applications, websites, web services                                               |
+| Mobile            | Mobile applications, mobile devices, mobile APIs                                       |
+| API               | Application Programming Interfaces, used for communication between software components |
+| Thick Clients     | Desktop applications, standalone software                                              |
+| IoT               | Internet of Things devices, smart devices, embedded systems                            |
+| Cloud             | Cloud-based services, cloud infrastructure, SaaS, PaaS, IaaS                           |
+| Source Code       | Software source code, code repositories, version control systems                       |
+| Physical Security | Physical access controls, locks, surveillance systems                                  |
+| Employees         | User awareness, training, social engineering tests                                     |
+| Hosts             | Individual computers, servers, endpoints                                               |
+| Server            | Servers, including web servers, database servers, email servers                        |
+| Security Policies | Organizational policies, procedures, compliance requirements                           |
+| Firewalls         | Network firewalls, intrusion prevention systems (IPS)                                  |
+| IDS/IPS           | Intrusion Detection Systems, Intrusion Prevention Systems                              |
 
 It is important to note that these categories can often be mixed. All listed test components may be included depending on the type of test to be performed. Now we'll shift gears and cover the Penetration Process in-depth to see how each phase is broken down and depends on the previous one.
