@@ -59,4 +59,22 @@ The less information we are provided with, the longer and more complex the appro
 
 ## Types of Testing Environments
 
-Apart from the test method and the type of
+Apart from the test method and the type of test, another consideration is what is to be tested, which can be summarized in the following categories:
+
+- Network
+- Web App
+- Mobile
+- API
+- Thick Clients
+- IoT
+- Cloud
+- Source Code
+- Physical Security
+- Employees
+- Hosts
+- Server
+- Security Policies
+- Firewalls
+- IDS/IPS
+
+It is important to note that these categories can often be mixed. All listed test components may be included depending on the type of test to be performed. Now we'll shift gears and cover the Penetration Process in-depth to see how each phase is broken down and depends on the previous one.
