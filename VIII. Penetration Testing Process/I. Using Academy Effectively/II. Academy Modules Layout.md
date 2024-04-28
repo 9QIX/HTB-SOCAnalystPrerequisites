@@ -129,4 +129,63 @@ The ability to analyze comes with time and experience. However, it also needs to
 
 ## Exploitation
 
-Exploitation is the attack performed against a system or application based on the potential vulnerability discovered during our information gathering and enum
+Exploitation is the attack performed against a system or application based on the potential vulnerability discovered during our information gathering and enumeration. We use the information from the Information Gathering stage, analyze it in the Vulnerability Assessment stage, and prepare the potential attacks. Often many companies and systems use the same applications but make different decisions about their configuration. This is because the same application can often be used for various purposes, and each organization will have different objectives.
+
+From this stage, there are four paths we can take, depending on how far we have come:
+
+| Path                  | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Information Gathering | Once we have initial access to the target system, regardless of how high our privileges are at that moment, we need to gather information about the local system. Whether we use this new information for privilege escalation, lateral movement, or data exfiltration does not matter. Therefore, before we can take any further steps, we need to find out what we are dealing with. This inevitably takes us to the vulnerability assessment stage, where we analyze and evaluate the information we find.                                                                                                                  |
+| Post-Exploitation     | Post-exploitation is mainly about escalating privileges if we have not yet attained the highest possible rights on the target host. As we know, more opportunities are open to us with higher privileges. This path actually includes the stages Information Gathering, Vulnerability Assessment, Exploitation, and Lateral Movement but from an internal perspective on the target system. The direct jump to post-exploitation is less frequent, but it does happen. Because through the exploitation stage, we may already have obtained the highest privileges, and from here on, we start again at Information Gathering. |
+| Lateral Movement      | From here, we can also skip directly over to Lateral Movement. This can come under different conditions. If we have achieved the highest privileges on a dual-homed system used to connect two networks, we can likely use this host to start enumerating hosts that were not previously available to us.                                                                                                                                                                                                                                                                                                                      |
+| Proof-of-Concept      | We can take the last path after gaining the highest privileges by exploiting an internal system. Of course, we do not necessarily have to have taken over all systems. However, if we have gained the Domain Admin privileges in an Active Directory environment, we can likely move freely across the entire network and perform any actions we can imagine. So we can create the Proof-of-Concept from our notes to detail and potentially automate the paths and activities and make them available to the technical department.                                                                                            |
+
+This stage is so comprehensive that it has been divided into two distinct areas. The first category is general network protocols often used and present in almost every network. The actual exploitation of the potential and existing vulnerabilities is based on the adaptability and knowledge of the different network protocols we will be dealing with. In addition, we need to be able to create an overview of the existing network to understand its individual components' purposes. In most cases, web servers and applications contain a great deal of information that can be used against them. As stated previously, since web is a vast technical area in its own right, it will be treated separately. We are also interested in the remotely exposed services running on the target hosts, as these may have misconfigurations or known public vulnerabilities that we can leverage for initial access. Finally, existing users also play a significant role in the overall network.
+
+18. **Password Attacks**
+    If potential usernames or passwords were found during our information gathering, we may be able to use them specifically to perform Password Attacks on the systems and applications and authenticate ourselves. This module covers various methods to obtain credentials both remotely and locally on Windows and Linux systems.
+    Tier I | Medium | Offensive | 18 Sections+ | 108 hours
+
+19. **Attacking Common Services**
+    Due to the variety of attacks that can be carried out, attacks on specific network services and web applications differ. Therefore, these are separated into different modules, as many specific attacks can only be carried out against web applications. However, there are many essential network services that can almost always be found in any corporate network. Therefore, knowing how to Attack Common Services is another major concept that needs to be covered in detail.
+    Tier II | Medium | Offensive | 19 Sections+ | 208 hours
+
+20. **Pivoting, Tunneling & Port Forwarding**
+    When Pivoting, the exploited system is used as a node between the external and internal networks or between different internal networks. This is used to communicate with the internal systems to which we can usually not establish a direct connection from the Internet or another host in the internal network. It does not matter whether these are hosted on-premise or in the cloud. Network access and restrictions can be configured to and from specific hosts, even in the cloud. Tunnels must also be created to be able to transfer data securely. Port forwarding is often used to forward a local port to the port of an exploited system.
+    Tier II | Medium | Offensive | 18 Sections+ | 202 days
+
+21. **Active Directory Enumeration & Attacks**
+    As we already know, most corporate networks are managed by administrators using Active Directory. Therefore, it is crucial to become familiar with this technology and how Active Directory Enumeration & Attacks can affect it. Its complexity can often lead to various vulnerabilities. Especially when administrators are careless or imprecise, vulnerabilities often arise that can lead to a complete domain takeover.
+    Tier II | Medium | Offensive | 36 Sections+ | 207 days
+
+## Web Exploitation
+
+Web exploitation is the second part of the exploitation stage. Many different technologies, improvements, features, and enhancements have been developed in this area over the last few years, and things are constantly evolving. As a result, many different components come into play when dealing with web applications. This includes many kinds of databases that require differing command syntax to interact with. Due to the diversity of web applications available to companies and their prevalence worldwide, we must deal with this area separately and focus intently on it. Web applications present a vast attack surface and are often the main accessible targets during external penetration testing engagements, so strong web enumeration and exploitation skills are paramount.
+
+22. **Using Web Proxies**
+    Web servers and web applications work based on the HTTP/HTTPS protocol. Like other protocols, this protocol has a fixed structure for requests and responses. We will focus on Using Web Proxies to analyze and manipulate these requests. The way these requests and their HTTP headers can be manipulated plays a significant role in the results we can get from them. Even the absence of specific HTTP headers or too many allowed HTTP methods can be very dangerous for the webserver or web application quickly and easily.
+    Tier II | Easy | Offensive | 15 Sections+ | 208 hours
+
+23. **Attacking Web Applications with Ffuf**
+    After learning which attack methods these web applications can be subject to, we can use many of these attack methods and start Attacking Web Applications with Ffuf. Since every web server and application works with many different parameters due to its link with the database, these parameters can be discovered manually and automatically. For this purpose, there are procedures and different possibilities that allow us to find these parameters to exploit further possible vulnerabilities.
+    Tier 0 | Easy | Offensive | 13 Sections+ | 105 hours
+
+24. **Login Brute Forcing**
+    Authentication mechanisms are a vital target. Using these, we can gain access to different user accounts with the help of specific vulnerabilities. One of the most effective ways of gaining access is through Login Brute Forcing. Almost all web applications that offer any kind of user-specific functions work with the help of some sort of authentication mechanisms.
+    Tier II | Easy | Offensive | 11 Sections+ | 206 hours
+
+25. **SQL Injection Fundamentals**
+    Whether it manages products or users, most every web application works with at least one database. This database is linked to the web application in some way and may open up another attack category called SQL Injection. With an understanding of SQL Injection Fundamentals, we can manipulate or exploit the database for our purposes by abusing functionality contained within the web application.
+    Tier 0 | Medium | Offensive | 17 Sections+ | 108 hours
+
+26. **SQLMap Essentials**
+    Many of the attacks against web application database are summarized in a tool called SQLMap and should therefore also be learned to speed up our process after manual inspection. SQLMap Essentials should be learned to apply the tool appropriately and adapt it to the web application.
+    Tier II | Easy | Offensive | 11 Sections+ | 208 hours
+
+27. **Cross-Site Scripting (XSS)**
+    Cross-site Scripting (XSS) is another of the most common attack categories. These vulnerabilities can be leveraged to launch various attacks, such as phishing, session hijacking, and others. Among other things, we can also potentially take over web sessions from other users or even administrators.
+    Tier II | Easy | Offensive | 10 Sections+ | 206 hours
+
+28. **File Inclusion**
+    Depending on the webserver configuration and the web application, some vulnerabilities allow us some type of File Inclusion. For example, we may be able to acess files on the target system or use our own to execute code without being provided access by the developers or administrators.
+    Tier 0 | Medium | Offensive
