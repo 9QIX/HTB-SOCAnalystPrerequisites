@@ -189,3 +189,86 @@ Web exploitation is the second part of the exploitation stage. Many different te
 28. **File Inclusion**
     Depending on the webserver configuration and the web application, some vulnerabilities allow us some type of File Inclusion. For example, we may be able to acess files on the target system or use our own to execute code without being provided access by the developers or administrators.
     Tier 0 | Medium | Offensive
+
+11 Sections+ | 108 hours
+
+29. **Command Injections**
+    We do not always need to attack the database using SQL Injections or XSS. Often direct Command Injections can be used to execute system commands. Some command injections are easier to spot than others, which may require advanced knowledge of identifying and bypassing filters in place.
+    Tier II | Medium | Offensive | 12 Sections+ | 206 hours
+
+30. **Web Attacks**
+    The other top 10 most critical vulnerabilities include HTTP Verb Tampering, IDOR, and XXE. These are more advanced Web Attacks, as they require some security filters and encodings to be bypassed.
+    Tier II | Medium | Offensive | 18 Sections+ | 202 days
+
+31. **Attacking Common Applications**
+    Common web applications might be customized by administrators but are nevertheless used worldwide. Therefore, it is also essential to know how to Attack Common Applications.
+    Tier II | Medium | Offensive | 22 Sections+ | 202 days
+
+## Post-Exploitation
+
+In most cases, when we exploit certain services for our purposes to gain access to the system, we usually do not obtain the highest possible privileges. Because services are typically configured in a certain way "isolated" to stop potential attackers, bypassing these restrictions is the next step we take in this stage. However, it is not always easy to escalate the privileges. After gaining in-depth knowledge about how these operating systems function, we must adapt our techniques to the particular operating system and carefully study how Linux Privilege Escalation and Windows Privilege Escalation work.
+
+From this stage, there are four paths we can take, depending on how far we have come:
+
+| Path                              | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Information Gathering / Pillaging | Before we can begin escalating privileges, we must first get an overview of the inner workings of the exploited system. After all, we do not know which users are on the system and what options are available to us up to this point. This step is also known as Pillaging. This path is not optional, as with the others, but essential. Again, entering the Information Gathering stage puts us in this perspective. This inevitably takes us to the vulnerability assessment stage, where we analyze and evaluate the information we find. |
+| Exploitation                      | Suppose we have found sensitive information about the system and its' contents. In that case, we can use it to exploit local applications or services with higher privileges to execute commands with those privileges.                                                                                                                                                                                                                                                                                                                        |
+| Lateral Movement                  | From here, we can also skip directly over to Lateral Movement. This can come under different conditions. If we have achieved the highest privileges on a dual-homed system used to connect two networks, we can likely use this host to start enumerating hosts that were not previously available to us.                                                                                                                                                                                                                                      |
+| Proof-of-Concept                  | We can take the last path after gaining the highest privileges by exploiting an internal system. Of course, we do not necessarily have to have taken over all systems. However, if we have gained the Domain Admin privileges in an Active Directory environment, we can likely move freely across the entire network and perform any actions we can imagine. So we can create the Proof-of-Concept from our notes to detail and potentially automate the paths and activities and make them available to the technical department.            |
+
+After we have gained access to a system, we must be able to take further steps from within the system. During a penetration test, customers often want to find out how far an attacker could go in their network. There are many different versions of operating systems. For example, we may run into Windows XP, Windows 7, 8, 10, 11, and Windows Server 2008, 2012, 2016, and 2019. There are also different distributions for Linux-based operating systems, such as Ubuntu, Debian, Parrot OS, Arch, Deepin, Redhat, Pop!\_OS, and many others. No matter which of these systems we get into, we have to find our way around it and understand the individual weak points that a system can have from within.
+
+32. **Linux Privilege Escalation**
+    The vast majority of web servers that make up the World Wide Web run Linux. In addition, we will find many Linux-based servers hosting critical infrastructure services that individuals & organizations use to be more productive and efficient in their daily work. Because of this widespread use of Linux, we must understand the fundamentals. There are many ways to misconfigure Linux systems. Discovering these flaws and taking advantage of them to escalate privileges is covered in Linux Privilege Escalation.
+    Tier II | Easy | Offensive | 15 Sections+ | 1008 hours
+
+33. **Windows Privilege Escalation**  
+    Modern Windows systems, now have stronger security precautions (if an organization is diligent with patching), but administrator errors are possible in any environment. There are many different ways to find the misconfigurations in Windows-based systems, and we need them for Windows Privilege Escalation.
+    Tier II | Medium | Offensive | 30 Sections+ | 1004 days
+
+## Lateral Movement
+
+Lateral movement is one of the essential components for moving through a corporate network. We can use it to overlap with other internal hosts and further escalate our privileges within the current subnet or another part of the network. However, just like Pillaging, the Lateral Movement stage requires access to at least one of the systems in the corporate network. In the Exploitation stage, the privileges gained do not play a critical role in the first instance since we can also move through the network without administrator rights.
+
+There are three paths we can take from this stage:
+
+| Path                              | Description                                                                                                                                                                                                                                                                                                             |
+| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Vulnerability Assessment          | If the penetration test is not finished yet, we can jump from here to the Vulnerability Assessment stage. Here, the information already obtained from pillaging is used and analyzed to assess where the network services or applications using an authentication mechanism that we may be able to exploit are running. |
+| Information Gathering / Pillaging | After a successful lateral movement, we can jump into Pillaging once again. This is local information gathering on the target system that we accessed.                                                                                                                                                                  |
+| Proof-of-Concept                  | Once we have made the last possible lateral movement and completed our attack on the corporate network, we can summarize the information and steps we have collected and perhaps even automate certain sections that demonstrate vulnerability to the vulnerabilities we have found.                                    |
+
+Since both Lateral Movement and Pillaging require access to an already exploited system, these techniques and methods are covered in different modules, such as Getting Started, Linux Privilege Escalation, and Windows Privilege Escalation, and many others.
+
+## Proof-of-Concept
+
+The Proof-Of-Concept (POC) is merely proof that a vulnerability found exists. As soon as the administrators receive our report, they will try to confirm the vulnerabilities found by reproducing them. After all, no administrator will change business-critical processes without confirming the existence of a given vulnerability. A large network may have many interoperating systems and dependencies that must be checked after making a change, which can take a considerable amount of time and money. Just because a pentester found a given flaw, it doesn't mean that the organization can easily remediate it by just changing one system, as this could negatively affect the business. Administrators must carefully test fixes to ensure no other system is negatively impacted when a change is introduced. PoCs are sent along with the documentation as part of a high-quality penetration test, allowing administrators to use them to confirm the issues themselves.
+
+From this stage, there is only one path we can take:
+
+| Path            | Description                                                                                                                                                        |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Post-Engagement | At this point, we can only go to the post-engagement stage, where we optimize and improve the documentation and send it to the customer after an intensive review. |
+
+When we already have all the information we have collected and have used the vulnerability to our advantage, it does not take much effort to automate the individual steps for this.
+
+34. **Introduction to Python 3**
+    Python is one of the easiest programming languages to learn, and it is also quite powerful. This makes it easy to automate many steps and, with the help of comments in our code, to understand exactly how the vulnerability is exploited step-by-step. Therefore, Introduction to Python 3 will be sufficient for most aspects of automation once we understand the structure of this programming language.
+    Tier I | Easy | General | 14 Sections+ | 105 hours
+
+## Post-Engagement
+
+The Post-Engagement stage also includes cleaning up the systems we exploit so that none of these systems can be exploited using our tools. For example, leaving a bind shell on a web server that does not require authentication and is easy to find will do the opposite of what we are trying to do. In this way, we endanger the network through our carelessness. Therefore, it is essential to remove all content that we have transferred to the systems during our penetration test so that the corporate network is left in the same state as before our penetration test. We also should note down any system changes, successful exploitation attempts, captured credentials, and uploaded files in the appendices of our report so our clients can cross-check this against any alerts they receive toprove that they were a result of our testing actions and not an actual attacker in the network.
+
+In addition, we have to reconcile all our notes with the documentation we have written in the meantime to make sure we have not skipped any steps and can provide a comprehensive, well-formatted and neat report to our clients.
+
+35. **Documentation & Reporting**
+    We need to understand proper Documentation and Reporting, how to stay organized and take detailed notes, and how to write effectively and deliver high quality client deliverables. Practice in this area will simplify preparation of our reports and save us considerable time. This module also helps us optimize our notetaking and organization, which we must adapt to our needs to work as efficiently as possible.
+    Tier II | Easy | General | 8 Sections+ | 202 days
+
+36. **Attacking Enterprise Networks**
+    It is essential to get and keep an overall view of all these stages, their contents, and possible challenges. Attacking Enterprise Networks can be a daunting task, and we can get lost in the diversity of our options and overlook some of the essentials. So instead, we need to familiarize ourselves with how to attack such large networks and what vulnerabilities may exist with a large number of systems in a network.
+    Tier II | Medium | Offensive | 14 Sections+ | 202 days
+
+Now that we've covered the general layout of Academy modules regarding the penetration testing process, we'll briefly discuss how exercises and questions are presented in HTB Academy.
