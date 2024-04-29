@@ -160,4 +160,33 @@ We must also inform our customers about potential risks during a penetration tes
 
 Explaining the penetration testing process gives everyone involved a clear idea of our entire process. This demonstrates our professional approach and convinces our questioners that we know what we are doing. Because apart from the technical staff, CTO, and CISO, it will sound like a certain kind of magic that is very difficult for non-technical professionals to understand. So we must be mindful of our audience and target the most technically inexperienced questioner so our approach can be followed by everyone we talk to.
 
-All points related to testing need to be discussed and clarified. It is crucial to respond precisely to the wishes and expectations of the customer/client. Every company structure and network is different and requires an adapted approach. Each client has different
+All points related to testing need to be discussed and clarified. It is crucial to respond precisely to the wishes and expectations of the customer/client. Every company structure and network is different and requires an adapted approach. Each client has different goals, and we should adjust our testing to their wishes. We can typically see how experienced our clients are in undergoing penetration tests early in the call, so we may have to shift our focus to explain things in more detail and be prepared to field more questions, or the kickoff call may be very quick and straightforward.
+
+## Contractors Agreement
+
+If the penetration test also includes physical testing, then an additional contractor's agreement is required. Since it is not only a virtual environment but also a physical intrusion, completely different laws apply here. It is also possible that many of the employees have not been informed about the test. Suppose we encounter employees with a very high-security awareness during the physical attack and social engineering attempts, and we get caught. In that case, the employees will, in most cases, contact the police. This additional contractor's agreement is our "get out of jail free card" in this case.
+
+### Contractors Agreement - Checklist for Physical Assessments
+
+Checkpoint
+
+| Category              |
+| --------------------- |
+| ☐ Introduction        |
+| ☐ Contractor          |
+| ☐ Purpose             |
+| ☐ Goal                |
+| ☐ Penetration Testers |
+| ☐ Contact Information |
+| ☐ Physical Addresses  |
+| ☐ Building Name       |
+| ☐ Floors              |
+| ☐ Physical Room IDs   |
+| ☐ Physical Components |
+| ☐ Timeline            |
+| ☐ Notarization        |
+| ☐ Permission to Test  |
+
+## Setting Up
+
+After all the above points have been worked through, and we have the necessary information, we plan our approach and prepare everything. We will find that the penetration test results are still unknown, but we can prepare our VMs, VPS, and other tools/systems for all scenarios and situations. More information and how to prepare these systems can be found in the Setting Up module.
