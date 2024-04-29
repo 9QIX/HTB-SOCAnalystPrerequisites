@@ -44,4 +44,42 @@ The Computer Misuse Act 1990 was introduced to address malicious computer usage.
 
 The Data Protection Act 2018 is an important piece of legislation that provides individuals with certain legal rights and protections regarding their personal data. It details the rights of individuals, such as the right to access their data, the right to have their personal data rectified, and the right to object to the processing of their data. Furthermore, it outlines the obligations of those who process personal data, such as securely and transparently and providing individuals with clear and understandable information about how their data is being used. By considering the Act, security researchers can ensure that their research is conducted responsibly and lawfully.
 
-The Human Rights Act 1998 (HRA) is an important piece of legislation in the United Kingdom that outlines individuals' fundamental rights and freedoms. It incorporates the European Convention on Human Rights into UK law. It ensures that individuals have the right to fair and equal treatment in various areas, such as the right to a fair trial, the right to private and family life, and the right to freedom of expression. It also gives individuals the right to access judicial remedies in cases where their rights
+The Human Rights Act 1998 (HRA) is an important piece of legislation in the United Kingdom that outlines individuals' fundamental rights and freedoms. It incorporates the European Convention on Human Rights into UK law. It ensures that individuals have the right to fair and equal treatment in various areas, such as the right to a fair trial, the right to private and family life, and the right to freedom of expression. It also gives individuals the right to access judicial remedies in cases where their rightshave been violated. The Act also gives individuals the right to challenge the legality of any law or administrative action that violates their fundamental rights and freedoms. The HRA is an essential piece of legislation that helps protect individuals from abuse of power and ensures their rights are respected.
+
+The Police and Justice Act 2006 was an Act of Parliament passed in the United Kingdom, which aimed to provide a comprehensive framework for reforming the criminal justice system and policing. The Act established several new criminal offenses, including the violation of inciting religious hatred and measures to protect children from exploitation and vulnerable adults. It also provided for the creation of the Serious Organised Crime Agency and a National DNA Database. The Act also set out new measures to tackle anti-social behavior, including introducing Anti-Social Behaviour Orders. Furthermore, it included provisions to modernize the coroners' system and provide additional powers to the police to combat terrorism. In addition, the Act sought to improve the rights of victims of crime and to provide increased protection for victims of domestic violence.
+
+Investigatory Powers Act 2016 (IPA) regulates the use of investigatory powers by law enforcement and intelligence agencies, including hacking and other forms of digital surveillance. The IPA also requires Internet and other communications providers to retain certain data types for a specified period.
+
+Regulation of Investigatory Powers Act 2000 (RIPA) regulates public authorities' use of covert investigatory techniques, including hacking and other forms of digital surveillance.
+
+## India
+
+The Information Technology Act 2000 provides for legal recognition of transactions using electronic data interchange and other means of electronic communication. It also criminalizes hacking and other unauthorized access to computer systems and imposes penalties for such actions.
+
+The Personal Data Protection Bill 2019 is a proposed legislation to protect individuals' personal data and impose penalties for non-compliance.
+
+The Indian Evidence Act of 1872 and the Indian Penal Code of 1860 contain provisions that may be invoked in cases of cybercrime, including hacking and unauthorized access to computer systems. Security researchers should be aware of these laws and ensure our research does not run afoul.
+
+## China
+
+The Cyber Security Law establishes a legal framework for protecting critical information infrastructure and personal data and requires organizations to comply with certain security measures and report certain types of security incidents.
+
+The National Security Law criminalizes activities that threaten national security, including hacking and other unauthorized access to computer systems.
+
+The Anti-Terrorism Law criminalizes activities that support or promote terrorism, including hacking and other unauthorized access to computer systems.
+
+The Measures for the Security Assessment of Cross-border Transfer of Personal Information and Important Data regulates the cross-border transfer of personal information and important data and also requires organizations to conduct security assessments and obtain approval from relevant authorities before transferring such data.
+
+The State Council Regulation on the Protection of Critical Information Infrastructure Security regulates critical information infrastructure protection. Also, it requires organizations to take certain security measures and report certain types of security incidents.
+
+## Precautionary Measures during Penetration Tests
+
+We have prepared a list of precautions we highly recommend following during each penetration test to avoid violating most laws. In addition, we should also be aware that some countries have additional regulations that apply to specific cases, and we should either inform ourselves or ask our lawyer.
+
+Precautionary Measure
+☐ Obtain written consent from the owner or authorized representative of the computer or network being tested
+☐ Conduct the testing within the scope of the consent obtained only and respect any limitations specified  
+☐ Take measures to prevent causing damage to the systems or networks being tested
+☐ Do not access, use or disclose personal data or any other information obtained during the testing without permission
+☐ Do not intercept electronic communications without the consent of one of the parties to the communication
+☐ Do not conduct testing on systems or networks that are covered by the Health Insurance Portability and Accountability Act (HIPAA) without proper authorization
