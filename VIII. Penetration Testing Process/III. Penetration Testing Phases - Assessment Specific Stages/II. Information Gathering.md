@@ -23,6 +23,8 @@ It is possible to find highly sensitive information such as passwords, hashes, k
 
 ### Private and Public SSH Keys
 
+![alt text](/Images/image-130.png)
+
 Developers often share whole sections of code on StackOverflow to show other developers a better overview of how their code works to help them solve their problems. This type of information can also be found very quickly and used against the company. Our task is to find such security holes and have them closed. We can learn much more from the OSINT: Corporate Recon module. It shows many different techniques for how we can find such information.
 
 ## Infrastructure Enumeration
