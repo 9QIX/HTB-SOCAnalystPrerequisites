@@ -2,6 +2,8 @@
 
 Once the pre-engagement phase has been completed, and all parties have signed all contractual terms and conditions, the information gathering phase begins. Information gathering is an essential part of any security assessment. This is the phase in which we gather all available information about the company, its employees and infrastructure, and how they are organized. Information gathering is the most frequent and vital phase throughout the penetration testing process, to which we will return again and again.
 
+![alt text](/Images/image-129.png)
+
 All the steps we take to exploit the vulnerabilities are based on the information we enumerate about our targets. This phase can be considered the cornerstone of any penetration test. We can obtain the necessary information relevant to us in many different ways. However, we can divide them into the following categories:
 
 - Open-Source Intelligence
