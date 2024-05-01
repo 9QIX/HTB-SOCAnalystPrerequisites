@@ -4,6 +4,8 @@ If everything went well and we were able to penetrate the corporate network (Exp
 
 In the most common cases, the company is financially extorted to make a profit. Often, it is only at this moment that companies realize how important IT security is. If they had had a good penetration tester who had tested things (and proper processes and layered defenses in place), they probably could have prevented such a situation and the financial (if not legal) damage. It is often forgotten that in many countries, the CEOs are held liable for not securing their customer data appropriately.
 
+![alt text](/Images/image-134.png)
+
 In this stage, we want to test how far we can move manually in the entire network and what vulnerabilities we can find from the internal perspective that might be exploited. In doing so, we will again run through several phases:
 
 - Pivoting
