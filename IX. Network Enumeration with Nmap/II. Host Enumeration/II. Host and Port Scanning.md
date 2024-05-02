@@ -325,5 +325,29 @@ Service scan sending probe SMBProgNeg to 10.129.2.28:445 (tcp)
 NSOCK INFO [6.5190s] nsock_write(): Write request for 168 bytes to IOD #1 EID 27 [10.129.2.28:445]
 NSOCK INFO [6.5190s] nsock_read(): Read request from IOD #1 [10.129.2.28:445] (timeout: 5000ms) EID 34
 NSOCK INFO [6.5190s] nsock_trace_handler_callback(): Callback: WRITE SUCCESS for EID 27 [10.129.2.28:445]
-NSOCK INFO [6.5320s] nsock_trace_handler_callback(): Callback: READ SUCCESS for EID 34 [10.
+NSOCK INFO [6.5320s] nsock_trace_handler_callback(): Callback: READ SUCCESS for EID 34 [10.129.2.28:445] (135 bytes)
+Service scan match (Probe SMBProgNeg matched with SMBProgNeg line 13836): 10.129.2.28:445 is netbios-ssn.  Version: |Samba smbd|3.X - 4.X|workgroup: WORKGROUP|
+NSOCK INFO [6.5320s] nsock_iod_delete(): nsock_iod_delete (IOD #1)
+Nmap scan report for 10.129.2.28
+Host is up, received user-set (0.013s latency).
+
+PORT    STATE SERVICE     REASON         VERSION
+445/tcp open  netbios-ssn syn-ack ttl 63 Samba smbd 3.X - 4.X (workgroup: WORKGROUP)
+Service Info: Host: Ubuntu
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 6.55 seconds
 ```
+
+| Scanning Options     | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `10.129.2.28`        | Scans the specified target.                          |
+| `-Pn`                | Disables ICMP Echo requests.                         |
+| `-n`                 | Disables DNS resolution.                             |
+| `--disable-arp-ping` | Disables ARP ping.                                   |
+| `--packet-trace`     | Shows all packets sent and received.                 |
+| `-p 445`             | Scans only the specified port.                       |
+| `--reason`           | Displays the reason a port is in a particular state. |
+| `-sV`                | Performs a service scan.                             |
+
+More information about port scanning techniques we can find at: https://nmap.org/book/man-port-scanning-techniques.html
