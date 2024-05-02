@@ -220,6 +220,110 @@ Nmap done: 1 IP address (1 host up) scanned in 98.07 seconds
 
 Another disadvantage of this is that we often do not get a response back because Nmap sends empty datagrams to the scanned UDP ports, and we do not receive any response. So we cannot determine if the UDP packet has arrived at all or not. If the UDP port is open, we only get a response if the application is configured to do so.
 
+```bash
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -sU -Pn -n --disable-arp-ping --packet-trace -p 137 --reason
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:15 CEST
+SENT (0.0367s) UDP 10.10.14.2:55478 > 10.129.2.28:137 ttl=57 id=9122 iplen=78
+RCVD (0.0398s) UDP 10.129.2.28:137 > 10.10.14.2:55478 ttl=64 id=13222 iplen=257
+Nmap scan report for 10.129.2.28
+Host is up, received user-set (0.0031s latency).
+
+PORT STATE SERVICE REASON
+137/udp open netbios-ns udp-response ttl 64
+MAC Address: DE:AD:00:00:BE:EF (Intel Corporate)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.04 seconds
 ```
-z0x9n@htb[/htb]$ sudo nmap 10.129
+
+| Scanning Options     | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `10.129.2.28`        | Scans the specified target.                          |
+| `-sU`                | Performs a UDP scan.                                 |
+| `-Pn`                | Disables ICMP Echo requests.                         |
+| `-n`                 | Disables DNS resolution.                             |
+| `--disable-arp-ping` | Disables ARP ping.                                   |
+| `--packet-trace`     | Shows all packets sent and received.                 |
+| `-p 137`             | Scans only the specified port.                       |
+| `--reason`           | Displays the reason a port is in a particular state. |
+
+If we get an ICMP response with error code 3 (port unreachable), we know that the port is indeed closed.
+
+```
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -sU -Pn -n --disable-arp-ping --packet-trace -p 100 --reason
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:25 CEST
+SENT (0.0445s) UDP 10.10.14.2:63825 > 10.129.2.28:100 ttl=57 id=29925 iplen=28
+RCVD (0.1498s) ICMP [10.129.2.28 > 10.10.14.2 Port unreachable (type=3/code=3) ] IP [ttl=64 id=11903 iplen=56 ]
+Nmap scan report for 10.129.2.28
+Host is up, received user-set (0.11s latency).
+
+PORT    STATE  SERVICE REASON
+100/udp closed unknown port-unreach ttl 64
+MAC Address: DE:AD:00:00:BE:EF (Intel Corporate)
+
+Nmap done: 1 IP address (1 host up) scanned in  0.15 seconds
+```
+
+| Scanning Options     | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `10.129.2.28`        | Scans the specified target.                          |
+| `-sU`                | Performs a UDP scan.                                 |
+| `-Pn`                | Disables ICMP Echo requests.                         |
+| `-n`                 | Disables DNS resolution.                             |
+| `--disable-arp-ping` | Disables ARP ping.                                   |
+| `--packet-trace`     | Shows all packets sent and received.                 |
+| `-p 100`             | Scans only the specified port.                       |
+| `--reason`           | Displays the reason a port is in a particular state. |
+
+For all other ICMP responses, the scanned ports are marked as `(open|filtered)`.
+
+```
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -sU -Pn -n --disable-arp-ping --packet-trace -p 138 --reason
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:32 CEST
+SENT (0.0380s) UDP 10.10.14.2:52341 > 10.129.2.28:138 ttl=50 id=65159 iplen=28
+SENT (1.0392s) UDP 10.10.14.2:52342 > 10.129.2.28:138 ttl=40 id=24444 iplen=28
+Nmap scan report for 10.129.2.28
+Host is up, received user-set.
+
+PORT    STATE         SERVICE     REASON
+138/udp open|filtered netbios-dgm no-response
+MAC Address: DE:AD:00:00:BE:EF (Intel Corporate)
+
+Nmap done: 1 IP address (1 host up) scanned in 2.06 seconds
+```
+
+| Scanning Options     | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `10.129.2.28`        | Scans the specified target.                          |
+| `-sU`                | Performs a UDP scan.                                 |
+| `-Pn`                | Disables ICMP Echo requests.                         |
+| `-n`                 | Disables DNS resolution.                             |
+| `--disable-arp-ping` | Disables ARP ping.                                   |
+| `--packet-trace`     | Shows all packets sent and received.                 |
+| `-p 138`             | Scans only the specified port.                       |
+| `--reason`           | Displays the reason a port is in a particular state. |
+
+Another handy method for scanning ports is the `-sV` option which is used to get additional available information from the open ports. This method can identify versions, service names, and details about our target.
+
+### Version Scan
+
+```
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -Pn -n --disable-arp-ping --packet-trace -p 445 --reason  -sV
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2022-11-04 11:10 GMT
+SENT (0.3426s) TCP 10.10.14.2:44641 > 10.129.2.28:445 S ttl=55 id=43401 iplen=44  seq=3589068008 win=1024 <mss 1460>
+RCVD (0.3556s) TCP 10.129.2.28:445 > 10.10.14.2:44641 SA ttl=63 id=0 iplen=44  seq=2881527699 win=29200 <mss 1337>
+NSOCK INFO [0.4980s] nsock_iod_new2(): nsock_iod_new (IOD #1)
+NSOCK INFO [0.4980s] nsock_connect_tcp(): TCP connection requested to 10.129.2.28:445 (IOD #1) EID 8
+NSOCK INFO [0.5130s] nsock_trace_handler_callback(): Callback: CONNECT SUCCESS for EID 8 [10.129.2.28:445]
+Service scan sending probe NULL to 10.129.2.28:445 (tcp)
+NSOCK INFO [0.5130s] nsock_read(): Read request from IOD #1 [10.129.2.28:445] (timeout: 6000ms) EID 18
+NSOCK INFO [6.5190s] nsock_trace_handler_callback(): Callback: READ TIMEOUT for EID 18 [10.129.2.28:445]
+Service scan sending probe SMBProgNeg to 10.129.2.28:445 (tcp)
+NSOCK INFO [6.5190s] nsock_write(): Write request for 168 bytes to IOD #1 EID 27 [10.129.2.28:445]
+NSOCK INFO [6.5190s] nsock_read(): Read request from IOD #1 [10.129.2.28:445] (timeout: 5000ms) EID 34
+NSOCK INFO [6.5190s] nsock_trace_handler_callback(): Callback: WRITE SUCCESS for EID 27 [10.129.2.28:445]
+NSOCK INFO [6.5320s] nsock_trace_handler_callback(): Callback: READ SUCCESS for EID 34 [10.
 ```
