@@ -156,13 +156,30 @@ Nmap done: 1 IP address (1 host up) scanned in 0.03 seconds
 
 ```
 
-| Scanning Options | Description                                |
-| ---------------- | ------------------------------------------ |
-| 10.129.2.18      | Performs defined scans against the target. |
-| -sn              | Disables port scanning.                    |
+| Scanning Options | Description                                                              |
+| ---------------- | ------------------------------------------------------------------------ |
+| 10.129.2.18      | Performs defined scans against the target.                               |
+| -sn              | Disables port scanning.                                                  |
+| -oA host         | Stores the results in all formats starting with the name 'host'.         |
+| -PE              | Performs the ping scan by using 'ICMP Echo requests' against the target. |
+| --reason         | Displays the reason for specific result.                                 |
 
-| -oA host
+We see here that Nmap does indeed detect whether the host is alive or not through the ARP request and ARP reply alone. To disable ARP requests and scan our target with the desired ICMP echo requests, we can disable ARP pings by setting the "--disable-arp-ping" option. Then we can scan our target again and look at the packets sent and received.
 
 ```
 
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.18 -sn -oA host -PE --packet-trace --disable-arp-ping
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 00:12 CEST
+SENT (0.0107s) ICMP [10.10.14.2 > 10.129.2.18 Echo request (type=8/code=0) id=13607 seq=0] IP [ttl=255 id=23541 iplen=28 ]
+RCVD (0.0152s) ICMP [10.129.2.18 > 10.10.14.2 Echo reply (type=0/code=0) id=13607 seq=0] IP [ttl=128 id=40622 iplen=28 ]
+Nmap scan report for 10.129.2.18
+Host is up (0.086s latency).
+MAC Address: DE:AD:00:00:BE:EF
+Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
+
 ```
+
+We have already mentioned in the "Learning Process," and at the beginning of this module, it is essential to pay attention to details. An ICMP echo request can help us determine if our target is alive and identify its system. More strategies about host discovery can be found at:
+
+https://nmap.org/book/host-discovery-strategies.html
