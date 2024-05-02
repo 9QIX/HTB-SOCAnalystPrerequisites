@@ -37,7 +37,7 @@ z0x9n@htb[/htb]$ nmap <scan types> <options> <target>
 
 Nmap offers many different scanning techniques, making different types of connections and using differently structured packets to send. Here we can see all the scanning techniques Nmap offers:
 
-```shell-session
+```bash
 z0x9n@htb[/htb]$ nmap --help
 
 <SNIP>
@@ -61,7 +61,7 @@ For example, the TCP-SYN scan (`-sS`) is one of the default settings unless we h
 
 Let us take an example of such a scan.
 
-```shell-session
+```bash
 z0x9n@htb[/htb]$ sudo nmap -sS localhost
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-11 22:50 UTC
@@ -78,11 +78,3 @@ Nmap done: 1 IP address (1 host up) scanned in 0.18 seconds
 ```
 
 In this example, we can see that we have four different TCP ports open. In the first column, we see the number of the port. Then, in the second column, we see the service's status and then what kind of service it is.
-
-```
-
-```
-
-```
-
-```
