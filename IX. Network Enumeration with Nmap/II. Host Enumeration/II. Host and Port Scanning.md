@@ -104,4 +104,122 @@ We can see from the `SENT` line that we (`10.10.14.2`) sent a TCP packet with th
 
 The Nmap TCP Connect Scan (`-sT`) uses the TCP three-way handshake to determine if a specific port on a target host is open or closed. The scan sends an SYN packet to the target port and waits for a response. It is considered open if the target port responds with an SYN-ACK packet and closed if it responds with an RST packet.
 
-The Connect scan is useful because it is the most accurate way to determine the state of a port, and it is also the most stealthy. Unlike other types of scans, such as the SYN scan, the Connect scan does not leave any unfinished connections or unsent packets on the target host, which makes it less likely to be detected by intrusion detection systems (IDS) or intrusion prevention systems (IPS). It is useful when we want to map the network and don't want to disturb the services running behind it,
+The Connect scan is useful because it is the most accurate way to determine the state of a port, and it is also the most stealthy. Unlike other types of scans, such as the SYN scan, the Connect scan does not leave any unfinished connections or unsent packets on the target host, which makes it less likely to be detected by intrusion detection systems (IDS) or intrusion prevention systems (IPS). It is useful when we want to map the network and don't want to disturb the services running behind it, ```markdown
+thus causing a minimal impact and sometimes considered a more polite scan method.
+
+It is also useful when the target host has a personal firewall that drops incoming packets but allows outgoing packets. In this case, a Connect scan can bypass the firewall and accurately determine the state of the target ports. However, it is important to note that the Connect scan is slower than other types of scans because it requires the scanner to wait for a response from the target after each packet it sends, which could take some time if the target is busy or unresponsive.
+
+### Connect Scan on TCP Port 443
+
+```
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -p 443 --packet-trace --disable-arp-ping -Pn -n --reason -sT
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:26 CET
+CONN (0.0385s) TCP localhost > 10.129.2.28:443 => Operation now in progress
+CONN (0.0396s) TCP localhost > 10.129.2.28:443 => Connected
+Nmap scan report for 10.129.2.28
+Host is up, received user-set (0.013s latency).
+
+PORT    STATE SERVICE REASON
+443/tcp open  https   syn-ack
+
+Nmap done: 1 IP address (1 host up) scanned in 0.04 seconds
+```
+
+### Filtered Ports
+
+When a port is shown as filtered, it can have several reasons. In most cases, firewalls have certain rules set to handle specific connections. The packets can either be dropped, or rejected. When a packet gets dropped, Nmap receives no response from our target, and by default, the retry rate (`--max-retries`) is set to 1. This means Nmap will resend the request to the target port to determine if the previous packet was not accidentally mishandled.
+
+Let us look at an example where the firewall drops the TCP packets we send for the port scan. Therefore we scan the TCP port 139, which was already shown as filtered. To be able to track how our sent packets are handled, we deactivate the ICMP echo requests (`-Pn`), DNS resolution (`-n`), and ARP ping scan (`--disable-arp-ping`) again.
+
+```
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -p 139 --packet-trace -n --disable-arp-ping -Pn
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 15:45 CEST
+SENT (0.0381s) TCP 10.10.14.2:60277 > 10.129.2.28:139 S ttl=47 id=14523 iplen=44  seq=4175236769 win=1024 <mss 1460>
+SENT (1.0411s) TCP 10.10.14.2:60278 > 10.129.2.28:139 S ttl=45 id=7372 iplen=44  seq=4175171232 win=1024 <mss 1460>
+Nmap scan report for 10.129.2.28
+Host is up.
+
+PORT    STATE    SERVICE
+139/tcp filtered netbios-ssn
+MAC Address: DE:AD:00:00:BE:EF (Intel Corporate)
+
+Nmap done: 1 IP address (1 host up) scanned in 2.06 seconds
+```
+
+| Scanning Options     | Description                          |
+| -------------------- | ------------------------------------ |
+| `10.129.2.28`        | Scans the specified target.          |
+| `-p 139`             | Scans only the specified port.       |
+| `--packet-trace`     | Shows all packets sent and received. |
+| `-n`                 | Disables DNS resolution.             |
+| `--disable-arp-ping` | Disables ARP ping.                   |
+| `-Pn`                | Disables ICMP Echo requests.         |
+
+We see in the last scan that Nmap sent two TCP packets with the SYN flag. By the duration (2.06s) of the scan, we can recognize that it took much longer than the previous ones (~0.05s). The case is different if the firewall rejects the packets. For this, we look at TCP port 445, which is handled accordingly by such a rule of the firewall.
+
+```
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -p 445 --packet-trace -n --disable-arp-ping -Pn
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 15:55 CEST
+SENT (0.0388s) TCP 10.129.2.28:52472 > 10.129.2.28:445 S ttl=49 id=21763 iplen=44  seq=1418633433 win=1024 <mss 1460>
+RCVD (0.0487s) ICMP [10.129.2.28 > 10.129.2.28 Port 445 unreachable (type=3/code=3) ] IP [ttl=64 id=20998 iplen=72 ]
+Nmap scan report for 10.129.2.28
+Host is up (0.0099s latency).
+
+PORT    STATE    SERVICE
+445/tcp filtered microsoft-ds
+MAC Address: DE:AD:00:00:BE:EF (Intel Corporate)
+
+Nmap done: 1 IP address (1 host up) scanned in 0.05 seconds
+```
+
+| Scanning Options     | Description                          |
+| -------------------- | ------------------------------------ |
+| `10.129.2.28`        | Scans the specified target.          |
+| `-p 445`             | Scans only the specified port.       |
+| `--packet-trace`     | Shows all packets sent and received. |
+| `-n`                 | Disables DNS resolution.             |
+| `--disable-arp-ping` | Disables ARP ping.                   |
+| `-Pn`                | Disables ICMP Echo requests.         |
+
+As a response, we receive an ICMP reply with type 3 and error code 3, which indicates that the desired port is unreachable. Nevertheless, if we know that the host is alive, we can strongly assume that the firewall on this port is rejecting the packets, and we will have to take a closer look at this port later.
+
+## Discovering Open UDP Ports
+
+Some system administrators sometimes forget to filter the UDP ports in addition to the TCP ones. Since UDP is a stateless protocol and does not require a three-way handshake like TCP. We do not receive any acknowledgment. Consequently, the timeout is much longer, making the whole UDP scan (`-sU`) much slower than the TCP scan (`-sS`).
+
+Let's look at an example of what a UDP scan (`-sU`) can look like and what results it gives us.
+
+### UDP Port Scan
+
+```
+z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -F -sU
+
+Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:01 CEST
+Nmap scan report for 10.129.2.28
+Host is up (0.059s latency).
+Not shown: 95 closed ports
+PORT     STATE         SERVICE
+68/udp   open|filtered dhcpc
+137/udp  open          netbios-ns
+138/udp  open|filtered netbios-dgm
+631/udp  open|filtered ipp
+5353/udp open          zeroconf
+MAC Address: DE:AD:00:00:BE:EF (Intel Corporate)
+
+Nmap done: 1 IP address (1 host up) scanned in 98.07 seconds
+```
+
+| Scanning Options | Description                 |
+| ---------------- | --------------------------- |
+| `10.129.2.28`    | Scans the specified target. |
+| `-F`             | Scans top 100 ports.        |
+| `-sU`            | Performs a UDP scan.        |
+
+Another disadvantage of this is that we often do not get a response back because Nmap sends empty datagrams to the scanned UDP ports, and we do not receive any response. So we cannot determine if the UDP packet has arrived at all or not. If the UDP port is open, we only get a response if the application is configured to do so.
+
+```
+z0x9n@htb[/htb]$ sudo nmap 10.129
+```
