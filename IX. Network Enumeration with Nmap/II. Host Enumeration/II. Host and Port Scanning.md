@@ -24,7 +24,7 @@ By default, Nmap scans the top 1000 TCP ports with the SYN scan (`-sS`). This SY
 
 ### Scanning Top 10 TCP Ports
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 --top-ports=10
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 15:36 CEST
@@ -56,7 +56,7 @@ We see that we only scanned the top 10 TCP ports of our target, and Nmap display
 
 ### Nmap - Trace the Packets
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -p 21 --packet-trace -Pn -n --disable-arp-ping
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 15:39 CEST
@@ -111,7 +111,7 @@ It is also useful when the target host has a personal firewall that drops incomi
 
 ### Connect Scan on TCP Port 443
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -p 443 --packet-trace --disable-arp-ping -Pn -n --reason -sT
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:26 CET
@@ -132,7 +132,7 @@ When a port is shown as filtered, it can have several reasons. In most cases, fi
 
 Let us look at an example where the firewall drops the TCP packets we send for the port scan. Therefore we scan the TCP port 139, which was already shown as filtered. To be able to track how our sent packets are handled, we deactivate the ICMP echo requests (`-Pn`), DNS resolution (`-n`), and ARP ping scan (`--disable-arp-ping`) again.
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -p 139 --packet-trace -n --disable-arp-ping -Pn
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 15:45 CEST
@@ -159,7 +159,7 @@ Nmap done: 1 IP address (1 host up) scanned in 2.06 seconds
 
 We see in the last scan that Nmap sent two TCP packets with the SYN flag. By the duration (2.06s) of the scan, we can recognize that it took much longer than the previous ones (~0.05s). The case is different if the firewall rejects the packets. For this, we look at TCP port 445, which is handled accordingly by such a rule of the firewall.
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -p 445 --packet-trace -n --disable-arp-ping -Pn
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 15:55 CEST
@@ -194,7 +194,7 @@ Let's look at an example of what a UDP scan (`-sU`) can look like and what resul
 
 ### UDP Port Scan
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -F -sU
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:01 CEST
@@ -249,7 +249,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.04 seconds
 
 If we get an ICMP response with error code 3 (port unreachable), we know that the port is indeed closed.
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -sU -Pn -n --disable-arp-ping --packet-trace -p 100 --reason
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:25 CEST
@@ -278,7 +278,7 @@ Nmap done: 1 IP address (1 host up) scanned in  0.15 seconds
 
 For all other ICMP responses, the scanned ports are marked as `(open|filtered)`.
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -sU -Pn -n --disable-arp-ping --packet-trace -p 138 --reason
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 16:32 CEST
@@ -309,7 +309,7 @@ Another handy method for scanning ports is the `-sV` option which is used to get
 
 ### Version Scan
 
-```
+```bash
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.28 -Pn -n --disable-arp-ping --packet-trace -p 445 --reason  -sV
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2022-11-04 11:10 GMT
