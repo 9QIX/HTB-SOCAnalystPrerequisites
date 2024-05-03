@@ -46,7 +46,6 @@ We can also increase the verbosity level (-v / -vv), which will show us the open
 
 ```bash
 $ sudo nmap 10.129.2.28 -p- -sV -v
-```
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 20:03 CEST
 NSE: Loaded 45 scripts for scanning.
@@ -65,6 +64,7 @@ Discovered open port 25/tcp on 10.129.2.28
 Discovered open port 110/tcp on 10.129.2.28
 Discovered open port 22/tcp on 10.129.2.28
 <SNIP>
+```
 
 | Scanning Options | Description                                                                    |
 | ---------------- | ------------------------------------------------------------------------------ |
