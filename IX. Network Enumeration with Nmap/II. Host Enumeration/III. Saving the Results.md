@@ -109,6 +109,6 @@ z0x9n@htb[/htb]$ xsltproc target.xml -o target.html
 
 If we now open the HTML file in our browser, we see a clear and structured presentation of our results.
 
-![alt text](image.png)
+![alt text](/Images/image-137.png)
 
 More information about the output formats can be found at: https://nmap.org/book/output.html
