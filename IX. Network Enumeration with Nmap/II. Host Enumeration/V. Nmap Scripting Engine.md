@@ -136,8 +136,7 @@ PORT   STATE SERVICE VERSION
 |   cpe:/a:apache:http_server:2.4.29:
 |     	CVE-2019-0211	7.2	https://vulners.com/cve/CVE-2019-0211
 |     	CVE-2018-1312	6.8	https://vulners.com/cve/CVE-2018-1312
-|     	CVE-2017-15715	6.8	https://vulners.com/cve
-/CVE-2017-15715
+|     	CVE-2017-15715	6.8	https://vulners.com/cve/CVE-2017-15715
 <SNIP>
 ```
 
