@@ -10,12 +10,12 @@ A full port scan takes quite a long time. To view the scan status, we can press 
 
 ```bash
 $ sudo nmap 10.129.2.28 -p- -sV
-```
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 19:44 CEST
 [Space Bar]
 Stats: 0:00:03 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
 SYN Stealth Scan Timing: About 3.64% done; ETC: 19:45 (0:00:53 remaining)
+```
 
 | Scanning Options | Description                                            |
 | ---------------- | ------------------------------------------------------ |
@@ -27,13 +27,13 @@ Another option (`--stats-every=5s`) that we can use is defining how periods of t
 
 ```bash
 $ sudo nmap 10.129.2.28 -p- -sV --stats-every=5s
-```
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 19:46 CEST
 Stats: 0:00:05 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
 SYN Stealth Scan Timing: About 13.91% done; ETC: 19:49 (0:00:31 remaining)
 Stats: 0:00:10 elapsed; 0 hosts completed (1 up), 1 undergoing SYN Stealth Scan
 SYN Stealth Scan Timing: About 39.57% done; ETC: 19:48 (0:00:15 remaining)
+```
 
 | Scanning Options | Description                                            |
 | ---------------- | ------------------------------------------------------ |
@@ -79,7 +79,6 @@ Once the scan is complete, we will see all TCP ports with the corresponding serv
 
 ```bash
 $ sudo nmap 10.129.2.28 -p- -sV
-```
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-15 20:00 CEST
 Nmap scan report for 10.129.2.28
@@ -100,6 +99,7 @@ Service Info: Host: inlane; OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 91.73 seconds
+```
 
 | Scanning Options | Description                                            |
 | ---------------- | ------------------------------------------------------ |
@@ -111,7 +111,6 @@ Primarily, Nmap looks at the banners of the scanned ports and prints them out. I
 
 ```bash
 $ sudo nmap 10.129.2.28 -p- -sV -Pn -n --disable-arp-ping --packet-trace
-```
 
 Starting Nmap 7.80 ( https://nmap.org ) at 2020-06-16 20:10 CEST
 <SNIP>
@@ -120,7 +119,4 @@ Service scan match (Probe NULL matched with NULL line 3104): 10.129.2.28:25 is s
 NSOCK INFO [0.4200s] nsock_iod_delete(): nsock_iod_delete (IOD #1)
 Nmap scan report for 10.129.2.28
 Host is up (0.076s latency).
-
-```
-
 ```
