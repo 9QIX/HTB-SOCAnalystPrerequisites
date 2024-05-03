@@ -137,4 +137,15 @@ PORT   STATE SERVICE VERSION
 |     	CVE-2019-0211	7.2	https://vulners.com/cve/CVE-2019-0211
 |     	CVE-2018-1312	6.8	https://vulners.com/cve/CVE-2018-1312
 |     	CVE-2017-15715	6.8	https://vulners.com/cve
+/CVE-2017-15715
+<SNIP>
 ```
+
+| Scanning Options | Description                                            |
+| ---------------- | ------------------------------------------------------ |
+| 10.129.2.28      | Scans the specified target.                            |
+| -p 80            | Scans only the specified port.                         |
+| -sV              | Performs service version detection on specified ports. |
+| --script vuln    | Uses all related scripts from specified category.      |
+
+The scripts used for the last scan interact with the webserver and its web application to find out more information about their versions and check various databases to see if there are known vulnerabilities. More information about NSE scripts and the corresponding categories we can find at: https://nmap.org/nsedoc/index.html
