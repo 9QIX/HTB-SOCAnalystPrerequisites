@@ -8,8 +8,7 @@ When Nmap sends a packet, it takes some time (Round-Trip-Time - RTT) to receive 
 
 ### Default Scan
 
-```
-
+```bash
 Performance
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F
 
@@ -19,7 +18,7 @@ Nmap done: 256 IP addresses (10 hosts up) scanned in 39.44 seconds
 
 ### Optimized RTT
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F --initial-rtt-timeout 50ms --max-rtt-timeout 100ms
 
@@ -42,7 +41,7 @@ Another way to increase the scans' speed is to specify the retry rate of the sen
 
 ### Default Scan
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F | grep "/tcp" | wc -l
 
@@ -51,7 +50,7 @@ z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F | grep "/tcp" | wc -l
 
 ### Reduced Retries
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F --max-retries 0 | grep "/tcp" | wc -l
 
@@ -72,7 +71,7 @@ During a white-box penetration test, we may get whitelisted for the security sys
 
 ### Default Scan
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F -oN tnet.default
 
@@ -82,7 +81,7 @@ Nmap done: 256 IP addresses (10 hosts up) scanned in 29.83 seconds
 
 ### Optimized Scan
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F -oN tnet.minrate300 --min-rate 300
 
@@ -99,7 +98,7 @@ Nmap done: 256 IP addresses (10 hosts up) scanned in 8.67 seconds
 
 ### Default Scan - Found Open Ports
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ cat tnet.default | grep "/tcp" | wc -l
 
@@ -108,7 +107,7 @@ z0x9n@htb[/htb]$ cat tnet.default | grep "/tcp" | wc -l
 
 ### Optimized Scan - Found Open Ports
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ cat tnet.minrate300 | grep "/tcp" | wc -l
 
@@ -130,7 +129,7 @@ These templates contain options that we can also set manually, and have seen som
 
 ### Default Scan
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F -oN tnet.default
 
@@ -140,7 +139,7 @@ Nmap done: 256 IP addresses (10 hosts up) scanned in 32.44 seconds
 
 ### Insane Scan
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ sudo nmap 10.129.2.0/24 -F -oN tnet.T5 -T 5
 
@@ -157,7 +156,7 @@ Nmap done: 256 IP addresses (10 hosts up) scanned in 18.07 seconds
 
 ### Default Scan - Found Open Ports
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ cat tnet.default | grep "/tcp" | wc -l
 
@@ -166,7 +165,7 @@ z0x9n@htb[/htb]$ cat tnet.default | grep "/tcp" | wc -l
 
 ### Insane Scan - Found Open Ports
 
-```
+```bash
 Performance
 z0x9n@htb[/htb]$ cat tnet.T5 | grep "/tcp" | wc -l
 
