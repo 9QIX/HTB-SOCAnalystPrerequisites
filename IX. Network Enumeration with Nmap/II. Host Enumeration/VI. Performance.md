@@ -1,4 +1,3 @@
-```markdown
 # Performance
 
 Scanning performance plays a significant role when we need to scan an extensive network or are dealing with low network bandwidth. We can use various options to tell Nmap how fast (-T <0-5>), with which frequency (--min-parallelism <number>), which timeouts (--max-rtt-timeout <time>) the test packets should have, how many packets should be sent simultaneously (--min-rate <number>), and with the number of retries (--max-retries <number>) for the scanned ports the targets should be scanned.
@@ -8,6 +7,7 @@ Scanning performance plays a significant role when we need to scan an extensive 
 When Nmap sends a packet, it takes some time (Round-Trip-Time - RTT) to receive a response from the scanned port. Generally, Nmap starts with a high timeout (--min-RTT-timeout) of 100ms. Let us look at an example by scanning the whole network with 256 hosts, including the top 100 ports.
 
 ### Default Scan
+
 ```
 
 Performance
@@ -174,7 +174,3 @@ z0x9n@htb[/htb]$ cat tnet.T5 | grep "/tcp" | wc -l
 ```
 
 More information about scan performance we can find at https://nmap.org/book/man-performance.html
-
-```
-
-```
