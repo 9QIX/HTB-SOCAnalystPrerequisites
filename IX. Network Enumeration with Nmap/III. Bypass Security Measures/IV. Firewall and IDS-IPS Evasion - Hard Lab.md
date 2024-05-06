@@ -27,7 +27,7 @@ sudo nc -nv -p <ip> 50000
 - `nc`: This invokes the netcat tool, which is used for reading from and writing to network connections.
 - `-nv`: These options make netcat operate in verbose mode, displaying more information about the connection.
 - `-p 53`: This option sets the source port to 53 (DNS).
-- `10.129.2.47`: This is the IP address of the target host.
+- `<ip>`: This is the IP address of the target host.
 - `50000`: This is the destination port to connect to on the target host.
 
 Explanation: This command establishes a TCP connection to the target host (`10.129.2.47`) on port `50000`, using port `53` as the source port. The purpose of this command is not entirely clear without context, but it could be used to test network connectivity or to communicate with a service running on port `50000` of the target host. However, using port `53` as the source port may trigger IDS/IPS systems, as port `53` is typically associated with DNS traffic.
