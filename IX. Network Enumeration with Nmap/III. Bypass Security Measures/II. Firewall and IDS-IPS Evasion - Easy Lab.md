@@ -6,6 +6,10 @@ We are only ever provided with a machine protected by `IDS/IPS` systems and can 
 
 This page shows us the number of alerts. We know that if we receive a specific amount of alerts, we will be `banned`. Therefore we have to test the target system as `quietly` as possible.
 
+## Questions
+
+Our client wants to know if we can identify which operating system their provided machine is running on. Submit the OS name as the answer.
+
 ```bash
-sudo nmap -sS -sV -Pn -n --disable-arp-ping --packet-trace -p 80 --reason -T4 10.129.2.80
+sudo nmap -sS -sV -Pn -n --disable-arp-ping --packet-trace -p 80 --reason -T4 <ip>
 ```
