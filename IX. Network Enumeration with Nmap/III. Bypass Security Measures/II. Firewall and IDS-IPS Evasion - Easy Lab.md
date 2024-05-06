@@ -13,3 +13,16 @@ Our client wants to know if we can identify which operating system their provide
 ```bash
 sudo nmap -sS -sV -Pn -n --disable-arp-ping --packet-trace -p 80 --reason -T4 <ip>
 ```
+
+Explanation of options used:
+
+- `-sS`: Performs a SYN scan, which is a stealthy scan method.
+- `-Pn`: Treats all hosts as online, skipping the host discovery phase.
+- `-n`: Disables DNS resolution to avoid sending DNS queries.
+- `--disable-arp-ping`: Disables ARP ping to avoid network discovery.
+- `--packet-trace`: Displays all sent and received packets for debugging purposes.
+- `-p 80`: Specifies port 80 (HTTP) to scan, as the target webpage is likely hosted on this port.
+- `--reason`: Shows the reason for the scan results.
+- `-T4`: Sets the timing template to aggressive to speed up the scan.
+
+This command will perform a SYN scan on port 80 of the target IP address, aiming to evade IDS/IPS detection while gathering information about the web server running on the target.
