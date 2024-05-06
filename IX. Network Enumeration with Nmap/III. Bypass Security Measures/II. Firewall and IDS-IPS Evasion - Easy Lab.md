@@ -5,3 +5,7 @@ Now let's get practical. A company hired us to test their IT security defenses, 
 We are only ever provided with a machine protected by `IDS/IPS` systems and can be tested. For learning purposes and to get a feel for how `IDS/IPS` can behave, we have access to a status web page at:
 
 This page shows us the number of alerts. We know that if we receive a specific amount of alerts, we will be `banned`. Therefore we have to test the target system as `quietly` as possible.
+
+```bash
+sudo nmap -sS -sV -Pn -n --disable-arp-ping --packet-trace -p 80 --reason -T4 10.129.2.80
+```
