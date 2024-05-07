@@ -84,7 +84,7 @@ Finally, for the processor to execute the instructions linked to this machine, i
 
 A CPU uses different electrical charges for a 1 and a 0, and hence can calculate these instructions from the binary data once it receives them.
 
-Note: With multi-platform languages, like Java, the code is compiled into a Java Bytecode, which is the same for all processors/systems, and is then compiled to machine code by the local Java Runtime environment. This is what makes Java relatively slower than other languages like C++ that compile directly into machine code. Languages like C++ are more suitable for processor intensive applications like games.
+> Note: With multi-platform languages, like Java, the code is compiled into a Java Bytecode, which is the same for all processors/systems, and is then compiled to machine code by the local Java Runtime environment. This is what makes Java relatively slower than other languages like C++ that compile directly into machine code. Languages like C++ are more suitable for processor intensive applications like games.
 
 We now see how computer languages progressed from assembly language unique for each processor to high-level languages that can work on any device without even needing to be compiled.
 
