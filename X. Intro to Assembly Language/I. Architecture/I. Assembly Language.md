@@ -38,7 +38,7 @@ int main()
 }
 ```
 
-Note: the actual C source code is much longer, but the above is the essence of how the string 'Hello World!' is printed. If you are ever interested in knowing more, you can check out the source code of the Python3 print function at [this link](https://github.com/python/cpython/blob/3.9/Python/sysmodule.c#L1212) and [this link](https://github.com/python/cpython/blob/3.9/Python/pythonrun.c#L566)
+> Note: the actual C source code is much longer, but the above is the essence of how the string 'Hello World!' is printed. If you are ever interested in knowing more, you can check out the source code of the Python3 print function at [this link](https://github.com/python/cpython/blob/3.9/Python/sysmodule.c#L1212) and [this link](https://github.com/python/cpython/blob/3.9/Python/pythonrun.c#L566)
 
 The above C code uses the Linux write syscall, built-in for processes to write to the screen. The same syscall called in Assembly looks like the following:
 
