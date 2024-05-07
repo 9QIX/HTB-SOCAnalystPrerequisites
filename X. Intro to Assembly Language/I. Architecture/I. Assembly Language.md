@@ -18,6 +18,8 @@ Later on, interpreted languages were developed, like Python, PHP, Bash, JavaScri
 
 ## Compilation Stages
 
+![alt text](/Images/image-138.png)
+
 Let's take a basic 'Hello World!' program that prints these words on the screen and show how it changes from high-level to machine code. In an interpreted language, like Python, it would be the following basic line:
 
 ```python
