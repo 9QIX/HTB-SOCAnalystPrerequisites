@@ -6,7 +6,7 @@ However, these physical components cannot interpret or understand high-level lan
 
 This is why low-level assembly languages were built. By using Assembly, developers can write human-readable machine instructions, which are then assembled into their machine code equivalent, so that the processor can directly run them. This is why some refer to Assembly language as symbolic machine code. For example, the Assembly code 'add rax, 1' is much more intuitive and easier to remember than its equivalent machine shellcode '4883C001', and easier to remember than the equivalent binary machine code '01001000 10000011 11000000 00000001'. As we can see, without Assembly language, it is very challenging to write machine instructions or directly interact with the processor.
 
-Machine code is often represented as Shellcode, a hex representation of machine code bytes. Shellcode can be translated back to its Assembly counterpart and can also be loaded directly into memory as binary instructions to be executed.
+Machine code is often represented as Shellcode, a hex representation of machine code bytes. Shellcode can be translated back to its Assembly counterpart and can also be loaded directly into memory as binary instructions to be executed
 
 ## High-level vs. Low-level
 
