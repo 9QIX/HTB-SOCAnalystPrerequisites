@@ -65,7 +65,7 @@ As we can see, when the write syscall is called in C or Assembly, both are using
 
 48 c7 c0 3c
 48 c7 c7 00
-0f 0
+0f 05
 ```
 
 Finally, for the processor to execute the instructions linked to this machine, it would have to be translated into binary, which would look like the following:
