@@ -17,7 +17,7 @@ Furthermore, the CPU itself consists of three main components:
 - Arithmetic/Logic Unit (ALU)
 - Registers
 
-Von Neumann Architecture
+![alt text](/Images/image-139.png)
 
 Though very old, this architecture is still the basis of most modern computers, servers, and even smartphones.
 
