@@ -87,4 +87,45 @@ For example, if we have the address 0x0011223344556677 to be stored in memory, l
 
 Another example that shows how this can affect the stored values is binary. For example, if we had the 2-byte integer 426, its binary representation is 00000001 10101010. The order in which these two bytes are stored would change its value. For example, if we stored it in reverse as 10101010 00000001, its value becomes 43521.
 
-The big-endian processors would store these bytes
+The big-endian processors would store these bytes as 00000001 10101010 left-to-right, while little-endian processors store them as 10101010 00000001 right-to-left. When retrieving the value, the processor has to use the same endianness used when storing them, or it will get the wrong value. This indicates that the order in which the bytes are stored/retrieved makes a big difference.
+
+The following table demonstrates how endianness works:
+
+| Address       | 0   | 1   | 2   | 3   | 4   | 5   | 6   | 7   | Address Value      |
+| ------------- | --- | --- | --- | --- | --- | --- | --- | --- | ------------------ |
+| Little Endian | 77  | 66  | 55  | 44  | 33  | 22  | 11  | 00  | 0x0011223344556677 |
+| Big Endian    | 00  | 11  | 22  | 33  | 44  | 55  | 66  | 77  | 0x0011223344556677 |
+
+You can click on the "Load Address" button to visualize how each endianness loads data/addresses into memory.
+
+As we can see, this means that an address written in little-endian or in big-endian would refer to different locations in the memory, as it would be read differently by each processor type.
+
+This module will always use little-endian byte order, as it is used with Intel/AMD x86 in most modern operating systems, so the shellcode is always represented right-to-left.
+
+The important thing we need to take from this is knowing that our bytes are stored into memory from right-to-left. So, if we were to push an address or a string with Assembly, we would have to push it in reverse. For example, if we want to store the word Hello, we would push its bytes in reverse: o, l, l, e, and finally H.
+
+This may seem a bit counter-intuitive since most people are used to reading from left-to-right. However, this has multiple advantages when processing data, like being able to retrieve a sub-register without having to go through the entire register or being able to perform arithmetic in the correct order right-to-left.
+
+## Data Types
+
+Finally, the x86 architecture supports many types of data sizes, which can be used with various instructions. The following are the most common data types we will be using with instructions:
+
+| Component           | Length            | Example            |
+| ------------------- | ----------------- | ------------------ |
+| byte                | 8 bits            | 0xab               |
+| word                | 16 bits - 2 bytes | 0xabcd             |
+| double word (dword) | 32 bits - 4 bytes | 0xabcdef12         |
+| quad word (qword)   | 64 bits - 8 bytes | 0xabcdef1234567890 |
+
+Whenever we use a variable with a certain data type or use a data type with an instruction, both operands should be of the same size.
+
+For example, we can't use a variable defined as byte with rax, as rax has a size of 8 bytes. In this case, we would have to use al, which has the same size of 1 byte. The following table shows the appropriate data type for each sub-register:
+
+| Sub-register | Data Type |
+| ------------ | --------- |
+| al           | byte      |
+| ax           | word      |
+| eax          | dword     |
+| rax          | qword     |
+
+We will discuss this further in the upcoming sections. With all fundamentals of Assembly covered, we can start learning about x86 assembly instructions and writing basic Assembly code.
