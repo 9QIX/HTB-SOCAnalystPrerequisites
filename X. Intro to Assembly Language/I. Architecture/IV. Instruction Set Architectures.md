@@ -47,7 +47,7 @@ On the other hand, an advantage of splitting complex instructions into minor one
 
 The below diagram shows how CISC instructions take a variable amount of clock cycles, while RISC instructions take a fixed amount:
 
-![risc vs cisc cycles](risc_vs_cisc_cycles.png)
+![alt text](/Images/image-147.png)
 
 Executing each instruction stage in a single clock cycle and only executing simple instructions leads to RISC processors consuming a fraction of the power consumed by CISC processors, which makes these processors ideal for devices that run on batteries, like smartphones and laptops.
 
