@@ -60,7 +60,7 @@ When a program is run, all of its data and instructions are moved from the stora
 
 As we can see, the RAM is split into four main segments:
 
-![alt text](image.png)
+![alt text](/Images/image-140.png)
 
 | Segment | Description                                                                                                                                                                                      |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
