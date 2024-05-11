@@ -26,7 +26,7 @@ There are two main types of registers we will be focusing on: Data Registers and
 
 Each 64-bit register can be further divided into smaller sub-registers containing the lower bits, at one byte 8-bits, 2 bytes 16-bits, and 4 bytes 32-bits. Each sub-register can be used and accessed on its own, so we don't have to consume the full 64-bits if we have a smaller amount of data.
 
-![register parts](register_parts.png)
+![alt text](/Images/image-147.png)
 
 Sub-registers can be accessed as:
 
