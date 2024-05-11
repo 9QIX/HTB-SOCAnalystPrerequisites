@@ -60,6 +60,8 @@ When a program is run, all of its data and instructions are moved from the stora
 
 As we can see, the RAM is split into four main segments:
 
+![alt text](image.png)
+
 | Segment | Description                                                                                                                                                                                      |
 | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Stack   | Has a Last-in First-out (LIFO) design and is fixed in size. Data in it can only be accessed in a specific order by push-ing and pop-ing data.                                                    |
