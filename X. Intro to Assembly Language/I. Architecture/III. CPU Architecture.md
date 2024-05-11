@@ -66,7 +66,7 @@ This module will focus mainly on the Intel x86 64-bit assembly language (also kn
 
 If we want to know whether our Linux system supports x86_64 architecture, we can use the `lscpu` command:
 
-```
+```bash
 z0x9n@htb[/htb]$ lscpu
 
 Architecture:                    x86_64
