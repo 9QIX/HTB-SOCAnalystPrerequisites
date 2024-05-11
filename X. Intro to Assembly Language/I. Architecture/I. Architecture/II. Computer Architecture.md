@@ -77,7 +77,7 @@ Finally, we have the Input/Output devices, like the keyboard, the screen, or the
 
 Each Bus has a capacity of bits (or electrical charges) it can carry simultaneously. This usually is a multiple of 4-bits, ranging up to 128-bits. Bus interfaces are also usually used to access memory and other components outside the CPU itself. If we take a closer look at a CPU or a motherboard, we can see the bus interfaces all over them:
 
-![Bus Interfaces](bus.jpg)
+![alt text](/Images/image-141.png)
 
 Unlike primary memory that is volatile and stores temporary data and instructions as the programs are running, the storage unit stores permanent data, like the operating system files or entire applications and their data.
 
