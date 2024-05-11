@@ -20,7 +20,7 @@ Modern processors have a multi-core design, allowing them to have multiple cycle
 
 An Instruction Cycle is the cycle it takes the CPU to process a single machine instruction.
 
-![instruction cycle](https://i.imgur.com/hvJy1gP.png)
+![alt text](/Images/image-143.png)
 
 An instruction cycle consists of four stages: Fetch, Decode, Execute, and Store:
 
@@ -35,7 +35,7 @@ All of the stages in the instruction cycle are carried out by the Control Unit, 
 
 Each Instruction Cycle takes multiple clock cycles to finish, depending on the CPU architecture and the complexity of the instruction. Once a single instruction cycle ends, the CU increments to the next instruction and runs the same cycle on it, and so on.
 
-![instruction cycle](https://i.imgur.com/IsMKUft.png)
+![alt text](/Images/image-144.png)
 
 For example, if we were to execute the assembly instruction `add rax, 1`, it would run through an instruction cycle:
 
@@ -46,7 +46,7 @@ For example, if we were to execute the assembly instruction `add rax, 1`, it wou
 
 In the past, processors used to process instructions sequentially, so they had to wait for one instruction to finish to start the next. On the other hand, modern processors can process multiple instructions in parallel by having multiple instruction/clock cycles running at the same time. This is made possible by having a multi-thread and multi-core design.
 
-![instruction cycle](https://i.imgur.com/t4PGXKZ.png)
+![alt text](/Images/image-145.png)
 
 ## Processor Specific
 
