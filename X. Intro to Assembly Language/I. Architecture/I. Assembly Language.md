@@ -1,4 +1,4 @@
-# Assembly Languag
+# Assembly Language
 
 Most of our interaction with our personal computers and smartphones is done through the operating system and other applications. These applications are usually developed using high-level languages, like C++, Java, Python, and many others. We also know that each of these devices has a core processor that runs all of the necessary processes to execute systems and applications, along with Random Access Memory (RAM), Video Memory, and other similar components.
 
