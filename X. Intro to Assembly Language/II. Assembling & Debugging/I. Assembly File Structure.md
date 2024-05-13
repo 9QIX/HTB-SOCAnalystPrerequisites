@@ -29,6 +29,8 @@ This Assembly code (once assembled and linked) should print the string 'Hello HT
 
 First, let's examine the way the code is distributed:
 
+![alt text](/Images/image-148.png)
+
 Looking at the vertical parts of the code, each line can have three elements:
 
 1. Labels 2. Instructions 3. Operands
