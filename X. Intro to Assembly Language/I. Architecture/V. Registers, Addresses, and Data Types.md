@@ -1,6 +1,6 @@
 # Registers, Addresses, and Data Types
 
-Now that we understand general computer and processor architecture, we need to understand a few assembly elements before we start learning Assembly: Registers, Memory Addresses, Address Endianness, and Data Types. Each of these elements is important, and properly understanding them will help us avoid issues and hours of troubleshooting while writing and debugging assembly code.
+Now that we understand general computer and processor architecture, we need to understand a few assembly elements before we start learning Assembly: Registers, Memory Addresses, Address Endianness, and Data Types. Each of these elements is important, and properly understanding them will help us avoid issues and hours of troubleshooting while writing and debugging assembly code..
 
 ## Registers
 
