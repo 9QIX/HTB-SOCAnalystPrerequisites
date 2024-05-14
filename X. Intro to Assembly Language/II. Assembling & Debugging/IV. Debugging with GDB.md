@@ -269,3 +269,27 @@ We see that we successfully modified the string and got `Patched!\n Academy!` in
 We also note that we did not replace the entire string. This is because we only modified the characters up to the length of our string and left the remainder of the old string. Finally, the `printf` function specified a length of `0x12` of bytes to be printed.
 
 To fix this, let's modify the value stored in `$rdx` to the length of our string, which is `0x9`. We will only patch a
+size of one byte. We will go into details of how syscall works later in the module. Let us demonstrate using `set`to modify`$rdx`, as follows:
+
+```
+gef➤  break *0x401019
+
+Breakpoint 1 at 0x401019
+gef➤  r
+gef➤  patch string 0x402000 "Patched!\\x0a"
+gef➤  set $rdx=0x9
+gef➤  c
+
+Continuing.
+Patched!
+```
+
+We see that we successfully modified the final printed string and have the program output something of our choosing. The ability to modify values of registers and addresses will help us a lot through debugging and binary exploitation, as it allows us to test various values and conditions without having to change the code and recompile the binary every time.
+
+## Conclusion
+
+The ability to set breakpoints to stop the execution, step through a program and each of its instructions, examine various data and addresses at each point, and modify values when needed, enables us to do proper debugging and reverse engineering.
+
+Whether we want to see exactly why our program is failing or understand how a program is running and what it's doing at each point, GDB becomes very handy.
+
+For penetration testing, this process enables us to understand how a program handles input at a certain point and exactly why it's failing. This allows us to develop exploits that take advantage of such failures, as we will learn in the Binary Exploitation modules.
