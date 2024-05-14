@@ -2,7 +2,7 @@
 
 As we learn various Assembly instructions in the coming sections, we'll constantly be writing code, assembling it, and debugging it. This is the best way to learn what each instruction does. So, we need to learn the basic structure of an Assembly code file and then assemble it and debug it.
 
-In this section, we'll go through the basic structure of an Assembly file, and in the following two sections, we will cover assembling it and debugging it. We will be working on a template Hello World! Assembly code as a sample, to first learn the general structure of an assembly file and then how to assemble it and debug it. Let us start by taking a look at and dissecting a sample Hello World! Assembly code template:
+In this section, we'll go through the basic structure of an Assembly file, and in the following two sections, we will cover assembling it and debugging it. We will be working on a template Hello World! Assembly code as a sample, to first learn the general structure of an assembly file and then how to assemble it and debug it. Let us start by taking a look at and dissecting a sample Hello World! Assembly code template
 
 ```nasm
          global  _start
