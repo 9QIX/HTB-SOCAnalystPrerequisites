@@ -32,8 +32,6 @@ _start:
     syscall
 ```
 
-````
-
 Note how we used equ to dynamically calculate the length of message, instead of using a static 18. This will become very handy later on. Once we do, we will assemble the file using nasm, with the following command:
 
 ```
@@ -148,8 +146,3 @@ Contents of section .data:
 ```
 
 As we can see, the .data section indeed contains the message variable with the string Hello HTB Academy!. This should give us a better idea of how our code was assembled into machine code and how it looks after we assemble it. Next, let us go through the basics of code debugging, which is a critical skill we need to learn.
-
-```
-
-```
-````
