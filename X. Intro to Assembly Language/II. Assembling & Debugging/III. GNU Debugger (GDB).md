@@ -106,6 +106,6 @@ As we can see, the output we got closely resembles our assembly code and the dis
 
 Having the memory address is critical for examining the variables/operands and setting breakpoints for a certain instruction.
 
-You may notice through debugging that some memory addresses are in the form of `0x00000000004xxxxx`, rather than their raw address in memory `0xffffffffaa8a25ff`. This is due to `$rip`-relative addressing in Position-Independent Executables PIE, in which the memory addresses are used relative to their distance from the instruction pointer `$rip` within the program's own Virtual RAM, rather than using raw memory addresses. This feature may be disabled to reduce the risk of binary exploitation.
+> You may notice through debugging that some memory addresses are in the form of `0x00000000004xxxxx`, rather than their raw address in memory `0xffffffffaa8a25ff`. This is due to `$rip`-relative addressing in Position-Independent Executables PIE, in which the memory addresses are used relative to their distance from the instruction pointer `$rip` within the program's own Virtual RAM, rather than using raw memory addresses. This feature may be disabled to reduce the risk of binary exploitation.
 
 Next, let us go through the basics of debugging with GDB by using breakpoints, examining data, and stepping through the program.
