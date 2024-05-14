@@ -123,4 +123,149 @@ Note: if we don't specify the Size or Format, it will default to the last one we
 
 ### Addresses
 
-The most common format of examining is hex `x`. We often need to examine addresses
+The most common format of examining is hex `x`. We often need to examine addresses ```markdown
+and registers containing hex data, such as memory addresses, instructions, or binary data. Let us examine the same previous instruction, but in hex format, to see how it looks:
+
+```
+gef➤  x/wx 0x401000
+
+0x401000 <_start>:	0x000001b8
+```
+
+We see instead of `mov eax,0x1`, we get `0x000001b8`, which is the hex representation of the `mov eax,0x1` machine code in little-endian formatting.
+
+This is read as: `b8 01 00 00`.
+
+Try repeating the commands we used for examining strings using `x` to examine them in hex. We should see the same text but in hex format. We can also use GEF features to examine certain addresses. For example, at any point we can use the `registers` command to print out the current value of all registers:
+
+```
+gef➤  registers
+$rax   : 0x0
+$rbx   : 0x0
+$rcx   : 0x0
+$rdx   : 0x0
+$rsp   : 0x00007fffffffe310  →  0x0000000000000001
+$rbp   : 0x0
+$rsi   : 0x0
+$rdi   : 0x0
+$rip   : 0x0000000000401000  →  <_start+0> mov eax, 0x1
+...SNIP...
+```
+
+## Step
+
+The third step of debugging is stepping through the program one instruction or line of code at a time. As we can see, we are currently at the very first instruction in our helloWorld program:
+
+```
+─────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+     0x400ffe                  add    BYTE PTR [rax], al
+ →   0x401000 <_start+0>       mov    eax, 0x1
+     0x401005 <_start+5>       mov    edi, 0x1
+```
+
+Note: the instruction shown with the `->` symbol is where we are at, and it has not yet been processed.
+
+To move through the program, there are three different commands we can use: `stepi` and `step`.
+
+### Step Instruction
+
+The `stepi` or `si` command will step through the assembly instructions one by one, which is the smallest level of steps possible while debugging. Let us use the `si` command to see how we get to the next instruction:
+
+```
+─────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+gef➤  si
+0x0000000000401005 in _start ()
+   0x400fff                  add    BYTE PTR [rax+0x1], bh
+ →   0x401005 <_start+5>       mov    edi, 0x1
+     0x40100a <_start+10>      movabs rsi, 0x402000
+     0x401014 <_start+20>      mov    edx, 0x12
+     0x401019 <_start+25>      syscall
+─────────────────────────────────────────────────────────────────────────────────────── threads ────
+     [#0] Id 1, Name: "helloWorld", stopped 0x401005 in _start (), reason: SINGLE STEP
+```
+
+As we can see, we took exactly one step and stopped again at the `mov edi, 0x1` instruction.
+
+### Step Count
+
+Similarly to examine, we can repeat the `si` command by adding a number after it. For example, if we wanted to move 3 steps to reach the `syscall` instruction, we can do so as follows:
+
+```
+gef➤  si 3
+0x0000000000401019 in _start ()
+─────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+     0x401004 <_start+4>       add    BYTE PTR [rdi+0x1], bh
+     0x40100a <_start+10>      movabs rsi, 0x402000
+     0x401014 <_start+20>      mov    edx, 0x12
+ →   0x401019 <_start+25>      syscall
+     0x40101b <_start+27>      mov    eax, 0x3c
+     0x401020 <_start+32>      mov    edi, 0x0
+     0x401025 <_start+37>      syscall
+─────────────────────────────────────────────────────────────────────────────────────── threads ────
+[#0] Id 1, Name: "helloWorld", stopped 0x401019 in _start (), reason: SINGLE STEP
+```
+
+As we can see, we stopped at the `syscall` instruction as expected.
+
+Tip: You can hit the return/enter empty in order to repeat the last command. Try hitting it at this stage, and you should make another 3 steps, and break at the other `syscall` instruction.
+
+### Step
+
+The `step` or `s` command, on the other hand, will continue until the following line of code is reached or until it exits from the current function. If we run an assembly code, it will break when we exit the current function `_start`.
+
+If there's a call to another function within this function, it'll break at the beginning of that function. Otherwise, it'll break after we exit this function after the program's end. Let us try using `s`, and see what happens:
+
+```
+gef➤  step
+
+Single stepping until exit from function _start,
+which has no line number information.
+Hello HTB Academy!
+[Inferior 1 (process 14732) exited normally]
+```
+
+We see that the execution continued until we reached the exit from the `_start` function, so we reached the end of the program and exited normally without any errors. We also see that GDB printed the program's output `Hello HTB Academy!` as well.
+
+Note: There's also the `next` or `n` command, which will also continue until the next line, but will skip any functions called in the same line of code, instead of breaking at them like `step`. There's also the `nexti` or `ni`, which is similar to `si`, but skips functions calls, as we will see later on in the module.
+
+## Modify
+
+The final step of debugging is modifying values in registers and addresses at a certain point of execution. This helps us in seeing how this would affect the execution of the program.
+
+### Addresses
+
+To modify values in GDB, we can use the `set` command. However, we will utilize the `patch` command in GEF to make this step much easier. Let's enter `help patch` in GDB to get its help menu:
+
+```
+gef➤  help patch
+
+Write specified values to the specified address.
+Syntax: patch (qword|dword|word|byte) LOCATION VALUES
+patch string LOCATION "double-escaped string"
+...SNIP...
+```
+
+As we can see, we have to provide the type/size of the new value, the location to be stored, and the value we want to use. So, let's try changing the string stored in the `.data` section (at address `0x402000` as we saw earlier) to the string `Patched!\n`.
+
+We will break at the first `syscall` at `0x401019`, and then do the patch, as follows:
+
+```
+gef➤  break *0x401019
+
+Breakpoint 1 at 0x401019
+gef➤  r
+gef➤  patch string 0x402000 "Patched!\\x0a"
+gef➤  c
+
+Continuing.
+Patched!
+ Academy!
+```
+
+We see that we successfully modified the string and got `Patched!\n Academy!` instead of the old string. Notice how we used `\x0a` for adding a new line after our string.
+
+### Registers
+
+We also note that we did not replace the entire string. This is because we only modified the characters up to the length of our string and left the remainder of the old string. Finally, the `printf` function specified a length of `0x12` of bytes to be printed.
+
+To fix this, let's modify the value stored in `$rdx` to the length of our string, which is `0x9`. We will only patch a
