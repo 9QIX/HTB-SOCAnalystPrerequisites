@@ -88,4 +88,111 @@ $rbx   : 0x1
 $rcx   : 0x9
 $eflags: [zero carry PARITY adjust sign trap INTERRUPT direction overflow resume virtualx86 identification]
 ───────────────────────────────────────────────────────────────────────────────────── registers
+$rax   : 0x1
+$rbx   : 0x2
+$rcx   : 0x8
+$eflags: [zero carry parity adjust sign trap INTERRUPT direction overflow resume virtualx86 identification]
+```
+
+We can see that we are still correctly calculating the Fibonacci Sequence. At each iteration of the loop, we are decreasing rcx, and the zero flag is off, while the parity flag is on when rcx is an odd number. The RFLAGS values at this point are set after the dec rcx instruction, as this is the last arithmetic instruction before we break. So, the flag states are for rcx.
+
+Note: GEF shows us the state of the flags in the RFLAGS register. The flags written in bold UPPERCASE letters are on.
+
+Let's continue out of the loop, to see the state of the registers and RFLAGS after rcx reaches 0:
+
+```
+gef➤
+Continuing.
+───────────────────────────────────────────────────────────────────────────────────── registers ────
+$rax   : 0x37
+$rbx   : 0x59
+$rcx   : 0x0
+$eflags: [ZERO carry PARITY adjust sign trap INTERRUPT direction overflow RESUME virtualx86 identification]
+```
+
+We see that once rcx reaches 0, the zero flag is set to on 1, and jnz no longer jumps back to loopFib, so the program stops executing.
+
+## CMP
+
+There are other cases where we may want to use a conditional jump instruction within our module project. For example, we may want to stop the program execution when the Fibonacci number is more than 10. We can do so by using the js loopFib instruction, which would jump back to loopFib as long as the last arithmetic instruction resulted in a positive number.
+
+In this case, we will not use the jnz instruction or the rcx register but will use js instead directly after calculating the current Fibonacci number. But how would we test if the current Fibonacci number (i.e., rbx) is less than 10? This is where we come to the Compare instruction cmp.
+
+The Compare instruction cmp simply compares the two operands, by subtracting the second operand from first operand (i.e. D1 - S2), and then sets the necessary flags in the RFLAGS register. For example, if we use cmp rbx, 10, then the compare instruction would do 'rbx - 10', and set the flags based on the result.
+
+| Instruction | Description                                                                        | Example                   |
+| ----------- | ---------------------------------------------------------------------------------- | ------------------------- |
+| cmp         | Sets RFLAGS by subtracting second operand from first operand (i.e. first - second) | cmp rax, rbx -> rax - rbx |
+
+So, after the first Fibonacci number is calculated, it will do '1 - 10', and the result would be -9, so it will jump since it's a negative number <0. Once we reach the first Fibonacci number greater than 10, which is 13 or 0xd, it will do '13 - 10', and the result would be '3', at which case js would no longer jump, as the result is a positive number >=0.
+
+We could use sub instructions to perform the same subtraction and set the flags if we wanted. However, this would not be efficient, as we will be changing the value of one of the registers, while the cmp only compares and does not store the result anywhere. The main advantage of 'cmp' is that it does not affect the operands.
+
+Note: In a cmp instruction, the first operand (i.e. the Destination) must be a register, while the other can be a register, a variable, or an immediate value.
+
+So, let's change our code to use cmp and js, as follows:
+
+```nasm
+global  _start
+
+section .text
+_start:
+    xor rax, rax    ; initialize rax to 0
+    xor rbx, rbx    ; initialize rbx to 0
+    inc rbx         ; increment rbx to 1
+loopFib:
+    add rax, rbx    ; get the next number
+    xchg rax, rbx   ; swap values
+    cmp rbx, 10     ; do rbx - 10
+    js loopFib      ; jump if result is <0
+```
+
+Note that we removed the mov rcx, 10 instruction since we are no longer looping with rcx. We could have used it in cmp instead of 10, but by directly using 10 we use one less instruction, making our code shorter and more efficient.
+
+Now, let's assemble our code, and run it with gdb, to see how this works. We will break at loopFib, and then step with si until we reach the js loopFib instruction:
+
+```
+gdb
+$ ./assembler.sh fib.s -g
+gef➤  b loopFib
+Breakpoint 1 at 0x401009
+gef➤  r
+───────────────────────────────────────────────────────────────────────────────────── registers ────
+$rax   : 0x1
+$rbx   : 0x1
+$eflags: [zero CARRY parity ADJUST SIGN trap INTERRUPT direction overflow resume virtualx86 identification]
+─────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+     0x401009 <loopFib+0>      add    rax, rbx
+     0x40100c <loopFib+3>      xchg   rbx, rax
+     0x40100e <loopFib+5>      cmp    rbx, 0xa
+ →   0x401012 <loopFib+9>      js     0x401009 <loopFib>	TAKEN [Reason: S]
+```
+
+We see that in the first iteration of loopFib, once we reach js loopFib, the SIGN flag is set to on 1 as expected, since the result of 1 - 10 is a negative number. We also notice GEF telling us TAKEN [Reason: S], which conveniently tells us that this conditional jump will be taken and gives the reason as S, meaning that the SIGN flag is set.
+
+Now, let's continue until rbx is greater than 10, at which point js should no longer jump. Instead of manually pressing c several times, let's take this opportunity to learn how to set conditional breakpoints in gdb.
+
+Let's first delete the current breakpoint with del 1, and then set our conditional breakpoint. The syntax is very similar to setting regular breakpoints b loopFib, but we add an if condition after it, such as 'b loopFib if $rbx > 10'. Also, instead of breaking at loopFib and then using si to reach js, let's directly break at js with * to refer to its location 'b *loopFib+9 if $rbx > 10' or 'b \*0x401012 if $rbx > 10'.
+Remember: we can find an instruction's location with disas loopFib.
+
+We see the following:
+
+```
+gef➤  del 1
+gef➤  disas loopFib
+Dump of assembler code for function loopFib:
+..SNIP...
+0x0000000000401012 <+9>:	js     0x401009
+gef➤  b *loopFib+9 if $rbx > 10
+Breakpoint 2 at 0x401012
+gef➤  c
+───────────────────────────────────────────────────────────────────────────────────── registers ────
+$rax   : 0x8
+$rbx   : 0xd
+$eflags: [zero carry PARITY adjust sign trap INTERRUPT direction overflow resume virtualx86 identification]
+─────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+     0x401009 <loopFib+0>      add    rax, rbx
+     0x40100c <loopFib+3>      xchg   rbx, rax
+     0x40100e <loopFib+5>      cmp    rbx, 0xa
+ →   0x401012 <loopFib+9>      js     0x401009 <loopFib>	NOT taken [Reason: !(S)]
 ```
