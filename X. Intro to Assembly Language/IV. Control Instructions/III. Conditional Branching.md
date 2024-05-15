@@ -196,3 +196,17 @@ $eflags: [zero carry PARITY adjust sign trap INTERRUPT direction overflow resume
      0x40100e <loopFib+5>      cmp    rbx, 0xa
  →   0x401012 <loopFib+9>      js     0x401009 <loopFib>	NOT taken [Reason: !(S)]
 ```
+
+We see now that the last arithmetic instruction '13 - 10' resulted in a positive number, the sign flag is no longer set, so GEF tells us that this jump is NOT TAKEN, with the reason !(S), meaning that the sign flag is not set.
+
+As we can see, using conditional branching is very powerful and enables us to perform more advanced instructions based on a condition we specify. We can use the cmp instruction to test various conditions. For example, we can use jl instead of jns, which would jump as long as the Destination is Less than the Source. So, with cmp rbx, 10, rbx will start less than 10, and once rbx gets greater than 10, then rbx (i.e., the Destination) would be greater than 10, at which point jl will not jump.
+
+Note: We may see instructions using JMP Equal je, or JMP Not Equal jne. This is just an alias of jz and jnz, since if both operands are equal, the outcome of cmp rax, rax would be 0 in all cases, which sets the Zero Flag. The same applies to jge and jnl, since >= is the same as !, and applies to other similar conditions as well.
+
+Now that we have covered all basic Control Instructions, which way do you think is more efficient?
+
+- Using mov rcx, 10 and loop loopFib => loop 10 times
+- Using mov rcx, 10 and dec rcx and jnz loopFib => jump 10 times
+- Using cmp rbx, 10 and js loopFib => jump while rbx <10
+
+Modify your code to use the method you think is the best.
