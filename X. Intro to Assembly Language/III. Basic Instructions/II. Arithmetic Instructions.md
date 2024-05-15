@@ -138,5 +138,17 @@ gef➤  r
 ─────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
  →   0x401001 <_start+1>       xor    eax, eax
      0x401003 <_start+3>       xor    ebx, ebx
-───────────────────────────────────────────────────────────
+───────────────────────────────────────────────────────────────────────────── registers ────
+$rax   : 0x0
+$rbx   : 0x0
+
+...SNIP...
+
+─────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+ →   0x40100c                  add    BYTE PTR [rax], al
+───────────────────────────────────────────────────────────────────────────────────── registers ────
+$rax   : 0x1
+$rbx   : 0x1
 ```
+
+As we can see, xoring our registers with themselves turned each of them to 0's, and the rest of the code performed the same operations as earlier, so we ended up with the same final values for both rax and rbx.
