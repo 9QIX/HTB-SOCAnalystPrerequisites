@@ -110,11 +110,15 @@ Whenever we want to make a call to a function, we must ensure that the Top Stack
 This means that we have to push at least 16-bytes (or a multiple of 16-bytes) to the stack before making a call to ensure functions have enough stack space to execute correctly. This requirement is mainly there for processor performance efficiency. Some functions (like in libc) are programed to crash if this boundary is not fixed to ensure performance efficiency. If we assemble our code and break right after the second push, this is what we will see:
 
 ```
-  gdb
 ───────────────────────────────────────────────────────────────────────────────────────── stack ────
 0x00007fffffffe3a0│+0x0000: 0x0000000000000001	 ← $rsp
 0x00007fffffffe3a8│+0x0008: 0x0000000000000000
 0x00007fffffffe3b0│+0x0010: 0x00000000004010ad  →  <loopFib+5> add rax, rbx
 0x00007fffffffe3b8│+0x0018: 0x0000000000401044  →  <_start+20> call 0x4010bd <Exit>
-0x00007fffffffe3c0│+0x0020: 0x0000000000
+0x00007fffffffe3c0│+0x0020: 0x0000000000000001	 ← $r13
+─────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+     0x401090 <initFib+9>      ret
+     0x401091 <printFib+0>     push   rax
+     0x401092 <printFib+1>     push   rbx
+ →   0x40100e <printFib+2>     movabs rdi, 0x403039
 ```
