@@ -115,9 +115,166 @@ Note how we added `0x0a` after our string, to add a new line character.
 
 The `message` label is a pointer to where our string will be stored in the memory. So, we can use it as our second argument. So, our final syscall code should be as follows:
 
-```nasm
+````nasm
 mov rax, 1       ; rax: syscall number 1
 mov rdi, 1       ; rdi: fd 1 for stdout
 mov rsi, message ; rsi: pointer to message
-mov
+mov ```nasm
+mov rdx, 20      ; rdx: print length of 20 bytes
+````
+
+Tip: If we ever needed to create a pointer to a value stored in a register, we can simply push it to the stack, and then use the `rsp` pointer to point to it.
+
+We may also use a dynamically calculated length variable by using `equ`, similarly to what we did with the Hello World program.
+
+### Calling Syscall
+
+Now that we have our syscall number and arguments in place, the only thing left is to do the `syscall` instruction. So, let's add a `syscall` instruction and add the instructions to the beginning of our `fib.s` code, which should look as follows:
+
+```nasm
+global  _start
+
+section .data
+    message db "Fibonacci Sequence:", 0x0a
+
+section .text
+_start:
+    mov rax, 1       ; rax: syscall number 1
+    mov rdi, 1       ; rdi: fd 1 for stdout
+    mov rsi, message ; rsi: pointer to message
+    mov rdx, 20      ; rdx: print length of 20 bytes
+    syscall          ; call write syscall to the intro message
+    xor rax, rax     ; initialize rax to 0
+    xor rbx, rbx     ; initialize rbx to 0
+    inc rbx          ; increment rbx to 1
+loopFib:
+    add rax, rbx     ; get the next number
+    xchg rax, rbx    ; swap values
+    cmp rbx, 10      ; do rbx - 10
+    js loopFib       ; jump if result is <0
+    mov rax, 60
+    mov rdi, 0
+    syscall
 ```
+
+Let's now assemble our code and run it, and see if our intro message gets printed:
+
+```
+z0x9n@htb[/htb]$ ./assembler.sh fib.s
+
+Fibonacci Sequence:
+[1]    107348 segmentation fault  ./fib
+```
+
+We see that indeed our string is printed to the screen. Let's run it through `gdb`, and break at the `syscall` to see how all arguments are setup before we call `syscall`, as follows:
+
+```gdb
+$ gdb -q ./fib
+gef➤  disas _start
+Dump of assembler code for function _start:
+..SNIP...
+0x0000000000401011 <+17>:	syscall
+gef➤  b *_start+17
+Breakpoint 1 at 0x401011
+gef➤  r
+───────────────────────────────────────────────────────────────────────────────────── registers ────
+$rax   : 0x1
+$rbx   : 0x0
+$rcx   : 0x0
+$rdx   : 0x14
+$rsp   : 0x00007fffffffe410  →  0x0000000000000001
+$rbp   : 0x0
+$rsi   : 0x0000000000402000  →  "Fibonacci Sequence:\n"
+$rdi   : 0x1
+
+gef➤  si
+
+Fibonacci Sequence:
+```
+
+We see a couple of things that we expected:
+
+- Our arguments are properly set in the corresponding registers before each syscall.
+- A pointer to our message is loaded in `rsi`.
+
+Now, we have successfully used the `write` syscall to print our intro message.
+
+## Exit Syscall
+
+Finally, since we have understood how syscalls work, let's go through another essential syscall used in programs: Exit syscall. We may have noticed that so far, whenever our program finishes executing, it exits with a segmentation fault, as we just saw when we ran `./fib`. This is because we are ending our program abruptly, without going through the proper procedure of exiting programs in Linux, by calling the `exit` syscall and passing an exit code.
+
+So, let's add this to the end of our code. First, we need to find the `exit` syscall number, as follows:
+
+```
+z0x9n@htb[/htb]$ grep exit /usr/include/x86_64-linux-gnu/asm/unistd_64.h
+
+#define __NR_exit 60
+#define __NR_exit_group 231
+```
+
+We need to use the first one, with a syscall number 60. Next, let's see if the `exit` syscall needs any arguments:
+
+```
+z0x9n@htb[/htb]$ man -s 2 exit
+
+...SNIP...
+void _exit(int status);
+```
+
+We see that it only needs one integer argument, `status`, which is explained to be the exit code. In Linux, whenever a program exits without any errors, it passes an exit code of 0. Otherwise, the exit code is a different number, usually 1. In our case, as everything went as expected, we'll pass the exit code of 0. Our `exit` syscall code should be as follows:
+
+```nasm
+    mov rax, 60
+    mov rdi, 0
+    syscall
+```
+
+Now, let's add it to the end of our code:
+
+```nasm
+global  _start
+
+section .data
+    message db "Fibonacci Sequence:", 0x0a
+
+section .text
+_start:
+    mov rax, 1       ; rax: syscall number 1
+    mov rdi, 1       ; rdi: fd 1 for stdout
+    mov rsi, message ; rsi: pointer to message
+    mov rdx, 20      ; rdx: print length of 20 bytes
+    syscall          ; call write syscall to the intro message
+    xor rax, rax     ; initialize rax to 0
+    xor rbx, rbx     ; initialize rbx to 0
+    inc rbx          ; increment rbx to 1
+loopFib:
+    add rax, rbx     ; get the next number
+    xchg rax, rbx    ; swap values
+    cmp rbx, 10      ; do rbx - 10
+    js loopFib       ; jump if result is <0
+    mov rax, 60
+    mov rdi, 0
+    syscall
+```
+
+We can now assemble our code and rerun it:
+
+```
+z0x9n@htb[/htb]$ ./assembler.sh fib.s
+
+Fibonacci Sequence:
+```
+
+Great! We see that this time our program exited properly without a segmentation fault. We can check the exit code that was passed as follows:
+
+```
+z0x9n@htb[/htb]$ echo $?
+
+0
+```
+
+As expected, the exit code was 0, as we specified in our syscall.
+
+Practice: To get a full grasp of how syscalls work, try to implement the `write` syscall to print the Fibonacci number, and place it after `'xchg rax, rbx'`.
+
+Spoiler: It will not work. Try to find out why, and attempt to fix it to print the first few Fibonacci numbers below 10 (hint: use ASCII).
