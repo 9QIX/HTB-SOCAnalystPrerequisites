@@ -122,3 +122,123 @@ This means that we have to push at least 16-bytes (or a multiple of 16-bytes) to
      0x401092 <printFib+1>     push   rbx
  →   0x40100e <printFib+2>     movabs rdi, 0x403039
 ```
+
+We see that we have four 8-bytes pushed to the stack, making a total boundary of 32-bytes. This is due to two things:
+
+- Each procedure call adds an 8-byte address to the stack, which is then removed with ret
+- Each push adds 8-bytes to the stack as well
+
+So, we are inside printFib and inside loopFib, and have pushed rax and rbx, for a total of a 32-byte boundary. Since the boundary is a multiple of 16, our stack is already aligned, and we don't have to fix anything.
+
+If we were in a case where we wanted to bring the boundary up to 16, we can subtract bytes from rsp, as follows:
+
+```nasm
+    sub rsp, 16
+    call function
+    add rsp, 16
+```
+
+This way, we are adding an extra 16-bytes to the top of the stack and then removing them after the call. If we had 8 bytes pushed, we can bring the boundary up to 16 by subtracting 8 from rsp.
+
+This may be a bit confusing, but the critical thing to remember is that we should have 16-bytes (or a multiple of 16) on top of the stack before making a call. We can count the number of (unpoped) push instructions and (unreturned) call instructions, and we will get how many 8-bytes have been pushed to the stack.
+
+### Function Call
+
+Finally, we can issue call printf, and it should print the current Fibonacci number in the format we specified, as follows:
+
+```nasm
+printFib:
+    push rax            ; push registers to stack
+    push rbx
+    mov rdi, outFormat  ; set 1st argument (Print Format)
+    mov rsi, rbx        ; set 2nd argument (Fib Number)
+    call printf         ; printf(outFormat, rbx)
+    pop rbx             ; restore registers from stack
+    pop rax
+    ret
+```
+
+Now we should have our printFib procedure ready. So, we can add it to the beginning of loopFib, such that it prints the current Fibonacci number at the beginning of each loop:
+
+```nasm
+loopFib:
+    call printFib   ; print current Fib number
+    add rax, rbx    ; get the next number
+    xchg rax, rbx   ; swap values
+    cmp rbx, 10		; do rbx - 10
+    js loopFib		; jump if result is <0
+    ret
+```
+
+Our final fib.s code should be as follows:
+
+```nasm
+global  _start
+extern  printf
+
+section .data
+    message db "Fibonacci Sequence:", 0x0a
+    outFormat db  "%d", 0x0a, 0x00
+
+section .text
+_start:
+    call printMessage   ; print intro message
+    call initFib        ; set initial Fib values
+    call loopFib        ; calculate Fib numbers
+    call Exit           ; Exit the program
+
+printMessage:
+    mov rax, 1           ; rax: syscall number 1
+    mov rdi, 1          ; rdi: fd 1 for stdout
+    mov rsi, message    ; rsi: pointer to message
+    mov rdx, 20          ; rdx: print length of 20 bytes
+    syscall             ; call write syscall to the intro message
+    ret
+
+initFib:
+    xor rax, rax        ; initialize rax to 0
+    xor rbx, rbx        ; initialize rbx to 0
+    inc rbx             ; increment rbx to 1
+    ret
+
+printFib:
+    push rax            ; push registers to stack
+    push rbx
+    mov rdi, outFormat  ; set 1st argument (Print Format)
+    mov rsi, rbx        ; set 2nd argument (Fib Number)
+    call printf         ; printf(outFormat, rbx)
+    pop rbx             ; restore registers from stack
+    pop rax
+    ret
+
+loopFib:
+    call printFib       ; print current Fib number
+    add rax, rbx        ; get the next number
+    xchg rax, rbx       ; swap values
+    cmp rbx, 10		    ; do rbx - 10
+    js loopFib		    ; jump if result is <0
+    ret
+
+Exit:
+    mov rax, 60
+    mov rdi, 0
+    syscall
+```
+
+### Dynamic Linker
+
+We can now assemble our code with nasm. When we link our code with ld, we should tell it to do dynamic linking with the libc library. Otherwise, it would not know how to fetch the imported printf function. We can do so with the -lc --dynamic-linker /lib64/ld-linux-x86-64.so.2 flags, as follows:
+
+```
+  Functions
+z0x9n@htb[/htb]$ nasm -f elf64 fib.s &&  ld fib.o -o fib -lc --dynamic-linker /lib64/ld-linux-x86-64.so.2 && ./fib
+
+1
+1
+2
+3
+5
+8
+```
+
+As we can see, printf made it very easy to print our Fibonacci number without worrying about converting it to the proper format, like we had to with the write syscall. Next, we need to go through another example of using external libc functions to understand how to call external functions properly.
