@@ -145,3 +145,134 @@ To do run our shellcode with pwntools, we can use the run_shellcode function and
 ```
 z0x9n@htb[/htb]$ python3
 ```
+
+```python
+>>> from pwn import *
+>>> context(os="linux", arch="amd64", log_level="error")
+>>> run_shellcode(unhex('4831db66bb79215348bb422041636164656d5348bb48656c6c6f204854534889e64831c0b0014831ff40b7014831d2b2120f054831c0043c4030ff0f05')).interactive()
+
+Hello HTB Academy!
+```
+
+We used unhex() on the shellcode to convert it back to binary.
+
+As we can see, our shellcode successfully ran and printed the string Hello HTB Academy!. In contrast, if we run the previous shellcode (which did not meet Shellcoding Requirements), it will not run:
+
+```python
+>>> run_shellcode(unhex('b801000000bf0100000048be0020400000000000ba120000000f05b83c000000bf000000000f05')).interactive()
+```
+
+Once again, to make it easy to run our shellcodes, let's turn the above into a Python script:
+
+```python
+#!/usr/bin/python3
+
+import sys
+from pwn import *
+
+context(os="linux", arch="amd64", log_level="error")
+
+run_shellcode(unhex(sys.argv[1])).interactive()
+```
+
+We can copy the above script to loader.py, pass our shellcode as an argument, and run it to execute our shellcode:
+
+```
+z0x9n@htb[/htb]$ python3 loader.py '4831db66bb79215348bb422041636164656d5348bb48656c6c6f204854534889e64831c0b0014831ff40b7014831d2b2120f054831c0043c4030ff0f05'
+
+Hello HTB Academy!
+```
+
+As we can see, we were able to load and run our shellcode successfully.
+
+## Debugging Shellcode
+
+Finally, let's see how we can debug our shellcode with gdb. If we are loading the machine code directly into memory, how would we run it with gdb? There are many ways to do so, and we'll go through some of them here.
+
+We can always run our shellcode with loader.py, and then attach its process to gdb with gdb -p PID. However, this will only work if our process does not exit before we attach to it. So, we will instead build our shellcode to an elf binary and then use this binary with gdb like we've been doing throughout the module.
+
+### Pwntools
+
+We can use pwntools to build an elf binary from our shellcode using the ELF library, and then the save function to save it to a file:
+
+```python
+ELF.from_bytes(unhex('4831db66bb79215348bb422041636164656d5348bb48656c6c6f204854534889e64831c0b0014831ff40b7014831d2b2120f054831c0043c4030ff0f05')).save('helloworld')
+```
+
+To make it easier to use, we can turn the above into a script and write it to assembler.py:
+
+```python
+#!/usr/bin/python3
+
+import sys, os, stat
+from pwn import *
+
+context(os="linux", arch="amd64", log_level="error")
+
+ELF.from_bytes(unhex(sys.argv[1])).save(sys.argv[2])
+os.chmod(sys.argv[2], stat.S_IEXEC)
+```
+
+We can now run assembler.py, pass the shellcode as the first argument, and the file name as the second argument, and it'll assemble the shellcode into an executable:
+
+```
+z0x9n@htb[/htb]$ python assembler.py '4831db66bb79215348bb422041636164656d5348bb48656c6c6f204854534889e64831c0b0014831ff40b7014831d2b2120f054831c0043c4030ff0f05' 'helloworld'
+z0x9n@htb[/htb]$ ./helloworld
+
+Hello HTB Academy!
+```
+
+As we can see, it built the helloworld binary with the file name we specified. We can now run it with gdb, and use b \*0x401000 to break at the default binary entry point:
+
+```
+gdb
+$ gdb -q helloworld
+gef➤  b *0x401000
+gef➤  r
+Breakpoint 1, 0x0000000000401000 in ?? ()
+...SNIP...
+─────────────────────────────────────────────────────────────────────────────────────── code:x86:64 ────
+●→   0x401000                  xor    rbx, rbx
+     0x401003                  mov    bx, 0x2179
+     0x401007                  push   rbx
+```
+
+### GCC
+
+There are other methods to build our shellcode into an elf executable. We can add our shellcode to the following C code, write it to a helloworld.c, and then build it with gcc (hex bytes must be escaped with \x):
+
+```c
+#include <stdio.h>
+
+int main()
+{
+    int (*ret)() = (int (*)()) "\x48\x31\xdb\x66\xbb\...SNIP...\x3c\x40\x30\xff\x0f\x05";
+    ret();
+}
+```
+
+Then, we can compile our C code with gcc, and run it with gdb:
+
+```
+z0x9n@htb[/htb]$ gcc helloworld.c -o helloworld
+z0x9n@htb[/htb]$ gdb -q helloworld
+```
+
+However, this method is not very reliable for a few reasons. First, it will wrap the entire binary in C code, so the binary will not contain our shellcode, but will contain various other C functions and libraries. This method may also not always compile, depending on the existing memory protections, so we may have to add flags to bypass memory protections, as follows:
+
+```
+z0x9n@htb[/htb]$ gcc helloworld.c -o helloworld -fno-stack-protector -z execstack -Wl,--omagic -g --static
+z0x9n@htb[/htb]$ ./helloworld
+
+Hello HTB Academy!
+```
+
+With this, we should have a good understanding of the basics of shellcodes. We can now create our own shellcodes for our next steps.
+
+## Exercise Shellcode
+
+4831db536a0a48b86d336d307279217d5048b833645f316e37305f5048b84854427b6c303464504889e64831c0b0014831ff40b7014831d2b2190f054831c0043c4030ff0f05
+
+```
+
+```
