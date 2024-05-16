@@ -296,7 +296,3 @@ Hello HTB Academy!
 ```
 
 As we can see, we have successfully created a working shellcode for our Hello World program.
-
-```
-
-```
