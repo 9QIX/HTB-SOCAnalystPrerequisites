@@ -7,7 +7,7 @@ The SOC Analyst Prerequisites path is meticulously curated for individuals aspir
 ## Modules 📚
  
 ### Linux Fundamentals 🐧
-
+ 
 **Level:** Fundamental  
 **Sections:** 30  
 **Cubes:** +10 (UPDATED) 🔄
